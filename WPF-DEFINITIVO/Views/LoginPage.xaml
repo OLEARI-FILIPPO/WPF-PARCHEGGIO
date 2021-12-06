@@ -1,0 +1,82 @@
+﻿<Page
+    x:Class="WPF_DEFINITIVO.Views.LoginPage"
+   
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:properties="clr-namespace:WPF_DEFINITIVO.Properties"
+    
+    mc:Ignorable="d"
+    d:DesignHeight="750" d:DesignWidth="1250">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="48" />
+            <RowDefinition Height="*" />
+        </Grid.RowDefinitions>
+        <TextBlock
+            Style="{StaticResource PageTitleStyle}"
+            Margin="{StaticResource MediumLeftMargin}"
+            Text="{x:Static properties:Resources.LoginPageTitle}" />
+        <Grid
+            Grid.Row="1"
+            Background="White">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="151*" />
+                <RowDefinition Height="348*" />
+                <RowDefinition Height="153*" />
+            </Grid.RowDefinitions>
+
+            <Label Content="ACCEDI AL GESTIONALE"
+                   HorizontalAlignment="Center"
+                   FontSize="40" FontWeight="Bold">
+
+            </Label>
+
+            <Grid Grid.Row="1">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="43*" />
+                    <RowDefinition Height="43*" />
+                    <RowDefinition Height="30*" />
+                </Grid.RowDefinitions>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition/>
+                    <ColumnDefinition/>
+                </Grid.ColumnDefinitions>
+
+                <Label Content="Username" FontSize="30"
+                       HorizontalAlignment="Right" 
+                       Margin="0,0,40,0" Height="54" Width="155"/>
+
+                <TextBox Grid.Column="1"
+                        VerticalAlignment="Center" 
+                        HorizontalAlignment="Left" 
+                         Width="261" Margin="30,0,0,0" Height="30">
+                </TextBox>
+
+                <Label Grid.Row="1" 
+                       Content="Password" 
+                       FontSize="30"
+                       HorizontalAlignment="Right" 
+                       Margin="0,0,40,0" Height="54" Width="155"/>
+
+                <TextBox Grid.Column="1"
+                         Grid.Row="1"
+                         VerticalAlignment="Center" 
+                         HorizontalAlignment="Left" 
+                         Width="261" Margin="30,0,0,0" Height="30">
+                </TextBox>
+
+                <Button Content="ENTRA"
+                        Grid.Row="2"
+                        Grid.ColumnSpan="2" 
+                        Width="236" Height="60" 
+                        FontSize="30" Click="Button_Click">
+                </Button>
+
+
+            </Grid>
+
+        </Grid>
+    </Grid>
+</Page>

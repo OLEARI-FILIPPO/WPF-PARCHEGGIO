@@ -1,0 +1,141 @@
+﻿<Page
+    x:Class="WPF_DEFINITIVO.Views.ParcheggiPage"
+    Name="PageParcheggio"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:i="http://schemas.microsoft.com/xaml/behaviors"
+    xmlns:properties="clr-namespace:WPF_DEFINITIVO.Properties"
+    xmlns:behaviors="clr-namespace:WPF_DEFINITIVO.Behaviors"
+    xmlns:hc="https://handyorg.github.io/handycontrol"
+    xmlns:ui="http://schemas.modernwpf.com/2019"
+    mc:Ignorable="d"
+    d:DesignHeight="750" Width="1250" VerticalAlignment="Stretch">
+    <Page.Resources>
+        <DataTemplate x:Key="contentGridItemTemplate">
+            <Grid
+                Width="160"
+                Height="160"
+                Background="{DynamicResource MahApps.Brushes.Gray10}">
+                <StackPanel HorizontalAlignment="Center" VerticalAlignment="Center" Margin="{StaticResource MediumLeftTopRightBottomMargin}">
+                    <TextBlock
+                        FontSize="24"
+                        Text="{Binding Symbol}"
+                        HorizontalAlignment="Center"
+                        FontFamily="Segoe MDL2 Assets" />
+                    <TextBlock
+                        Margin="{StaticResource XXSmallTopMargin}"
+                        HorizontalAlignment="Center"
+                        Style="{StaticResource BodyTextStyle}"
+                        Text="{Binding Company}" />
+                </StackPanel>
+            </Grid>
+        </DataTemplate>
+    </Page.Resources>
+
+    <Grid x:Name="StaticGrid">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="48" />
+            <RowDefinition Height="60" />
+            <RowDefinition Height="*" />
+        </Grid.RowDefinitions>
+        <TextBlock
+            Style="{StaticResource PageTitleStyle}"
+            Margin="{StaticResource MediumLeftMargin}"
+            Text="{x:Static properties:Resources.ParcheggiPageTitle}" />
+
+        <StackPanel Orientation="Horizontal" Grid.Row="1" Margin="{StaticResource MediumLeftMargin}">
+
+            <ComboBox   Width="200" 
+                            FontFamily="calibri"
+                            VerticalAlignment="Center" 
+                            
+                            x:Name="combo"
+                            Height="35"
+                            FontSize="16"
+                            ItemsSource="{Binding Path=Parking, Mode=OneWay}"
+                            DisplayMemberPath="NamePark" SelectedValuePath="InfoParkId" 
+                            IsEditable="True" IsReadOnly="True" Text="Seleziona Parcheggio" ScrollViewer.VerticalScrollBarVisibility="Auto"/>
+
+
+
+
+            <Button Content="ENTRA"
+                            Margin="20,0,0,0"
+                            FontFamily="calibri"
+                            FontSize="16"
+                            Background="#C4E9D7"
+                            x:Name="Metodo_Entra" Height="35" Width="70"
+                            />
+
+            <Button Content="ESCI"
+                            Margin="20,0,0,0"
+                            x:Name="Metodo_Uscita"
+                            FontFamily="calibri"
+                            FontSize="16"
+                            Background="#F7A5A0"
+                            Height="35" Width="70"/>
+
+            <Label x:Name="RowLabel" FontSize="14" Height="35" Margin="20,0,10,0" Width="76">Row</Label>
+
+            <Slider x:Name="RowSlider" ValueChanged="RowSlider_ValueChanged" IsSnapToTickEnabled="True" Width="111" Margin="20,0,0,0" Height="19" Minimum="2" Maximum="10" />
+
+            <Label x:Name="ColLabel" FontSize="14" Height="35" Margin="10,0,10,0" Width="76">Col</Label>
+
+            <Slider x:Name="ColSlider" ValueChanged="ColSlider_ValueChanged" IsSnapToTickEnabled="True" Width="111" Margin="20,0,0,0" Height="20" Minimum="2" Maximum="10" />
+
+            <TextBox Margin="20,0,0,0" CharacterCasing="Upper" Height="35" Width="152" x:Name="InputName"></TextBox>
+            <Button Content="Create" Click="Create_Click"
+                            Margin="20,0,0,0"
+                            FontFamily="calibri"
+                            FontSize="16"
+                            Background="#BBEFEF"
+                            Height="35" Width="70"
+                            x:Name="Create" RenderTransformOrigin="1.01,0.466"
+                            />
+
+        </StackPanel>
+
+
+        <Grid Margin="10,0,0,0" x:Name="DynamicGrid" Grid.Row="2" >
+            
+        </Grid>
+
+        <!--
+        <Button Grid.Row="2" Height="160" Width="163" FontSize="30">
+            <StackPanel HorizontalAlignment="Center" VerticalAlignment="Center" Orientation="Vertical" Height="121">
+                <TextBlock  />
+                <TextBlock HorizontalAlignment="Center" Margin="0,5,0,0" Height="42">P01</TextBlock>
+            </StackPanel>
+        </Button> 
+
+
+        
+        
+        
+        
+        
+             <ListView
+                Grid.Row="2"
+                Margin="{StaticResource SmallLeftMargin}"
+                SelectionMode="Single"
+                ItemsSource="{Binding Source}"
+                Style="{StaticResource ContentGridListViewStyle}"
+                ItemTemplate="{StaticResource contentGridItemTemplate}">
+                <i:Interaction.Behaviors>
+                    <behaviors:ListViewItemSelectionBehavior Command="{Binding NavigateToDetailCommand}" />
+                </i:Interaction.Behaviors>
+            </ListView>
+        
+        -->
+
+       
+       
+        
+        
+
+
+
+    </Grid>
+</Page>
