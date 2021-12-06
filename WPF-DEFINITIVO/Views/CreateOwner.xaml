@@ -6,8 +6,8 @@
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
       xmlns:local="clr-namespace:WPF_DEFINITIVO.Views"
       mc:Ignorable="d"
-      Title="CreateOwner" MaxHeight="507"
-        MaxWidth="600" Width="520" Height="457">
+      Title="CreateOwner" MaxHeight="650"
+        MaxWidth="700" Width="610" Height="560">
 
     <Grid>
         <Grid.RowDefinitions>
@@ -16,6 +16,8 @@
             <RowDefinition Height="100"></RowDefinition>
             <RowDefinition Height="100"></RowDefinition>
             <RowDefinition Height="80"></RowDefinition>
+            <RowDefinition Height="80"></RowDefinition>
+
         </Grid.RowDefinitions>
 
         <TextBlock Grid.Row="0"
@@ -27,25 +29,31 @@
         <StackPanel Grid.Row="1" Orientation="Horizontal" Margin="{StaticResource MediumLeftMargin}">
 
             <TextBlock Text="Cognome" VerticalAlignment="Center" FontSize="16"/>
-            <TextBox Width="330" Height="60" Margin="55,0,0,0" FontSize="16" VerticalAlignment="Center"></TextBox>
+            <TextBox Width="406" Height="60" Margin="54,0,0,0" FontSize="16" VerticalAlignment="Center"></TextBox>
 
         </StackPanel>
 
         <StackPanel Grid.Row="2" Orientation="Horizontal"  Margin="{StaticResource MediumLeftMargin}">
 
-            <TextBlock Text="Nome" VerticalAlignment="Center" FontSize="16"/>
-            <TextBox Width="330" Height="60" Margin="80,0,0,0" FontSize="16" VerticalAlignment="Center"></TextBox>
+            <TextBlock Text="Nome     " VerticalAlignment="Center" FontSize="16"/>
+            <TextBox Width="406" Height="60" Margin="56,0,0,0" FontSize="16" VerticalAlignment="Center"></TextBox>
 
         </StackPanel>
 
         <StackPanel Grid.Row="3" Orientation="Horizontal"  Margin="{StaticResource MediumLeftMargin}">
 
             <TextBlock Text="Date Of birth" VerticalAlignment="Center" FontSize="16"/>
-            <DatePicker Width="330" Height="60" Margin="30,0,0,0" FontSize="16" VerticalAlignment="Center"></DatePicker>
+            <DatePicker Width="406" Height="60" Margin="30,0,0,0" FontSize="16" VerticalAlignment="Center"></DatePicker>
 
         </StackPanel>
 
-        <Button Grid.Row="4" FontSize="14" Background="LightSkyBlue" Height="37">Aggiungi</Button>
+        <StackPanel Grid.Row="4" Orientation="Horizontal" Margin="{StaticResource MediumLeftMargin}">
+
+            <TextBlock Text="Targa" VerticalAlignment="Center" FontSize="16"></TextBlock>
+            <TextBox Width="406" Height="60" Margin="85, 0, 0, 0" FontSize="16" VerticalAlignment="Center"/>
+        </StackPanel>
+
+        <Button Grid.Row="5" FontSize="14" Background="LightSkyBlue" Height="37">Aggiungi</Button>
 
     </Grid>
 </Window>

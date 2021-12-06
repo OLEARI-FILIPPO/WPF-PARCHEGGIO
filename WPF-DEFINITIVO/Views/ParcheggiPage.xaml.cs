@@ -10,8 +10,8 @@ using WPF_DEFINITIVO.ViewModels;
 namespace WPF_DEFINITIVO.Views
 {
 
-    
-    
+
+
     public partial class ParcheggiPage : Page
     {
         public ParcheggiPage(ParcheggiViewModel viewModel)
@@ -72,18 +72,18 @@ namespace WPF_DEFINITIVO.Views
                 {
                     TextBlock tb1 = new TextBlock()
                     {
-                        Text = "\xE804", 
+                        Text = "\xE804",
                         FontFamily = new FontFamily("Segoe MDL2 Assets"),
                         FontSize = 50,
                         TextAlignment = TextAlignment.Center
                     };
-                    
+
                     TextBlock tb2 = new TextBlock()
                     {
                         Text = "P0" + temp,
                         FontSize = 18,
                         TextAlignment = TextAlignment.Center
-                       
+
                     };
 
                     StackPanel sp = new StackPanel()
@@ -113,6 +113,7 @@ namespace WPF_DEFINITIVO.Views
                     b.SetResourceReference(Grid.EffectProperty, "EffectShadow2");
                     b.Margin = new Thickness(3);
                     //b.BorderThickness = new Thickness(1);
+                    b.Click += clickParhceggio;
                     panel.Child = b;
                     Grid.SetColumn(panel, j);
                     Grid.SetRow(panel, i);
@@ -124,9 +125,15 @@ namespace WPF_DEFINITIVO.Views
                 }
             }
 
-            
 
 
+
+        }
+
+        private void clickParhceggio(object sender, RoutedEventArgs e)
+        {
+            ParcheggiDetailPage parcheggiDetailPage = new ParcheggiDetailPage();
+            parcheggiDetailPage.ShowDialog();
         }
 
         private void errorSlider()

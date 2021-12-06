@@ -1,4 +1,5 @@
-﻿using System.Windows.Controls;
+﻿using HandyControl.Tools;
+using System.Windows.Controls;
 
 using WPF_DEFINITIVO.ViewModels;
 
@@ -9,6 +10,8 @@ namespace WPF_DEFINITIVO.Views
         public StoricoPage(StoricoViewModel viewModel)
         {
             InitializeComponent();
+            DataContext = viewModel;
+            ConfigHelper.Instance.SetLang("it");
             DataContext = viewModel;
         }
     }

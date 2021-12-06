@@ -58,25 +58,6 @@
                             DisplayMemberPath="NamePark" SelectedValuePath="InfoParkId" 
                             IsEditable="True" IsReadOnly="True" Text="Seleziona Parcheggio" ScrollViewer.VerticalScrollBarVisibility="Auto"/>
 
-
-
-
-            <Button Content="ENTRA"
-                            Margin="20,0,0,0"
-                            FontFamily="calibri"
-                            FontSize="16"
-                            Background="#C4E9D7"
-                            x:Name="Metodo_Entra" Height="35" Width="70"
-                            />
-
-            <Button Content="ESCI"
-                            Margin="20,0,0,0"
-                            x:Name="Metodo_Uscita"
-                            FontFamily="calibri"
-                            FontSize="16"
-                            Background="#F7A5A0"
-                            Height="35" Width="70"/>
-
             <Label x:Name="RowLabel" FontSize="14" Height="35" Margin="20,0,10,0" Width="76">Row</Label>
 
             <Slider x:Name="RowSlider" ValueChanged="RowSlider_ValueChanged" IsSnapToTickEnabled="True" Width="111" Margin="20,0,0,0" Height="19" Minimum="2" Maximum="10" />
@@ -99,7 +80,7 @@
 
 
         <Grid Margin="10,0,0,0" x:Name="DynamicGrid" Grid.Row="2" >
-            
+
         </Grid>
 
         <!--
@@ -130,10 +111,10 @@
         
         -->
 
-       
-       
-        
-        
+
+
+
+
 
 
 

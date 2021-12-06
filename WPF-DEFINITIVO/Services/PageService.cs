@@ -22,7 +22,7 @@ namespace WPF_DEFINITIVO.Services
             Configure<LoginViewModel, LoginPage>();
             Configure<MainViewModel, MainPage>();
             Configure<ParcheggiViewModel, ParcheggiPage>();
-            Configure<ParcheggiDetailViewModel, ParcheggiDetailPage>();
+           // Configure<ParcheggiDetailViewModel, ParcheggiDetailPage>();
             Configure<StoricoViewModel, StoricoPage>();
         }
 
