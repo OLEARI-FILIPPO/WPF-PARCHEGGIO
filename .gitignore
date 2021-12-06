@@ -302,6 +302,10 @@ node_modules/
 **/*.Server/ModelManifest.xml
 _Pvt_Extensions
 
+
+#File con stringa di connessione
+Models/ParkingManagementContext.cs
+
 # Paket dependency manager
 .paket/paket.exe
 paket-files/
