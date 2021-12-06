@@ -9,9 +9,6 @@ using WPF_DEFINITIVO.ViewModels;
 
 namespace WPF_DEFINITIVO.Views
 {
-
-
-
     public partial class ParcheggiPage : Page
     {
         public ParcheggiPage(ParcheggiViewModel viewModel)
@@ -34,6 +31,7 @@ namespace WPF_DEFINITIVO.Views
 
         private void Create_Click(object sender, System.Windows.RoutedEventArgs e)
         {
+            
             DynamicGrid.Children.Clear();
             DynamicGrid.RowDefinitions.Clear();
             DynamicGrid.ColumnDefinitions.Clear();
