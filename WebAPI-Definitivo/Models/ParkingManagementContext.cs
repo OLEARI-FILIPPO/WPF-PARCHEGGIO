@@ -30,7 +30,7 @@ namespace WebAPI_Definitivo.Models
         {
             if (!optionsBuilder.IsConfigured)
             {
-                optionsBuilder.UseSqlServer("Server=DESKTOP-M63NC6P\\SQLEXPRESSNEW;Database=ParkingManagement; User Id=sa; Password=Fillo-fous05;");
+                optionsBuilder.UseSqlServer(Startup.ConnectionString);
             }
         }
 

@@ -304,7 +304,7 @@ _Pvt_Extensions
 
 
 #File con stringa di connessione
-./WebAPI-Definitivo/Models/ParkingManagementContext.cs
+./WebAPI-Definitivo/appsettings.json
 
 # Paket dependency manager
 .paket/paket.exe
