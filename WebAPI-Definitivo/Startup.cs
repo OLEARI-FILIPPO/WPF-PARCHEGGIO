@@ -21,6 +21,7 @@ namespace WebAPI_Definitivo
         public Startup(IConfiguration configuration)
         {
             Configuration = configuration;
+            ConnectionString = Configuration["StringaConnessione"];
             MasterKey = Configuration["Masterkey"];
         }
 

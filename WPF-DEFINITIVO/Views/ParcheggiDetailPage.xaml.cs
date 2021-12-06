@@ -1,15 +1,18 @@
-﻿using System.Windows.Controls;
+﻿using System.Windows;
+using System.Windows.Controls;
 
 using WPF_DEFINITIVO.ViewModels;
 
 namespace WPF_DEFINITIVO.Views
 {
-    public partial class ParcheggiDetailPage : Page
+    public partial class ParcheggiDetailPage : Window
     {
-        public ParcheggiDetailPage(ParcheggiDetailViewModel viewModel)
+        public ParcheggiDetailPage()
         {
             InitializeComponent();
-            DataContext = viewModel;
+            DataContext = this;
+
+            // DataContext = this;
         }
     }
 }
