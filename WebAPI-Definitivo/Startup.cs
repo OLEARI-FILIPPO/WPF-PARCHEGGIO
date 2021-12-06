@@ -17,6 +17,7 @@ namespace WebAPI_Definitivo
     public class Startup
     {
         public static string MasterKey;
+        public static string ConnectionString { get; set; }
         public Startup(IConfiguration configuration)
         {
             Configuration = configuration;
