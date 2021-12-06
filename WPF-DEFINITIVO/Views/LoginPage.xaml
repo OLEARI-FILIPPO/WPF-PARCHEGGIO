@@ -48,7 +48,9 @@
                        HorizontalAlignment="Right" 
                        Margin="0,0,40,0" Height="54" Width="155"/>
 
-                <TextBox Grid.Column="1"
+                <TextBox 
+                    Text="{Binding Username}"
+                    Grid.Column="1"
                         VerticalAlignment="Center" 
                         HorizontalAlignment="Left" 
                          Width="261" Margin="30,0,0,0" Height="30">
@@ -60,7 +62,9 @@
                        HorizontalAlignment="Right" 
                        Margin="0,0,40,0" Height="54" Width="155"/>
 
-                <TextBox Grid.Column="1"
+                <TextBox 
+                    Text="{Binding Password}"
+                    Grid.Column="1"
                          Grid.Row="1"
                          VerticalAlignment="Center" 
                          HorizontalAlignment="Left" 
