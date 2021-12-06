@@ -8,6 +8,11 @@
     mc:Ignorable="d"
     d:DesignHeight="750" d:DesignWidth="1250">
     <Grid>
+        
+        <Grid.Background>
+            <ImageBrush ImageSource="/Views/hero-bg.png"/>
+        </Grid.Background>
+        
         <Grid.RowDefinitions>
             <RowDefinition Height="48" />
             <RowDefinition Height="245"/>

@@ -20,6 +20,10 @@
 
         </Grid.RowDefinitions>
 
+        <Grid.Background>
+            <ImageBrush ImageSource="/Views/hero-bg.png"/>
+        </Grid.Background>
+
         <TextBlock Grid.Row="0"
                     Style="{StaticResource PageTitleStyle}"
                     Margin="{StaticResource MediumLeftMargin}"

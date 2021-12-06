@@ -10,6 +10,10 @@
     mc:Ignorable="d"
     d:DesignHeight="750" d:DesignWidth="1250">
     <Grid>
+
+        <Grid.Background>
+            <ImageBrush ImageSource="/Views/hero-bg.png"/>
+        </Grid.Background>
         <Grid.RowDefinitions>
             <RowDefinition Height="48" />
             <RowDefinition Height="60"/>
@@ -26,14 +30,14 @@
             <Button Background="#BB88F3" FontSize="17" Content="Cerca" Height="36" Width="82"></Button>
         </StackPanel>
 
-        <Grid Grid.Row="2">
+        <Grid Grid.Row="2" Background="Transparent">
             <DataGrid
                 AutoGenerateColumns="False"
                 GridLinesVisibility="Horizontal"
                 CanUserAddRows="False"
                 ItemsSource="{Binding Source}"
                 Margin="{StaticResource MediumLeftMargin}"
-                KeyboardNavigation.TabNavigation="Once">
+                KeyboardNavigation.TabNavigation="Once" Background="Transparent">
                 <DataGrid.Columns>
                     <!--
                         TODO WTS:

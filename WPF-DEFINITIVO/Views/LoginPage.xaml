@@ -6,10 +6,19 @@
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:properties="clr-namespace:WPF_DEFINITIVO.Properties"
-    
+   
     mc:Ignorable="d"
     d:DesignHeight="750" d:DesignWidth="1250">
+
+    <!--<Page.Background>
+        <ImageBrush ImageSource="hero-bg.png"/>
+    </Page.Background>-->
+
     <Grid>
+        <Grid.Background>
+            <ImageBrush ImageSource="/Views/hero-bg.png"/>
+        </Grid.Background>
+
         <Grid.RowDefinitions>
             <RowDefinition Height="48" />
             <RowDefinition Height="*" />
@@ -19,19 +28,18 @@
             Margin="{StaticResource MediumLeftMargin}"
             Text="{x:Static properties:Resources.LoginPageTitle}" />
         <Grid
-            Grid.Row="1"
-            Background="White">
+            Grid.Row="1" Background="Transparent">
+            
             <Grid.RowDefinitions>
                 <RowDefinition Height="151*" />
                 <RowDefinition Height="348*" />
                 <RowDefinition Height="153*" />
             </Grid.RowDefinitions>
 
-            <Label Content="ACCEDI AL GESTIONALE"
-                   HorizontalAlignment="Center"
-                   FontSize="40" FontWeight="Bold">
-
-            </Label>
+            <Label Content="Login"
+                   VerticalAlignment="Center"
+                   BorderBrush="Transparent"
+                   FontSize="50" Height="96" Background="Transparent" />
 
             <Grid Grid.Row="1">
                 <Grid.RowDefinitions>
@@ -46,6 +54,8 @@
 
                 <Label Content="Username" FontSize="30"
                        HorizontalAlignment="Right" 
+                       Background="Transparent"
+                       BorderBrush="Transparent"
                        Margin="0,0,40,0" Height="54" Width="155"/>
 
                 <TextBox 
@@ -53,13 +63,16 @@
                     Grid.Column="1"
                         VerticalAlignment="Center" 
                         HorizontalAlignment="Left" 
-                         Width="261" Margin="30,0,0,0" Height="30">
+                        
+                         Width="261" FontSize="25" Margin="30,0,0,0" Height="54">
                 </TextBox>
 
                 <Label Grid.Row="1" 
                        Content="Password" 
                        FontSize="30"
                        HorizontalAlignment="Right" 
+                       BorderBrush="Transparent"
+                       Background="Transparent"
                        Margin="0,0,40,0" Height="54" Width="155"/>
 
                 <TextBox 
@@ -68,14 +81,16 @@
                          Grid.Row="1"
                          VerticalAlignment="Center" 
                          HorizontalAlignment="Left" 
-                         Width="261" Margin="30,0,0,0" Height="30">
+                         Width="261" FontSize="25" Margin="30,0,0,0" Height="54">
                 </TextBox>
 
                 <Button Content="ENTRA"
                         Grid.Row="2"
                         Grid.ColumnSpan="2" 
-                        Width="236" Height="60" 
-                        FontSize="30" Click="Button_Click">
+                        Width="236" Height="70" 
+                        VerticalAlignment="Center"
+                        HorizontalAlignment="Center"
+                        FontSize="30" Click="Button_Click" Background="#ECEFF6">
                 </Button>
 
 
