@@ -304,7 +304,7 @@ _Pvt_Extensions
 
 
 #File con stringa di connessione
-./WebAPI-Definitivo/appsettings.json
+git rm --cached appsettings.json
 
 # Paket dependency manager
 .paket/paket.exe
