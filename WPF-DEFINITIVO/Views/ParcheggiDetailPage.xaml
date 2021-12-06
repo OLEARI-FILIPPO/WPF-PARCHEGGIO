@@ -1,4 +1,4 @@
-﻿<Page
+﻿<Window
     x:Class="WPF_DEFINITIVO.Views.ParcheggiDetailPage"
     
     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
@@ -21,63 +21,124 @@
                     </Grid.ColumnDefinitions>
                     <Grid
                         Width="200"
-                        Height="200"
+                        Height="208"
                         Grid.Column="0"
                         Grid.Row="0"
-                        Grid.RowSpan="3"
                         Background="{DynamicResource MahApps.Brushes.Gray10}"
                         VerticalAlignment="Top">
-                        <TextBlock
-                            FontSize="40"
-                            Text="{Binding Item.Symbol}"
-                            VerticalAlignment="Center"
-                            HorizontalAlignment="Center"
-                            FontFamily="Segoe MDL2 Assets" />
+
+                        <Button Grid.Row="2" Height="160" Width="163" FontSize="30">
+                            <StackPanel HorizontalAlignment="Center" VerticalAlignment="Center" Orientation="Vertical" Height="121">
+                                <TextBlock  Text="&#xE804;" FontSize="45" FontFamily="Segoe MDL2 Assets" Height="53"/>
+                                <TextBlock Height="47"><Run Text="P01"/></TextBlock>
+                            </StackPanel>
+                        </Button>
                     </Grid>
-                    <StackPanel
-                        Grid.Column="1"
-                        Grid.Row="0">
-                        <TextBlock
-                            Margin="{StaticResource SmallLeftMargin}"
-                            Style="{StaticResource PageTitleStyle}"
-                            Text="{Binding Item.Company}" />
-                        <StackPanel
-                            Margin="{StaticResource SmallLeftTopMargin}">
-                            <TextBlock Style="{StaticResource SubtitleTextStyle}" Text="Status" />
-                            <TextBlock Style="{StaticResource BodyTextStyle}" Text="{Binding Item.Status}" />
-                        </StackPanel>
+
+                    <Grid Grid.Column="1" Margin="10,0,10,0">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="150"/>
+                            <ColumnDefinition Width="*"/>
+                        </Grid.ColumnDefinitions>
 
                         <StackPanel
+                          Grid.Column="0"
+                          Grid.Row="0" Grid.ColumnSpan="2" Margin="0,0,842,0">
+
+                            <StackPanel
                             Margin="{StaticResource SmallLeftTopMargin}">
-                            <TextBlock Style="{StaticResource SubtitleTextStyle}" Text="Order date" />
-                            <TextBlock Style="{StaticResource BodyTextStyle}" Text="{Binding Item.OrderDate}" />
+                                <TextBlock Style="{StaticResource SubtitleTextStyle}" Text="Stato" />
+                                <TextBlock Style="{StaticResource BodyTextStyle}" Text="Occupato" />
+                            </StackPanel>
+
+                            <StackPanel
+                            Margin="{StaticResource SmallLeftTopMargin}"  Height="65">
+                                <Button FontSize="14" Background="#C4E9D7" HorizontalAlignment="Left" Content="Entra" Margin="0,20,20,0" Height="42" Width="68"/>
+                            </StackPanel>
+
+                            <StackPanel
+                            Margin="{StaticResource SmallLeftTopMargin}">
+                                <Button FontSize="14" x:Name="Exit" Background="#F7A5A0" Content="Uscita" HorizontalAlignment="Left" Height="46" Width="67" />
+
+                            </StackPanel>
                         </StackPanel>
 
+
                         <StackPanel
-                            Margin="{StaticResource SmallLeftTopMargin}">
-                            <TextBlock Style="{StaticResource SubtitleTextStyle}" Text="Order total" />
-                            <TextBlock Style="{StaticResource BodyTextStyle}" Text="{Binding Item.OrderTotal}" />
+                            Grid.Column="1">
+
+                            <StackPanel
+                                 Margin="{StaticResource SmallLeftTopMargin}">
+                                <TextBlock Style="{StaticResource SubtitleTextStyle}" Text="Macchina Parcheggiata: " />
+                                <TextBlock Style="{StaticResource BodyTextStyle}" Text="CX5679" />
+
+                            </StackPanel>
+
+                            <StackPanel
+                                 Margin="{StaticResource SmallLeftTopMargin}">
+                                <TextBlock Style="{StaticResource SubtitleTextStyle}" Text="Propietario: " />
+                                <TextBlock Style="{StaticResource BodyTextStyle}" Text="Statuti Alessandro" />
+
+                            </StackPanel>
+
+                            <StackPanel
+                                 Margin="{StaticResource SmallLeftTopMargin}">
+                                <TextBlock Style="{StaticResource SubtitleTextStyle}" Text="Data di Entrata: " />
+                                <TextBlock Style="{StaticResource BodyTextStyle}" Text="17/12/2021" />
+
+                            </StackPanel>
+
+
+
+
                         </StackPanel>
-                    </StackPanel>
+
+
+
+
+                    </Grid>
+
+
+
                 </Grid>
 
                 <TextBlock
                     Margin="{StaticResource MediumTopMargin}"
                     Style="{StaticResource SubtitleTextStyle}"
-                    Text="Note 1" />
-                <TextBlock
-                    Style="{StaticResource BodyTextStyle}"
-                    Text="Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis quis hendrerit nulla, vel molestie libero. In nec ultricies magna, ultricies molestie ipsum. Mauris non dignissim velit. Etiam malesuada blandit mauris eu maximus. Quisque ornare, felis nec scelerisque mollis, risus dolor posuere magna, in gravida quam mi id nisi. Nullam mattis consequat ex. Cras nulla neque, dictum ac urna et, vestibulum feugiat ex. Pellentesque malesuada accumsan ligula, vel fringilla lacus facilisis sit amet. Proin convallis tempor arcu, ac placerat libero pretium ut. Praesent hendrerit nisl at lobortis viverra. Fusce vitae velit odio. Nam ut tortor sed purus finibus sollicitudin quis at ante. Ut sodales dolor vel eros mollis suscipit. Donec eu nulla id urna ultricies consequat. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae;" />
-
-                <TextBlock
-                    Margin="{StaticResource MediumTopMargin}"
-                    Style="{StaticResource SubtitleTextStyle}"
-                    Text="Note 2" />
-                <TextBlock
-                    Margin="{StaticResource MediumBottomMargin}"
-                    Style="{StaticResource BodyTextStyle}"
-                    Text="Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis quis hendrerit nulla, vel molestie libero. In nec ultricies magna, ultricies molestie ipsum. Mauris non dignissim velit. Etiam malesuada blandit mauris eu maximus. Quisque ornare, felis nec scelerisque mollis, risus dolor posuere magna, in gravida quam mi id nisi. Nullam mattis consequat ex. Cras nulla neque, dictum ac urna et, vestibulum feugiat ex. Pellentesque malesuada accumsan ligula, vel fringilla lacus facilisis sit amet. Proin convallis tempor arcu, ac placerat libero pretium ut. Praesent hendrerit nisl at lobortis viverra. Fusce vitae velit odio. Nam ut tortor sed purus finibus sollicitudin quis at ante. Ut sodales dolor vel eros mollis suscipit. Donec eu nulla id urna ultricies consequat. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae;" />
+                    Text="Storico Parcheggio" />
+                <DataGrid
+                AutoGenerateColumns="False"
+                GridLinesVisibility="Horizontal"
+                CanUserAddRows="False"
+                ItemsSource="{Binding Source}"
+                Margin="24"
+                KeyboardNavigation.TabNavigation="Once">
+                    <DataGrid.Columns>
+                        <!--
+                        TODO WTS:
+                        Remove this column definitions and define columns for your data.
+                        Consider adding header properties to Resources.resw
+                    -->
+                        <DataGridTextColumn Binding="{Binding OrderID}" Header="OrderID" />
+                        <DataGridTextColumn Binding="{Binding OrderDate}" Header="OrderDate" />
+                        <DataGridTextColumn Binding="{Binding Company}" Header="Company" />
+                        <DataGridTextColumn Binding="{Binding ShipTo}" Header="ShipTo" />
+                        <DataGridTextColumn Binding="{Binding OrderTotal}" Header="OrderTotal" />
+                        <DataGridTextColumn Binding="{Binding Status}" Header="Status" />
+                        <DataGridTemplateColumn Header="Symbol">
+                            <DataGridTemplateColumn.CellTemplate>
+                                <DataTemplate>
+                                    <TextBlock
+                                    Margin="{StaticResource SmallLeftRightMargin}"
+                                    HorizontalAlignment="Left"
+                                    Style="{StaticResource SmallIconStyle}"
+                                    Text="{Binding Symbol}" />
+                                </DataTemplate>
+                            </DataGridTemplateColumn.CellTemplate>
+                        </DataGridTemplateColumn>
+                    </DataGrid.Columns>
+                </DataGrid>
             </StackPanel>
         </ScrollViewer>
     </Grid>
-</Page>
+</Window>
