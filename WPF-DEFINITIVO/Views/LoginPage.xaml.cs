@@ -38,8 +38,8 @@ namespace WPF_DEFINITIVO.Views
                 Users credenziali = new Users()
                 {
                     Username = login.Username,
-                    Password = login.Password
-                };
+                    Password = PasswordInserito.Password
+            };
                 
                 var response = await client.PostAsJsonAsync("http://localhost:13636/api/v1/Login", credenziali); //API controller name
 
@@ -60,10 +60,6 @@ namespace WPF_DEFINITIVO.Views
             }
         }
 
-        private void PasswordUpdated(object sender, System.Windows.Data.DataTransferEventArgs e)
-        {
-            login.password = PasswordInserito.Password;
-        }
 
         
     }
