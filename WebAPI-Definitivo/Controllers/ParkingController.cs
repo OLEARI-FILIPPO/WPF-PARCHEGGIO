@@ -16,7 +16,8 @@ namespace WebAPI_Definitivo.Controllers
         [HttpGet("/api/v1/parcheggio")]
         public ActionResult GetParking()
         {
-            using(ParkingManagementContext model = new ParkingManagementContext())
+            var grado = HttpContext.User.Claims.FirstOrDefault(x => x.Type == "Grado").Value;
+            using (ParkingManagementContext model = new ParkingManagementContext())
             {
                 List<Parking> parcheggi = model.Parking.ToList();
                 return Ok(parcheggi);

@@ -28,7 +28,12 @@ namespace WebAPI_Definitivo.Controllers
                     SigningCredentials = new SigningCredentials(SecurityKeyGenerator.GetSecurityKey(candidate),
                     SecurityAlgorithms.HmacSha256Signature),
                     Expires = DateTime.UtcNow.AddDays(1),
-                    Subject = new ClaimsIdentity(new Claim[] { new Claim("Username", candidate.Username.ToString()) })
+                    Subject = new ClaimsIdentity(
+                        new Claim[] 
+                        { 
+                            new Claim("Username", candidate.Username.ToString()) ,
+                            new Claim("Grado", candidate.Grado.ToString())      //privilegio
+                        })
                 };
                 SecurityToken token = tokenHandler.CreateToken(tokenDescriptor);
                 model.SaveChanges();
@@ -49,7 +54,12 @@ namespace WebAPI_Definitivo.Controllers
                     SigningCredentials = new SigningCredentials(SecurityKeyGenerator.GetSecurityKey(candidate),
                     SecurityAlgorithms.HmacSha256Signature),
                     Expires = DateTime.UtcNow.AddDays(1),
-                    Subject = new ClaimsIdentity(new Claim[] { new Claim("Username", candidate.Username.ToString()) })
+                    Subject = new ClaimsIdentity(
+                        new Claim[] 
+                        {
+                            new Claim("Username", candidate.Username.ToString()),
+                            new Claim("Grado", candidate.Grado.ToString()) 
+                        })
                 };
                 SecurityToken token = tokenHandler.CreateToken(tokenDescriptor);
                 model.SaveChanges();
