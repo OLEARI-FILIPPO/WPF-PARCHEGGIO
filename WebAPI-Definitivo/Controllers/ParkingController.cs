@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Http;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using System;
 using System.Collections.Generic;
@@ -13,6 +14,7 @@ namespace WebAPI_Definitivo.Controllers
     public class ParkingController : ControllerBase
     {
         //Prendo tutti i parcheggi memorizzati
+        [Authorize]
         [HttpGet("/api/v1/parcheggio")]
         public ActionResult GetParking()
         {
