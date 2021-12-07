@@ -29,7 +29,7 @@
             Style="{StaticResource PageTitleStyle}"
             Margin="{StaticResource MediumLeftMargin}"
             Text="{x:Static properties:Resources.LoginPageTitle}" />
-        <Grid
+        <!--<Grid
             Grid.Row="1" Background="Transparent">
 
             <Grid.RowDefinitions>
@@ -94,6 +94,80 @@
 
 
             </Grid>
+
+        </Grid>-->
+
+        <Grid Grid.Row="1">
+
+            <Grid.RowDefinitions>
+                <RowDefinition/>
+            </Grid.RowDefinitions>
+
+            <Border CornerRadius="10" HorizontalAlignment="Center" VerticalAlignment="Center" Background="#C9E7F2">
+
+
+                <StackPanel HorizontalAlignment="Center" 
+                            Grid.Row="0" 
+                            Orientation="Vertical" Height="627" >
+
+                    <TextBlock TextWrapping="Wrap"  
+                               VerticalAlignment="Center" 
+                               HorizontalAlignment="Center" 
+                               Margin="30" Text="Login"  FontSize="50" />
+               
+
+                    <StackPanel HorizontalAlignment="Center" 
+                                Orientation="Horizontal" 
+                                Margin="60" 
+                                Width="497">
+                        
+                        <Label 
+                            VerticalAlignment="Center" 
+                            FontSize="18"
+                            Background="Transparent" 
+                            BorderBrush="Transparent" 
+                            Margin="0,20,12,20" >Username</Label>
+                        
+                        <TextBox 
+                            Width="304"  
+                            Text="{Binding Username}" 
+                            FontSize="18"  
+                            Height="60"></TextBox>
+                        
+                    </StackPanel>
+
+                    <StackPanel HorizontalAlignment="Center" 
+                                Orientation="Horizontal" 
+                                Width="503">
+                        
+                        <Label VerticalAlignment="Center" 
+                               FontSize="18" 
+                               Background="Transparent" 
+                               BorderBrush="Transparent" 
+                               Margin="0,20,20,20" >Password</Label>
+                        
+                        <hc:PasswordBox Width="303"  
+                                
+                                 x:Name="PasswordInserito"
+                                 FontSize="18"  
+                                 Height="60" TargetUpdated="PasswordUpdated"></hc:PasswordBox>
+                        
+                    </StackPanel>
+
+
+                    <Button HorizontalAlignment="Center"
+                            FontSize="25" 
+                            Height="64" Width="206" 
+                            Margin="40">Login</Button>
+
+
+                </StackPanel>
+
+            </Border>
+
+
+
+
 
         </Grid>
     </Grid>

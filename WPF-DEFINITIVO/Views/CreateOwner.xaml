@@ -1,15 +1,19 @@
 ﻿<Window x:Class="WPF_DEFINITIVO.Views.CreateOwner"
-      WindowStartupLocation="CenterScreen"
       xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
       xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
       xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
       xmlns:local="clr-namespace:WPF_DEFINITIVO.Views"
       mc:Ignorable="d"
-      Title="CreateOwner" MaxHeight="650"
+        WindowStartupLocation="CenterScreen"
+        Title="Metodo entra veicolo" MaxHeight="650"
         MaxWidth="700" Width="610" Height="560">
 
     <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="68*"/>
+            <ColumnDefinition Width="237*"/>
+        </Grid.ColumnDefinitions>
         <Grid.RowDefinitions>
             <RowDefinition Height="50"></RowDefinition>
             <RowDefinition Height="100"></RowDefinition>
@@ -24,40 +28,40 @@
             <ImageBrush ImageSource="/Views/hero-bg.png"/>
         </Grid.Background>
 
-        <TextBlock Grid.Row="0"
+        <TextBlock
                     Style="{StaticResource PageTitleStyle}"
-                    Margin="{StaticResource MediumLeftMargin}"
-                    FontSize="18"
+                    Margin="24,0,0,0"
+                    FontSize="18" Grid.ColumnSpan="2"
                    >Aggiungi Persona</TextBlock>
 
-        <StackPanel Grid.Row="1" Orientation="Horizontal" Margin="{StaticResource MediumLeftMargin}">
+        <StackPanel Grid.Row="1" Orientation="Horizontal" Margin="24,0,0,0" Grid.ColumnSpan="2">
 
             <TextBlock Text="Cognome" VerticalAlignment="Center" FontSize="16"/>
             <TextBox Width="406" Height="60" Margin="54,0,0,0" FontSize="16" VerticalAlignment="Center"></TextBox>
 
         </StackPanel>
 
-        <StackPanel Grid.Row="2" Orientation="Horizontal"  Margin="{StaticResource MediumLeftMargin}">
+        <StackPanel Grid.Row="2" Orientation="Horizontal"  Margin="24,0,0,0" Grid.ColumnSpan="2">
 
             <TextBlock Text="Nome     " VerticalAlignment="Center" FontSize="16"/>
             <TextBox Width="406" Height="60" Margin="56,0,0,0" FontSize="16" VerticalAlignment="Center"></TextBox>
 
         </StackPanel>
 
-        <StackPanel Grid.Row="3" Orientation="Horizontal"  Margin="{StaticResource MediumLeftMargin}">
+        <StackPanel Grid.Row="3" Orientation="Horizontal"  Margin="24,0,0,0" Grid.ColumnSpan="2">
 
             <TextBlock Text="Date Of birth" VerticalAlignment="Center" FontSize="16"/>
             <DatePicker Width="406" Height="60" Margin="30,0,0,0" FontSize="16" VerticalAlignment="Center"></DatePicker>
 
         </StackPanel>
 
-        <StackPanel Grid.Row="4" Orientation="Horizontal" Margin="{StaticResource MediumLeftMargin}">
+        <StackPanel Grid.Row="4" Orientation="Horizontal" Margin="24,0,0,0" Grid.ColumnSpan="2">
 
             <TextBlock Text="Targa" VerticalAlignment="Center" FontSize="16"></TextBlock>
             <TextBox Width="406" Height="60" Margin="85, 0, 0, 0" FontSize="16" VerticalAlignment="Center"/>
         </StackPanel>
 
-        <Button Grid.Row="5" FontSize="14" Background="LightSkyBlue" Height="37">Aggiungi</Button>
+        <Button Grid.Row="5" FontSize="14" Background="LightSkyBlue" Height="36" Grid.Column="1" HorizontalAlignment="Left" Margin="130,0,0,0">Aggiungi</Button>
 
     </Grid>
 </Window>

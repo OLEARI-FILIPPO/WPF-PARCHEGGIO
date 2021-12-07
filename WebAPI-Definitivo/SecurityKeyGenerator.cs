@@ -1,12 +1,7 @@
-﻿using System;
-using Microsoft.IdentityModel.Tokens;
-using System;
-using System.Collections.Generic;
+﻿using Microsoft.IdentityModel.Tokens;
 using System.Linq;
 using System.Text;
-using System.Threading.Tasks;
 using WebAPI_Definitivo.Models;
-using WebAPI_Definitivo;
 
 namespace WebAPI_Definitivo
 {
