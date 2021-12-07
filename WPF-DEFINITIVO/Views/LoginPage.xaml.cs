@@ -54,7 +54,6 @@ namespace WPF_DEFINITIVO.Views
 
                 if (response.IsSuccessStatusCode)
                 {
-                    MessageBox.Show(result);
                     UserPage user = new UserPage(new UserViewModel(credenziali, result));
                     NavigationService.Navigate(user);
                 }
@@ -65,7 +64,9 @@ namespace WPF_DEFINITIVO.Views
             }
         }
 
+        private void Button_Click_1(object sender, RoutedEventArgs e)
+        {
 
-        
+        }
     }
 }

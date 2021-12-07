@@ -61,7 +61,6 @@ namespace WPF_DEFINITIVO.Views
 
                 if (response.IsSuccessStatusCode)
                 {
-                    MessageBox.Show("Logout Confermato");
                     LoginPage user = new LoginPage(new LoginViewModel());
                     NavigationService.Navigate(user);
                 }
