@@ -99,10 +99,14 @@
 
         </Grid>-->
 
-        <Border Grid.Row="1" CornerRadius="5"  
-                Background="#ffff" 
+        <Border Grid.Row="1" CornerRadius="15"  
+                Background="#9B9BE1" 
                 Height="586" 
-                Width="1062">
+                Width="1062"
+                Effect="{DynamicResource EffectShadow4}">
+
+
+
             <Grid  HorizontalAlignment="Center" >
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="531"></ColumnDefinition>
@@ -111,8 +115,8 @@
 
 
                 <StackPanel HorizontalAlignment="Center"
-                            Background="#D9D9DB"
-                            Orientation="Vertical" >
+                            Background="Transparent"
+                            Orientation="Vertical" Margin="0,10,0,10" Width="531" >
 
 
                     <TextBlock TextWrapping="Wrap"  
@@ -123,8 +127,9 @@
 
                     <TextBlock TextWrapping="Wrap"  
                                VerticalAlignment="Center" 
-                               HorizontalAlignment="Left" 
-                               Margin="40,0,0,5" Text="welcome back" FontStretch="UltraExpanded" FontFamily="CocoSharp Trial"  FontSize="40" />
+                               HorizontalAlignment="Left"
+                               
+                               Margin="40,0,0,5" Text="Bentornato" FontFamily="Sans-Serif"  FontSize="40" />
 
 
 
@@ -144,7 +149,8 @@
                         <TextBox 
                             Width="304"  
                             Text="{Binding Username}" 
-                            FontSize="18"  
+                            FontSize="18" 
+                            BorderBrush="AliceBlue"
                             Height="60"></TextBox>
 
                     </StackPanel>
@@ -163,6 +169,7 @@
                         <hc:PasswordBox Width="305"  
                                  x:Name="PasswordInserito"
                                  FontSize="18"  
+                                 BorderBrush="AliceBlue"
                                  Height="60" ></hc:PasswordBox>
 
                     </StackPanel>
