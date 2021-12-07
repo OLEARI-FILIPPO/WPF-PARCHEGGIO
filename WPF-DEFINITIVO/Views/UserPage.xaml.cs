@@ -1,6 +1,12 @@
-﻿using System;
+﻿using Microsoft.IdentityModel.Tokens;
+using System;
 using System.Collections.Generic;
+using System.ComponentModel;
+using System.IdentityModel.Tokens.Jwt;
+using System.Linq;
+using System.Net;
 using System.Net.Http;
+using System.Security.Claims;
 using System.Text;
 using System.Windows;
 using System.Windows.Controls;
@@ -11,6 +17,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using WebAPI_Definitivo;
 using WebAPI_Definitivo.Models;
 using WPF_DEFINITIVO.ViewModels;
 
@@ -19,36 +26,50 @@ namespace WPF_DEFINITIVO.Views
     /// <summary>
     /// Logica di interazione per UserPage.xaml
     /// </summary>
-    public partial class UserPage : Page
+    public partial class UserPage : Page, INotifyPropertyChanged
     {
+        UserViewModel logout;
         public UserPage(UserViewModel viewModel)
         {
             InitializeComponent();
             DataContext = viewModel;
+            logout = viewModel;
         }
+        public event PropertyChangedEventHandler PropertyChanged;
+        static HttpClient client = new HttpClient();
 
+        protected void OnPropertyChanged(string name)
+        {
+            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(name));
+        }
         private async void Button_Click(object sender, RoutedEventArgs e)
         {
+            Users credenziali = new Users()
+            {
+                Username = logout.Username,
+                Password = logout.Password
+            };
             using (var client = new HttpClient())
             {
-                var response = await client.PostAsJsonAsync("http://localhost:13636/api/v1/Logout", ""); //API controller name
+
+                var token = await client.PostAsJsonAsync("http://localhost:13636/api/v1/GetToken", credenziali);
+                if (token.IsSuccessStatusCode) MessageBox.Show("Trovato.");
+                var response = await client.PostAsJsonAsync("http://localhost:13636/api/v1/Logout", credenziali); //API controller name
 
                 string result = await response.Content.ReadAsStringAsync();
 
                 if (response.IsSuccessStatusCode)
                 {
                     MessageBox.Show("Logout Confermato");
-                    /*Menu menu = new Menu(Token, Username);
-                    menu.Show();
-                    this.Close();*/
+                    LoginPage user = new LoginPage(new LoginViewModel());
+                    NavigationService.Navigate(user);
                 }
                 else
                 {
-                    MessageBox.Show("Problema durante il logout.");
+                    MessageBox.Show("Non è possibile effettuare il logout");
                 }
             }
-            LoginPage user = new LoginPage(new LoginViewModel());
-            NavigationService.Navigate(user);
+            
         }
     }
 }

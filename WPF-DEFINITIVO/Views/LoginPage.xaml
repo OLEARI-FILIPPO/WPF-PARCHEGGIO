@@ -1,11 +1,13 @@
 ﻿<Page
-    x:Class="WPF_DEFINITIVO.Views.LoginPage"
    
     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:properties="clr-namespace:WPF_DEFINITIVO.Properties"
+   
+    xmlns:hc="https://handyorg.github.io/handycontrol"
+    x:Class="WPF_DEFINITIVO.Views.LoginPage"
    
     mc:Ignorable="d"
     d:DesignHeight="750" d:DesignWidth="1250">
@@ -29,7 +31,7 @@
             Text="{x:Static properties:Resources.LoginPageTitle}" />
         <Grid
             Grid.Row="1" Background="Transparent">
-            
+
             <Grid.RowDefinitions>
                 <RowDefinition Height="151*" />
                 <RowDefinition Height="348*" />
@@ -64,8 +66,7 @@
                         VerticalAlignment="Center" 
                         HorizontalAlignment="Left" 
                         
-                         Width="261" FontSize="25" Margin="30,0,0,0" Height="54">
-                </TextBox>
+                         Width="261" FontSize="25" Margin="30,0,0,0" Height="54"/>
 
                 <Label Grid.Row="1" 
                        Content="Password" 
@@ -81,8 +82,7 @@
                          Grid.Row="1"
                          VerticalAlignment="Center" 
                          HorizontalAlignment="Left" 
-                         Width="261" FontSize="25" Margin="30,0,0,0" Height="54">
-                </TextBox>
+                         Width="261" FontSize="25" Margin="30,0,0,0" Height="54"/>
 
                 <Button Content="ENTRA"
                         Grid.Row="2"
@@ -90,8 +90,7 @@
                         Width="236" Height="70" 
                         VerticalAlignment="Center"
                         HorizontalAlignment="Center"
-                        FontSize="30" Click="Button_Click" Background="#ECEFF6">
-                </Button>
+                        FontSize="30" Click="Button_Click" Background="#ECEFF6"/>
 
 
             </Grid>

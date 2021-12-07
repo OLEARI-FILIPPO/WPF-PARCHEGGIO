@@ -47,7 +47,7 @@ namespace WPF_DEFINITIVO.Views
                 if (response.IsSuccessStatusCode)
                 {
                     //MessageBox.Show("Login Confermato");
-                    UserPage user = new UserPage(new UserViewModel());
+                    UserPage user = new UserPage(new UserViewModel(credenziali));
                     NavigationService.Navigate(user);
                 }
                 else

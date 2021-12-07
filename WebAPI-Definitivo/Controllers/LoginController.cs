@@ -36,25 +36,48 @@ namespace WebAPI_Definitivo.Controllers
             }
         }
 
-        [HttpGet("/users")]
-        public ActionResult Users()
+        [HttpPost("GetToken")]
+        public ActionResult GetToken([FromBody] Users credentials)
         {
             using (ParkingManagementContext model = new ParkingManagementContext())
             {
-                return Ok(model.Users.ToList());
+                Users candidate = model.Users.FirstOrDefault(q => q.Username == credentials.Username && q.Password == credentials.Password);
+                if (candidate == null) return NotFound("Username o password errati");
+                var tokenHandler = new JwtSecurityTokenHandler();
+                var tokenDescriptor = new SecurityTokenDescriptor
+                {
+                    SigningCredentials = new SigningCredentials(SecurityKeyGenerator.GetSecurityKey(candidate),
+                    SecurityAlgorithms.HmacSha256Signature),
+                    Expires = DateTime.UtcNow.AddDays(1),
+                    Subject = new ClaimsIdentity(new Claim[] { new Claim("Username", candidate.Username.ToString()) })
+                };
+                SecurityToken token = tokenHandler.CreateToken(tokenDescriptor);
+                model.SaveChanges();
+                return Ok(tokenHandler.WriteToken(token));
             }
         }
 
         [Authorize]
+        [HttpGet("GetUsers")]
+        public ActionResult GetUsers([FromBody] Users credentials)
+        {
+            using (ParkingManagementContext model = new ParkingManagementContext())
+            {
+                List <Users> candidate = model.Users.ToList();
+                return Ok(candidate);
+            }
+        }
+
+        //[Authorize]
         [HttpPost("Logout")]
-        public ActionResult Logout()
+        public ActionResult Logout([FromBody] Users credentials)
         {
             //prendo l'username attraverso il claim
-            string usernameUtente = HttpContext.User.Claims.FirstOrDefault(x => x.Type == "Username").Value;
+            //string usernameUtente = HttpContext.User.Claims.FirstOrDefault(x => x.Type == "Username").Value;
 
             using (ParkingManagementContext model = new ParkingManagementContext())
             {
-                Users candidate = model.Users.FirstOrDefault(q => q.Username == usernameUtente); if (candidate == null) return NotFound();
+                Users candidate = model.Users.FirstOrDefault(q => q.Username == credentials.Username); if (candidate == null) return NotFound();
                 model.SaveChanges();
                 return Ok();
             }
