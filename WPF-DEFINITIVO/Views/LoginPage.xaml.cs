@@ -41,6 +41,8 @@ namespace WPF_DEFINITIVO.Views
             InitializeComponent();
             DataContext = viewModel;
             login = viewModel;
+
+
             //this.DataContext = this;
         }
         public event PropertyChangedEventHandler PropertyChanged;
@@ -54,6 +56,7 @@ namespace WPF_DEFINITIVO.Views
 
         private async void Button_Click(object sender, RoutedEventArgs e)
         {
+
             using (var client = new HttpClient())
             {
                 Users credenziali = new Users()
@@ -91,5 +94,12 @@ namespace WPF_DEFINITIVO.Views
 
 
         }
+
+        private void PasswordUpdated(object sender, System.Windows.Data.DataTransferEventArgs e)
+        {
+            login.password = PasswordInserito.Password;
+        }
+
+        
     }
 }
