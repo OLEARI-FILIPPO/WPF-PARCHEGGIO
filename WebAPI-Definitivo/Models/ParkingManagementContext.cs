@@ -135,7 +135,7 @@ namespace WebAPI_Definitivo.Models
                     .HasMaxLength(50)
                     .IsUnicode(false);
 
-                entity.Property(e => e.Id).HasColumnName("Grado");
+                entity.Property(e => e.Grado).HasColumnName("Grado");
 
                 entity.Property(e => e.LastLogin).HasColumnType("datetime");
 
