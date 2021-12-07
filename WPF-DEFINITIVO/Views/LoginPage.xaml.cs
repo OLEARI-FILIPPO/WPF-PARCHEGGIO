@@ -75,7 +75,7 @@ namespace WPF_DEFINITIVO.Views
         {
             DoubleAnimation d = new DoubleAnimation();
             d.From = 0;
-            d.To = 500;
+            d.To = 600;
             d.Duration = TimeSpan.FromSeconds(1);
 
 
