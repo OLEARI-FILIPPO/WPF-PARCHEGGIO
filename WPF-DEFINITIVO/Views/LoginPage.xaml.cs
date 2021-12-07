@@ -8,6 +8,8 @@ using WPF_DEFINITIVO.ViewModels;
 using WPF_DEFINITIVO.Models;
 using WebAPI_Definitivo.Models;
 using System.Net.Http.Headers;
+using System.Windows.Media.Animation;
+using System;
 
 namespace WPF_DEFINITIVO.Views
 {
@@ -64,9 +66,18 @@ namespace WPF_DEFINITIVO.Views
             }
         }
 
-        private void Button_Click_1(object sender, RoutedEventArgs e)
+        private void LoginLoaded(object sender, RoutedEventArgs e)
         {
+            DoubleAnimation d = new DoubleAnimation();
+            d.From = 0;
+            d.To = 586;
+            d.Duration = TimeSpan.FromSeconds(1);
 
+
+            d.EasingFunction = new QuadraticEase();
+
+
+            log.BeginAnimation(HeightProperty, d);
         }
     }
 }

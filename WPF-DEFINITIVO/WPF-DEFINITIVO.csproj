@@ -10,6 +10,8 @@
     <None Remove="Views\hero-bg.png" />
     
     <None Remove="Views\login.png" />
+    
+    <None Remove="Views\loginImage.png" />
   </ItemGroup>
   <ItemGroup>
     <PackageReference Include="HandyControl" Version="3.2.0" />
@@ -34,6 +36,8 @@
     <Resource Include="Views\hero-bg.png" />
     
     <Resource Include="Views\login.png" />
+    
+    <Resource Include="Views\loginImage.png" />
   </ItemGroup>
 
   <ItemGroup>
