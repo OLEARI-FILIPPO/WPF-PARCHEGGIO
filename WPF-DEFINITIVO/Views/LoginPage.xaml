@@ -10,7 +10,7 @@
     x:Class="WPF_DEFINITIVO.Views.LoginPage"
    
     mc:Ignorable="d"
-    d:DesignHeight="750" d:DesignWidth="1250">
+    d:DesignHeight="750" MinWidth="1280">
 
     <!--<Page.Background>
         <ImageBrush ImageSource="hero-bg.png"/>
@@ -25,10 +25,12 @@
             <RowDefinition Height="48" />
             <RowDefinition Height="*" />
         </Grid.RowDefinitions>
+
         <TextBlock
             Style="{StaticResource PageTitleStyle}"
             Margin="{StaticResource MediumLeftMargin}"
             Text="{x:Static properties:Resources.LoginPageTitle}" />
+
         <!--<Grid
             Grid.Row="1" Background="Transparent">
 
@@ -97,13 +99,95 @@
 
         </Grid>-->
 
-        <Grid Grid.Row="1">
+        <Border Grid.Row="1" CornerRadius="5"  
+                Background="#ffff" 
+                Height="586" 
+                Width="1062">
+            <Grid  HorizontalAlignment="Center" >
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="531"></ColumnDefinition>
+                    <ColumnDefinition Width="531"></ColumnDefinition>
+                </Grid.ColumnDefinitions>
 
-            <Grid.RowDefinitions>
-                <RowDefinition/>
-            </Grid.RowDefinitions>
 
-            <Border CornerRadius="10" HorizontalAlignment="Center" VerticalAlignment="Center" Background="#C9E7F2">
+                <StackPanel HorizontalAlignment="Center"
+                            Background="#D9D9DB"
+                            Orientation="Vertical" >
+
+
+                    <TextBlock TextWrapping="Wrap"  
+                               VerticalAlignment="Center" 
+                               HorizontalAlignment="Left" 
+                               Margin="40,20,0,20" Text="Ciao!" FontFamily="Sans-Serif"  FontSize="40" />
+
+
+                    <TextBlock TextWrapping="Wrap"  
+                               VerticalAlignment="Center" 
+                               HorizontalAlignment="Left" 
+                               Margin="40,0,0,5" Text="Bentornato" FontFamily="Sans-Serif"  FontSize="40" />
+
+
+
+                    <StackPanel HorizontalAlignment="Center" 
+                                Orientation="Horizontal" 
+                                Margin="40" 
+                                Width="463">
+
+                        <Label 
+                            VerticalAlignment="Center" 
+                            FontSize="18"
+                            Background="Transparent" 
+                            BorderBrush="Transparent"
+                            FontFamily="Sans-Serif"
+                            Margin="0,20,12,20" >Username</Label>
+
+                        <TextBox 
+                            Width="304"  
+                            Text="{Binding Username}" 
+                            FontSize="18"  
+                            Height="60"></TextBox>
+
+                    </StackPanel>
+
+                    <StackPanel HorizontalAlignment="Center" 
+                                Orientation="Horizontal" 
+                                Width="470">
+
+                        <Label VerticalAlignment="Center" 
+                               FontSize="18" 
+                               FontFamily="Sans-Serif"
+                               Background="Transparent" 
+                               BorderBrush="Transparent" 
+                               Margin="0,20,20,20">Password</Label>
+
+                        <hc:PasswordBox Width="305"  
+                                
+                                 x:Name="PasswordInserito"
+                                 FontSize="18"  
+                                 
+                                 Height="60" TargetUpdated="PasswordUpdated"></hc:PasswordBox>
+
+                    </StackPanel>
+
+
+                    <Button HorizontalAlignment="Center"
+                            FontSize="25" 
+                            Height="64" Width="206" 
+                            Margin="40" FontFamily="Sans-Serif">Login</Button>
+
+
+                </StackPanel>
+
+                <StackPanel Grid.Column="1" >
+                    <StackPanel.Background>
+                        <ImageBrush ImageSource="/Views/login.png"/>
+                    </StackPanel.Background>
+
+                </StackPanel>
+
+
+
+                <!--<Border CornerRadius="10" HorizontalAlignment="Center" VerticalAlignment="Center" Background="#C9E7F2">
 
 
                 <StackPanel HorizontalAlignment="Center" 
@@ -163,12 +247,90 @@
 
                 </StackPanel>
 
-            </Border>
+            </Border>-->
 
 
 
 
 
-        </Grid>
+            </Grid>
+
+        </Border>
+
+        <!--<Grid  HorizontalAlignment="Center" Margin="152,77,152,77">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition></ColumnDefinition>
+            </Grid.ColumnDefinitions>
+          
+
+            -->
+        <!--<Border CornerRadius="10" HorizontalAlignment="Center" VerticalAlignment="Center" Background="#C9E7F2">
+
+
+                <StackPanel HorizontalAlignment="Center" 
+                            Grid.Row="0" 
+                            Orientation="Vertical" Height="627" >
+
+                    <TextBlock TextWrapping="Wrap"  
+                               VerticalAlignment="Center" 
+                               HorizontalAlignment="Center" 
+                               Margin="30" Text="Login"  FontSize="50" />
+               
+
+                    <StackPanel HorizontalAlignment="Center" 
+                                Orientation="Horizontal" 
+                                Margin="60" 
+                                Width="497">
+                        
+                        <Label 
+                            VerticalAlignment="Center" 
+                            FontSize="18"
+                            Background="Transparent" 
+                            BorderBrush="Transparent" 
+                            Margin="0,20,12,20" >Username</Label>
+                        
+                        <TextBox 
+                            Width="304"  
+                            Text="{Binding Username}" 
+                            FontSize="18"  
+                            Height="60"></TextBox>
+                        
+                    </StackPanel>
+
+                    <StackPanel HorizontalAlignment="Center" 
+                                Orientation="Horizontal" 
+                                Width="503">
+                        
+                        <Label VerticalAlignment="Center" 
+                               FontSize="18" 
+                               Background="Transparent" 
+                               BorderBrush="Transparent" 
+                               Margin="0,20,20,20" >Password</Label>
+                        
+                        <hc:PasswordBox Width="303"  
+                                
+                                 x:Name="PasswordInserito"
+                                 FontSize="18"  
+                                 Height="60" TargetUpdated="PasswordUpdated"></hc:PasswordBox>
+                        
+                    </StackPanel>
+
+
+                    <Button HorizontalAlignment="Center"
+                            FontSize="25" 
+                            Height="64" Width="206" 
+                            Margin="40">Login</Button>
+
+
+                </StackPanel>
+
+            </Border>-->
+        <!--
+
+
+
+
+
+        </Grid>-->
     </Grid>
 </Page>

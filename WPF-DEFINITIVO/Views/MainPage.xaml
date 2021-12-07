@@ -6,7 +6,7 @@
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:properties="clr-namespace:WPF_DEFINITIVO.Properties" xmlns:hc="https://handyorg.github.io/handycontrol"
     mc:Ignorable="d"
-    d:DesignHeight="750" d:DesignWidth="1250">
+    d:DesignHeight="750" MinWidth="1280">
     <Grid>
         
         <Grid.Background>

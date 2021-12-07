@@ -8,7 +8,7 @@
     xmlns:properties="clr-namespace:WPF_DEFINITIVO.Properties"
     
     mc:Ignorable="d"
-    d:DesignHeight="750" d:DesignWidth="1250">
+    d:DesignHeight="750" MinWidth="1280">
     <Grid>
 
         <Grid.Background>

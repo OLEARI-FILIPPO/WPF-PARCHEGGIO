@@ -62,7 +62,7 @@ namespace WPF_DEFINITIVO.Views
 
         private void PasswordUpdated(object sender, System.Windows.Data.DataTransferEventArgs e)
         {
-            login.password = PasswordInserito.Password;
+           // login.password = PasswordInserito.Password;
         }
 
         
