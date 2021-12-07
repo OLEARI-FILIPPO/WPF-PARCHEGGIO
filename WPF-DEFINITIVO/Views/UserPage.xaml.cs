@@ -6,6 +6,7 @@ using System.IdentityModel.Tokens.Jwt;
 using System.Linq;
 using System.Net;
 using System.Net.Http;
+using System.Net.Http.Headers;
 using System.Security.Claims;
 using System.Text;
 using System.Windows;
@@ -44,6 +45,7 @@ namespace WPF_DEFINITIVO.Views
         }
         private async void Button_Click(object sender, RoutedEventArgs e)
         {
+           
             Users credenziali = new Users()
             {
                 Username = logout.Username,
@@ -51,9 +53,8 @@ namespace WPF_DEFINITIVO.Views
             };
             using (var client = new HttpClient())
             {
+                client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", logout.Token);
 
-                var token = await client.PostAsJsonAsync("http://localhost:13636/api/v1/GetToken", credenziali);
-                if (token.IsSuccessStatusCode) MessageBox.Show("Trovato.");
                 var response = await client.PostAsJsonAsync("http://localhost:13636/api/v1/Logout", credenziali); //API controller name
 
                 string result = await response.Content.ReadAsStringAsync();

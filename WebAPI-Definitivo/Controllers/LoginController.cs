@@ -58,7 +58,7 @@ namespace WebAPI_Definitivo.Controllers
                         new Claim[] 
                         {
                             new Claim("Username", candidate.Username.ToString()),
-                            new Claim("Grado", candidate.Grado.ToString()) 
+                            new Claim("Grado", candidate.Grado.ToString())
                         })
                 };
                 SecurityToken token = tokenHandler.CreateToken(tokenDescriptor);
@@ -78,16 +78,16 @@ namespace WebAPI_Definitivo.Controllers
             }
         }
 
-        //[Authorize]
+        [Authorize]
         [HttpPost("Logout")]
         public ActionResult Logout([FromBody] Users credentials)
         {
             //prendo l'username attraverso il claim
-            //string usernameUtente = HttpContext.User.Claims.FirstOrDefault(x => x.Type == "Username").Value;
+            string usernameUtente = HttpContext.User.Claims.FirstOrDefault(x => x.Type == "Username").Value;
 
             using (ParkingManagementContext model = new ParkingManagementContext())
             {
-                Users candidate = model.Users.FirstOrDefault(q => q.Username == credentials.Username); if (candidate == null) return NotFound();
+                Users candidate = model.Users.FirstOrDefault(q => q.Username == usernameUtente); if (candidate == null) return NotFound();
                 candidate.LastLogout = DateTime.Now;
                 model.SaveChanges();
                 return Ok();
