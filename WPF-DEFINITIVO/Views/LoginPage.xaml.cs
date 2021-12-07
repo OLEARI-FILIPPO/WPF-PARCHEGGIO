@@ -66,11 +66,6 @@ namespace WPF_DEFINITIVO.Views
             }
         }
 
-        private void Button_Click_1(object sender, RoutedEventArgs e)
-        {
-
-        }
-
         private void LoginLoaded(object sender, RoutedEventArgs e)
         {
             DoubleAnimation d = new DoubleAnimation();

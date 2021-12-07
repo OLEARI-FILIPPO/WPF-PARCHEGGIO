@@ -122,8 +122,9 @@
 
                 <StackPanel Grid.Column="1" >
                     <StackPanel.Background>
-                        <ImageBrush ImageSource="/Views/login.png"/>
+                        <ImageBrush ImageSource="/Views/loginImage.png" Stretch="Uniform"/>
                     </StackPanel.Background>
+
 
                 </StackPanel>
 
