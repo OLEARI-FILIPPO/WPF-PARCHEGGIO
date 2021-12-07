@@ -10,7 +10,7 @@
     x:Class="WPF_DEFINITIVO.Views.LoginPage"
    
     mc:Ignorable="d"
-    d:DesignHeight="750" MinWidth="1280">
+    d:DesignHeight="750" MinWidth="1280" Loaded="LoginLoaded">
 
     <!--<Page.Background>
         <ImageBrush ImageSource="hero-bg.png"/>
@@ -102,6 +102,7 @@
         <Border Grid.Row="1" CornerRadius="15"  
                 Background="#9B9BE1" 
                 Height="586" 
+                x:Name="log"
                 Width="1062"
                 Effect="{DynamicResource EffectShadow4}">
 
