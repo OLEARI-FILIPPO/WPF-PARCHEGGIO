@@ -14,5 +14,12 @@ namespace WPF_DEFINITIVO.Views
 
             // DataContext = this;
         }
+
+        private void Button_Click(object sender, RoutedEventArgs e)
+        {
+            EntraWindow entraWindow = new EntraWindow(new EntraWindowViewModel());
+            this.Close();
+            entraWindow.ShowDialog();
+        }
     }
 }

@@ -128,8 +128,10 @@ namespace WPF_DEFINITIVO.Views
 
         }
 
+        //Evento che visualizza i dettagli di un parcheggio
         private void clickParhceggio(object sender, RoutedEventArgs e)
         {
+            //Creo l'istanza del dettaglio e la visualizzo come window aggiuntiva
             ParcheggiDetailPage parcheggiDetailPage = new ParcheggiDetailPage();
             parcheggiDetailPage.ShowDialog();
         }

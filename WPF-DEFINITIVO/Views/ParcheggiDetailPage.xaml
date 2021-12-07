@@ -57,7 +57,13 @@
 
                             <StackPanel
                             Margin="{StaticResource SmallLeftTopMargin}"  Height="65">
-                                <Button FontSize="14" Background="#C4E9D7" HorizontalAlignment="Left" Content="Entra" Margin="0,20,20,0" Height="42" Width="68"/>
+                                <Button FontSize="14" 
+                                        Background="#C4E9D7" 
+                                        HorizontalAlignment="Left" 
+                                        Content="Entra" 
+                                        Margin="0,20,20,0" 
+                                        Height="42" Width="68" 
+                                        Click="Button_Click"/>
                             </StackPanel>
 
                             <StackPanel
@@ -66,7 +72,6 @@
 
                             </StackPanel>
                         </StackPanel>
-
 
                         <StackPanel
                             Grid.Column="1">
@@ -92,17 +97,9 @@
 
                             </StackPanel>
 
-
-
-
                         </StackPanel>
 
-
-
-
                     </Grid>
-
-
 
                 </Grid>
 
@@ -111,12 +108,12 @@
                     Style="{StaticResource SubtitleTextStyle}"
                     Text="Storico Parcheggio" />
                 <DataGrid
-                AutoGenerateColumns="False"
-                GridLinesVisibility="Horizontal"
-                CanUserAddRows="False"
-                ItemsSource="{Binding Source}"
-                Margin="24"
-                KeyboardNavigation.TabNavigation="Once" Height="372">
+                    AutoGenerateColumns="False"
+                    GridLinesVisibility="Horizontal"
+                    CanUserAddRows="False"
+                    ItemsSource="{Binding Source}"
+                    Margin="24"
+                    KeyboardNavigation.TabNavigation="Once" Height="372">
                     <DataGrid.Columns>
                         <!--
                         TODO WTS:
