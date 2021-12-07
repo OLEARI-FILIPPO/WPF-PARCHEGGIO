@@ -118,13 +118,13 @@
                     <TextBlock TextWrapping="Wrap"  
                                VerticalAlignment="Center" 
                                HorizontalAlignment="Left" 
-                               Margin="40,20,0,20" Text="Ciao!" FontFamily="Sans-Serif"  FontSize="40" />
+                               Margin="40,20,0,20" Text="Hello" FontFamily="CocoSharp Trial" FontSize="40" />
 
 
                     <TextBlock TextWrapping="Wrap"  
                                VerticalAlignment="Center" 
                                HorizontalAlignment="Left" 
-                               Margin="40,0,0,5" Text="Bentornato" FontFamily="Sans-Serif"  FontSize="40" />
+                               Margin="40,0,0,5" Text="welcome back" FontStretch="UltraExpanded" FontFamily="CocoSharp Trial"  FontSize="40" />
 
 
 
@@ -173,7 +173,7 @@
                             HorizontalAlignment="Center"
                             FontSize="25" 
                             Height="64" Width="206" 
-                            Margin="40" FontFamily="Sans-Serif">Login</Button>
+                            Margin="40" FontFamily="Montserrat">Login</Button>
 
 
                 </StackPanel>
