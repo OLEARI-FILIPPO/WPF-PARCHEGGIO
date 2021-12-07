@@ -78,6 +78,7 @@ namespace WebAPI_Definitivo.Controllers
             using (ParkingManagementContext model = new ParkingManagementContext())
             {
                 Users candidate = model.Users.FirstOrDefault(q => q.Username == credentials.Username); if (candidate == null) return NotFound();
+                candidate.LastLogout = DateTime.Now;
                 model.SaveChanges();
                 return Ok();
             }
