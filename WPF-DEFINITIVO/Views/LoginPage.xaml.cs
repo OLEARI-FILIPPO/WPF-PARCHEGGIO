@@ -71,6 +71,8 @@ namespace WPF_DEFINITIVO.Views
                 if (response.IsSuccessStatusCode)
                 {
                     MessageBox.Show("Login Confermato");
+                    UserPage user = new UserPage(new UserViewModel());
+                    NavigationService.Navigate(user);
                     /*Menu menu = new Menu(Token, Username);
                     menu.Show();
                     this.Close();*/
