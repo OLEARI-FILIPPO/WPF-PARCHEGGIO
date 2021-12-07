@@ -7,6 +7,8 @@ using Windows.System;
 using WPF_DEFINITIVO.ViewModels;
 using WPF_DEFINITIVO.Models;
 using WebAPI_Definitivo.Models;
+using System.Net.Http.Headers;
+
 namespace WPF_DEFINITIVO.Views
 {
     public partial class LoginPage : Page, INotifyPropertyChanged
@@ -22,7 +24,7 @@ namespace WPF_DEFINITIVO.Views
             //this.DataContext = this;
         }
         public event PropertyChangedEventHandler PropertyChanged;
-        static HttpClient client = new HttpClient();
+        static HttpClient httpClient2 = new HttpClient();
 
         protected void OnPropertyChanged(string name)
         {
@@ -32,14 +34,17 @@ namespace WPF_DEFINITIVO.Views
 
         private async void Button_Click(object sender, RoutedEventArgs e)
         {
+            
 
             using (var client = new HttpClient())
             {
                 Users credenziali = new Users()
                 {
                     Username = login.Username,
-                    Password = login.Password
+                    Password = PasswordInserito.Password
                 };
+
+                //request.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Basic", Convert.ToBase64String(System.Text.ASCIIEncoding.ASCII.GetBytes($"{yourusername}:{yourpwd}")));
                 
                 var response = await client.PostAsJsonAsync("http://localhost:13636/api/v1/Login", credenziali); //API controller name
 
@@ -49,21 +54,17 @@ namespace WPF_DEFINITIVO.Views
 
                 if (response.IsSuccessStatusCode)
                 {
-                    //MessageBox.Show("Login Confermato");
-                    UserPage user = new UserPage(new UserViewModel(credenziali));
+                    MessageBox.Show(result);
+                    UserPage user = new UserPage(new UserViewModel(credenziali, result));
                     NavigationService.Navigate(user);
                 }
                 else
                 {
-                    MessageBox.Show("Problema durante l'accesso, forse le credenziali non sono valide");
+                    MessageBox.Show(result);
                 }
             }
         }
 
-        private void PasswordUpdated(object sender, System.Windows.Data.DataTransferEventArgs e)
-        {
-           // login.password = PasswordInserito.Password;
-        }
 
         
     }

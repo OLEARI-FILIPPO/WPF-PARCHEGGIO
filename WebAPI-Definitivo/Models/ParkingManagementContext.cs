@@ -134,6 +134,12 @@ namespace WebAPI_Definitivo.Models
                     .IsRequired()
                     .HasMaxLength(50)
                     .IsUnicode(false);
+
+                entity.Property(e => e.Grado).HasColumnName("Grado");
+
+                entity.Property(e => e.LastLogin).HasColumnType("datetime");
+
+                entity.Property(e => e.LastLogout).HasColumnType("datetime");
             });
 
             modelBuilder.Entity<Vehicle>(entity =>

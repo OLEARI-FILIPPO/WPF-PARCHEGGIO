@@ -9,7 +9,7 @@ namespace WebAPI_Definitivo
     {
         public static SecurityKey GetSecurityKey(Users user)
         {
-            var key = Encoding.ASCII.GetBytes(Startup.MasterKey);
+            var key = Encoding.ASCII.GetBytes(Startup.MasterKey + user.LastLogout.ToString());
             return new SymmetricSecurityKey(key);
         }
         public static SecurityKey GetSecurityKey(string userName)

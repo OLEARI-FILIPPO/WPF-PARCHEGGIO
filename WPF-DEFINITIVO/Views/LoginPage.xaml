@@ -234,16 +234,17 @@
                                 
                                  x:Name="PasswordInserito"
                                  FontSize="18"  
-                                 Height="60" TargetUpdated="PasswordUpdated"></hc:PasswordBox>
+                                 Height="60" ></hc:PasswordBox>
                         
                     </StackPanel>
 
 
-                    <Button HorizontalAlignment="Center"
+                    <Button Click="Button_Click"
+                            HorizontalAlignment="Center"
                             FontSize="25" 
                             Height="64" Width="206" 
                             Margin="40">Login</Button>
-
+                            
 
                 </StackPanel>
 

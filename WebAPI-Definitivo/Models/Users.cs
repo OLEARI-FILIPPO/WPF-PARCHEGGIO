@@ -12,5 +12,8 @@ namespace WebAPI_Definitivo.Models
         public int Id { get; set; }
         public string Username { get; set; }
         public string Password { get; set; }
+        public int Grado { get; set; }
+        public DateTime? LastLogin { get; set; }
+        public DateTime? LastLogout { get; set; }
     }
 }
