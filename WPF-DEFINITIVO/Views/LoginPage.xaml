@@ -5,8 +5,7 @@
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
-    xmlns:properties="clr-namespace:WPF_DEFINITIVO.Properties"
-   
+    xmlns:properties="clr-namespace:WPF_DEFINITIVO.Properties" xmlns:hc="https://handyorg.github.io/handycontrol"
     mc:Ignorable="d"
     d:DesignHeight="750" d:DesignWidth="1250">
 
@@ -27,7 +26,7 @@
             Style="{StaticResource PageTitleStyle}"
             Margin="{StaticResource MediumLeftMargin}"
             Text="{x:Static properties:Resources.LoginPageTitle}" />
-        <Grid
+        <!--<Grid
             Grid.Row="1" Background="Transparent">
             
             <Grid.RowDefinitions>
@@ -95,6 +94,36 @@
 
 
             </Grid>
+
+        </Grid>-->
+
+        <Grid Grid.Row="1">
+
+            <Grid.RowDefinitions>
+                <RowDefinition/>
+            </Grid.RowDefinitions>
+
+            <Border CornerRadius="50" HorizontalAlignment="Center" VerticalAlignment="Center">
+
+
+                <StackPanel HorizontalAlignment="Center" Grid.Row="0" Orientation="Vertical" Margin="0,27,0,27" >
+
+                    <Border   CornerRadius="4,4,0,0" Width="160" Height="113" HorizontalAlignment="Center" Margin="66,70,37,0">
+                        <TextBlock TextWrapping="Wrap"  VerticalAlignment="Center" HorizontalAlignment="Center"  Text="Login"  FontSize="50" />
+                    </Border>
+
+                    <TextBox Width="406" Margin="80" Height="60"></TextBox>
+
+                    <TextBox Width="406" Height="60" Margin="0"></TextBox>
+
+                    <Button FontSize="30" Height="82" Width="230" Margin="40">Login</Button>
+                </StackPanel>
+
+            </Border>
+
+
+
+
 
         </Grid>
     </Grid>
