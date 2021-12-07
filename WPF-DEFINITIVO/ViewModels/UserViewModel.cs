@@ -10,10 +10,12 @@ namespace WPF_DEFINITIVO.ViewModels
     {
         public string Username;
         public string Password;
-        public UserViewModel(Users user)
+        public string Token;
+        public UserViewModel(Users user, string result)
         {
             Username = user.Username;
             Password = user.Password;
+            Token = result;
         }
 
 
