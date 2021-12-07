@@ -9,6 +9,15 @@ namespace WebAPI_Definitivo.Models
 {
     public partial class Parking
     {
+        public Parking(string parkingId, bool stato, DateTime? entryTimeDate, long? vehicleId, long infoParkId)
+        {
+            ParkingId = parkingId;
+            Stato = stato;
+            EntryTimeDate = entryTimeDate;
+            VehicleId = vehicleId;
+            InfoParkId = infoParkId;
+        }
+
         public long Id { get; set; }
         public string ParkingId { get; set; }
         public bool Stato { get; set; }
