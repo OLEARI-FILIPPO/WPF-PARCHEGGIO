@@ -14,6 +14,13 @@ namespace WebAPI_Definitivo.Models
             Parking = new HashSet<Parking>();
         }
 
+        //TO DO: COSTRUTTORE CON TUTTI I PARAMETRI TRANNE ID VEICOLO
+        public Vehicle(string licensePlate, long ownerId)
+        {
+            LicensePlate = licensePlate;
+            OwnerId = ownerId;
+        }
+
         public long VehicleId { get; set; }
         public string Manufacturer { get; set; }
         public string Model { get; set; }
