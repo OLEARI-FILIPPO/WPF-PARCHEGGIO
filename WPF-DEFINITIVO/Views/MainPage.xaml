@@ -7,11 +7,14 @@
     xmlns:properties="clr-namespace:WPF_DEFINITIVO.Properties" xmlns:hc="https://handyorg.github.io/handycontrol"
     mc:Ignorable="d"
     d:DesignHeight="750" MinWidth="1280">
+
+    <Page.Background>
+        <ImageBrush ImageSource="/Views/wave.png"/>
+    </Page.Background>
+    
     <Grid>
         
-        <Grid.Background>
-            <ImageBrush ImageSource="/Views/hero-bg.png"/>
-        </Grid.Background>
+        
         
         <Grid.RowDefinitions>
             <RowDefinition Height="48" />

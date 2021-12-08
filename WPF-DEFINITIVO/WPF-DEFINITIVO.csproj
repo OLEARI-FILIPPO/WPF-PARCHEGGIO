@@ -7,15 +7,19 @@
     <ApplicationManifest>app.manifest</ApplicationManifest>
   </PropertyGroup>
   <ItemGroup>
+    <None Remove="Views\gradient.png" />
     <None Remove="Views\hero-bg.png" />
     
     <None Remove="Views\login.png" />
     
     <None Remove="Views\loginImage.png" />
+    
+    <None Remove="Views\svg.png" />
+    
+    <None Remove="Views\wave.png" />
   </ItemGroup>
   <ItemGroup>
     <PackageReference Include="HandyControl" Version="3.2.0" />
-    <PackageReference Include="LiveCharts.Wpf" Version="0.9.7" />
     <PackageReference Include="MahApps.Metro" Version="2.4.6" />
     <PackageReference Include="Microsoft.AspNet.WebApi.Client" Version="4.0.20505" />
     <PackageReference Include="Microsoft.EntityFrameworkCore" Version="3.1.21" />
@@ -33,11 +37,14 @@
     <ProjectReference Include="..\WPF-DEFINITIVO.Core\WPF-DEFINITIVO.Core.csproj" />
   </ItemGroup>
   <ItemGroup>
+    <Resource Include="Views\gradient.png" />
     <Resource Include="Views\hero-bg.png" />
     
     <Resource Include="Views\login.png" />
     
     <Resource Include="Views\loginImage.png" />
+    
+    <Resource Include="Views\wave.png" />
   </ItemGroup>
 
   <ItemGroup>

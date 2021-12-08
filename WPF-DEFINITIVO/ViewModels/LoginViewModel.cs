@@ -12,6 +12,7 @@ namespace WPF_DEFINITIVO.ViewModels
         {
 
         }
+
         public string username;
         public string password;
         public string token;

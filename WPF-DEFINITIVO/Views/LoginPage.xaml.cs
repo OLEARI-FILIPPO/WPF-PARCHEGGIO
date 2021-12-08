@@ -10,6 +10,7 @@ using WebAPI_Definitivo.Models;
 using System.Net.Http.Headers;
 using System.Windows.Media.Animation;
 using System;
+using System.Windows.Media;
 
 namespace WPF_DEFINITIVO.Views
 {
@@ -19,6 +20,7 @@ namespace WPF_DEFINITIVO.Views
         public LoginPage(LoginViewModel viewModel)
         {
             InitializeComponent();
+           
             DataContext = viewModel;
             login = viewModel;
 
@@ -36,34 +38,48 @@ namespace WPF_DEFINITIVO.Views
 
         private async void Button_Click(object sender, RoutedEventArgs e)
         {
-            
+            //string t = 
 
-            using (var client = new HttpClient())
+            if (UsernameTextBox.Text == "" || PasswordInserito.Password == "")
             {
-                Users credenziali = new Users()
+                UsernameTextBox.BorderBrush = new SolidColorBrush(Colors.Red);
+                PasswordInserito.BorderBrush = new SolidColorBrush(Colors.Red);
+                MessageBox.Show("Inserire tutti i dati richiesti", "Alert", MessageBoxButton.OK, MessageBoxImage.Error);
+            }
+            else
+            {
+                UsernameTextBox.BorderBrush = (SolidColorBrush)new BrushConverter().ConvertFrom("#70E0E1");
+                PasswordInserito.BorderBrush = (SolidColorBrush)new BrushConverter().ConvertFrom("#70E0E1");
+
+                using (var client = new HttpClient())
                 {
-                    Username = login.Username,
-                    Password = PasswordInserito.Password
-                };
+                    Users credenziali = new Users()
+                    {
+                        Username = login.Username,
+                        Password = PasswordInserito.Password
+                    };
 
-                //request.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Basic", Convert.ToBase64String(System.Text.ASCIIEncoding.ASCII.GetBytes($"{yourusername}:{yourpwd}")));
-                
-                var response = await client.PostAsJsonAsync("http://localhost:13636/api/v1/Login", credenziali); //API controller name
+                    //request.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Basic", Convert.ToBase64String(System.Text.ASCIIEncoding.ASCII.GetBytes($"{yourusername}:{yourpwd}")));
 
-                string result = await response.Content.ReadAsStringAsync();
+                    var response = await client.PostAsJsonAsync("http://localhost:13636/api/v1/Login", credenziali); //API controller name
 
-                login.Token = result; //mi salvo il token
+                    string result = await response.Content.ReadAsStringAsync();
 
-                if (response.IsSuccessStatusCode)
-                {
-                    UserPage user = new UserPage(new UserViewModel(credenziali, result));
-                    NavigationService.Navigate(user);
-                }
-                else
-                {
-                    MessageBox.Show(result);
+                    login.Token = result; //mi salvo il token
+
+                    if (response.IsSuccessStatusCode)
+                    {
+                        UserPage user = new UserPage(new UserViewModel(credenziali, result));
+                        NavigationService.Navigate(user);
+                    }
+                    else
+                    {
+                        MessageBox.Show(result);
+                    }
                 }
             }
+
+            
         }
 
         private void LoginLoaded(object sender, RoutedEventArgs e)
