@@ -60,7 +60,8 @@
                 CanUserAddRows="False"
                 ItemsSource="{Binding Source}"
                 Background="#CEEBF5"
-                KeyboardNavigation.TabNavigation="Once">
+                KeyboardNavigation.TabNavigation="Once"
+                 Effect="{DynamicResource EffectShadow2}">
                 
 
                 <DataGrid.Columns>

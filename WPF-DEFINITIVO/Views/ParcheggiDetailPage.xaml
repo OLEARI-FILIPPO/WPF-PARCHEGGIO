@@ -34,7 +34,7 @@
                         <Button Grid.Row="2" Height="160" Width="163" FontSize="30">
                             <StackPanel HorizontalAlignment="Center" VerticalAlignment="Center" Orientation="Vertical" Height="121">
                                 <TextBlock Text="&#xE804;" Margin="3,0,0,0" HorizontalAlignment="Center" FontSize="45" FontFamily="Segoe MDL2 Assets" Height="53" Width="48"/>
-                                <TextBlock Height="47"><Run Text="P001"/></TextBlock>
+                                <TextBlock x:Name="ParkingNameLabel" Height="47"><Run Text="P001"/></TextBlock>
                             </StackPanel>
                         </Button>
                     </Grid>

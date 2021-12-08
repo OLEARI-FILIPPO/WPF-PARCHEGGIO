@@ -68,8 +68,8 @@ namespace WPF_DEFINITIVO.Views
                 DynamicGrid.ColumnDefinitions.Add(cd);
             }
 
-           // int cont = 0;
-           // int temp = 1;
+            int cont = 0;
+            int temp = 1;
             //for (int i = 0; i < riga; i++)
             //{
             //    for (int j = 0; j < colonna; j++)
@@ -155,7 +155,7 @@ namespace WPF_DEFINITIVO.Views
                     {
 
                        // string text = "P0" + iRow.ToString() + jCol.ToString(),
-                        Text ="P0" + iRow.ToString() + jCol.ToString(),
+                        Text = "P0" + temp.ToString(),
                         FontSize = 18,
                         TextAlignment = TextAlignment.Center
 
@@ -180,7 +180,7 @@ namespace WPF_DEFINITIVO.Views
                     Grid.SetRow(panel, iRow);
 
                     Button b = new Button();
-                    b.Name = "P0" + iRow.ToString() + jCol.ToString();
+                    b.Name = "btn" + cont.ToString(); ;
                     //  b.Width = widthButton;
                     //  b.Height = heightButton;
 
@@ -198,7 +198,7 @@ namespace WPF_DEFINITIVO.Views
 
                     b.Foreground = new SolidColorBrush(Colors.Black);
                     // Colore Libero : Verde 
-                    b.Background = (SolidColorBrush)new BrushConverter().ConvertFrom("#8BE78B");
+                    b.Background = (SolidColorBrush)new BrushConverter().ConvertFrom("#93C7EA");
                     // Colore Occupato : Rosso 
                     //b.Background = (SolidColorBrush)new BrushConverter().ConvertFrom("#F77B7B");
                     b.SetResourceReference(Grid.EffectProperty, "EffectShadow2");
@@ -210,6 +210,8 @@ namespace WPF_DEFINITIVO.Views
 
                     DynamicGrid.Children.Add(panel);
                     
+                    cont++;
+                    temp++;
                 }
             }
 
@@ -221,7 +223,13 @@ namespace WPF_DEFINITIVO.Views
         private void clickParhceggio(object sender, RoutedEventArgs e)
         {
             //Creo l'istanza del dettaglio e la visualizzo come window aggiuntiva
-            ParcheggiDetailPage parcheggiDetailPage = new ParcheggiDetailPage();
+
+            StackPanel sp = (StackPanel)((Button)sender).Content; //prendo lo stackpanel contenuto nel parcheggio
+
+            TextBlock tb = (TextBlock)sp.Children[1]; //prendo il textblock che contiene il nome del parcheggio
+
+            //apro il form che contiene i detagli nel parcheggio
+            ParcheggiDetailPage parcheggiDetailPage = new ParcheggiDetailPage(tb.Text); //e passo il nome del parcheggio
             parcheggiDetailPage.ShowDialog();
         }
 

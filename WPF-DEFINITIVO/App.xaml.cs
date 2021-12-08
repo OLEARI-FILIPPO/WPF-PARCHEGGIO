@@ -83,7 +83,7 @@ namespace WPF_DEFINITIVO
             services.AddTransient<ParcheggiViewModel>();
             services.AddTransient<ParcheggiPage>();
 
-            services.AddTransient<ParcheggiDetailViewModel>();
+          
             services.AddTransient<ParcheggiDetailPage>();
 
             services.AddTransient<StoricoViewModel>();
