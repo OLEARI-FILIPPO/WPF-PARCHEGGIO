@@ -10,7 +10,7 @@
     d:DesignHeight="750" MinWidth="1280">
 
     <Page.Background>
-        <ImageBrush ImageSource="/Views/wave.png"/>
+        <ImageBrush ImageSource="Images/wave.png"/>
     </Page.Background>
 
     <Grid>
@@ -48,9 +48,9 @@
                  
                  x:Name="StoricoCard"  
                  Grid.Row="2"   
-                 BorderBrush="#CEEBF5"
+                 BorderBrush="#73DAE2"
                  BorderThickness="1" 
-                 Effect="{DynamicResource EffectShadow2}" 
+                 Effect="{DynamicResource EffectShadow5}" 
                  Margin="57,37,87,37"  >
 
             <DataGrid
@@ -59,7 +59,7 @@
                 
                 CanUserAddRows="False"
                 ItemsSource="{Binding Source}"
-                Background="#CEEBF5"
+                Background="#73DAE2"
                 KeyboardNavigation.TabNavigation="Once"
                  Effect="{DynamicResource EffectShadow2}">
                 

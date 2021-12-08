@@ -10,7 +10,7 @@
     d:DesignHeight="750" MinWidth="750" MaxWidth="800" d:DesignWidth="750">
     <Grid>
         <Grid.Background>
-            <ImageBrush ImageSource="/Views/hero-bg.png"/>
+            <ImageBrush ImageSource="Images/wave.png"/>
         </Grid.Background>
 
         <ScrollViewer

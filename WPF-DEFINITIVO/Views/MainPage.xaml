@@ -9,7 +9,7 @@
     d:DesignHeight="750" MinWidth="1280">
 
     <Page.Background>
-        <ImageBrush ImageSource="/Views/wave.png"/>
+        <ImageBrush ImageSource="Images/wave.png"/>
     </Page.Background>
     
     <Grid>
@@ -94,11 +94,13 @@
 
 
         <StackPanel Margin="24,10,0,0" Grid.Row="2" HorizontalAlignment="Stretch" Orientation="Horizontal">
-            <hc:Card Width="658" Margin="20">
+            <hc:Card Width="658" 
+                     Margin="20" 
+                     BorderBrush="#80BAE5">
+                
                 <DataGrid
-                    
+                    Background="#80BAE5"         
                     AutoGenerateColumns="False"
-                    GridLinesVisibility="Horizontal"
                     CanUserAddRows="False"
                     ItemsSource="{Binding Source}"
                     Margin="0,0,-2,0"
@@ -131,9 +133,30 @@
                 </DataGrid>
                 
             </hc:Card>
-            <Button x:Name="Create" Click="Create_Click" Background="LightSkyBlue" Content="Create" FontSize="18" Height="61" Width="113" Margin="38,10,20,100"/>
-            <Button x:Name="Remove" Background="#E66605" Content="Remove" FontSize="18" Height="61" Width="113" Margin="8,10,20,100"/>
-            <Button x:Name="Update" Background="#8BE78B" Content="Update" FontSize="18" Height="61" Width="113" Margin="8,10,20,100"/>
+            <Button x:Name="Create" 
+                    Click="Create_Click" 
+                    Background="LightSkyBlue" 
+                    Content="Create" 
+                    FontSize="18" 
+                    Height="61" 
+                    Width="113" 
+                    Margin="38,10,20,100"/>
+            
+            <Button x:Name="Remove" 
+                    Background="#E66605" 
+                    Content="Remove" 
+                    FontSize="18" 
+                    Height="61" 
+                    Width="113" 
+                    Margin="8,10,20,100"/>
+            
+            <Button x:Name="Update" 
+                    Background="#8BE78B" 
+                    Content="Update" 
+                    FontSize="18" 
+                    Height="61" 
+                    Width="113" 
+                    Margin="8,10,20,100"/>
 
         </StackPanel>
 

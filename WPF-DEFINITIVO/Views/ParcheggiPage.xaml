@@ -14,7 +14,7 @@
     d:DesignHeight="750" MinWidth="1280">
 
     <Page.Background>
-        <ImageBrush ImageSource="/Views/wave.png"/>
+        <ImageBrush ImageSource="Images/wave.png"/>
     </Page.Background>
 
 

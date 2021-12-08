@@ -9,14 +9,22 @@
   <ItemGroup>
     <None Remove="Views\gradient.png" />
     <None Remove="Views\hero-bg.png" />
+    <None Remove="Views\Images\gradient.png" />
+    <None Remove="Views\Images\hero-bg.png" />
+    <None Remove="Views\Images\login.png" />
+    <None Remove="Views\Images\logincardBackground.png" />
+    <None Remove="Views\Images\loginImage.png" />
+    <None Remove="Views\Images\wave.png" />
     
     <None Remove="Views\login.png" />
     
     <None Remove="Views\loginImage.png" />
     
     <None Remove="Views\svg.png" />
-    
-    <None Remove="Views\wave.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Views\Images\hero-bg.png" />
+    <Resource Include="Views\Images\login.png" />
   </ItemGroup>
   <ItemGroup>
     <PackageReference Include="HandyControl" Version="3.2.0" />
@@ -37,14 +45,9 @@
     <ProjectReference Include="..\WPF-DEFINITIVO.Core\WPF-DEFINITIVO.Core.csproj" />
   </ItemGroup>
   <ItemGroup>
-    <Resource Include="Views\gradient.png" />
-    <Resource Include="Views\hero-bg.png" />
-    
-    <Resource Include="Views\login.png" />
-    
-    <Resource Include="Views\loginImage.png" />
-    
-    <Resource Include="Views\wave.png" />
+    <Resource Include="Views\Images\logincardBackground.png" />
+    <Resource Include="Views\Images\loginImage.png" />
+    <Resource Include="Views\Images\wave.png" />
   </ItemGroup>
 
   <ItemGroup>

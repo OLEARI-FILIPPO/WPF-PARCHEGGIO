@@ -12,7 +12,7 @@
     mc:Ignorable="d"
     d:DesignHeight="750" MinWidth="1280" Loaded="LoginLoaded">
     <Page.Background>
-        <ImageBrush ImageSource="/Views/wave.png"/>
+        <ImageBrush ImageSource="Images/wave.png"/>
     </Page.Background>
 
     <Grid>
@@ -36,7 +36,8 @@
                 Width="1062"
                 Effect="{DynamicResource EffectShadow4}">
             <Border.Background>
-                <ImageBrush ImageSource="/Views/gradient.png"/>
+                <ImageBrush 
+                    ImageSource="Images/logincardBackground.png"/>
             </Border.Background>
 
 
@@ -51,8 +52,9 @@
 
 
                 <StackPanel HorizontalAlignment="Center"
-                           
-                            Orientation="Vertical" Margin="0,10,0,10" Width="531" >
+                            Orientation="Vertical" 
+                            Margin="0,10,0,10" 
+                            Width="531" >
 
 
                     <TextBlock TextWrapping="Wrap"  
@@ -87,8 +89,10 @@
                             Width="304"  
                             Text="{Binding Username}" 
                             FontSize="18" 
+                            Foreground="Gray"
                             x:Name="UsernameTextBox"
                             BorderBrush="#70E0E1"
+                            FontFamily="Sans-Serif"
                             Height="41"></TextBox>
 
                     </StackPanel>
@@ -106,8 +110,10 @@
 
                         <hc:PasswordBox Width="305" 
                                  x:Name="PasswordInserito"
-                                 FontSize="18"  
+                                 FontSize="18"
+                                 Foreground="Gray"
                                  BorderBrush="#70E0E1"
+                                 FontFamily="Sans-Serif"
                                  Height="41" ></hc:PasswordBox>
 
                     </StackPanel>
@@ -134,7 +140,7 @@
                     </Rectangle.Fill>
                 </Rectangle>-->
 
-                <Image Source="/Views/loginImage.png" Grid.Column="1" HorizontalAlignment="Center" Width="379" Margin="0,92,0,120" />
+                <Image Source="Images/loginImage.png" Grid.Column="1" HorizontalAlignment="Center" Width="379" Margin="0,92,0,120" />
 
 
             </Grid>
