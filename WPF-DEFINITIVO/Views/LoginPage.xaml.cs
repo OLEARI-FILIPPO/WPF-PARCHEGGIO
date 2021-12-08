@@ -11,6 +11,7 @@ using System.Net.Http.Headers;
 using System.Windows.Media.Animation;
 using System;
 using System.Windows.Media;
+using WPF_DEFINITIVO.Helpers;
 
 namespace WPF_DEFINITIVO.Views
 {
@@ -20,6 +21,8 @@ namespace WPF_DEFINITIVO.Views
         public LoginPage(LoginViewModel viewModel)
         {
             InitializeComponent();
+
+           
            
             DataContext = viewModel;
             login = viewModel;
@@ -38,7 +41,7 @@ namespace WPF_DEFINITIVO.Views
 
         private async void Button_Click(object sender, RoutedEventArgs e)
         {
-            //string t = 
+            
 
             if (UsernameTextBox.Text == "" || PasswordInserito.Password == "")
             {
@@ -69,7 +72,12 @@ namespace WPF_DEFINITIVO.Views
 
                     if (response.IsSuccessStatusCode)
                     {
+                        NavigationLoginToLogout.result = result; //Ho creato una classe nella cartella Services del progetto utilizzo questa classe per salvare lo stato della pagina
+                        NavigationLoginToLogout.isLoggedIn = true;
+                        
                         UserPage user = new UserPage(new UserViewModel(credenziali, result));
+                        NavigationLoginToLogout._user = credenziali;
+
                         NavigationService.Navigate(user);
                     }
                     else
@@ -84,16 +92,30 @@ namespace WPF_DEFINITIVO.Views
 
         private void LoginLoaded(object sender, RoutedEventArgs e)
         {
-            DoubleAnimation d = new DoubleAnimation();
-            d.From = 0;
-            d.To = 600;
-            d.Duration = TimeSpan.FromSeconds(1);
+
+            if (NavigationLoginToLogout.isLoggedIn) //se l'utente è loggato allora navigo al userpage altrimenti avvio l'animazione del loginpage
+            {
+                if(NavigationLoginToLogout.isLoggedIn)
+                {
+                    UserPage _userpage = new UserPage(new UserViewModel(NavigationLoginToLogout._user, NavigationLoginToLogout.result));
+
+                    NavigationService.Navigate(_userpage);
+                }
+            }
+            else
+            {
+                DoubleAnimation d = new DoubleAnimation();
+                d.From = 0;
+                d.To = 600;
+                d.Duration = TimeSpan.FromSeconds(1);
 
 
-            d.EasingFunction = new QuadraticEase();
+                d.EasingFunction = new QuadraticEase();
 
 
-            log.BeginAnimation(HeightProperty, d);
+                log.BeginAnimation(HeightProperty, d);
+            }
+            
         }
     }
 }

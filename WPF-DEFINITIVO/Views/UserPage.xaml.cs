@@ -20,6 +20,7 @@ using System.Windows.Navigation;
 using System.Windows.Shapes;
 using WebAPI_Definitivo;
 using WebAPI_Definitivo.Models;
+using WPF_DEFINITIVO.Helpers;
 using WPF_DEFINITIVO.ViewModels;
 
 namespace WPF_DEFINITIVO.Views
@@ -61,7 +62,11 @@ namespace WPF_DEFINITIVO.Views
 
                 if (response.IsSuccessStatusCode)
                 {
-                    LoginViewModel.isLoggedIn = false;
+                    //dopo il logout lo stato torna a false e il resto diventa null;
+                    NavigationLoginToLogout.isLoggedIn = false;
+                    NavigationLoginToLogout.result = null;
+                    NavigationLoginToLogout._user = null; 
+
                     LoginPage user = new LoginPage(new LoginViewModel());
                     NavigationService.Navigate(user);
                 }
