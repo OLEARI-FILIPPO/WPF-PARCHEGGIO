@@ -108,11 +108,7 @@ namespace WPF_DEFINITIVO.Views
                 d.From = 0;
                 d.To = 600;
                 d.Duration = TimeSpan.FromSeconds(1);
-
-
                 d.EasingFunction = new QuadraticEase();
-
-
                 log.BeginAnimation(HeightProperty, d);
             }
             
