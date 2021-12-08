@@ -72,7 +72,7 @@ namespace WPF_DEFINITIVO.Views
 
                     if (response.IsSuccessStatusCode)
                     {
-                        NavigationLoginToLogout.result = result; //Ho creato una classe nella cartella Services del progetto utilizzo questa classe per salvare lo stato della pagina
+                        NavigationLoginToLogout.result = result; //Ho creato una classe nella cartella Helper del progetto utilizzo questa classe per salvare lo stato della pagina
                         NavigationLoginToLogout.isLoggedIn = true;
                         
                         UserPage user = new UserPage(new UserViewModel(credenziali, result));
