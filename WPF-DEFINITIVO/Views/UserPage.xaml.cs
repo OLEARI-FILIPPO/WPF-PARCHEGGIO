@@ -61,6 +61,7 @@ namespace WPF_DEFINITIVO.Views
 
                 if (response.IsSuccessStatusCode)
                 {
+                    LoginViewModel.isLoggedIn = false;
                     LoginPage user = new LoginPage(new LoginViewModel());
                     NavigationService.Navigate(user);
                 }

@@ -9,6 +9,11 @@ namespace WPF_DEFINITIVO.ViewModels
     
     public class LoginViewModel : ObservableObject
     {
+
+        public static bool isLoggedIn;
+        public static UserPage userpage;
+        public static string _Token;
+
         public LoginViewModel()
         {
 
@@ -17,8 +22,7 @@ namespace WPF_DEFINITIVO.ViewModels
         public string username;
         public string password;
         public string token;
-        public bool isLoggedIn;
-     //   public UserPage userpage;
+    
 
         public string Username
         {

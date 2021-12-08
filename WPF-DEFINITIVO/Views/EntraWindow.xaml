@@ -25,7 +25,7 @@
         </Grid.RowDefinitions>
 
         <Grid.Background>
-            <ImageBrush ImageSource="/Views/hero-bg.png"/>
+            <ImageBrush ImageSource="Images/wave.png"/>
         </Grid.Background>
 
         <TextBlock
