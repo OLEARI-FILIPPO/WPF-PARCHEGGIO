@@ -77,7 +77,7 @@ namespace WPF_DEFINITIVO.ViewModels
                     var list = await response.Content.ReadAsStringAsync();
                     //response.Wait();
 
-                    List<InfoParking> ParkingObject = JsonConvert.DeserializeObject<List<InfoParking>>(list);
+                    ObservableCollection<InfoParking> ParkingObject = JsonConvert.DeserializeObject<ObservableCollection<InfoParking>>(list);
 
                     //List<string> Parkings = new List<string>();
 
@@ -114,7 +114,7 @@ namespace WPF_DEFINITIVO.ViewModels
                     if (response.IsSuccessStatusCode)
                     {
 
-                        List<InfoParking> ParkingObject = JsonConvert.DeserializeObject<List<InfoParking>>(list);
+                        ObservableCollection<InfoParking> ParkingObject = JsonConvert.DeserializeObject<ObservableCollection<InfoParking>>(list);
 
                         foreach (var a in ParkingObject)
                         {
@@ -136,6 +136,55 @@ namespace WPF_DEFINITIVO.ViewModels
             }
             await Task.Delay(51);
 
+        }
+
+
+        public async Task GetParkingRecords(string nomeParcheggio)
+        {
+            if (NavigationLoginToLogout.isLoggedIn)
+            {
+                using (var client = new HttpClient())
+                {
+                    client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", NavigationLoginToLogout.Token);
+
+                    var response = await client.GetAsync("http://localhost:13636/api/v1/ParkingList");
+                    //await response.Content.ReadAsStringAsync();
+                    var list = await response.Content.ReadAsStringAsync();
+                    //response.Wait();
+
+                    string ID = string.Empty;
+
+                    if (response.IsSuccessStatusCode)
+                    {
+
+                        List<InfoParking> ParkingObject = JsonConvert.DeserializeObject<List<InfoParking>>(list);
+                        //MessageBox.Show(list);
+                        foreach (var a in ParkingObject)
+                        {
+                            if (nomeParcheggio == a.NamePark)
+                            {
+                                ID = a.InfoParkId.ToString();
+                            }
+
+                        }
+
+                        var responseParkingRecords = await client.GetAsync("http://localhost:13636/api/v1/ParkingRecords/"+ID);
+
+                        var listParkingRecords = await responseParkingRecords.Content.ReadAsStringAsync();
+
+                        List<Parking> parkingsRecords = JsonConvert.DeserializeObject< List<Parking> >(listParkingRecords);
+
+                        //MessageBox.Show(listParkingRecords);
+
+                    }
+                    else
+                    {
+                        MessageBox.Show("No Response");
+                    }
+
+
+                }
+            }
         }
 
 

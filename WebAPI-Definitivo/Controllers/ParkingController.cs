@@ -161,5 +161,34 @@ namespace WebAPI_Definitivo.Controllers
                 return Problem();
             }
         }
+
+        [Authorize]
+        [HttpGet("/api/v1/ParkingRecords/{id}")] //prende tutti i record tabella parking
+
+        public ActionResult GetParkingRecordsSingle()
+        {
+            try
+            {
+
+                using (ParkingManagementContext model = new ParkingManagementContext())
+                {
+                    List<Parking> listOfParkings;
+
+                    listOfParkings = model.Parking.ToList();
+
+                    // int count = listOfParkings.Count;
+
+                    return Ok(listOfParkings);
+
+                }
+
+                // return Ok();
+            }
+            catch (Exception)
+            {
+
+                return Problem();
+            }
+        }
     }
 }

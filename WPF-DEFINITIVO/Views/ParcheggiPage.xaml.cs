@@ -314,6 +314,7 @@ namespace WPF_DEFINITIVO.Views
             DynamicGrid.ColumnDefinitions.Clear();
             DynamicGrid.Children.Clear();
 
+            await parcheggioView.GetParkingRecords(combo.SelectedItem.ToString());
             await parcheggioView.GetRowColumn(combo.SelectedItem.ToString());
             parcheggioSelezionato();
             
