@@ -1,4 +1,5 @@
-﻿using Microsoft.IdentityModel.Tokens;
+﻿using MahApps.Metro.Controls;
+using Microsoft.IdentityModel.Tokens;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -67,6 +68,12 @@ namespace WPF_DEFINITIVO.Views
                     NavigationLoginToLogout.isLoggedIn = false;
                     NavigationLoginToLogout.result = null;
                     NavigationLoginToLogout._user = null; 
+
+                    //Tolgo menu tranne la schermata di login
+                    for(int i = ShellViewModel.MenuItems.Count-1; i > 0; i--)
+                    {
+                        ShellViewModel.MenuItems.RemoveAt(i);
+                    }
 
                     LoginPage user = new LoginPage(new LoginViewModel());
                     NavigationService.Navigate(user);

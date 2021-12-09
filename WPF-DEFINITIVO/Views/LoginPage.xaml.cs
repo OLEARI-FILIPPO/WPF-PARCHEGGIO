@@ -13,6 +13,7 @@ using System;
 using System.Windows.Media;
 using WPF_DEFINITIVO.Helpers;
 using System.Threading.Tasks;
+using MahApps.Metro.Controls;
 
 namespace WPF_DEFINITIVO.Views
 {
@@ -77,7 +78,27 @@ namespace WPF_DEFINITIVO.Views
                     {
                         NavigationLoginToLogout.result = result; //Ho creato una classe nella cartella Helper del progetto utilizzo questa classe per salvare lo stato della pagina
                         NavigationLoginToLogout.isLoggedIn = true;
-                        
+
+                        //Rimuovo il login
+
+                        //Aggiungo menu
+                        ShellViewModel.MenuItems.Add
+                        (
+                            new HamburgerMenuGlyphItem() { Label = Properties.Resources.ShellMainPage, Glyph = "\uE80F", TargetPageType = typeof(MainViewModel) }
+                        );
+
+                        //Se il privilegio è 1 la vedo altrimenti no
+
+                        ShellViewModel.MenuItems.Add
+                        (
+                            new HamburgerMenuGlyphItem() { Label = Properties.Resources.ShellParcheggiPage, Glyph = "\uE804", TargetPageType = typeof(ParcheggiViewModel) }
+                        );
+                        ShellViewModel.MenuItems.Add
+                        (
+                            new HamburgerMenuGlyphItem() { Label = Properties.Resources.ShellStoricoPage, Glyph = "\uF738", TargetPageType = typeof(StoricoViewModel) }
+                        );
+
+
                         UserPage user = new UserPage(new UserViewModel(credenziali, result));
                         NavigationLoginToLogout._user = credenziali;
 

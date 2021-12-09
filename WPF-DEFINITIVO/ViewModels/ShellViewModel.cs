@@ -29,12 +29,12 @@ namespace WPF_DEFINITIVO.ViewModels
         }
 
         // TODO WTS: Change the icons and titles for all HamburgerMenuItems here.
-        public ObservableCollection<HamburgerMenuItem> MenuItems { get; } = new ObservableCollection<HamburgerMenuItem>()
+        public static ObservableCollection<HamburgerMenuItem> MenuItems { get; set; } = new ObservableCollection<HamburgerMenuItem>()
         {
             new HamburgerMenuGlyphItem() { Label = Resources.ShellLoginPage, Glyph = "\uEA8C", TargetPageType = typeof(LoginViewModel) },
-            new HamburgerMenuGlyphItem() { Label = Resources.ShellMainPage, Glyph = "\uE80F", TargetPageType = typeof(MainViewModel) },
+            /*new HamburgerMenuGlyphItem() { Label = Resources.ShellMainPage, Glyph = "\uE80F", TargetPageType = typeof(MainViewModel) },
             new HamburgerMenuGlyphItem() { Label = Resources.ShellParcheggiPage, Glyph = "\uE804", TargetPageType = typeof(ParcheggiViewModel) },
-            new HamburgerMenuGlyphItem() { Label = Resources.ShellStoricoPage, Glyph = "\uF738", TargetPageType = typeof(StoricoViewModel) },
+            new HamburgerMenuGlyphItem() { Label = Resources.ShellStoricoPage, Glyph = "\uF738", TargetPageType = typeof(StoricoViewModel) },*/
         };
 
         public RelayCommand GoBackCommand => _goBackCommand ?? (_goBackCommand = new RelayCommand(OnGoBack, CanGoBack));
