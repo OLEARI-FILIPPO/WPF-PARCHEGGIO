@@ -75,7 +75,7 @@ namespace WPF_DEFINITIVO.Views
             int cont = 0;
             int temp = 1;
 
-            DynamicGrid.ShowGridLines = true;
+            
 
             int iRow = -1;
             foreach (RowDefinition row in DynamicGrid.RowDefinitions)
@@ -161,12 +161,12 @@ namespace WPF_DEFINITIVO.Views
 
                     DynamicGrid.Children.Add(panel);
 
-                    //DoubleAnimation d = new DoubleAnimation();
-                    //d.From = 0;
-                    //d.To = panel.ActualHeight;
-                    //d.Duration = TimeSpan.FromSeconds(1);
-                    //d.EasingFunction = new QuadraticEase();
-                    //panel.BeginAnimation(HeightProperty, d);
+
+                    //DoubleAnimation fadeAnimation = new DoubleAnimation();
+                    //fadeAnimation.Duration = TimeSpan.FromSeconds(1.0d);
+                    //fadeAnimation.From = 0.0d;
+                    //fadeAnimation.To = 1.0d;
+                    //DynamicGrid.BeginAnimation(Grid.OpacityProperty, fadeAnimation);
 
                     cont++;
                     temp++;
@@ -204,13 +204,12 @@ namespace WPF_DEFINITIVO.Views
 
                 CreateDynamicGrid();
 
-                DoubleAnimation d = new DoubleAnimation();
-                d.From = 0;
-                d.To = DynamicGrid.ActualHeight;
-                d.Duration = TimeSpan.FromSeconds(0.4);
-                d.EasingFunction = new QuadraticEase();
-                DynamicGrid.BeginAnimation(HeightProperty, d);
-
+                DoubleAnimation fadeAnimation = new DoubleAnimation();
+                fadeAnimation.Duration = TimeSpan.FromSeconds(1.0d);
+                fadeAnimation.EasingFunction = new QuadraticEase();
+                fadeAnimation.From = 0.0d;
+                fadeAnimation.To = 1.0d;
+                DynamicGrid.BeginAnimation(Grid.OpacityProperty, fadeAnimation);
 
             }
 
@@ -266,6 +265,9 @@ namespace WPF_DEFINITIVO.Views
             d.Duration = TimeSpan.FromSeconds(0.4);
             d.EasingFunction = new QuadraticEase();
             operations.BeginAnimation(WidthProperty, d);
+
+
+
 
 
 
@@ -337,12 +339,12 @@ namespace WPF_DEFINITIVO.Views
                 await parcheggioView.GetRowColumn(combo.SelectedItem.ToString());
                 CreaParcheggioSelezionato();
 
-                DoubleAnimation d = new DoubleAnimation();
-                d.From = 0;
-                d.To = DynamicGrid.ActualHeight;
-                d.Duration = TimeSpan.FromSeconds(0.5);
-                d.EasingFunction = new QuadraticEase();
-                DynamicGrid.BeginAnimation(HeightProperty, d);
+                DoubleAnimation fadeAnimation = new DoubleAnimation();
+                fadeAnimation.Duration = TimeSpan.FromSeconds(1.0d);
+                fadeAnimation.EasingFunction = new QuadraticEase();
+                fadeAnimation.From = 0.0d;
+                fadeAnimation.To = 1.0d;
+                DynamicGrid.BeginAnimation(Grid.OpacityProperty, fadeAnimation);
             }
             
             
