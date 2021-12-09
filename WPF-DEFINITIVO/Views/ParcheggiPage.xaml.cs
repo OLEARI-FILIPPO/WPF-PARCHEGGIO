@@ -323,6 +323,8 @@ namespace WPF_DEFINITIVO.Views
 
                 RowSlider.IsEnabled= false;
                 ColSlider.IsEnabled= false;
+                Create.IsEnabled = false;
+                InputName.IsEnabled= false;
                 RowLabel.IsEnabled = true;
                 ColLabel.IsEnabled = true;
 
