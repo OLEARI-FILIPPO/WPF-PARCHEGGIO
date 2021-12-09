@@ -30,6 +30,7 @@ namespace WPF_DEFINITIVO.ViewModels
         }
 
         private ObservableCollection<string> parkings = new ObservableCollection<string>();
+
         public ObservableCollection<string> Parking
         {
             get { return parkings; }
@@ -39,6 +40,7 @@ namespace WPF_DEFINITIVO.ViewModels
                 OnPropertyChanged("parkings");
             }
         }
+
         public async void GetParkings()
         {
             if (NavigationLoginToLogout.isLoggedIn)
@@ -121,7 +123,7 @@ namespace WPF_DEFINITIVO.ViewModels
             return rowColumn;
         }
 
-        //
+        
     }
 
 }
