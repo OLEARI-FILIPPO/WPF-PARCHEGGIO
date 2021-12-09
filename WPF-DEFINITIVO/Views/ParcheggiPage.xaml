@@ -39,7 +39,7 @@
             <ComboBox   Width="200" 
                             FontFamily="calibri"
                             VerticalAlignment="Center" 
-                            x:Name="comboPark"
+                            x:Name="combo"
                             Height="35"
                             FontSize="16"
                             IsEditable="True" IsReadOnly="True" Text="Seleziona Parcheggio" ScrollViewer.VerticalScrollBarVisibility="Auto"/>
