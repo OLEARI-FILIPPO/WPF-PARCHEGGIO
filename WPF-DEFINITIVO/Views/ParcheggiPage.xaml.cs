@@ -311,6 +311,8 @@ namespace WPF_DEFINITIVO.Views
                 InputName.IsEnabled = true;
                 RowLabel.IsEnabled = true;
                 ColLabel.IsEnabled = true;
+                RowSlider.Value = 0;
+                ColSlider.Value = 0;
 
                 RowLabel.Content = "Row";
                 ColLabel.Content = "Col";
