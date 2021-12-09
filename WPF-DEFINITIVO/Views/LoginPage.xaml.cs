@@ -14,6 +14,9 @@ using System.Windows.Media;
 using WPF_DEFINITIVO.Helpers;
 using System.Threading.Tasks;
 using MahApps.Metro.Controls;
+using Microsoft.AspNetCore.Http;
+using System.IdentityModel.Tokens.Jwt;
+using System.Linq;
 
 namespace WPF_DEFINITIVO.Views
 {
@@ -70,6 +73,11 @@ namespace WPF_DEFINITIVO.Views
 
                     string result = await response.Content.ReadAsStringAsync();
 
+                    //Ottengo il grado traducendo il token che mi arriva dalla Richiesta post
+                    var handler = new JwtSecurityTokenHandler();
+                    var token = handler.ReadJwtToken(result);
+                    string grado = token.Claims.FirstOrDefault(x => x.Type == "Grado").Value;
+
                     login.Token = result; //mi salvo il token
 
                     NavigationLoginToLogout.Token = result;
@@ -88,11 +96,14 @@ namespace WPF_DEFINITIVO.Views
                         );
 
                         //Se il privilegio è 1 la vedo altrimenti no
-
-                        ShellViewModel.MenuItems.Add
-                        (
-                            new HamburgerMenuGlyphItem() { Label = Properties.Resources.ShellParcheggiPage, Glyph = "\uE804", TargetPageType = typeof(ParcheggiViewModel) }
-                        );
+                        if(grado == "1")
+                        {
+                            ShellViewModel.MenuItems.Add
+                           (
+                               new HamburgerMenuGlyphItem() { Label = Properties.Resources.ShellParcheggiPage, Glyph = "\uE804", TargetPageType = typeof(ParcheggiViewModel) }
+                           );
+                        }
+                        
                         ShellViewModel.MenuItems.Add
                         (
                             new HamburgerMenuGlyphItem() { Label = Properties.Resources.ShellStoricoPage, Glyph = "\uF738", TargetPageType = typeof(StoricoViewModel) }
