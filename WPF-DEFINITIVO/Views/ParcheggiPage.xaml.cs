@@ -2,6 +2,7 @@
 using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.Net.Http;
 using System.Net.Http.Headers;
 using System.Threading.Tasks;
@@ -16,13 +17,20 @@ using WPF_DEFINITIVO.ViewModels;
 
 namespace WPF_DEFINITIVO.Views
 {
-    public partial class ParcheggiPage : Page
+    public partial class ParcheggiPage : Page, INotifyPropertyChanged
     {
+        ParcheggiViewModel parcheggioView;
+        public event PropertyChangedEventHandler PropertyChanged;
+
+        protected void OnPropertyChanged(string name)
+        {
+            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(name));
+        }
         public ParcheggiPage(ParcheggiViewModel viewModel)
         {
             InitializeComponent();
             DataContext = viewModel;
-
+            parcheggioView = viewModel;
             //combo.Items.Add("Nuovo-Parcheggio");
         }
 
@@ -263,8 +271,8 @@ namespace WPF_DEFINITIVO.Views
 
         private async void ParcheggiLoaded(object sender, RoutedEventArgs e)
         {
-
-            if(NavigationLoginToLogout.isLoggedIn)
+            parcheggioView.GetParkings();
+            /*if (NavigationLoginToLogout.isLoggedIn)
             {
                 using (var client = new HttpClient())
                 {
@@ -279,20 +287,18 @@ namespace WPF_DEFINITIVO.Views
 
                     //List<string> Parkings = new List<string>();
 
-                    combo.Items.Add("Nuovo-Parcheggio");
+                    parkings.Add("Nuovo-Parcheggio");
 
                     foreach (var item in ParkingObject)
                     {
-                        combo.Items.Add(item.NamePark.ToString());
+                        parkings.Add(item.NamePark.ToString());
                     }
+
 
 
                     // var response = await client.GetAsync("http://localhost:13636/api/v1/ParkingList");
                 }
-            }
-           
-            
-
+            }*/
         }
 
         private void combo_SelectionChanged(object sender, SelectionChangedEventArgs e)

@@ -98,12 +98,11 @@ namespace WPF_DEFINITIVO.Views
 
             if (NavigationLoginToLogout.isLoggedIn) //se l'utente è loggato allora navigo al userpage altrimenti avvio l'animazione del loginpage
             {
-                if(NavigationLoginToLogout.isLoggedIn)
-                {
-                    UserPage _userpage = new UserPage(new UserViewModel(NavigationLoginToLogout._user, NavigationLoginToLogout.result));
 
-                    NavigationService.Navigate(_userpage);
-                }
+                UserPage _userpage = new UserPage(new UserViewModel(NavigationLoginToLogout._user, NavigationLoginToLogout.result));
+
+                NavigationService.Navigate(_userpage);
+
             }
             else
             {
