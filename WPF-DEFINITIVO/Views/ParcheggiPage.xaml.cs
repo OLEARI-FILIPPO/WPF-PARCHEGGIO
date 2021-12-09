@@ -64,7 +64,7 @@ namespace WPF_DEFINITIVO.Views
             for (int j = 0; j < colonna; j++)
             {
                 ColumnDefinition cd = new ColumnDefinition();
-                //   cd.Width = GridLength.Auto;
+                   //cd.Width = GridLength.Auto;
                 DynamicGrid.ColumnDefinitions.Add(cd);
             }
         }
@@ -75,12 +75,12 @@ namespace WPF_DEFINITIVO.Views
             int cont = 0;
             int temp = 1;
 
-
+            DynamicGrid.ShowGridLines = true;
 
             int iRow = -1;
             foreach (RowDefinition row in DynamicGrid.RowDefinitions)
             {
-
+               
                 iRow++;
 
                 int jCol = -1;
@@ -137,8 +137,8 @@ namespace WPF_DEFINITIVO.Views
 
                     b.VerticalAlignment = VerticalAlignment.Stretch;
 
-                    b.Height = panel.Height - 20;
-                    b.Width = panel.Width - 20;
+                    b.Height = panel.Height;
+                    b.Width = panel.Width;
                     b.Content = sp;
                     b.FontSize = 70;
                     
