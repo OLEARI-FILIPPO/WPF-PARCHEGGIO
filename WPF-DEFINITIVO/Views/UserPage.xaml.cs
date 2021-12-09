@@ -15,11 +15,13 @@ using System.Windows.Data;
 using System.Windows.Documents;
 using System.Windows.Input;
 using System.Windows.Media;
+using System.Windows.Media.Animation;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 using WebAPI_Definitivo;
 using WebAPI_Definitivo.Models;
+using WPF_DEFINITIVO.Helpers;
 using WPF_DEFINITIVO.ViewModels;
 
 namespace WPF_DEFINITIVO.Views
@@ -61,6 +63,11 @@ namespace WPF_DEFINITIVO.Views
 
                 if (response.IsSuccessStatusCode)
                 {
+                    //dopo il logout lo stato torna a false e il resto diventa null;
+                    NavigationLoginToLogout.isLoggedIn = false;
+                    NavigationLoginToLogout.result = null;
+                    NavigationLoginToLogout._user = null; 
+
                     LoginPage user = new LoginPage(new LoginViewModel());
                     NavigationService.Navigate(user);
                 }
@@ -70,6 +77,16 @@ namespace WPF_DEFINITIVO.Views
                 }
             }
             
+        }
+
+        private void UserPageLoaded(object sender, RoutedEventArgs e)
+        {
+            DoubleAnimation d = new DoubleAnimation();
+            d.From = 0;
+            d.To = 1062;
+            d.Duration = TimeSpan.FromSeconds(1);
+            d.EasingFunction = new QuadraticEase();
+            Out.BeginAnimation(WidthProperty, d);
         }
     }
 }

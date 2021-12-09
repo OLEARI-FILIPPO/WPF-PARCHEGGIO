@@ -8,35 +8,38 @@
    
     xmlns:hc="https://handyorg.github.io/handycontrol"
     x:Class="WPF_DEFINITIVO.Views.LoginPage"
-   
+  
     mc:Ignorable="d"
     d:DesignHeight="750" MinWidth="1280" Loaded="LoginLoaded">
-
-    <!--<Page.Background>
-        <ImageBrush ImageSource="hero-bg.png"/>
-    </Page.Background>-->
+    <Page.Background>
+        <ImageBrush ImageSource="Images/wave.png"/>
+    </Page.Background>
 
     <Grid>
-        <Grid.Background>
+
+        <!--<Grid.Background>
             <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
                 <GradientStop Color="#FFDFB3F4" Offset="1"/>
                 <GradientStop Color="#FF6E24D4" Offset="0"/>
             </LinearGradientBrush>
-        </Grid.Background>
+        </Grid.Background>-->
 
 
         <Grid.RowDefinitions>
-            <RowDefinition Height="48" />
-            <RowDefinition Height="*" />
+            <RowDefinition  Height="*" />
         </Grid.RowDefinitions>
 
 
         <Border Grid.Row="1" CornerRadius="15"  
-                Background="#FFA158ED" 
                 Height="586" 
                 x:Name="log"
                 Width="1062"
                 Effect="{DynamicResource EffectShadow4}">
+            <Border.Background>
+                <ImageBrush 
+                    ImageSource="Images/logincardBackground.png"/>
+            </Border.Background>
+
 
 
 
@@ -47,9 +50,11 @@
                 </Grid.ColumnDefinitions>
 
 
+
                 <StackPanel HorizontalAlignment="Center"
-                            Background="#FFA158ED"
-                            Orientation="Vertical" Margin="0,10,0,10" Width="531" >
+                            Orientation="Vertical" 
+                            Margin="0,10,0,10" 
+                            Width="531" >
 
 
                     <TextBlock TextWrapping="Wrap"  
@@ -63,7 +68,7 @@
                                VerticalAlignment="Center" 
                                HorizontalAlignment="Left"
                                
-                               Margin="40,0,0,5" Text="welcome back" FontFamily="Sans-Serif"  FontSize="40" />
+                               Margin="40,0,0,5" Text="Welcome back!" FontFamily="Sans-Serif"  FontSize="40" />
 
 
 
@@ -84,7 +89,10 @@
                             Width="304"  
                             Text="{Binding Username}" 
                             FontSize="18" 
-                            BorderBrush="AliceBlue"
+                            Foreground="Gray"
+                            x:Name="UsernameTextBox"
+                            BorderBrush="#70E0E1"
+                            FontFamily="Sans-Serif"
                             Height="41"></TextBox>
 
                     </StackPanel>
@@ -102,8 +110,10 @@
 
                         <hc:PasswordBox Width="305" 
                                  x:Name="PasswordInserito"
-                                 FontSize="18"  
-                                 BorderBrush="AliceBlue"
+                                 FontSize="18"
+                                 Foreground="Gray"
+                                 BorderBrush="#70E0E1"
+                                 FontFamily="Sans-Serif"
                                  Height="41" ></hc:PasswordBox>
 
                     </StackPanel>
@@ -120,16 +130,17 @@
 
                 </StackPanel>
 
-                <StackPanel Grid.Column="1" >
-                    <StackPanel.Background>
-                        <ImageBrush ImageSource="/Views/loginImage.png" Stretch="Uniform"/>
-                    </StackPanel.Background>
 
+                <!--<Rectangle Grid.Column="1" Grid.RowSpan="1000">
+                    <Rectangle.Fill>
+                        <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                            <GradientStop Color="#FF83FF97" Offset="0" />
+                            <GradientStop Color="White" Offset="1" />
+                        </LinearGradientBrush>
+                    </Rectangle.Fill>
+                </Rectangle>-->
 
-                </StackPanel>
-
-
-
+                <Image Source="Images/loginImage.png" Grid.Column="1" HorizontalAlignment="Center" Width="379" Margin="0,92,0,120" />
 
 
             </Grid>

@@ -2,6 +2,7 @@
 using System.ComponentModel;
 using Microsoft.Toolkit.Mvvm.ComponentModel;
 using Microsoft.Toolkit.Mvvm.Input;
+using WPF_DEFINITIVO.Views;
 
 namespace WPF_DEFINITIVO.ViewModels
 {
@@ -12,9 +13,11 @@ namespace WPF_DEFINITIVO.ViewModels
         {
 
         }
+
         public string username;
         public string password;
         public string token;
+    
 
         public string Username
         {

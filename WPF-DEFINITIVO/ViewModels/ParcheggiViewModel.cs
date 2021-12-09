@@ -1,65 +1,65 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.Net.Http;
+using System.Net.Http.Headers;
+using System.Threading.Tasks;
 using System.Windows.Input;
 
 using Microsoft.Toolkit.Mvvm.ComponentModel;
 using Microsoft.Toolkit.Mvvm.Input;
-
+using Newtonsoft.Json;
+using WebAPI_Definitivo.Models;
 using WPF_DEFINITIVO.Contracts.Services;
 using WPF_DEFINITIVO.Contracts.ViewModels;
 using WPF_DEFINITIVO.Core.Contracts.Services;
 using WPF_DEFINITIVO.Core.Models;
+using WPF_DEFINITIVO.Helpers;
 
 namespace WPF_DEFINITIVO.ViewModels
 {
     public class ParcheggiViewModel : ObservableObject//, INavigationAware
     {
-        private readonly INavigationService _navigationService;
-        private readonly ISampleDataService _sampleDataService;
-        private ICommand _navigateToDetailCommand;
 
-        /*public ICommand NavigateToDetailCommand => _navigateToDetailCommand ?? (_navigateToDetailCommand = new RelayCommand<SampleOrder>(NavigateToDetail));
+        private ObservableCollection<string> parkings = new ObservableCollection<string>();
 
-        public ObservableCollection<SampleOrder> Source { get; } = new ObservableCollection<SampleOrder>();
-
-        public ParcheggiViewModel(ISampleDataService sampleDataService, INavigationService navigationService)
+        public async void GetParkings()
         {
-            _sampleDataService = sampleDataService;
-            _navigationService = navigationService;
-        }
 
-        public async void OnNavigatedTo(object parameter)
-        {
-            Source.Clear();
+         
 
-            // Replace this with your actual data
-            var data = await _sampleDataService.GetContentGridDataAsync();
-            foreach (var item in data)
+            if (NavigationLoginToLogout.isLoggedIn)
             {
-                Source.Add(item);
+                using (var client = new HttpClient())
+                {
+                    client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", NavigationLoginToLogout.Token);
+
+                    var response = await client.GetAsync("http://localhost:13636/api/v1/ParkingList");
+                    //await response.Content.ReadAsStringAsync();
+                    var list = await response.Content.ReadAsStringAsync();
+                    //response.Wait();
+
+                    List<InfoParking> ParkingObject = JsonConvert.DeserializeObject<List<InfoParking>>(list);
+
+                    //List<string> Parkings = new List<string>();
+
+                    parkings.Add("Nuovo-Parcheggio");
+
+                    foreach (var item in ParkingObject)
+                    {
+                        parkings.Add(item.NamePark.ToString());
+                    }
+
+                 
+
+
+                    // var response = await client.GetAsync("http://localhost:13636/api/v1/ParkingList");
+                }
             }
+          
+
         }
 
-        public void OnNavigatedFrom()
-        {
-        }
-
-        private void NavigateToDetail(SampleOrder order)
-        {
-            _navigationService.NavigateTo(typeof(ParcheggiDetailViewModel).FullName, order.OrderID);
-        }*/
-
-
-        public string parking;
-        
-        public string Parking
-        {
-            get { return this.parking; }
-            set
-            {
-                this.parking = value;
-                OnPropertyChanged("Token");
-            }
-        }
+     //  public ObservableCollection<string> Parking { get { return GetParkings(); } }
     }
 }

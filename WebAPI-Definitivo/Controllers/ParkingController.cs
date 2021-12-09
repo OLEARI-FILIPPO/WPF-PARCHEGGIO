@@ -101,5 +101,35 @@ namespace WebAPI_Definitivo.Controllers
                 return Problem();
             }
         }
+
+        // author: Danish
+        [Authorize]
+        [HttpGet("/api/v1/ParkingList")]
+
+        public ActionResult GetParkingList()
+        {
+            try
+            {
+
+                using (ParkingManagementContext model = new ParkingManagementContext())
+                {
+                    List<InfoParking> listOfParkings;
+
+                    listOfParkings = model.InfoParking.ToList();
+
+                   // int count = listOfParkings.Count;
+
+                    return Ok(listOfParkings);
+
+                }
+
+               // return Ok();
+            }
+            catch (Exception)
+            {
+
+                return Problem();
+            }
+        }
     }
 }

@@ -1,15 +1,15 @@
 ﻿using HandyControl.Controls;
 using Newtonsoft.Json;
-using Newtonsoft.Json.Linq;
 using System;
 using System.Collections.Generic;
-using System.ComponentModel;
 using System.Net.Http;
 using System.Net.Http.Headers;
+using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Media;
 using WebAPI_Definitivo.Models;
+using WPF_DEFINITIVO.Helpers;
 //using HandyControl.Controls;
 
 using WPF_DEFINITIVO.ViewModels;
@@ -30,49 +30,8 @@ namespace WPF_DEFINITIVO.Views
         {
             InitializeComponent();
             DataContext = viewModel;
-            parcheggioView = viewModel;
-            caricaCombo();
 
-
-
-        }
-
-        private async void  caricaCombo()
-        {
-            
-            using (var client = new HttpClient())
-            {
-                //client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", token);
-
-                var response = await client.GetAsync("http://localhost:13636/api/v1/GetInfoParking"); //API controller name
-
-                string result = await response.Content.ReadAsStringAsync();
-
-                var array = JArray.Parse(result);
-                List<InfoParking> objectsList = new List<InfoParking>();
-
-                if (response.IsSuccessStatusCode)
-                {
-                    foreach (var item in array)
-                    {
-
-                        objectsList.Add(item.ToObject<InfoParking>());
-
-                    }
-                    //InfoParking park = JsonConvert.DeserializeObject<InfoParking>(result);
-
-                    foreach(var a in objectsList)
-                    {
-                        comboPark.Items.Add(a.NamePark);
-
-                    }
-
-                }
-                else
-                {
-                    System.Windows.MessageBox.Show(result);
-                }
-            }
+            //combo.Items.Add("Nuovo-Parcheggio");
         }
 
         private void RowSlider_ValueChanged(object sender, System.Windows.RoutedPropertyChangedEventArgs<double> e)
@@ -126,8 +85,8 @@ namespace WPF_DEFINITIVO.Views
                 DynamicGrid.ColumnDefinitions.Add(cd);
             }
 
-           // int cont = 0;
-           // int temp = 1;
+            int cont = 0;
+            int temp = 1;
             //for (int i = 0; i < riga; i++)
             //{
             //    for (int j = 0; j < colonna; j++)
@@ -213,7 +172,7 @@ namespace WPF_DEFINITIVO.Views
                     {
 
                        // string text = "P0" + iRow.ToString() + jCol.ToString(),
-                        Text ="P0" + iRow.ToString() + jCol.ToString(),
+                        Text = "P0" + temp.ToString(),
                         FontSize = 18,
                         TextAlignment = TextAlignment.Center
 
@@ -238,7 +197,7 @@ namespace WPF_DEFINITIVO.Views
                     Grid.SetRow(panel, iRow);
 
                     Button b = new Button();
-                    b.Name = "P0" + iRow.ToString() + jCol.ToString();
+                    b.Name = "btn" + cont.ToString(); ;
                     //  b.Width = widthButton;
                     //  b.Height = heightButton;
 
@@ -256,7 +215,7 @@ namespace WPF_DEFINITIVO.Views
 
                     b.Foreground = new SolidColorBrush(Colors.Black);
                     // Colore Libero : Verde 
-                    b.Background = (SolidColorBrush)new BrushConverter().ConvertFrom("#8BE78B");
+                    b.Background = (SolidColorBrush)new BrushConverter().ConvertFrom("#93C7EA");
                     // Colore Occupato : Rosso 
                     //b.Background = (SolidColorBrush)new BrushConverter().ConvertFrom("#F77B7B");
                     b.SetResourceReference(Grid.EffectProperty, "EffectShadow2");
@@ -268,6 +227,8 @@ namespace WPF_DEFINITIVO.Views
 
                     DynamicGrid.Children.Add(panel);
                     
+                    cont++;
+                    temp++;
                 }
             }
 
@@ -279,7 +240,13 @@ namespace WPF_DEFINITIVO.Views
         private void clickParhceggio(object sender, RoutedEventArgs e)
         {
             //Creo l'istanza del dettaglio e la visualizzo come window aggiuntiva
-            ParcheggiDetailPage parcheggiDetailPage = new ParcheggiDetailPage();
+
+            StackPanel sp = (StackPanel)((Button)sender).Content; //prendo lo stackpanel contenuto nel parcheggio
+
+            TextBlock tb = (TextBlock)sp.Children[1]; //prendo il textblock che contiene il nome del parcheggio
+
+            //apro il form che contiene i detagli nel parcheggio
+            ParcheggiDetailPage parcheggiDetailPage = new ParcheggiDetailPage(tb.Text); //e passo il nome del parcheggio
             parcheggiDetailPage.ShowDialog();
         }
 
@@ -299,5 +266,42 @@ namespace WPF_DEFINITIVO.Views
             popup.PopupElement = new FrameworkElement();
             popup.ShowDialog();
         }
+
+    
+
+        private async void ParcheggiLoaded(object sender, RoutedEventArgs e)
+        {
+
+            if(NavigationLoginToLogout.isLoggedIn)
+            {
+                using (var client = new HttpClient())
+                {
+                    client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", NavigationLoginToLogout.Token);
+
+                    var response = await client.GetAsync("http://localhost:13636/api/v1/ParkingList");
+                    //await response.Content.ReadAsStringAsync();
+                    var list = await response.Content.ReadAsStringAsync();
+                    //response.Wait();
+
+                    List<InfoParking> ParkingObject = JsonConvert.DeserializeObject<List<InfoParking>>(list);
+
+                    //List<string> Parkings = new List<string>();
+
+                    combo.Items.Add("Nuovo-Parcheggio");
+
+                    foreach (var item in ParkingObject)
+                    {
+                        combo.Items.Add(item.NamePark.ToString());
+                    }
+
+
+                    // var response = await client.GetAsync("http://localhost:13636/api/v1/ParkingList");
+                }
+            }
+           
+            
+
+        }
+
     }
 }

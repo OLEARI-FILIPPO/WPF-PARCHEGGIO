@@ -10,6 +10,9 @@ using WebAPI_Definitivo.Models;
 using System.Net.Http.Headers;
 using System.Windows.Media.Animation;
 using System;
+using System.Windows.Media;
+using WPF_DEFINITIVO.Helpers;
+using System.Threading.Tasks;
 
 namespace WPF_DEFINITIVO.Views
 {
@@ -19,6 +22,9 @@ namespace WPF_DEFINITIVO.Views
         public LoginPage(LoginViewModel viewModel)
         {
             InitializeComponent();
+
+           
+           
             DataContext = viewModel;
             login = viewModel;
 
@@ -38,44 +44,80 @@ namespace WPF_DEFINITIVO.Views
         {
             
 
-            using (var client = new HttpClient())
+            if (UsernameTextBox.Text == "" || PasswordInserito.Password == "")
             {
-                Users credenziali = new Users()
-                {
-                    Username = login.Username,
-                    Password = PasswordInserito.Password
-                };
-                
-                var response = await client.PostAsJsonAsync("http://localhost:13636/api/v1/Login", credenziali); //API controller name
+                UsernameTextBox.BorderBrush = new SolidColorBrush(Colors.Red);
+                PasswordInserito.BorderBrush = new SolidColorBrush(Colors.Red);
+                MessageBox.Show("Inserire tutti i dati richiesti", "Alert", MessageBoxButton.OK, MessageBoxImage.Error);
+            }
+            else
+            {
+                UsernameTextBox.BorderBrush = (SolidColorBrush)new BrushConverter().ConvertFrom("#70E0E1");
+                PasswordInserito.BorderBrush = (SolidColorBrush)new BrushConverter().ConvertFrom("#70E0E1");
 
-                string result = await response.Content.ReadAsStringAsync();
-
-                login.Token = result; //mi salvo il token
-
-                if (response.IsSuccessStatusCode)
+                using (var client = new HttpClient())
                 {
-                    UserPage user = new UserPage(new UserViewModel(credenziali, result));
-                    NavigationService.Navigate(user);
-                }
-                else
-                {
-                    MessageBox.Show(result);
+                    Users credenziali = new Users()
+                    {
+                        Username = login.Username,
+                        Password = PasswordInserito.Password
+                    };
+
+                    //request.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Basic", Convert.ToBase64String(System.Text.ASCIIEncoding.ASCII.GetBytes($"{yourusername}:{yourpwd}")));
+
+                    var response = await client.PostAsJsonAsync("http://localhost:13636/api/v1/Login", credenziali); //API controller name
+
+                    string result = await response.Content.ReadAsStringAsync();
+
+                    login.Token = result; //mi salvo il token
+
+                    NavigationLoginToLogout.Token = result;
+
+                    if (response.IsSuccessStatusCode)
+                    {
+                        NavigationLoginToLogout.result = result; //Ho creato una classe nella cartella Helper del progetto utilizzo questa classe per salvare lo stato della pagina
+                        NavigationLoginToLogout.isLoggedIn = true;
+                        
+                        UserPage user = new UserPage(new UserViewModel(credenziali, result));
+                        NavigationLoginToLogout._user = credenziali;
+
+                        NavigationService.Navigate(user);
+                    }
+                    else
+                    {
+                        MessageBox.Show(result);
+                    }
                 }
             }
+
+            
         }
 
         private void LoginLoaded(object sender, RoutedEventArgs e)
         {
-            DoubleAnimation d = new DoubleAnimation();
-            d.From = 0;
-            d.To = 586;
-            d.Duration = TimeSpan.FromSeconds(1);
 
+            if (NavigationLoginToLogout.isLoggedIn) //se l'utente è loggato allora navigo al userpage altrimenti avvio l'animazione del loginpage
+            {
+                if(NavigationLoginToLogout.isLoggedIn)
+                {
+                    UserPage _userpage = new UserPage(new UserViewModel(NavigationLoginToLogout._user, NavigationLoginToLogout.result));
 
-            d.EasingFunction = new QuadraticEase();
-
-
-            log.BeginAnimation(HeightProperty, d);
+                    NavigationService.Navigate(_userpage);
+                }
+            }
+            else
+            {
+                DoubleAnimation d = new DoubleAnimation();
+                d.From = 0;
+                d.To = 600;
+                d.Duration = TimeSpan.FromSeconds(1);
+                d.EasingFunction = new QuadraticEase();
+                log.BeginAnimation(HeightProperty, d);
+            }
+            
         }
+
+       
+
     }
 }

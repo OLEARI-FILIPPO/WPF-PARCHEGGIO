@@ -5,15 +5,17 @@
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
-    xmlns:properties="clr-namespace:WPF_DEFINITIVO.Properties"
-    
+    xmlns:properties="clr-namespace:WPF_DEFINITIVO.Properties" xmlns:hc="https://handyorg.github.io/handycontrol"
     mc:Ignorable="d"
     d:DesignHeight="750" MinWidth="1280">
+
+    <Page.Background>
+        <ImageBrush ImageSource="Images/wave.png"/>
+    </Page.Background>
+
     <Grid>
 
-        <Grid.Background>
-            <ImageBrush ImageSource="/Views/hero-bg.png"/>
-        </Grid.Background>
+
         <Grid.RowDefinitions>
             <RowDefinition Height="48" />
             <RowDefinition Height="60"/>
@@ -25,25 +27,45 @@
             Text="{x:Static properties:Resources.StoricoPageTitle}" />
 
 
-        <StackPanel Grid.Row="1" Orientation="Horizontal">
-            <DatePicker Grid.Row="1" Margin="24,0,20,0" Width="252" Height="36"></DatePicker>
-            <Button Background="#BB88F3" FontSize="17" Content="Cerca" Height="36" Width="82"></Button>
+        <StackPanel Margin="{StaticResource MediumLeftMargin}" 
+                    Grid.Row="1" 
+                    Orientation="Horizontal">
+
+            <DatePicker Grid.Row="1" 
+                        Margin="24,0,20,0" 
+                        Width="252" 
+                        Height="36"></DatePicker>
+
+            <Button Background="#BB88F3" 
+                    FontSize="17" 
+                    Content="Cerca" 
+                    Height="36" 
+                    Width="82"></Button>
+
         </StackPanel>
 
-        <Grid Grid.Row="2" Background="Transparent">
+        <hc:Card  
+                 
+                 x:Name="StoricoCard"  
+                 Grid.Row="2"   
+                 BorderBrush="#73DAE2"
+                 BorderThickness="1" 
+                 Effect="{DynamicResource EffectShadow5}" 
+                 Margin="57,37,87,37"  >
+
             <DataGrid
+                
                 AutoGenerateColumns="False"
-                GridLinesVisibility="Horizontal"
+                
                 CanUserAddRows="False"
                 ItemsSource="{Binding Source}"
-                Margin="{StaticResource MediumLeftMargin}"
-                KeyboardNavigation.TabNavigation="Once" Background="Transparent">
+                Background="#73DAE2"
+                KeyboardNavigation.TabNavigation="Once"
+                 Effect="{DynamicResource EffectShadow2}">
+                
+
                 <DataGrid.Columns>
-                    <!--
-                        TODO WTS:
-                        Remove this column definitions and define columns for your data.
-                        Consider adding header properties to Resources.resw
-                    -->
+
                     <DataGridTextColumn Binding="{Binding OrderID}" Header="OrderID" />
                     <DataGridTextColumn Binding="{Binding OrderDate}" Header="OrderDate" />
                     <DataGridTextColumn Binding="{Binding Company}" Header="Company" />
@@ -63,6 +85,44 @@
                     </DataGridTemplateColumn>
                 </DataGrid.Columns>
             </DataGrid>
-        </Grid>
+
+
+        </hc:Card>
+
+
+        <!--<Grid Grid.Row="2" Background="Transparent" VerticalAlignment="Center" HorizontalAlignment="Center" Height="572" Width="1111">
+            <DataGrid
+                AutoGenerateColumns="False"
+                GridLinesVisibility="Horizontal"
+                CanUserAddRows="False"
+                ItemsSource="{Binding Source}"
+                
+                
+                KeyboardNavigation.TabNavigation="Once">
+                <DataGrid.Columns>
+                    
+        
+                     
+        
+                    <DataGridTextColumn Binding="{Binding OrderID}" Header="OrderID" />
+                    <DataGridTextColumn Binding="{Binding OrderDate}" Header="OrderDate" />
+                    <DataGridTextColumn Binding="{Binding Company}" Header="Company" />
+                    <DataGridTextColumn Binding="{Binding ShipTo}" Header="ShipTo" />
+                    <DataGridTextColumn Binding="{Binding OrderTotal}" Header="OrderTotal" />
+                    <DataGridTextColumn Binding="{Binding Status}" Header="Status" />
+                    <DataGridTemplateColumn Header="Symbol">
+                        <DataGridTemplateColumn.CellTemplate>
+                            <DataTemplate>
+                                <TextBlock
+                                    Margin="{StaticResource SmallLeftRightMargin}"
+                                    HorizontalAlignment="Left"
+                                    Style="{StaticResource SmallIconStyle}"
+                                    Text="{Binding Symbol}" />
+                            </DataTemplate>
+                        </DataGridTemplateColumn.CellTemplate>
+                    </DataGridTemplateColumn>
+                </DataGrid.Columns>
+            </DataGrid>
+        </Grid>-->
     </Grid>
 </Page>

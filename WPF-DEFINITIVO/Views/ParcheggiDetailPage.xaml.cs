@@ -7,9 +7,12 @@ namespace WPF_DEFINITIVO.Views
 {
     public partial class ParcheggiDetailPage : Window
     {
-        public ParcheggiDetailPage()
+        string parkingName;
+        public ParcheggiDetailPage(string _parkingName)
         {
             InitializeComponent();
+            parkingName = _parkingName;
+            ParkingNameLabel.Text = parkingName;
             DataContext = this;
 
             // DataContext = this;

@@ -12,6 +12,7 @@ namespace WPF_DEFINITIVO.Views
             InitializeComponent();
             DataContext = viewModel;
             ConfigHelper.Instance.SetLang("it");
+           // StoricoCard.BorderBrush.Opacity = 0;
             DataContext = viewModel;
         }
     }
