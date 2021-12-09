@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.ComponentModel;
 using System.Net.Http;
 using System.Net.Http.Headers;
 using System.Threading.Tasks;
@@ -18,16 +19,27 @@ using WPF_DEFINITIVO.Helpers;
 
 namespace WPF_DEFINITIVO.ViewModels
 {
-    public class ParcheggiViewModel : ObservableObject//, INavigationAware
+    public class ParcheggiViewModel : ObservableObject, INotifyPropertyChanged
     {
+        public event PropertyChangedEventHandler PropertyChanged;
+
+        protected void OnPropertyChanged(string name)
+        {
+            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(name));
+        }
 
         private ObservableCollection<string> parkings = new ObservableCollection<string>();
-
+        public ObservableCollection<string> Parking
+        {
+            get { return parkings; }
+            set
+            {
+                this.parkings = value;
+                OnPropertyChanged("parkings");
+            }
+        }
         public async void GetParkings()
         {
-
-         
-
             if (NavigationLoginToLogout.isLoggedIn)
             {
                 using (var client = new HttpClient())
@@ -50,9 +62,8 @@ namespace WPF_DEFINITIVO.ViewModels
                         parkings.Add(item.NamePark.ToString());
                     }
 
+                    
                  
-
-
                     // var response = await client.GetAsync("http://localhost:13636/api/v1/ParkingList");
                 }
             }
@@ -60,6 +71,6 @@ namespace WPF_DEFINITIVO.ViewModels
 
         }
 
-     //  public ObservableCollection<string> Parking { get { return GetParkings(); } }
+        //
     }
 }
