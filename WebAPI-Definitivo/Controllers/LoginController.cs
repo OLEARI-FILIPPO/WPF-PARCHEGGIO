@@ -36,6 +36,7 @@ namespace WebAPI_Definitivo.Controllers
                         })
                 };
                 SecurityToken token = tokenHandler.CreateToken(tokenDescriptor);
+                candidate.LastLogin = DateTime.Now;
                 model.SaveChanges();
                 return Ok(tokenHandler.WriteToken(token));
             }
