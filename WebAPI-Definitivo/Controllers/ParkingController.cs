@@ -102,7 +102,53 @@ namespace WebAPI_Definitivo.Controllers
             }
         }
 
-        // author: Danish
+        [Authorize]
+        [HttpGet("/api/v1/history")]
+        public ActionResult History()
+        {
+            try
+            {
+                using (ParkingManagementContext model = new ParkingManagementContext())
+                {
+                    string grado = HttpContext.User.Claims.FirstOrDefault(x => x.Type == "Grado").Value;
+                    string username = HttpContext.User.Claims.FirstOrDefault(x => x.Type == "Username").Value;
+
+                    //if (grado != "1") { return Unauthorized(); }
+
+                    //Grado uno vedo tutto
+
+                    var history = model.History;
+                    if(history == null) { return Problem("Nessun veicolo presente."); }
+
+                    if(grado == "1")
+                    {
+                        return Ok(history);
+                    }
+
+                    //Query per prendere i parcheggi di uno specifico user
+
+                    /*var userHistory = from history in History
+                                      join pet in pets on history equals pet.Owner
+                                      select new { OwnerName = history.FirstName, PetName = pet.Name };*/
+
+
+                    return Ok();
+
+                    //Grado 2 vedo le mie auto
+
+
+
+                }
+            }
+            catch (Exception)
+            {
+                return Problem();
+            }
+        }
+
+        //GET ALL VEHICLES
+
+
         [Authorize]
         [HttpGet("/api/v1/ParkingList")]
 
