@@ -102,7 +102,6 @@ namespace WebAPI_Definitivo.Controllers
             }
         }
 
-        // author: Danish
         [Authorize]
         [HttpGet("/api/v1/ParkingList")]
 
