@@ -39,6 +39,30 @@ namespace WPF_DEFINITIVO.ViewModels
                 OnPropertyChanged("parkings");
             }
         }
+
+        private int riga;
+        public int Riga
+        {
+            get { return riga; }
+            set
+            {
+                this.riga = value;
+                OnPropertyChanged("riga");
+            }
+        }
+
+
+        private int colonna;
+        public int Colonna
+        {
+            get { return colonna; }
+            set
+            {
+                this.colonna = value;
+                OnPropertyChanged("colonna");
+            }
+        }
+
         public async void GetParkings()
         {
             if (NavigationLoginToLogout.isLoggedIn)
@@ -72,11 +96,9 @@ namespace WPF_DEFINITIVO.ViewModels
 
         }
 
-        public int[] rowColumn = new int[2];
-        public async void GetRowColumn(string nomeParcheggio)
+        public async Task GetRowColumn(string nomeParcheggio)
         {
-            rowColumn[0] = 0;
-            rowColumn[1] = 0;
+            var tcs = new TaskCompletionSource<int>();
             if (NavigationLoginToLogout.isLoggedIn)
             {
                 using (var client = new HttpClient())
@@ -97,9 +119,8 @@ namespace WPF_DEFINITIVO.ViewModels
                         {
                             if (nomeParcheggio == a.NamePark)
                             {
-                                rowColumn[0] = a.Nrighe;
-                                rowColumn[1] = a.Ncol;
-                                MessageBox.Show(rowColumn[0].ToString() + " " + rowColumn[0].ToString());
+                                Riga = a.Nrighe;
+                                Colonna = a.Ncol;
                             }
 
                         }
@@ -112,14 +133,13 @@ namespace WPF_DEFINITIVO.ViewModels
 
                 }
             }
+            await Task.Delay(51);
 
         }
 
-        public int [] ReturnRowCol(string nomeParcheggio)
-        {
-            GetRowColumn(nomeParcheggio);
-            return rowColumn;
-        }
+
+
+
 
         //
     }
