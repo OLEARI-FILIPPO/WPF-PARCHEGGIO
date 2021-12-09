@@ -272,6 +272,8 @@ namespace WPF_DEFINITIVO.Views
         private async void ParcheggiLoaded(object sender, RoutedEventArgs e)
         {
             parcheggioView.GetParkings();
+            
+
             /*if (NavigationLoginToLogout.isLoggedIn)
             {
                 using (var client = new HttpClient())
@@ -303,7 +305,12 @@ namespace WPF_DEFINITIVO.Views
 
         private void combo_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
+            DynamicGrid.RowDefinitions.Clear();
+            DynamicGrid.ColumnDefinitions.Clear();
+            DynamicGrid.Children.Clear();
 
+            int riga = parcheggioView.ReturnRowCol(combo.SelectedItem.ToString())[0];
+            int colonna = parcheggioView.ReturnRowCol(combo.SelectedItem.ToString())[1];
         }
     }
 }
