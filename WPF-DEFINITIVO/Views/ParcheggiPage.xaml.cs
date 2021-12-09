@@ -183,8 +183,6 @@ namespace WPF_DEFINITIVO.Views
                     InputName.BorderBrush = new SolidColorBrush(Colors.Gray);
                 }
 
-                
-
             }
             else
             {
