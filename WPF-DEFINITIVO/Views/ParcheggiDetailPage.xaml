@@ -7,8 +7,8 @@
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     
     mc:Ignorable="d"
-    d:DesignHeight="750" MinWidth="750" MaxWidth="800" d:DesignWidth="750">
-    <Grid>
+    d:DesignHeight="750" MinWidth="750" MaxWidth="800" d:DesignWidth="750" Loaded="Window_Loaded">
+    <Grid x:Name="grid">
         <Grid.Background>
             <ImageBrush ImageSource="Images/wave.png"/>
         </Grid.Background>

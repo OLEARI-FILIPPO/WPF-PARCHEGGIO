@@ -48,11 +48,16 @@ namespace WPF_DEFINITIVO.Views
         {
             
 
-            if (UsernameTextBox.Text == "" || PasswordInserito.Password == "")
+            if (UsernameTextBox.Text == "Username" || PasswordInserito.Password == "password")
             {
                 UsernameTextBox.BorderBrush = new SolidColorBrush(Colors.Red);
                 PasswordInserito.BorderBrush = new SolidColorBrush(Colors.Red);
-                MessageBox.Show("Inserire tutti i dati richiesti", "Alert", MessageBoxButton.OK, MessageBoxImage.Error);
+                
+
+                if (MessageBox.Show("Inserire tutti i dati richiesti", "Alert", MessageBoxButton.OK, MessageBoxImage.Error) == MessageBoxResult.OK)
+                {
+                    UsernameTextBox.BorderBrush = new SolidColorBrush(Colors.Transparent);
+                }
             }
             else
             {
@@ -138,6 +143,9 @@ namespace WPF_DEFINITIVO.Views
             }
             else
             {
+
+                UsernameTextBox.Text = "Username";
+                PasswordInserito.Password = "password";
                 DoubleAnimation d = new DoubleAnimation();
                 d.From = 0;
                 d.To = 600;
@@ -148,7 +156,30 @@ namespace WPF_DEFINITIVO.Views
             
         }
 
-       
+        private void PasswordInserito_GotFocus(object sender, RoutedEventArgs e)
+        {
+            PasswordInserito.Password = null;
+        }
 
+        private void PasswordInserito_LostFocus(object sender, RoutedEventArgs e)
+        {
+            if (PasswordInserito.Password == "")
+            {
+                PasswordInserito.Password = "password";
+            }
+        }
+
+        private void UsernameTextBox_GotFocus(object sender, RoutedEventArgs e)
+        {
+            UsernameTextBox.Text = null;
+        }
+
+        private void UsernameTextBox_LostFocus(object sender, RoutedEventArgs e)
+        {
+            if(UsernameTextBox.Text == "")
+            {
+                UsernameTextBox.Text = "Username";
+            }
+        }
     }
 }

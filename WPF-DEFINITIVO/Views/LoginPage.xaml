@@ -72,60 +72,53 @@
 
 
 
-                    <StackPanel HorizontalAlignment="Center" 
+                    <StackPanel Margin="0,50,50,30"
+                                VerticalAlignment="Center"
                                 Orientation="Horizontal" 
-                                Margin="40" 
-                                Width="463">
-
-                        <Label 
-                            VerticalAlignment="Center" 
-                            FontSize="18"
-                            Background="Transparent" 
-                            BorderBrush="Transparent"
-                            FontFamily="CocoSharp Trial"
-                            Margin="0,20,12,20" >Username</Label>
+                               
+                                Width="314">
 
                         <TextBox 
                             Width="304"  
                             Text="{Binding Username}" 
-                            FontSize="18" 
+                            FontSize="20" 
                             Foreground="Gray"
+                            BorderBrush="Gray"
                             x:Name="UsernameTextBox"
-                            BorderBrush="#70E0E1"
+                            Height="52" 
                             FontFamily="Sans-Serif"
-                            Height="41"></TextBox>
+                           
+                            GotFocus="UsernameTextBox_GotFocus"
+                            LostFocus="UsernameTextBox_LostFocus"></TextBox>
 
                     </StackPanel>
 
-                    <StackPanel HorizontalAlignment="Center" 
+                    <StackPanel  Margin="0,30,50,30"
+                                VerticalAlignment="Center"
                                 Orientation="Horizontal" 
-                                Width="470">
+                                Width="314">
 
-                        <Label VerticalAlignment="Center" 
-                               FontSize="18" 
-                               FontFamily="CocoSharp Trial"
-                               Background="Transparent" 
-                               BorderBrush="Transparent" 
-                               Margin="0,20,20,20">Password</Label>
-
-                        <hc:PasswordBox Width="305" 
+                        <hc:PasswordBox Width="304" 
                                  x:Name="PasswordInserito"
-                                 FontSize="18"
+                                 FontSize="20"
                                  Foreground="Gray"
-                                 BorderBrush="#70E0E1"
+                                 BorderBrush="Transparent"
                                  FontFamily="Sans-Serif"
-                                 Height="41" ></hc:PasswordBox>
+                                
+                                 Height="52" 
+                                 GotFocus="PasswordInserito_GotFocus" 
+                                 LostFocus="PasswordInserito_LostFocus" ></hc:PasswordBox>
 
                     </StackPanel>
 
 
                     <Button 
                             Click="Button_Click"
-                            HorizontalAlignment="Center"
+                            Margin="0,30,62,0"
                             VerticalAlignment="Center"
-                            FontSize="20" 
-                            Height="45" Width="206" 
-                            Margin="40" FontFamily="CocoSharp Trial">Login</Button>
+                            FontSize="25" 
+                            Height="50" Width="206" 
+                             FontFamily="CocoSharp Trial">Login</Button>
 
 
                 </StackPanel>

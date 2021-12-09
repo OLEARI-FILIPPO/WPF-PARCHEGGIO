@@ -1,8 +1,10 @@
-﻿using System;
+﻿using HandyControl.Tools;
+using System;
 using System.ComponentModel;
 using System.Net.Http;
 using System.Threading.Tasks;
 using System.Windows;
+using System.Windows.Media.Animation;
 using WebAPI_Definitivo.Models;
 using WPF_DEFINITIVO.ViewModels;
 
@@ -17,6 +19,7 @@ namespace WPF_DEFINITIVO.Views
         public EntraWindow(EntraWindowViewModel viewModel)
         {
             InitializeComponent();
+            ConfigHelper.Instance.SetLang("it");
             creazione = viewModel;
         }
 
@@ -80,6 +83,16 @@ namespace WPF_DEFINITIVO.Views
             //Query inserimento veicolo
 
 
+        }
+
+        private void Window_Loaded(object sender, RoutedEventArgs e)
+        {
+            DoubleAnimation d = new DoubleAnimation();
+            d.From = 0;
+            d.To = grid.ActualHeight;
+            d.Duration = TimeSpan.FromSeconds(0.5);
+            d.EasingFunction = new QuadraticEase();
+            grid.BeginAnimation(HeightProperty, d);
         }
     }
 }

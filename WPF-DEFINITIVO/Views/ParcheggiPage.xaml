@@ -34,7 +34,7 @@
             Margin="{StaticResource MediumLeftMargin}"
             Text="{x:Static properties:Resources.ParcheggiPageTitle}" />
 
-        <StackPanel Orientation="Horizontal" Grid.Row="1" Margin="{StaticResource MediumLeftMargin}">
+        <StackPanel x:Name="operations" Orientation="Horizontal" Grid.Row="1" Margin="{StaticResource MediumLeftMargin}">
 
             <ComboBox   Width="200" 
                             FontFamily="calibri"
@@ -43,24 +43,61 @@
                             x:Name="combo"
                             Height="35"
                             FontSize="16"
+                            Foreground="Gray"
+                            BorderBrush="Gray"
                             SelectionChanged="combo_SelectionChanged"
                             IsEditable="True" IsReadOnly="True" Text="Seleziona Parcheggio" ScrollViewer.VerticalScrollBarVisibility="Auto"/>
 
-            <Label x:Name="RowLabel" DataContext="{Binding Riga}" FontSize="14" Height="35" Margin="20,0,10,0" Width="76"/>
+            <Label x:Name="RowLabel" 
+                   DataContext="{Binding Riga}" 
+                   FontSize="14" 
+                   Height="35" 
+                   Margin="20,0,10,0" 
+                   Width="76"/>
 
-            <Slider x:Name="RowSlider" Value="{Binding Riga}" ValueChanged="RowSlider_ValueChanged" IsSnapToTickEnabled="True" Width="111" Margin="20,0,0,0" Height="19" Minimum="2" Maximum="10" />
+            <Slider x:Name="RowSlider" 
+                    Value="{Binding Riga}" 
+                    ValueChanged="RowSlider_ValueChanged" 
+                    IsSnapToTickEnabled="True" Width="111" 
+                    Margin="20,0,0,0" Height="19" 
+                    Minimum="2" 
+                    Maximum="10" />
 
-            <Label x:Name="ColLabel" Content="{Binding Colonna}" FontSize="14" Height="35" Margin="10,0,10,0" Width="76"/>
+            <Label x:Name="ColLabel" 
+                   Content="{Binding Colonna}" 
+                   FontSize="14" 
+                   Height="35"
+                   Margin="10,0,10,0"
+                   Width="76"/>
 
-            <Slider x:Name="ColSlider" Value="{Binding Colonna}" ValueChanged="ColSlider_ValueChanged" IsSnapToTickEnabled="True" Width="111" Margin="20,0,0,0" Height="20" Minimum="2" Maximum="10" />
+            <Slider x:Name="ColSlider" 
+                    Value="{Binding Colonna}" 
+                    ValueChanged="ColSlider_ValueChanged"
+                    IsSnapToTickEnabled="True" 
+                    Width="111" 
+                    Margin="20,0,0,0" 
+                    Height="20" 
+                    Minimum="2"
+                    Maximum="10" />
 
-            <TextBox Margin="20,0,0,0" CharacterCasing="Upper" Height="35" Width="152" x:Name="InputName"></TextBox>
-            <Button Content="Create" Click="Create_Click"
+            <TextBox Margin="20,0,0,0" 
+                     CharacterCasing="Upper" 
+                     Height="35" Width="152" 
+                     x:Name="InputName" 
+                     Foreground="Gray" 
+                     BorderBrush="Gray"  
+                     Text="Nome Parcheggio"  
+                     GotFocus="InputName_GotFocus" 
+                     LostFocus="InputName_LostFocus"></TextBox>
+            
+            <Button Content="Create" 
+                    Click="Create_Click"
                             Margin="20,0,0,0"
                             FontFamily="calibri"
                             FontSize="16"
                             Background="#BBEFEF"
                             Height="35" Width="70"
+                   
                             x:Name="Create" RenderTransformOrigin="1.01,0.466"
                             />
 

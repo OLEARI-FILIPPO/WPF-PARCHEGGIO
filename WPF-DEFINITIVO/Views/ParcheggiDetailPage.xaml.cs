@@ -1,6 +1,7 @@
-﻿using System.Windows;
+﻿using System;
+using System.Windows;
 using System.Windows.Controls;
-
+using System.Windows.Media.Animation;
 using WPF_DEFINITIVO.ViewModels;
 
 namespace WPF_DEFINITIVO.Views
@@ -23,6 +24,16 @@ namespace WPF_DEFINITIVO.Views
             EntraWindow entraWindow = new EntraWindow(new EntraWindowViewModel());
             this.Close();
             entraWindow.ShowDialog();
+        }
+
+        private void Window_Loaded(object sender, RoutedEventArgs e)
+        {
+            DoubleAnimation d = new DoubleAnimation();
+            d.From = 0;
+            d.To = grid.ActualHeight;
+            d.Duration = TimeSpan.FromSeconds(0.4);
+            d.EasingFunction = new QuadraticEase();
+            grid.BeginAnimation(HeightProperty, d);
         }
     }
 }

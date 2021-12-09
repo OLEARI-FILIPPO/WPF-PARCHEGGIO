@@ -7,13 +7,10 @@
         mc:Ignorable="d"
         WindowStartupLocation="CenterScreen"
         Title="Metodo entra veicolo" MaxHeight="650"
-        MaxWidth="700" Width="610" Height="560">
+        MaxWidth="700" Width="544" Height="545" Loaded="Window_Loaded">
 
-    <Grid>
-        <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="68*"/>
-            <ColumnDefinition Width="237*"/>
-        </Grid.ColumnDefinitions>
+    <Grid x:Name="grid">
+
         <Grid.RowDefinitions>
             <RowDefinition Height="50"></RowDefinition>
             <RowDefinition Height="100"></RowDefinition>
@@ -31,64 +28,77 @@
         <TextBlock
                     Style="{StaticResource PageTitleStyle}"
                     Margin="24,0,0,0"
-                    FontSize="18" Grid.ColumnSpan="2"
+                    FontSize="18"
                    >Aggiungi Parcheggio</TextBlock>
 
         <StackPanel Grid.Row="1" 
                     Orientation="Horizontal" 
-                    Margin="24,0,0,0" Grid.ColumnSpan="2">
+                    HorizontalAlignment="Center" 
+                    Width="406">
 
-            <TextBlock Text="Surname" 
-                       VerticalAlignment="Center" FontSize="16"/>
-            <TextBox Text="{Binding Surname}"
-                     Width="406" Height="60" 
-                     Margin="54,0,0,0" FontSize="16" 
+
+            <TextBox Text="Surname"
+                     Width="406" 
+                     Height="60" 
+                     Foreground="Gray"
+                     HorizontalAlignment="Center" 
+                     FontSize="20" 
                      VerticalAlignment="Center"></TextBox>
 
         </StackPanel>
 
-        <StackPanel Grid.Row="2" Orientation="Horizontal"  
-                    Margin="24,0,0,0" Grid.ColumnSpan="2">
+        <StackPanel Grid.Row="2"
+                    Orientation="Horizontal"  
+                    
+                    HorizontalAlignment="Center">
 
-            <TextBlock Text="Nome" 
-                       VerticalAlignment="Center" FontSize="16"/>
-            <TextBox Width="406" Height="60" 
-                     Margin="56,0,0,0" FontSize="16" 
-                     VerticalAlignment="Center"></TextBox>
+            <TextBox Width="406" 
+                     Height="60" 
+                     HorizontalAlignment="Center"
+                     FontSize="20"
+                     Foreground="Gray"
+                     Text="Name"
+                     VerticalAlignment="Center"/>
 
         </StackPanel>
 
-        <StackPanel Grid.Row="3" Orientation="Horizontal"  
-                    Margin="24,0,0,0" Grid.ColumnSpan="2">
+        <StackPanel Grid.Row="3" 
+                    Orientation="Horizontal"  
+                    HorizontalAlignment="Center">
 
-            <TextBlock Text="Date Of birth" 
-                       VerticalAlignment="Center" FontSize="16"/>
-            <DatePicker Width="406" Height="60" 
-                        Margin="30,0,0,0" FontSize="16" 
+            <DatePicker Width="406" 
+                        Height="60" 
+                        HorizontalAlignment="Center"
+                        FontSize="20"
+                        Foreground="Gray"
+                        Text="Data di nascita"
                         VerticalAlignment="Center"></DatePicker>
 
         </StackPanel>
 
-        <StackPanel Grid.Row="4" Orientation="Horizontal" 
-                    Margin="24,0,0,0" Grid.ColumnSpan="2">
+        <StackPanel Grid.Row="4"
+                    Orientation="Horizontal" 
+                    HorizontalAlignment="Center">
 
-            <TextBlock Text="Targa" 
-                       VerticalAlignment="Center" 
-                       FontSize="16"></TextBlock>
-            <TextBox Width="406" Height="60" 
-                     Margin="85, 0, 0, 0" 
-                     FontSize="16" VerticalAlignment="Center"/>
+            <TextBox Width="406" 
+                     Height="60" 
+                     HorizontalAlignment="Center"
+                     FontSize="20"
+                     Foreground="Gray"
+                     Text="Targa"
+                     VerticalAlignment="Center"/>
         </StackPanel>
 
 
-        <StackPanel Grid.Row="5"  Grid.Column="1"
-                    Orientation="Horizontal">
+        <StackPanel Grid.Row="5" 
+                    Orientation="Horizontal"
+                    HorizontalAlignment="Center">
             <Button 
                     Name="entra"
                     FontSize="14" 
                     Background="LightGreen" 
                     Height="48" Margin="15 0 0 0"
-                    Width="130" Click="entra_Click">AGGIUNGI</Button>
+                    Width="130" Click="entra_Click">Entra</Button>
 
             <Button
                     FontSize="14" 
@@ -98,7 +108,7 @@
                     Click="Button_Click">ANNULLA</Button>
         </StackPanel>
 
-        
+
 
     </Grid>
 </Window>
