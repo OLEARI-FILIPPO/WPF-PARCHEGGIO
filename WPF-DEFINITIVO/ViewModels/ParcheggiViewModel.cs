@@ -12,13 +12,13 @@ using WPF_DEFINITIVO.Core.Models;
 
 namespace WPF_DEFINITIVO.ViewModels
 {
-    public class ParcheggiViewModel : ObservableObject, INavigationAware
+    public class ParcheggiViewModel : ObservableObject//, INavigationAware
     {
         private readonly INavigationService _navigationService;
         private readonly ISampleDataService _sampleDataService;
         private ICommand _navigateToDetailCommand;
 
-        public ICommand NavigateToDetailCommand => _navigateToDetailCommand ?? (_navigateToDetailCommand = new RelayCommand<SampleOrder>(NavigateToDetail));
+        /*public ICommand NavigateToDetailCommand => _navigateToDetailCommand ?? (_navigateToDetailCommand = new RelayCommand<SampleOrder>(NavigateToDetail));
 
         public ObservableCollection<SampleOrder> Source { get; } = new ObservableCollection<SampleOrder>();
 
@@ -47,6 +47,19 @@ namespace WPF_DEFINITIVO.ViewModels
         private void NavigateToDetail(SampleOrder order)
         {
             _navigationService.NavigateTo(typeof(ParcheggiDetailViewModel).FullName, order.OrderID);
+        }*/
+
+
+        public string parking;
+        
+        public string Parking
+        {
+            get { return this.parking; }
+            set
+            {
+                this.parking = value;
+                OnPropertyChanged("Token");
+            }
         }
     }
 }

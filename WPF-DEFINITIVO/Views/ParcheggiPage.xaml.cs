@@ -1,20 +1,78 @@
 ﻿using HandyControl.Controls;
+using Newtonsoft.Json;
+using Newtonsoft.Json.Linq;
 using System;
+using System.Collections.Generic;
+using System.ComponentModel;
+using System.Net.Http;
+using System.Net.Http.Headers;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Media;
+using WebAPI_Definitivo.Models;
 //using HandyControl.Controls;
 
 using WPF_DEFINITIVO.ViewModels;
 
 namespace WPF_DEFINITIVO.Views
 {
-    public partial class ParcheggiPage : Page
+    public partial class ParcheggiPage : Page, INotifyPropertyChanged
     {
+        ParcheggiViewModel parcheggioView;
+        public event PropertyChangedEventHandler PropertyChanged;
+        static HttpClient httpClient2 = new HttpClient();
+
+        protected void OnPropertyChanged(string name)
+        {
+            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(name));
+        }
         public ParcheggiPage(ParcheggiViewModel viewModel)
         {
             InitializeComponent();
             DataContext = viewModel;
+            parcheggioView = viewModel;
+            caricaCombo();
+
+
+
+        }
+
+        private async void  caricaCombo()
+        {
+            
+            using (var client = new HttpClient())
+            {
+                //client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", token);
+
+                var response = await client.GetAsync("http://localhost:13636/api/v1/GetInfoParking"); //API controller name
+
+                string result = await response.Content.ReadAsStringAsync();
+
+                var array = JArray.Parse(result);
+                List<InfoParking> objectsList = new List<InfoParking>();
+
+                if (response.IsSuccessStatusCode)
+                {
+                    foreach (var item in array)
+                    {
+
+                        objectsList.Add(item.ToObject<InfoParking>());
+
+                    }
+                    //InfoParking park = JsonConvert.DeserializeObject<InfoParking>(result);
+
+                    foreach(var a in objectsList)
+                    {
+                        comboPark.Items.Add(a.NamePark);
+
+                    }
+
+                }
+                else
+                {
+                    System.Windows.MessageBox.Show(result);
+                }
+            }
         }
 
         private void RowSlider_ValueChanged(object sender, System.Windows.RoutedPropertyChangedEventArgs<double> e)

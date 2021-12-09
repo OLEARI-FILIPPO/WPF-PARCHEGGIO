@@ -39,8 +39,7 @@
             <ComboBox   Width="200" 
                             FontFamily="calibri"
                             VerticalAlignment="Center" 
-                            
-                            x:Name="combo"
+                            x:Name="comboPark"
                             Height="35"
                             FontSize="16"
                             ItemsSource="{Binding Path=Parking, Mode=OneWay}"

@@ -45,8 +45,6 @@ namespace WPF_DEFINITIVO.Views
                     Username = login.Username,
                     Password = PasswordInserito.Password
                 };
-
-                //request.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Basic", Convert.ToBase64String(System.Text.ASCIIEncoding.ASCII.GetBytes($"{yourusername}:{yourpwd}")));
                 
                 var response = await client.PostAsJsonAsync("http://localhost:13636/api/v1/Login", credenziali); //API controller name
 
