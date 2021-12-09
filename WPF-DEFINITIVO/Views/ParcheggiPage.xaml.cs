@@ -1,8 +1,15 @@
 ﻿using HandyControl.Controls;
+using Newtonsoft.Json;
 using System;
+using System.Collections.Generic;
+using System.Net.Http;
+using System.Net.Http.Headers;
+using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Media;
+using WebAPI_Definitivo.Models;
+using WPF_DEFINITIVO.Helpers;
 //using HandyControl.Controls;
 
 using WPF_DEFINITIVO.ViewModels;
@@ -15,6 +22,8 @@ namespace WPF_DEFINITIVO.Views
         {
             InitializeComponent();
             DataContext = viewModel;
+
+            //combo.Items.Add("Nuovo-Parcheggio");
         }
 
         private void RowSlider_ValueChanged(object sender, System.Windows.RoutedPropertyChangedEventArgs<double> e)
@@ -249,5 +258,42 @@ namespace WPF_DEFINITIVO.Views
             popup.PopupElement = new FrameworkElement();
             popup.ShowDialog();
         }
+
+    
+
+        private async void ParcheggiLoaded(object sender, RoutedEventArgs e)
+        {
+
+            if(NavigationLoginToLogout.isLoggedIn)
+            {
+                using (var client = new HttpClient())
+                {
+                    client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", NavigationLoginToLogout.Token);
+
+                    var response = await client.GetAsync("http://localhost:13636/api/v1/ParkingList");
+                    //await response.Content.ReadAsStringAsync();
+                    var list = await response.Content.ReadAsStringAsync();
+                    //response.Wait();
+
+                    List<InfoParking> ParkingObject = JsonConvert.DeserializeObject<List<InfoParking>>(list);
+
+                    //List<string> Parkings = new List<string>();
+
+                    combo.Items.Add("Nuovo-Parcheggio");
+
+                    foreach (var item in ParkingObject)
+                    {
+                        combo.Items.Add(item.NamePark.ToString());
+                    }
+
+
+                    // var response = await client.GetAsync("http://localhost:13636/api/v1/ParkingList");
+                }
+            }
+           
+            
+
+        }
+
     }
 }

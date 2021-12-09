@@ -12,6 +12,7 @@ using System.Windows.Media.Animation;
 using System;
 using System.Windows.Media;
 using WPF_DEFINITIVO.Helpers;
+using System.Threading.Tasks;
 
 namespace WPF_DEFINITIVO.Views
 {
@@ -70,6 +71,8 @@ namespace WPF_DEFINITIVO.Views
 
                     login.Token = result; //mi salvo il token
 
+                    NavigationLoginToLogout.Token = result;
+
                     if (response.IsSuccessStatusCode)
                     {
                         NavigationLoginToLogout.result = result; //Ho creato una classe nella cartella Helper del progetto utilizzo questa classe per salvare lo stato della pagina
@@ -113,5 +116,8 @@ namespace WPF_DEFINITIVO.Views
             }
             
         }
+
+       
+
     }
 }

@@ -13,6 +13,8 @@ namespace WPF_DEFINITIVO.Helpers
         public static Users _user;
         public static string result;
 
+        public static string Token;
+
 
     }
 }

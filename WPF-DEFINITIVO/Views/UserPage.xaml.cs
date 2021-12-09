@@ -83,7 +83,7 @@ namespace WPF_DEFINITIVO.Views
         {
             DoubleAnimation d = new DoubleAnimation();
             d.From = 0;
-            d.To = 1100;
+            d.To = 1062;
             d.Duration = TimeSpan.FromSeconds(1);
             d.EasingFunction = new QuadraticEase();
             Out.BeginAnimation(WidthProperty, d);
