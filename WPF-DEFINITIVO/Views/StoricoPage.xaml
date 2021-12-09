@@ -60,7 +60,7 @@
                
                 CanUserAddRows="False"
                 ItemsSource="{Binding Source}"
-                Background="#73DAE2"
+                Background="#81B6E3"
                 KeyboardNavigation.TabNavigation="Once"
                  Effect="{DynamicResource EffectShadow2}" Loaded="DataGrid_Loaded">
                 
