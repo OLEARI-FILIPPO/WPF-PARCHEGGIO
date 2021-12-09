@@ -141,12 +141,17 @@ namespace WPF_DEFINITIVO.Views
                     b.Width = panel.Width - 20;
                     b.Content = sp;
                     b.FontSize = 70;
+                    
 
                     b.Foreground = new SolidColorBrush(Colors.Black);
                     // Colore Libero : Blue
                     b.Background = (SolidColorBrush)new BrushConverter().ConvertFrom("#93C7EA");
+
                     // Colore Occupato : Rosso 
-                    //b.Background = (SolidColorBrush)new BrushConverter().ConvertFrom("#F77B7B");
+                    if (parcheggioView.parkingsRecords[cont].Stato == true)
+                    {
+                        b.Background = (SolidColorBrush)new BrushConverter().ConvertFrom("#F77B7B");
+                    }
                     b.SetResourceReference(Grid.EffectProperty, "EffectShadow2");
                     // b.Margin = new Thickness(3);
                     b.BorderThickness = new Thickness(1);

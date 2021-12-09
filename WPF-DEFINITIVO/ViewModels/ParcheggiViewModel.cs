@@ -138,7 +138,7 @@ namespace WPF_DEFINITIVO.ViewModels
 
         }
 
-
+        public List<Parking> parkingsRecords;
         public async Task GetParkingRecords(string nomeParcheggio)
         {
             if (NavigationLoginToLogout.isLoggedIn)
@@ -172,14 +172,14 @@ namespace WPF_DEFINITIVO.ViewModels
 
                         var listParkingRecords = await responseParkingRecords.Content.ReadAsStringAsync();
 
-                        List<Parking> parkingsRecords = JsonConvert.DeserializeObject< List<Parking> >(listParkingRecords);
+                        parkingsRecords = JsonConvert.DeserializeObject< List<Parking> >(listParkingRecords);
 
                         //MessageBox.Show(listParkingRecords);
 
                     }
                     else
                     {
-                        MessageBox.Show("No Response");
+                        MessageBox.Show(list);
                     }
 
 
