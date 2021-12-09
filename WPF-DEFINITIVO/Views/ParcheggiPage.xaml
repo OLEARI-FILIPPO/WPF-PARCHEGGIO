@@ -43,6 +43,7 @@
                             x:Name="combo"
                             Height="35"
                             FontSize="16"
+                            SelectionChanged="combo_SelectionChanged"
                             IsEditable="True" IsReadOnly="True" Text="Seleziona Parcheggio" ScrollViewer.VerticalScrollBarVisibility="Auto"/>
 
             <Label x:Name="RowLabel" FontSize="14" Height="35" Margin="20,0,10,0" Width="76">Row</Label>

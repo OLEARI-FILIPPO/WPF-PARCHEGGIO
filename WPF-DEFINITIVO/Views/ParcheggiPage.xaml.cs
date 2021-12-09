@@ -295,5 +295,9 @@ namespace WPF_DEFINITIVO.Views
 
         }
 
+        private void combo_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+
+        }
     }
 }
