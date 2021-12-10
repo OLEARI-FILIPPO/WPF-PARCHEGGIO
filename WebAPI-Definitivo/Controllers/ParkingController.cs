@@ -45,8 +45,8 @@ namespace WebAPI_Definitivo.Controllers
             
         }
 
-        /*[Authorize]
-        [HttpPost("/api/v1/parcheggio/{id}")]
+        [Authorize]
+        [HttpPost("parcheggio/{id}")]
         //l'id è riferito al nome del parcheggio che l'utente ha cliccato
         public ActionResult AddParking(string id, [FromBody] OwnerVehicle persona)
         {
@@ -100,7 +100,7 @@ namespace WebAPI_Definitivo.Controllers
             {
                 return Problem();
             }
-        }*/
+        }
 
         [Authorize]
         [HttpGet("history")]
