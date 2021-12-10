@@ -9,13 +9,13 @@ using WebAPI_Definitivo.Models;
 
 namespace WebAPI_Definitivo.Controllers
 {
-    [Route("api/v1/[controller]")]
+    [Route("api/v1")]
     [ApiController]
     public class ParkingController : ControllerBase
     {
         //Prendo tutti i parcheggi memorizzati
         [Authorize]
-        [HttpGet("/api/v1/parcheggio")]
+        [HttpGet("parcheggio")]
         public ActionResult GetParking()
         {
             try
@@ -31,9 +31,9 @@ namespace WebAPI_Definitivo.Controllers
                             break;
                         case "2":
                             //user non può vedere per ora
-                            return Unauthorized();
+                            return Unauthorized("permesso negato");
                         default:
-                            return Problem("permesso negato");
+                            return Unauthorized("permesso negato");
                     }
                     return Ok(parcheggi);
                 }
@@ -103,7 +103,7 @@ namespace WebAPI_Definitivo.Controllers
         }*/
 
         [Authorize]
-        [HttpGet("/api/v1/history")]
+        [HttpGet("history")]
         public ActionResult History()
         {
             try
@@ -117,22 +117,36 @@ namespace WebAPI_Definitivo.Controllers
 
                     //Grado uno vedo tutto
 
-                    var history = model.History;
-                    if(history == null) { return Problem("Nessun veicolo presente."); }
+                    var history = model.History.ToList();
+                    if(history == null) { return NotFound("Nessun parcheggio corrispondente."); }
 
-                    if(grado == "1")
-                    {
-                        return Ok(history);
-                    }
+                    if(grado == "1") { return Ok(history); }
 
                     //Query per prendere i parcheggi di uno specifico user
 
-                    /*var userHistory = from history in History
-                                      join pet in pets on history equals pet.Owner
-                                      select new { OwnerName = history.FirstName, PetName = pet.Name };*/
+                    var userHistory = from storico in model.History
+                                      join vehicle in model.Vehicle on storico.VehicleId equals vehicle.VehicleId
+                                      join owner in model.OwnerVehicle on vehicle.OwnerId equals owner.OwnerId
+                                      join user in model.Users on owner.UserId equals user.Id
 
+                                      where(user.Username == username)
+                                      select new 
+                                      { 
+                                          HistoryId      =      storico.HistoryId, 
+                                          ID             =      storico.Id,
+                                          ParkingId      =      storico.ParkingId,
+                                          Stato          =      storico.Stato,
+                                          Revenue        =      storico.Revenue,
+                                          EntryTimeDate  =      storico.EntryTimeDate,
+                                          ExitTimeDate   =      storico.ExitTimeDate,
+                                          InfoParkId     =      storico.InfoParkId,
+                                          Token          =      storico.Token,
+                                          SearchDate     =      storico.SearchDate
+                                      };
 
-                    return Ok();
+                    if(userHistory.ToList() == null) { return NotFound("Nessun parcheggio corrispondente."); }
+
+                    return Ok(userHistory.ToList());
 
                     //Grado 2 vedo le mie auto
 
@@ -150,7 +164,7 @@ namespace WebAPI_Definitivo.Controllers
 
 
         [Authorize]
-        [HttpGet("/api/v1/ParkingList")]
+        [HttpGet("ParkingList")]
 
         public ActionResult GetParkingList()
         {
@@ -180,7 +194,7 @@ namespace WebAPI_Definitivo.Controllers
 
 
         [Authorize]
-        [HttpGet("/api/v1/ParkingRecords")] //prende tutti i record tabella parking
+        [HttpGet("ParkingRecords")] //prende tutti i record tabella parking
 
         public ActionResult GetParkingRecords()
         {
