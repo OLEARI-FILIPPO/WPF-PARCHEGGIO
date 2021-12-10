@@ -162,9 +162,9 @@ namespace WebAPI_Definitivo.Controllers
         }
 
         [Authorize]
-        [HttpGet("/api/v1/ParkingRecords/{id}")] //prende tutti i record tabella parking
+        [HttpPost("/api/v1/ParkingRecordsByName")] //prende tutti i record tabella parking
 
-        public ActionResult GetParkingRecordsSingle()
+        public ActionResult GetParkingRecordsSingle([FromBody] InfoParking i)
         {
             try
             {
@@ -172,8 +172,10 @@ namespace WebAPI_Definitivo.Controllers
                 using (ParkingManagementContext model = new ParkingManagementContext())
                 {
                     List<Parking> listOfParkings;
+                    long id;
 
-                    listOfParkings = model.Parking.ToList();
+                    id = model.InfoParking.Where(w => w.NamePark == i.NamePark).Select(s => s.InfoParkId).FirstOrDefault();
+                    listOfParkings = model.Parking.Where(w => w.InfoParkId == id).ToList();
 
                     // int count = listOfParkings.Count;
 

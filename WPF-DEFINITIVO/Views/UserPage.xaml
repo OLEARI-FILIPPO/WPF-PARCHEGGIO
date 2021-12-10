@@ -115,14 +115,16 @@
                                     Margin="0,20,0,0" 
                                     Orientation="Horizontal">
                             <Label 
+                                Content="Username"
                                 BorderBrush="Transparent" 
                                 Background="Transparent" 
                                 Height="44" Margin="2,0,0,0" 
-                                FontSize="16">Username</Label>
+                                FontSize="16"/>
                             <TextBox Width="292" 
                                      FontSize="15" 
                                      Foreground="Gray" 
                                      Text="Username"
+                                     Name="myUsername"
                                      Height="44"></TextBox>
                         </StackPanel>
 
@@ -136,8 +138,9 @@
                                 Height="44" 
                                 Margin="5.5,0,6,0" 
                                 FontSize="15">Password </Label>
-                            
-                            <TextBox Width="291.5" 
+
+                            <TextBox Name="myPassword"
+                                     Width="291.5" 
                                      FontSize="16" 
                                      Foreground="Gray" 
                                      Text="Password"
