@@ -117,7 +117,7 @@ namespace WebAPI_Definitivo.Controllers
 
                     //Grado uno vedo tutto
 
-                    var history = model.History;
+                    var history = model.History.ToList();
                     if(history == null) { return Problem("Nessun veicolo presente."); }
 
                     if(grado == "1")
@@ -127,9 +127,11 @@ namespace WebAPI_Definitivo.Controllers
 
                     //Query per prendere i parcheggi di uno specifico user
 
-                    /*var userHistory = from history in History
-                                      join pet in pets on history equals pet.Owner
-                                      select new { OwnerName = history.FirstName, PetName = pet.Name };*/
+                    /*var userHistory = from storico in model.History
+                                      join vehicle in model.Vehicle on storico.VehicleId equals vehicle.VehicleId
+                                      join owner in model.OwnerVehicle on vehicle.OwnerId equals owner.OwnerId
+                                      join user in model.Users on owner. equals vehicle.VehicleId
+                                      select new { OwnerName = storico, PetName = vehicle };*/
 
 
                     return Ok();
