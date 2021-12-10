@@ -97,6 +97,47 @@ namespace WPF_DEFINITIVO.Views
             d.Duration = TimeSpan.FromSeconds(1);
             d.EasingFunction = new QuadraticEase();
             Out.BeginAnimation(WidthProperty, d);
+
+            modifica.IsEnabled = false;
+        }
+
+        private void TextBox_GotFocus(object sender, RoutedEventArgs e)
+        {
+            username.Text = null;
+           
+            modifica.IsEnabled = true;
+        }
+
+        private void TextBox_GotFocus_1(object sender, RoutedEventArgs e)
+        {
+
+            password.Text = null;
+            modifica.IsEnabled = true ;
+        }
+
+        private void TextBox_LostFocus(object sender, RoutedEventArgs e)
+        {
+
+            if(username.Text == "")
+            {
+                username.Text = "Username";
+            }
+            modifica.IsEnabled = false;
+        }
+
+        private void TextBox_LostFocus_1(object sender, RoutedEventArgs e)
+        {
+
+            if(password.Text == "")
+            {
+                password.Text = "Password";
+            }
+            modifica.IsEnabled= false ;
+        }
+
+        private void modifica_Click(object sender, RoutedEventArgs e)
+        {
+            
         }
     }
 }

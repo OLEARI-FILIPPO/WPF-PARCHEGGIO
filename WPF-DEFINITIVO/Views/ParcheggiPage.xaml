@@ -104,7 +104,7 @@
         </StackPanel>
 
 
-        <Grid Margin="10,0,60,0" x:Name="DynamicGrid"  Background="Transparent" Grid.Row="2" >
+        <Grid Margin="10,0,48,10"  x:Name="DynamicGrid"  Background="Transparent" Grid.Row="2" >
 
         </Grid>
 

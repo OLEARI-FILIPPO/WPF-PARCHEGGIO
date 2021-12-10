@@ -1,0 +1,135 @@
+__COMANDI WEB API
+
+-Pacchetti nuGet necessari (Versione 5.0.12 con .net core 5.0)
+
+. Microsoft.AspNetCore.Authentication.JwtBearer
+. Microsoft.EntityFrameworkCore
+. Microsoft.EntityFrameworkCore.Design
+. Microsoft.EntityFrameworkCore.SqlServer
+
+-Importare i models con un comando via powershell
+-----------
+
+dotnet tool install --global dotnet-ef
+
+dotnet ef dbcontext scaffold
+"Server=DESKTOP-M63NC6P\SQLEXPRESSNEW;Database=ParkingManagement;
+User Id=sa; Password=;" Microsoft.EntityFrameworkCore.SqlServer
+-o Models
+
+__Autenticazione windows
+Trusted_Connect
+ion=True;
+
+
+-------
+
+-Settare la chiave in appsettings.json per criptare dati
+
+"MasterKey": "chiavedisicurezza"
+
+-Per accedere ad essa si una questo codice da scrivere in Startup.cs
+
+/* Da qua */
+void configureServices{
+
+	//Specifico dei parametri di default per l'autenticazione
+            services.AddAuthentication(x =>
+            {
+                x.DefaultAuthenticateScheme = JwtBearerDefaults.AuthenticationScheme;
+                x.DefaultChallengeScheme = JwtBearerDefaults.AuthenticationScheme;
+            }).AddJwtBearer( x =>
+            {
+                x.TokenValidationParameters = new Microsoft.IdentityModel.Tokens.TokenValidationParameters
+                {
+                    ValidateIssuerSigningKey = true,
+                    ValidateIssuer = false,
+                    ValidateLifetime = false,
+                    IssuerSigningKey = SecurityKeyGenerator.GetSecurityKey()
+                };
+            });
+{
+
+void configure {
+            app.UseAuthentication();    
+//Utilizza l'autenticazione, cioè non tutti i punti saranno accessibili a chiunque
+
+}
+
+/* a qua	*/
+
+-Creo anche la classe SecurityKeyGenerator(){
+
+	public static SecurityKey GetSecurityKey()
+        {
+            //prendo la chiave e la trasformo in un array di bytes
+            var key = Encoding.ASCII.GetBytes(Startup.MasterKey);
+
+            //la passo all'istanza che mi crea e ritorna la chiave di sicurezza
+            return new SymmetricSecurityKey(key);
+        }
+}
+
+-Definire la route sopra la classe
+
+[Route("api/v1/[controller]")]
+[ApiController]
+public static classe....{
+
+-Dentro la classe si definiscono i vari endpoint (Get, Post, Put, Delete)
+
+-Attraverso la classe che si collega al database generate nella cartella models
+ si creano delle istanze che uso per accedere ai dati
+
+-Prima definisco il metodo pubblico Action result, posso passare degli oggetti nel body
+ scrivendo [FromBody] nella firma del metodo
+
+public ActionResult Login([FromBody] User candidate){
+
+	using( OlympicsContext model = new OlympicsContext())
+	{
+		-Operazione di login.
+		-Scrivo una query che restituirà un User
+
+	User candidate = model.Users.FirstOrDefault(f => f.Username == credentials.Username
+                                                         && f.Password == credentials.Password);
+
+	-Una volta modificato il model salvo i cambiamenti con una funzione
+	model.saveChanges()
+
+	-Posso poi ritornare 4 diverse funzioni
+	return OK(candidate);
+	return NotFound();
+	return Problem();
+	return BadRequest();
+	}
+
+-Creo un token con la chiave e i metodi che ho definito in Startup.cs
+		(Sono detro login sempre)
+		
+		var tokenHandler = new JwtSecurityTokenHandler();
+                var tokenDescriptor = new SecurityTokenDescriptor
+                {
+                    SigningCredentials = new SigningCredentials(SecurityKeyGenerator.GetSecurityKey(), SecurityAlgorithms.HmacSha256Signature),
+                    Expires = DateTime.UtcNow.AddDays(1),
+                    Subject = new System.Security.Claims.ClaimsIdentity(
+                        new Claim[]
+                        {
+                            new Claim("id", candidate.Username)
+                        })
+                };
+
+                SecurityToken token = tokenHandler.CreateToken(tokenDescriptor);
+                
+                return Ok(tokenHandler.WriteToken(token));
+
+}
+
+-Posso scrivere prima dei metodi alcuni tag
+[Authorize] per far accedere solo a certi utenti autorizzati
+[HttpPost], 
+[HttpGet] ecc..
+[Route("api/v1/[controller]") che si può definire anche nell'httpPost ecc...
+
+
+}

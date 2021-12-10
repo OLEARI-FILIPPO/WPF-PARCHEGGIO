@@ -107,7 +107,7 @@
 
                 </StackPanel>
 
-                <Border Grid.Column="1"  Effect="{DynamicResource EffectShadow4}" CornerRadius="5" Background="#96BEEA" HorizontalAlignment="Center" VerticalAlignment="Center" Height="441" Width="415" >
+                <Border Grid.Column="1"  Effect="{DynamicResource EffectShadow4}" CornerRadius="5" Background="#96BEEA" HorizontalAlignment="Center" VerticalAlignment="Center" Height="495" Width="415" >
 
                     <StackPanel Orientation="Vertical" >
 
@@ -124,27 +124,26 @@
                                      FontSize="15" 
                                      Foreground="Gray" 
                                      Text="Username"
-                                     Name="myUsername"
-                                     Height="44"></TextBox>
+                                     x:Name="username"
+                                     Height="44" GotFocus="TextBox_GotFocus" LostFocus="TextBox_LostFocus_1"></TextBox>
                         </StackPanel>
 
                         <StackPanel Width="400" 
                                     Margin="0,40,0,0" 
                                     Orientation="Horizontal">
-                            
+
                             <Label 
                                 BorderBrush="Transparent"
                                 Background="Transparent"
                                 Height="44" 
                                 Margin="5.5,0,6,0" 
-                                FontSize="15">Password </Label>
+                                FontSize="15">Password</Label>
 
-                            <TextBox Name="myPassword"
-                                     Width="291.5" 
+                            <TextBox Width="291.5" 
                                      FontSize="16" 
                                      Foreground="Gray" 
                                      Text="Password"
-                                     Height="44"></TextBox>
+                                     Height="44" x:Name="password" GotFocus="TextBox_GotFocus_1" LostFocus="TextBox_LostFocus"></TextBox>
                         </StackPanel>
 
                         <StackPanel Width="400" 
@@ -202,6 +201,15 @@
                                      Content="SuperUser"
                                      HorizontalContentAlignment="Left"
                                      Height="44"></Label>
+                        </StackPanel>
+
+
+                        <StackPanel Width="137" 
+                                    Margin="0,25,0,0" 
+                                    Orientation="Horizontal" HorizontalAlignment="Center" Height="47">
+
+                            <Button x:Name="modifica" Click="modifica_Click" Width="137" FontSize="15" Background="#A0EFEB" Height="75">Modifica</Button>
+
                         </StackPanel>
 
 

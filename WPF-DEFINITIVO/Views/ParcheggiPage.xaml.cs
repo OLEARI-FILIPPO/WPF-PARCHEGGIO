@@ -64,7 +64,7 @@ namespace WPF_DEFINITIVO.Views
             for (int j = 0; j < colonna; j++)
             {
                 ColumnDefinition cd = new ColumnDefinition();
-                //   cd.Width = GridLength.Auto;
+                   //cd.Width = GridLength.Auto;
                 DynamicGrid.ColumnDefinitions.Add(cd);
             }
         }
@@ -75,12 +75,12 @@ namespace WPF_DEFINITIVO.Views
             int cont = 0;
             int temp = 1;
 
-
+            
 
             int iRow = -1;
             foreach (RowDefinition row in DynamicGrid.RowDefinitions)
             {
-
+               
                 iRow++;
 
                 int jCol = -1;
@@ -137,8 +137,8 @@ namespace WPF_DEFINITIVO.Views
 
                     b.VerticalAlignment = VerticalAlignment.Stretch;
 
-                    b.Height = panel.Height - 20;
-                    b.Width = panel.Width - 20;
+                    b.Height = panel.Height;
+                    b.Width = panel.Width;
                     b.Content = sp;
                     b.FontSize = 70;
                     
@@ -163,12 +163,12 @@ namespace WPF_DEFINITIVO.Views
 
                     DynamicGrid.Children.Add(panel);
 
-                    //DoubleAnimation d = new DoubleAnimation();
-                    //d.From = 0;
-                    //d.To = panel.ActualHeight;
-                    //d.Duration = TimeSpan.FromSeconds(1);
-                    //d.EasingFunction = new QuadraticEase();
-                    //panel.BeginAnimation(HeightProperty, d);
+
+                    //DoubleAnimation fadeAnimation = new DoubleAnimation();
+                    //fadeAnimation.Duration = TimeSpan.FromSeconds(1.0d);
+                    //fadeAnimation.From = 0.0d;
+                    //fadeAnimation.To = 1.0d;
+                    //DynamicGrid.BeginAnimation(Grid.OpacityProperty, fadeAnimation);
 
                     cont++;
                     temp++;
@@ -190,8 +190,6 @@ namespace WPF_DEFINITIVO.Views
                     InputName.BorderBrush = new SolidColorBrush(Colors.Gray);
                 }
 
-                
-
             }
             else
             {
@@ -208,13 +206,12 @@ namespace WPF_DEFINITIVO.Views
 
                 CreateDynamicGrid();
 
-                DoubleAnimation d = new DoubleAnimation();
-                d.From = 0;
-                d.To = DynamicGrid.ActualHeight;
-                d.Duration = TimeSpan.FromSeconds(0.4);
-                d.EasingFunction = new QuadraticEase();
-                DynamicGrid.BeginAnimation(HeightProperty, d);
-
+                DoubleAnimation fadeAnimation = new DoubleAnimation();
+                fadeAnimation.Duration = TimeSpan.FromSeconds(1.0d);
+                fadeAnimation.EasingFunction = new QuadraticEase();
+                fadeAnimation.From = 0.0d;
+                fadeAnimation.To = 1.0d;
+                DynamicGrid.BeginAnimation(Grid.OpacityProperty, fadeAnimation);
 
             }
 
@@ -271,6 +268,9 @@ namespace WPF_DEFINITIVO.Views
             d.Duration = TimeSpan.FromSeconds(0.4);
             d.EasingFunction = new QuadraticEase();
             operations.BeginAnimation(WidthProperty, d);
+
+
+
 
 
 
@@ -342,12 +342,12 @@ namespace WPF_DEFINITIVO.Views
                 await parcheggioView.GetRowColumn(combo.SelectedItem.ToString());
                 CreaParcheggioSelezionato();
 
-                DoubleAnimation d = new DoubleAnimation();
-                d.From = 0;
-                d.To = DynamicGrid.ActualHeight;
-                d.Duration = TimeSpan.FromSeconds(0.5);
-                d.EasingFunction = new QuadraticEase();
-                DynamicGrid.BeginAnimation(HeightProperty, d);
+                DoubleAnimation fadeAnimation = new DoubleAnimation();
+                fadeAnimation.Duration = TimeSpan.FromSeconds(1.0d);
+                fadeAnimation.EasingFunction = new QuadraticEase();
+                fadeAnimation.From = 0.0d;
+                fadeAnimation.To = 1.0d;
+                DynamicGrid.BeginAnimation(Grid.OpacityProperty, fadeAnimation);
             }
             
             
