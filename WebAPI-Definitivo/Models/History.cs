@@ -9,6 +9,23 @@ namespace WebAPI_Definitivo.Models
 {
     public partial class History
     {
+        public History() { }
+        public History(long id, string parkingId, bool stato, decimal? revenue, DateTime? entryTimeDate, long? vehicleId, DateTime? exitTimeDate, long infoParkId)
+        {
+            Id = id;
+            ParkingId = parkingId;
+            Stato = stato;
+            Revenue = revenue;
+            EntryTimeDate = entryTimeDate;
+            VehicleId = vehicleId;
+            ExitTimeDate = exitTimeDate;
+            InfoParkId = infoParkId;
+
+            //Per ora nulli
+            Token = null;
+            SearchDate = null;
+        }
+
         public long HistoryId { get; set; }
         public long Id { get; set; }
         public string ParkingId { get; set; }

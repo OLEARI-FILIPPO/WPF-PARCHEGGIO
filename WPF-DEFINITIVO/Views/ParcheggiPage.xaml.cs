@@ -54,8 +54,6 @@ namespace WPF_DEFINITIVO.Views
                 RowDefinition rd = new RowDefinition();
                 // rd.Height = GridLength.Auto;
                 DynamicGrid.RowDefinitions.Add(rd);
-
-
             }
         }
 
@@ -71,22 +69,17 @@ namespace WPF_DEFINITIVO.Views
 
         private async void CreateDynamicGrid()
         {
-
             int cont = 0;
             int temp = 1;
-
-            
 
             int iRow = -1;
             foreach (RowDefinition row in DynamicGrid.RowDefinitions)
             {
-               
                 iRow++;
 
                 int jCol = -1;
                 foreach (ColumnDefinition col in DynamicGrid.ColumnDefinitions)
                 {
-
                     jCol++;
 
                     TextBlock tb1 = new TextBlock()
@@ -152,7 +145,7 @@ namespace WPF_DEFINITIVO.Views
                     if (combo.Text != "Nuovo-Parcheggio" && parcheggioView.ParkingObjectByName[cont].Stato == true)
                     {
                         b.Background = (SolidColorBrush)new BrushConverter().ConvertFrom("#F77B7B");
-                        b.Name = "btn" + parcheggioView.ParkingObjectByName[cont].Id.ToString();
+                        b.Name = "btn" + parcheggioView.ParkingObjectByName[cont].Id.ToString();        //Da mettere la targa
                     }
                     b.SetResourceReference(Grid.EffectProperty, "EffectShadow2");
                     // b.Margin = new Thickness(3);
@@ -207,7 +200,7 @@ namespace WPF_DEFINITIVO.Views
                 CreateDynamicGrid();
 
                 DoubleAnimation fadeAnimation = new DoubleAnimation();
-                fadeAnimation.Duration = TimeSpan.FromSeconds(1.0d);
+                fadeAnimation.Duration = TimeSpan.FromSeconds(0.5d);
                 fadeAnimation.EasingFunction = new QuadraticEase();
                 fadeAnimation.From = 0.0d;
                 fadeAnimation.To = 1.0d;
@@ -268,11 +261,6 @@ namespace WPF_DEFINITIVO.Views
             d.Duration = TimeSpan.FromSeconds(0.4);
             d.EasingFunction = new QuadraticEase();
             operations.BeginAnimation(WidthProperty, d);
-
-
-
-
-
 
 
             /*if (NavigationLoginToLogout.isLoggedIn)

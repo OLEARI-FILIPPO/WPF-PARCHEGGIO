@@ -66,11 +66,12 @@ namespace WPF_DEFINITIVO.Views
                 {
                     // Creo lista di Parcheggi
                     client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", NavigationLoginToLogout.Token);
+
                     var response = await client.GetAsync("http://localhost:13636/api/v1/ParkingRecords");
-                    //await response.Content.ReadAsStringAsync();
                     var list = await response.Content.ReadAsStringAsync();
-                    //response.Wait();
+
                     ObservableCollection<Parking> ParkingObject = JsonConvert.DeserializeObject<ObservableCollection<Parking>>(list);
+
                     foreach(var a in ParkingObject)
                     {
                         if (a.Id.ToString() == buttonName)
@@ -85,11 +86,12 @@ namespace WPF_DEFINITIVO.Views
                     // Creo lista di Veicoli
                     client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", NavigationLoginToLogout.Token);
                     var response2 = await client.GetAsync("http://localhost:13636/api/v1/VehicleList");
-                    //await response.Content.ReadAsStringAsync();
+
                     var list2 = await response2.Content.ReadAsStringAsync();
                     string ris = await response2.Content.ReadAsStringAsync();
-                    //response.Wait();
+
                     List<Vehicle> VehicleObject = JsonConvert.DeserializeObject<List<Vehicle>>(list2);
+
                     foreach (var a in ParkingObject)
                     {
                         if (a.Id.ToString() == buttonName)
@@ -113,11 +115,12 @@ namespace WPF_DEFINITIVO.Views
 
                     // Creo lista di ProprietaridiVeicoli
                     client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", NavigationLoginToLogout.Token);
+
                     var response3 = await client.GetAsync("http://localhost:13636/api/v1/OwnerVehicleList");
-                    //await response.Content.ReadAsStringAsync();
                     var list3 = await response3.Content.ReadAsStringAsync();
-                    //response.Wait();
+
                     ObservableCollection<OwnerVehicle> OwnerVehicleObject = JsonConvert.DeserializeObject<ObservableCollection<OwnerVehicle>>(list3);
+                    
                     foreach (var a in ParkingObject)
                     {
                         if (a.Id.ToString() == buttonName)
@@ -147,11 +150,44 @@ namespace WPF_DEFINITIVO.Views
 
                     }
                     EndOfLoop2:;
-
-
-
-                    // var response = await client.GetAsync("http://localhost:13636/api/v1/ParkingList");
                 }
+            }
+        }
+
+        private async void Exit_Click(object sender, RoutedEventArgs e)
+        {
+            //USCITA DEL VEICOLO
+
+            using (var client = new HttpClient())
+            {
+                //Autenticazione token
+                client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", NavigationLoginToLogout.Token);
+
+                //Chiamo le api per ottenere tutti i dati
+                //api da fare...
+
+                //da parkingid e infoparkid a id
+                //con quell'id prendo tutto l'oggetto per ricavare entry time date, vehicleId e infoparkid
+
+
+                //Oggetto da passare
+                History storico = new History
+                    (
+                        /*id: ,                   //id del parcheggio
+                        parkingId: postoName,   //id temporaneo del parcheggio
+                        stato: false,
+                        revenue: 5,             //da calcolare
+                        entryTimeDate: ,
+                        vehicleId: ,
+                        exitTimeDate: DateTime.UtcNow,         //da calcolare
+                        infoParkId: */
+                    ) ;
+
+
+                //Chiamo l'api per la creazione del parcheggio
+                string url = "http://localhost:13636/api/v1/history";
+
+                var response = await client.PostAsJsonAsync(url, storico);
             }
         }
     }

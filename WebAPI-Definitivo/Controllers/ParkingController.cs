@@ -163,6 +163,33 @@ namespace WebAPI_Definitivo.Controllers
             }
         }
 
+        [Authorize]
+        [HttpPost("history")]
+        public ActionResult AddHistory([FromBody] History storico)
+        {
+            try
+            {
+                using (ParkingManagementContext model = new ParkingManagementContext())
+                {
+                    //Metto stato = 0 nel parking
+
+
+                    //Calcolo della tariffa e aggiungo exittimedate
+
+
+                    //Aggiorno history
+                    model.History.Add(storico);
+                    model.SaveChanges();
+
+                    return Ok();
+                }
+            }
+            catch (Exception)
+            {
+                return Problem();
+            }
+        }
+
         //GET ALL VEHICLES
 
 
