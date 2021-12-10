@@ -9,13 +9,13 @@ using WebAPI_Definitivo.Models;
 
 namespace WebAPI_Definitivo.Controllers
 {
-    [Route("api/v1/[controller]")]
+    [Route("api/v1")]
     [ApiController]
     public class ParkingController : ControllerBase
     {
         //Prendo tutti i parcheggi memorizzati
         [Authorize]
-        [HttpGet("/api/v1/parcheggio")]
+        [HttpGet("parcheggio")]
         public ActionResult GetParking()
         {
             try
@@ -46,7 +46,7 @@ namespace WebAPI_Definitivo.Controllers
         }
 
         [Authorize]
-        [HttpPost("/api/v1/parcheggio/{id}")]
+        [HttpPost("parcheggio/{id}")]
         //l'id è riferito al nome del parcheggio che l'utente ha cliccato
         public ActionResult AddParking(string id, [FromBody] OwnerVehicle persona)
         {
@@ -103,7 +103,7 @@ namespace WebAPI_Definitivo.Controllers
         }
 
         [Authorize]
-        [HttpGet("/api/v1/history")]
+        [HttpGet("history")]
         public ActionResult History()
         {
             try
@@ -164,7 +164,7 @@ namespace WebAPI_Definitivo.Controllers
 
 
         [Authorize]
-        [HttpGet("/api/v1/ParkingList")]
+        [HttpGet("ParkingList")]
 
         public ActionResult GetParkingList()
         {
@@ -194,7 +194,7 @@ namespace WebAPI_Definitivo.Controllers
 
 
         [Authorize]
-        [HttpGet("/api/v1/ParkingRecords")] //prende tutti i record tabella parking
+        [HttpGet("ParkingRecords")] //prende tutti i record tabella parking
 
         public ActionResult GetParkingRecords()
         {
@@ -223,7 +223,7 @@ namespace WebAPI_Definitivo.Controllers
         }
 
         [Authorize]
-        [HttpGet("/api/v1/ParkingRecords/{id}")] //prende tutti i record tabella parking
+        [HttpGet("ParkingRecords/{id}")] //prende tutti i record tabella parking
 
         public ActionResult GetParkingRecordsSingle()
         {
