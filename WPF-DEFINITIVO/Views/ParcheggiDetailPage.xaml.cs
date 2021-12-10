@@ -46,7 +46,7 @@ namespace WPF_DEFINITIVO.Views
 
         private void Button_Click(object sender, RoutedEventArgs e)
         {
-            EntraWindow entraWindow = new EntraWindow(new EntraWindowViewModel(parkingName));
+            EntraWindow entraWindow = new EntraWindow(new EntraWindowViewModel(parkingName, postoName));
             this.Close();
             entraWindow.ShowDialog();
         }

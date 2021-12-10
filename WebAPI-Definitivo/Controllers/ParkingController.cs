@@ -46,9 +46,9 @@ namespace WebAPI_Definitivo.Controllers
         }
 
         [Authorize]
-        [HttpPost("parcheggio/{id}")]
+        [HttpPost("parcheggio/{targa}/{nomeParcheggio}/{nomePosto}")]
         //l'id è riferito al nome del parcheggio che l'utente ha cliccato
-        public ActionResult AddParking(string id, [FromBody] OwnerVehicle persona)
+        public ActionResult AddParking(string targa, string nomeParcheggio, string nomePosto, [FromBody] OwnerVehicle persona)
         {
             try
             {
@@ -73,21 +73,24 @@ namespace WebAPI_Definitivo.Controllers
 
                     Vehicle nuovoVeicolo = new Vehicle
                         (
-                            licensePlate: "GA007DN",        //dinamica
+                            licensePlate: targa,       
                             ownerId: owner.OwnerId
                         );
                     //Inserimento veicolo
                     model.Vehicle.Add(nuovoVeicolo);
                     model.SaveChanges();
 
+                    //trovo park id
+                    var infoParkId = model.InfoParking.Where(w => w.NamePark == nomeParcheggio).FirstOrDefault();
+
                     //Parking record
                     Parking parking = new Parking
                         (
-                            parkingId: id,
+                            parkingId: nomePosto,
                             stato: true,
                             entryTimeDate: DateTime.UtcNow,
                             vehicleId: nuovoVeicolo.VehicleId,
-                            infoParkId: 12  //dinamico
+                            infoParkId: Convert.ToInt32(infoParkId.InfoParkId.ToString())
                         );
                     model.Parking.Add(parking);
                     model.SaveChanges();
@@ -229,7 +232,7 @@ namespace WebAPI_Definitivo.Controllers
         {
             try
             {
-
+                //MODIFICA: SI PUO ANCHE SOLO PASSARE IL NOME DEL PARCHEGGIO INVECE CHE TUTTO L'OGGETTO
                 using (ParkingManagementContext model = new ParkingManagementContext())
                 {
                     List<Parking> listOfParkings;
@@ -238,13 +241,8 @@ namespace WebAPI_Definitivo.Controllers
                     id = model.InfoParking.Where(w => w.NamePark == i.NamePark).Select(s => s.InfoParkId).FirstOrDefault();
                     listOfParkings = model.Parking.Where(w => w.InfoParkId == id).ToList();
 
-                    // int count = listOfParkings.Count;
-
                     return Ok(listOfParkings);
-
                 }
-
-                // return Ok();
             }
             catch (Exception)
             {

@@ -8,9 +8,11 @@ namespace WPF_DEFINITIVO.ViewModels
     public class EntraWindowViewModel:ObservableObject
     {
         public string nomeParcheggio;
-        public EntraWindowViewModel(string _nomeParcheggio)
+        public string postoName;
+        public EntraWindowViewModel(string _nomeParcheggio, string _postoName)
         {
             nomeParcheggio = _nomeParcheggio;
+            postoName = _postoName;
         }
 
         public EntraWindowViewModel()
