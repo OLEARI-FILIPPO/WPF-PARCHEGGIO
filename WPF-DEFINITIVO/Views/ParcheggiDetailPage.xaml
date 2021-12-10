@@ -79,21 +79,21 @@
                             <StackPanel
                                  Margin="{StaticResource SmallLeftTopMargin}">
                                 <TextBlock Style="{StaticResource SubtitleTextStyle}" Text="Macchina Parcheggiata: " />
-                                <TextBlock Style="{StaticResource BodyTextStyle}" Text="CX5679" />
+                                <TextBlock Name="Targa" Style="{StaticResource BodyTextStyle}" />
 
                             </StackPanel>
 
                             <StackPanel
                                  Margin="{StaticResource SmallLeftTopMargin}">
                                 <TextBlock Style="{StaticResource SubtitleTextStyle}" Text="Propietario: " />
-                                <TextBlock Style="{StaticResource BodyTextStyle}" Text="Statuti Alessandro" />
+                                <TextBlock Name="Proprietario" Style="{StaticResource BodyTextStyle}" />
 
                             </StackPanel>
 
                             <StackPanel
                                  Margin="{StaticResource SmallLeftTopMargin}">
                                 <TextBlock Style="{StaticResource SubtitleTextStyle}" Text="Data di Entrata: " />
-                                <TextBlock Style="{StaticResource BodyTextStyle}" Text="17/12/2021" />
+                                <TextBlock Name="DataEntrata" Style="{StaticResource BodyTextStyle}"  />
 
                             </StackPanel>
 

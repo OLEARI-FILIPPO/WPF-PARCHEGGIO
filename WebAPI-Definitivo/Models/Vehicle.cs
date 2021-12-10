@@ -14,17 +14,11 @@ namespace WebAPI_Definitivo.Models
             Parking = new HashSet<Parking>();
         }
 
-        public Vehicle(string licensePlate, long ownerId)
-        {
-            LicensePlate = licensePlate;
-            OwnerId = ownerId;
-        }
-
         public long VehicleId { get; set; }
         public string Manufacturer { get; set; }
         public string Model { get; set; }
         public string LicensePlate { get; set; }
-        public long OwnerId { get; set; }
+        public long? OwnerId { get; set; }
 
         public virtual OwnerVehicle Owner { get; set; }
         public virtual ICollection<Parking> Parking { get; set; }

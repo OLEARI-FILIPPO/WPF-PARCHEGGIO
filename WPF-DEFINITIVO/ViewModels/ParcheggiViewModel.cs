@@ -64,6 +64,7 @@ namespace WPF_DEFINITIVO.ViewModels
             }
         }
 
+        public List<InfoParking> ParkingObject;
         public async void GetParkings()
         {
             if (NavigationLoginToLogout.isLoggedIn)
@@ -77,25 +78,65 @@ namespace WPF_DEFINITIVO.ViewModels
                     var list = await response.Content.ReadAsStringAsync();
                     //response.Wait();
 
-                    ObservableCollection<InfoParking> ParkingObject = JsonConvert.DeserializeObject<ObservableCollection<InfoParking>>(list);
+                    ParkingObject = JsonConvert.DeserializeObject<List<InfoParking>>(list);
 
                     //List<string> Parkings = new List<string>();
 
-                    parkings.Add("Nuovo-Parcheggio");
-
-                    foreach (var item in ParkingObject)
+                    if (response.IsSuccessStatusCode)
                     {
-                        parkings.Add(item.NamePark.ToString());
+                        parkings.Add("Nuovo-Parcheggio");
+
+                        foreach (var item in ParkingObject)
+                        {
+                            parkings.Add(item.NamePark.ToString());
+                        }
+                    }
+                    else
+                    {
+                        MessageBox.Show(list);
                     }
 
-                    
-                 
+
+
                     // var response = await client.GetAsync("http://localhost:13636/api/v1/ParkingList");
                 }
             }
-          
-
         }
+
+        public List<Parking> ParkingObjectByName;
+        public async Task GetParkingsByName(string nomeParcheggio)
+        {
+            if (NavigationLoginToLogout.isLoggedIn)
+            {
+                using (var client = new HttpClient())
+                {
+                    client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", NavigationLoginToLogout.Token);
+                    string url = "http://localhost:13636/api/v1/ParkingRecordsByName";
+                    InfoParking i = new InfoParking();
+                    i.InfoParkId = 1;
+                    i.Ncol = 1;
+                    i.Nrighe = 1;
+                    i.NamePark = nomeParcheggio;
+                    var response = await client.PostAsJsonAsync(url, i);
+                    //await response.Content.ReadAsStringAsync();
+                    var list = await response.Content.ReadAsStringAsync();
+                    string ris = await response.Content.ReadAsStringAsync();
+
+                    if (response.IsSuccessStatusCode)
+                    {
+                        ParkingObjectByName = JsonConvert.DeserializeObject<List<Parking>>(list);
+                    }
+                    else
+                    {
+                        MessageBox.Show(list);
+                    }
+
+
+                }
+            }
+            await Task.Delay(51);
+        }
+
 
         public async Task GetRowColumn(string nomeParcheggio)
         {
@@ -114,7 +155,7 @@ namespace WPF_DEFINITIVO.ViewModels
                     if (response.IsSuccessStatusCode)
                     {
 
-                        ObservableCollection<InfoParking> ParkingObject = JsonConvert.DeserializeObject<ObservableCollection<InfoParking>>(list);
+                        List<InfoParking> ParkingObject = JsonConvert.DeserializeObject<List<InfoParking>>(list);
 
                         foreach (var a in ParkingObject)
                         {

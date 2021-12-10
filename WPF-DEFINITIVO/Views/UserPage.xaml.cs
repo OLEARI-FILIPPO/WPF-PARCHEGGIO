@@ -38,6 +38,9 @@ namespace WPF_DEFINITIVO.Views
             InitializeComponent();
             DataContext = viewModel;
             logout = viewModel;
+
+            username.Text = logout.Username;
+            password.Text = logout.Password;
         }
         public event PropertyChangedEventHandler PropertyChanged;
         static HttpClient client = new HttpClient();
@@ -80,7 +83,7 @@ namespace WPF_DEFINITIVO.Views
                 }
                 else
                 {
-                    MessageBox.Show("Non è possibile effettuare il logout");
+                    MessageBox.Show(result);
                 }
             }
             

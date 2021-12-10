@@ -69,7 +69,7 @@ namespace WPF_DEFINITIVO.Views
             }
         }
 
-        private void CreateDynamicGrid()
+        private async void CreateDynamicGrid()
         {
 
             int cont = 0;
@@ -147,10 +147,12 @@ namespace WPF_DEFINITIVO.Views
                     // Colore Libero : Blue
                     b.Background = (SolidColorBrush)new BrushConverter().ConvertFrom("#93C7EA");
 
+                    await parcheggioView.GetParkingsByName(combo.Text);
                     // Colore Occupato : Rosso 
-                    if (parcheggioView.parkingsRecords[cont].Stato == true)
+                    if (combo.Text != "Nuovo-Parcheggio" && parcheggioView.ParkingObjectByName[cont].Stato == true)
                     {
                         b.Background = (SolidColorBrush)new BrushConverter().ConvertFrom("#F77B7B");
+                        b.Name = "btn" + parcheggioView.ParkingObjectByName[cont].Id.ToString();
                     }
                     b.SetResourceReference(Grid.EffectProperty, "EffectShadow2");
                     // b.Margin = new Thickness(3);
@@ -224,8 +226,9 @@ namespace WPF_DEFINITIVO.Views
 
             TextBlock tb = (TextBlock)sp.Children[1]; //prendo il textblock che contiene il nome del parcheggio
 
+            Button b = (Button)sender;
             //apro il form che contiene i detagli nel parcheggio
-            ParcheggiDetailPage parcheggiDetailPage = new ParcheggiDetailPage(tb.Text); //e passo il nome del parcheggio
+            ParcheggiDetailPage parcheggiDetailPage = new ParcheggiDetailPage(tb.Text, b); //e passo il nome del parcheggio
             parcheggiDetailPage.ShowDialog();
         }
 
