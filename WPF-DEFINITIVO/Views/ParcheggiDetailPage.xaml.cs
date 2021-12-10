@@ -25,18 +25,20 @@ namespace WPF_DEFINITIVO.Views
         }
 
         string buttonName;
+        string postoName;
         string parkingName;
         bool stato;
-        public ParcheggiDetailPage(string _parkingName, Button _button)
+        public ParcheggiDetailPage(string _postoName, Button _button, string _parkingName)
         {
             InitializeComponent();
+            postoName = _postoName;
             parkingName = _parkingName;
             buttonName = _button.Name.Split("btn")[1];
             if (_button.Background == (SolidColorBrush)new BrushConverter().ConvertFrom("#F77B7B"))
                 stato = true;
             else
                 stato = false;
-            ParkingNameLabel.Text = parkingName;
+            ParkingNameLabel.Text = postoName;
             DataContext = this;
 
             // DataContext = this;
@@ -44,7 +46,7 @@ namespace WPF_DEFINITIVO.Views
 
         private void Button_Click(object sender, RoutedEventArgs e)
         {
-            EntraWindow entraWindow = new EntraWindow(new EntraWindowViewModel());
+            EntraWindow entraWindow = new EntraWindow(new EntraWindowViewModel(parkingName));
             this.Close();
             entraWindow.ShowDialog();
         }
@@ -77,7 +79,7 @@ namespace WPF_DEFINITIVO.Views
                             break;
                         }
                         else
-                            DataEntrata.Text = "Data Entrata";
+                            DataEntrata.Text = "Non ancora impostata";
                     }
 
                     // Creo lista di Veicoli
@@ -97,14 +99,17 @@ namespace WPF_DEFINITIVO.Views
                                 if(a.VehicleId == b.VehicleId)
                                 {
                                     Targa.Text = b.LicensePlate.ToString();
-                                    break;
+                                    goto EndOfLoop;
                                 }
                                 else
-                                    DataEntrata.Text = "Targa";
+                                    Targa.Text = "Non ancora impostato";
                             }
                         }
-                            
+                        else
+                            Targa.Text = "Non ancora impostata";
+
                     }
+                    EndOfLoop:;
 
                     // Creo lista di ProprietaridiVeicoli
                     client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", NavigationLoginToLogout.Token);
@@ -126,18 +131,22 @@ namespace WPF_DEFINITIVO.Views
                                         if (b.OwnerId == c.OwnerId)
                                         {
                                             Proprietario.Text = c.Name.ToString() + " " + c.Surname.ToString();
-                                            break;
+                                            goto EndOfLoop2; ;
                                         }
                                         else
-                                            DataEntrata.Text = "Proprietario";
+                                            Proprietario.Text = "Non ancora impostato";
                                     }
                                 }
-                                    
+                                else
+                                    Proprietario.Text = "Non ancora impostato";
+
                             }
                         }
+                        else
+                            Proprietario.Text = "Non ancora impostato";
 
                     }
-
+                    EndOfLoop2:;
 
 
 

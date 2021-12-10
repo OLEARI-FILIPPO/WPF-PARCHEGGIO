@@ -1,11 +1,15 @@
 ﻿using HandyControl.Tools;
+using Newtonsoft.Json;
 using System;
+using System.Collections.Generic;
 using System.ComponentModel;
 using System.Net.Http;
+using System.Net.Http.Headers;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Media.Animation;
 using WebAPI_Definitivo.Models;
+using WPF_DEFINITIVO.Helpers;
 using WPF_DEFINITIVO.ViewModels;
 
 namespace WPF_DEFINITIVO.Views
@@ -20,6 +24,7 @@ namespace WPF_DEFINITIVO.Views
         {
             InitializeComponent();
             ConfigHelper.Instance.SetLang("it");
+            DataContext = viewModel;
             creazione = viewModel;
         }
 
@@ -64,23 +69,62 @@ namespace WPF_DEFINITIVO.Views
                     Name = creazione.Name,
                     DateBirth = creazione.DateBirth
                 };
+                client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", NavigationLoginToLogout.Token);
 
                 //Chiamo l'api per la creazione del parcheggio
-                var response = await client.PostAsJsonAsync("http://localhost:13636/api/v1/parcheggio", parametri);
-
-                string result = await response.Content.ReadAsStringAsync();
-
+                string url = "http://localhost:13636/api/v1/ParkingRecordsByName";
+                InfoParking i = new InfoParking();
+                i.InfoParkId = 1;
+                i.Ncol = 1;
+                i.Nrighe = 1;
+                i.NamePark = creazione.nomeParcheggio;
+                var response = await client.PostAsJsonAsync(url, i);
+                var list = await response.Content.ReadAsStringAsync();
+                List<Parking> ParkingObjectByName;
                 if (response.IsSuccessStatusCode)
                 {
-                    MessageBox.Show("PARCHEGGIO AGGIUNTO");
+                    ParkingObjectByName = JsonConvert.DeserializeObject<List<Parking>>(list);
+
+                    client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", NavigationLoginToLogout.Token);
+                    var response2 = await client.GetAsync("http://localhost:13636/api/v1/VehicleList");
+                    //await response.Content.ReadAsStringAsync();
+                    var list2 = await response2.Content.ReadAsStringAsync();
+                    MessageBox.Show(list2);
+                    //response.Wait();
+                    if(response2.IsSuccessStatusCode)
+                    {
+                        List<Vehicle> VehicleObject = JsonConvert.DeserializeObject<List<Vehicle>>(list2);
+                        MessageBox.Show(list2);
+
+                        foreach (var a in ParkingObjectByName)
+                        {
+                            foreach (var b in VehicleObject)
+                            {
+                                if (a.VehicleId == b.VehicleId)
+                                {
+                                    if (b.LicensePlate == creazione.Targa)
+                                    {
+                                        MessageBox.Show("Targa Già Presente");
+                                        goto EndOfLoop;
+                                    }
+                                    else
+                                        MessageBox.Show(creazione.Targa);
+                                }
+
+                            }
+                        }
+                    }
+                    
+
+
                 }
-                else
-                {
-                    MessageBox.Show("Problema durante l'inserimento.");
-                }
+                EndOfLoop:;
+
+
+                // Chiamata API
             }
 
-            //Query inserimento veicolo
+
 
 
         }

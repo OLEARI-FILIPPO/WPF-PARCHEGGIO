@@ -7,14 +7,21 @@ namespace WPF_DEFINITIVO.ViewModels
 {
     public class EntraWindowViewModel:ObservableObject
     {
+        public string nomeParcheggio;
+        public EntraWindowViewModel(string _nomeParcheggio)
+        {
+            nomeParcheggio = _nomeParcheggio;
+        }
+
         public EntraWindowViewModel()
         {
 
         }
 
-        public static string surname;
-        public static string name;
-        public static DateTime dateBirth;
+        private string surname;
+        private string name;
+        private DateTime dateBirth;
+        private string targa;
 
         public string Surname
         {
@@ -22,7 +29,7 @@ namespace WPF_DEFINITIVO.ViewModels
             set
             {
                 surname = value;
-                OnPropertyChanged("Username");
+                OnPropertyChanged("surname");
             }
         }
 
@@ -32,7 +39,7 @@ namespace WPF_DEFINITIVO.ViewModels
             set
             {
                 name = value;
-                OnPropertyChanged("Username");
+                OnPropertyChanged("name");
             }
         }
 
@@ -42,8 +49,19 @@ namespace WPF_DEFINITIVO.ViewModels
             set
             {
                 dateBirth = value;
-                OnPropertyChanged("Username");
+                OnPropertyChanged("dateBirth");
             }
         }
+
+        public string Targa
+        {
+            get { return targa; }
+            set
+            {
+                targa = value;
+                OnPropertyChanged("targa");
+            }
+        }
+
     }
 }

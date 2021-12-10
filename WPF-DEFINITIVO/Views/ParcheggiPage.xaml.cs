@@ -228,7 +228,7 @@ namespace WPF_DEFINITIVO.Views
 
             Button b = (Button)sender;
             //apro il form che contiene i detagli nel parcheggio
-            ParcheggiDetailPage parcheggiDetailPage = new ParcheggiDetailPage(tb.Text, b); //e passo il nome del parcheggio
+            ParcheggiDetailPage parcheggiDetailPage = new ParcheggiDetailPage(tb.Text, b, combo.Text); //e passo il nome del parcheggio
             parcheggiDetailPage.ShowDialog();
         }
 
