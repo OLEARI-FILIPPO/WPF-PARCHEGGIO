@@ -18,6 +18,10 @@ namespace WebAPI_Definitivo.Models
             InfoParkId = infoParkId;
         }
 
+        public Parking()
+        {
+            
+        }
         public long Id { get; set; }
         public string ParkingId { get; set; }
         public bool Stato { get; set; }

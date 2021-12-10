@@ -37,7 +37,7 @@
                     Width="406">
 
 
-            <TextBox Text="Surname"
+            <TextBox Text="{Binding Surname}"
                      Width="406" 
                      Height="60" 
                      Foreground="Gray"
@@ -57,7 +57,7 @@
                      HorizontalAlignment="Center"
                      FontSize="20"
                      Foreground="Gray"
-                     Text="Name"
+                     Text="{Binding Name}"
                      VerticalAlignment="Center"/>
 
         </StackPanel>
@@ -71,7 +71,7 @@
                         HorizontalAlignment="Center"
                         FontSize="20"
                         Foreground="Gray"
-                        Text="Data di nascita"
+                        Text="{Binding DateBirth}"
                         VerticalAlignment="Center"></DatePicker>
 
         </StackPanel>
@@ -80,12 +80,13 @@
                     Orientation="Horizontal" 
                     HorizontalAlignment="Center">
 
-            <TextBox Width="406" 
+            <TextBox 
+                     Width="406" 
                      Height="60" 
                      HorizontalAlignment="Center"
                      FontSize="20"
                      Foreground="Gray"
-                     Text="Targa"
+                     Text="{Binding Targa}"
                      VerticalAlignment="Center"/>
         </StackPanel>
 

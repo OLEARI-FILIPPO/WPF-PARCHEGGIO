@@ -24,7 +24,7 @@ namespace WebAPI_Definitivo.Models
         public string Manufacturer { get; set; }
         public string Model { get; set; }
         public string LicensePlate { get; set; }
-        public long? OwnerId { get; set; }
+        public long OwnerId { get; set; }
 
         public virtual OwnerVehicle Owner { get; set; }
         public virtual ICollection<Parking> Parking { get; set; }
