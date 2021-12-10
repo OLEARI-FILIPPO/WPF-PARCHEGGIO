@@ -9,11 +9,18 @@ namespace WebAPI_Definitivo.Models
 {
     public partial class Users
     {
+        public Users()
+        {
+            OwnerVehicle = new HashSet<OwnerVehicle>();
+        }
+
         public int Id { get; set; }
         public string Username { get; set; }
         public string Password { get; set; }
         public int Grado { get; set; }
         public DateTime? LastLogin { get; set; }
         public DateTime? LastLogout { get; set; }
+
+        public virtual ICollection<OwnerVehicle> OwnerVehicle { get; set; }
     }
 }

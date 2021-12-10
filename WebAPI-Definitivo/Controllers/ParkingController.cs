@@ -118,23 +118,35 @@ namespace WebAPI_Definitivo.Controllers
                     //Grado uno vedo tutto
 
                     var history = model.History.ToList();
-                    if(history == null) { return Problem("Nessun veicolo presente."); }
+                    if(history == null) { return NotFound("Nessun parcheggio corrispondente."); }
 
-                    if(grado == "1")
-                    {
-                        return Ok(history);
-                    }
+                    if(grado == "1") { return Ok(history); }
 
                     //Query per prendere i parcheggi di uno specifico user
 
-                    /*var userHistory = from storico in model.History
+                    var userHistory = from storico in model.History
                                       join vehicle in model.Vehicle on storico.VehicleId equals vehicle.VehicleId
                                       join owner in model.OwnerVehicle on vehicle.OwnerId equals owner.OwnerId
-                                      join user in model.Users on owner. equals vehicle.VehicleId
-                                      select new { OwnerName = storico, PetName = vehicle };*/
+                                      join user in model.Users on owner.UserId equals user.Id
 
+                                      where(user.Username == username)
+                                      select new 
+                                      { 
+                                          HistoryId      =      storico.HistoryId, 
+                                          ID             =      storico.Id,
+                                          ParkingId      =      storico.ParkingId,
+                                          Stato          =      storico.Stato,
+                                          Revenue        =      storico.Revenue,
+                                          EntryTimeDate  =      storico.EntryTimeDate,
+                                          ExitTimeDate   =      storico.ExitTimeDate,
+                                          InfoParkId     =      storico.InfoParkId,
+                                          Token          =      storico.Token,
+                                          SearchDate     =      storico.SearchDate
+                                      };
 
-                    return Ok();
+                    if(userHistory.ToList() == null) { return NotFound("Nessun parcheggio corrispondente."); }
+
+                    return Ok(userHistory.ToList());
 
                     //Grado 2 vedo le mie auto
 

@@ -16,6 +16,7 @@ namespace WebAPI_Definitivo.Models
         public decimal? Revenue { get; set; }
         public DateTime? EntryTimeDate { get; set; }
         public long? VehicleId { get; set; }
+        public DateTime? ExitTimeDate { get; set; }
         public long InfoParkId { get; set; }
         public string Token { get; set; }
         public DateTime? SearchDate { get; set; }

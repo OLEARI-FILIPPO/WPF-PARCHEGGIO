@@ -25,7 +25,9 @@ namespace WebAPI_Definitivo.Models
         public string Surname { get; set; }
         public string Name { get; set; }
         public DateTime DateBirth { get; set; }
+        public int? UserId { get; set; }
 
+        public virtual Users User { get; set; }
         public virtual ICollection<Vehicle> Vehicle { get; set; }
     }
 }

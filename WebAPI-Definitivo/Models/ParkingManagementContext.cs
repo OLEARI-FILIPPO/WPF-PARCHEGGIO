@@ -30,7 +30,8 @@ namespace WebAPI_Definitivo.Models
         {
             if (!optionsBuilder.IsConfigured)
             {
-                optionsBuilder.UseSqlServer(Startup.ConnectionString);
+#warning To protect potentially sensitive information in your connection string, you should move it out of source code. See http://go.microsoft.com/fwlink/?LinkId=723263 for guidance on storing connection strings.
+                optionsBuilder.UseSqlServer("Server=DESKTOP-M63NC6P\\SQLEXPRESSNEW;Database=ParkingManagement; User Id=sa; Password=Fillo-fous05;");
             }
         }
 
@@ -43,6 +44,8 @@ namespace WebAPI_Definitivo.Models
                 entity.Property(e => e.HistoryId).HasColumnName("HistoryID");
 
                 entity.Property(e => e.EntryTimeDate).HasColumnType("datetime");
+
+                entity.Property(e => e.ExitTimeDate).HasColumnType("datetime");
 
                 entity.Property(e => e.Id).HasColumnName("ID");
 
@@ -89,6 +92,11 @@ namespace WebAPI_Definitivo.Models
                     .IsRequired()
                     .HasMaxLength(20)
                     .IsUnicode(false);
+
+                entity.HasOne(d => d.User)
+                    .WithMany(p => p.OwnerVehicle)
+                    .HasForeignKey(d => d.UserId)
+                    .HasConstraintName("FK_OwnerVehicle_Users");
             });
 
             modelBuilder.Entity<Parking>(entity =>
@@ -125,6 +133,10 @@ namespace WebAPI_Definitivo.Models
             {
                 entity.Property(e => e.Id).HasColumnName("ID");
 
+                entity.Property(e => e.LastLogin).HasColumnType("datetime");
+
+                entity.Property(e => e.LastLogout).HasColumnType("datetime");
+
                 entity.Property(e => e.Password)
                     .IsRequired()
                     .HasMaxLength(50)
@@ -134,12 +146,6 @@ namespace WebAPI_Definitivo.Models
                     .IsRequired()
                     .HasMaxLength(50)
                     .IsUnicode(false);
-
-                entity.Property(e => e.Grado).HasColumnName("Grado");
-
-                entity.Property(e => e.LastLogin).HasColumnType("datetime");
-
-                entity.Property(e => e.LastLogout).HasColumnType("datetime");
             });
 
             modelBuilder.Entity<Vehicle>(entity =>
@@ -156,12 +162,10 @@ namespace WebAPI_Definitivo.Models
                     .IsUnicode(false);
 
                 entity.Property(e => e.Manufacturer)
-                    .IsRequired()
                     .HasMaxLength(20)
                     .IsUnicode(false);
 
                 entity.Property(e => e.Model)
-                    .IsRequired()
                     .HasMaxLength(20)
                     .IsUnicode(false);
 
