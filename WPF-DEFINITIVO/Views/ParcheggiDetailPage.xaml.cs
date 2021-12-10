@@ -1,5 +1,6 @@
 ﻿using Newtonsoft.Json;
 using System;
+using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.ComponentModel;
 using System.Net.Http;
@@ -71,7 +72,10 @@ namespace WPF_DEFINITIVO.Views
                     foreach(var a in ParkingObject)
                     {
                         if (a.Id.ToString() == buttonName)
+                        {
                             DataEntrata.Text = a.EntryTimeDate.ToString();
+                            break;
+                        }
                         else
                             DataEntrata.Text = "Data Entrata";
                     }
@@ -82,9 +86,8 @@ namespace WPF_DEFINITIVO.Views
                     //await response.Content.ReadAsStringAsync();
                     var list2 = await response2.Content.ReadAsStringAsync();
                     string ris = await response2.Content.ReadAsStringAsync();
-                    MessageBox.Show(ris);
                     //response.Wait();
-                    ObservableCollection<Vehicle> VehicleObject = JsonConvert.DeserializeObject<ObservableCollection<Vehicle>>(list);
+                    List<Vehicle> VehicleObject = JsonConvert.DeserializeObject<List<Vehicle>>(list2);
                     foreach (var a in ParkingObject)
                     {
                         if (a.Id.ToString() == buttonName)
@@ -92,7 +95,10 @@ namespace WPF_DEFINITIVO.Views
                             foreach (var b in VehicleObject)
                             {
                                 if(a.VehicleId == b.VehicleId)
+                                {
                                     Targa.Text = b.LicensePlate.ToString();
+                                    break;
+                                }
                                 else
                                     DataEntrata.Text = "Targa";
                             }
@@ -102,7 +108,7 @@ namespace WPF_DEFINITIVO.Views
 
                     // Creo lista di ProprietaridiVeicoli
                     client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", NavigationLoginToLogout.Token);
-                    var response3 = await client.GetAsync("http://localhost:13636//api/v1/OwnerVehicleList");
+                    var response3 = await client.GetAsync("http://localhost:13636/api/v1/OwnerVehicleList");
                     //await response.Content.ReadAsStringAsync();
                     var list3 = await response3.Content.ReadAsStringAsync();
                     //response.Wait();
@@ -118,7 +124,10 @@ namespace WPF_DEFINITIVO.Views
                                     foreach (var c in OwnerVehicleObject)
                                     {
                                         if (b.OwnerId == c.OwnerId)
+                                        {
                                             Proprietario.Text = c.Name.ToString() + " " + c.Surname.ToString();
+                                            break;
+                                        }
                                         else
                                             DataEntrata.Text = "Proprietario";
                                     }

@@ -14,18 +14,13 @@ namespace WebAPI_Definitivo.Models
             Vehicle = new HashSet<Vehicle>();
         }
 
-        public OwnerVehicle(string surname, string name, DateTime dateBirth)
-        {
-            Surname = surname;
-            Name = name;
-            DateBirth = dateBirth;
-        }
-
         public long OwnerId { get; set; }
         public string Surname { get; set; }
         public string Name { get; set; }
         public DateTime DateBirth { get; set; }
+        public int? UserId { get; set; }
 
+        public virtual Users User { get; set; }
         public virtual ICollection<Vehicle> Vehicle { get; set; }
     }
 }

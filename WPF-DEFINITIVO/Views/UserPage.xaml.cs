@@ -39,8 +39,8 @@ namespace WPF_DEFINITIVO.Views
             DataContext = viewModel;
             logout = viewModel;
 
-            myUsername.Text = logout.Username;
-            myPassword.Text = logout.Password;
+            username.Text = logout.Username;
+            password.Text = logout.Password;
         }
         public event PropertyChangedEventHandler PropertyChanged;
         static HttpClient client = new HttpClient();
