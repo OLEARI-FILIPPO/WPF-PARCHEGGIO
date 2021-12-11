@@ -89,7 +89,7 @@ namespace WebAPI_Definitivo.Controllers
                             dateBirth: persona.DateBirth 
                         );
                     //Inserimento persona
-                    model.OwnerVehicle.Update(ownerVehicle);
+                    model.OwnerVehicle.Add(ownerVehicle);
                     model.SaveChanges();
 
                     OwnerVehicle owner = model.OwnerVehicle.FirstOrDefault(l => l.Surname == persona.Surname && l.Name == persona.Name && l.DateBirth == persona.DateBirth);
@@ -101,22 +101,24 @@ namespace WebAPI_Definitivo.Controllers
                             ownerId: owner.OwnerId
                         );
                     //Inserimento veicolo
-                    model.Vehicle.Update(nuovoVeicolo);
+                    model.Vehicle.Add(nuovoVeicolo);
                     model.SaveChanges();
 
                     //trovo park id
                     var infoParkId = model.InfoParking.Where(w => w.NamePark == nomeParcheggio).FirstOrDefault();
+                    
 
                     //Parking record
-                    Parking parking = new Parking
+                    /*Parking parking = new Parking
                         (
                             parkingId: nomePosto,
                             stato: true,
                             entryTimeDate: DateTime.UtcNow,
                             vehicleId: nuovoVeicolo.VehicleId,
                             infoParkId: Convert.ToInt32(infoParkId.InfoParkId.ToString())
-                        );
-                    model.Parking.Update(parking);
+                        );*/
+                    Parking parking = model.Parking.Where(w => w.ParkingId == nomePosto && w.InfoParkId == infoParkId.InfoParkId).FirstOrDefault();
+                    parking.Stato = true;
                     model.SaveChanges();
 
 

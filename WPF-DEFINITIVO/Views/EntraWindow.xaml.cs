@@ -129,11 +129,16 @@ namespace WPF_DEFINITIVO.Views
 
 
                     //Chiamata
-                    var response3 = await client.PostAsJsonAsync(url, parametri);
+                    var response3 = await client.PutAsJsonAsync(url, parametri);
                     var result = await response.Content.ReadAsStringAsync();
 
-                    this.Close();
-                    MessageBox.Show("Veicolo inserito con successo");
+                    if (response3.IsSuccessStatusCode)
+                    {
+                        this.Close();
+                    }
+                    else
+                        MessageBox.Show("Errore");
+
 
                 }
             }
