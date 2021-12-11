@@ -6,16 +6,16 @@
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:properties="clr-namespace:WPF_DEFINITIVO.Properties" xmlns:hc="https://handyorg.github.io/handycontrol"
     mc:Ignorable="d"
-    d:DesignHeight="750" MinWidth="1280">
+    d:DesignHeight="750" MinWidth="1280" Loaded="Page_Loaded">
 
     <Page.Background>
         <ImageBrush ImageSource="Images/wave.png"/>
     </Page.Background>
-    
-    <Grid>
-        
-        
-        
+
+    <Grid >
+
+
+
         <Grid.RowDefinitions>
             <RowDefinition Height="48" />
             <RowDefinition Height="245"/>
@@ -27,64 +27,158 @@
             Text="{x:Static properties:Resources.MainPageTitle}" />
 
 
-        <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" Grid.Row="1" Margin="0,26,0,0" Width="884">
-
-            <hc:Card BorderBrush="#686B73" Background="#C1EEB0"  MaxWidth="240" BorderThickness="1" Effect="{DynamicResource EffectShadow2}"  Margin="0,0,88,0" Width="235">
+        <StackPanel Orientation="Horizontal" 
+                    HorizontalAlignment="Center"
+                    Grid.Row="1"
+                    x:Name="cardPanel"
+                    Margin="0,26,0,0" 
+                    Width="884">
+            
+            <!--Grid Incassi -->
+            <hc:Card BorderBrush="#686B73" 
+                     Background="#C1EEB0"  
+                     MaxWidth="240"
+                     BorderThickness="1" 
+                     Effect="{DynamicResource EffectShadow2}"  
+                     Margin="0,0,88,0" 
+                     x:Name="IncassiLabel"
+                     MouseDoubleClick="Incasso_Clicked"
+                     Width="235">
                 <!--Card Content section-->
-                <Border  CornerRadius="4,4,0,0" Width="160" Height="113" Margin="36,0,37,0">
-                    <TextBlock TextWrapping="Wrap" VerticalAlignment="Center" HorizontalAlignment="Center" Text="&#xE825;"  FontSize="50" FontFamily="Segoe MDL2 Assets" />
+                <Border  CornerRadius="4,4,0,0"
+                         Width="160" 
+                         Height="98"
+                         Margin="36,0,37,0">
+
+                    <StackPanel Margin="0,0,0,-12">
+                        <TextBlock
+                                   HorizontalAlignment="Center"
+                                   Text="&#xE825;"  
+                                   FontSize="56"
+                                   FontFamily="Segoe MDL2 Assets"
+                                   Height="62" />
+                        <TextBlock TextWrapping="Wrap" 
+                                   HorizontalAlignment="Center" 
+                                   Text="Incasso"  
+                                   FontSize="28"  />
+
+                    </StackPanel>
+
                 </Border>
+
                 <!--Card Footer part-->
                 <hc:Card.Footer>
-                    <StackPanel Margin="10" Width="160">
-                        <!--Card First-level content-->
-                        <TextBlock TextWrapping="NoWrap"  Style="{DynamicResource TextBlockLargeBold}" TextTrimming="CharacterEllipsis" 
-                                       Text="Incasso" 
-                                       HorizontalAlignment="Left"/>
+                    <StackPanel Margin="37,0,37,0" Width="160" Height="59">
+
                         <!--Card Secondary content-->
-                        <TextBlock TextWrapping="NoWrap" Style="{DynamicResource TextBlockDefault}" TextTrimming="CharacterEllipsis" 
-                                       Text="500.0$" FontSize="16" Margin="0,6,0,0"
-                                       HorizontalAlignment="Left"/>
+                        <TextBlock TextWrapping="NoWrap" 
+                                   Style="{DynamicResource TextBlockDefault}" 
+                                   TextTrimming="CharacterEllipsis" 
+                                   Text="500.0$" 
+                                   FontSize="25" 
+                                   Margin="0,6,0,0"
+                                   HorizontalAlignment="Center" 
+                                   Height="43" 
+                                   Width="84"/>
                     </StackPanel>
                 </hc:Card.Footer>
             </hc:Card>
 
-            <hc:Card BorderBrush="#686B73" Background="#CCCCCC" Width="235" MaxWidth="240" BorderThickness="1" Effect="{DynamicResource EffectShadow2}" Margin="0,0,85,0">
+            <hc:Card BorderBrush="#686B73" 
+                     Background="#CCCCCC"
+                     Width="235" 
+                     MaxWidth="240" 
+                     BorderThickness="1" 
+                     MouseDoubleClick="Disponibili_Clicked"
+                     Effect="{DynamicResource EffectShadow2}"
+                     Margin="0,0,85,0">
                 <!--Card Content section-->
-                <Border CornerRadius="4,4,0,0" Width="160" Height="113" Margin="36,0,37,0">
-                    <TextBlock TextWrapping="Wrap" VerticalAlignment="Center" HorizontalAlignment="Center"  Text="&#xE7EC;"  FontSize="50" FontFamily="Segoe MDL2 Assets" />
+                <Border 
+                    CornerRadius="4,4,0,0"
+                    Height="136"
+                    Margin="10,0,8,0">
+
+                    <StackPanel Height="138"
+                                VerticalAlignment="Top" >
+                        <TextBlock 
+                            TextWrapping="Wrap" 
+                            HorizontalAlignment="Center" 
+                            Text="&#xE811;" 
+                            FontSize="56"
+                            FontFamily="Segoe MDL2 Assets" 
+                            Height="62" />
+                        <TextBlock 
+                            TextWrapping="Wrap"
+                            HorizontalAlignment="Center" 
+                            Text="Parcheggi disponibili" 
+                            FontSize="28" 
+                            Width="130"  />
+
+                    </StackPanel>
+
                 </Border>
+
                 <!--Card Footer part-->
                 <hc:Card.Footer>
-                    <StackPanel Margin="10" Width="160">
-                        <!--Card First-level content-->
-                        <TextBlock TextWrapping="NoWrap"  Style="{DynamicResource TextBlockLargeBold}" TextTrimming="CharacterEllipsis" 
-                                       Text="Parcheggi" 
-                                       HorizontalAlignment="Left"/>
+                    <StackPanel Margin="36,0,37,0" Width="160" Height="59">
+
                         <!--Card Secondary content-->
                         <TextBlock TextWrapping="NoWrap" Style="{DynamicResource TextBlockDefault}" TextTrimming="CharacterEllipsis" 
-                                       Text="30" FontSize="16" Margin="0,6,0,0"
-                                       HorizontalAlignment="Left"/>
+                                       Text="30" FontSize="25" Margin="0,6,0,0"
+                                       HorizontalAlignment="Center" Height="43" Width="36"/>
                     </StackPanel>
                 </hc:Card.Footer>
             </hc:Card>
 
-            <hc:Card BorderBrush="#686B73" Background="#F7AD86" Width="235" MaxWidth="240" BorderThickness="1" Effect="{DynamicResource EffectShadow2}" Margin="0">
+            <hc:Card BorderBrush="#686B73" 
+                     Background="#F7AD86" 
+                     Width="235" 
+                     MaxWidth="240" 
+                     BorderThickness="1" 
+                     MouseDoubleClick="NonDisponibili_Clicked"
+                     Effect="{DynamicResource EffectShadow2}" 
+                     Margin="0">
                 <!--Card Content section-->
-                <Border  CornerRadius="4,4,0,0" Width="160" Height="113" Margin="36,0,37,0">
-                    <TextBlock TextWrapping="Wrap" VerticalAlignment="Center" HorizontalAlignment="Center"  Text="&#xE787;"  FontSize="50" FontFamily="Segoe MDL2 Assets" />
+                <!--Card Content section-->
+                <Border  CornerRadius="4,4,0,0" 
+                         Height="146"
+                         Margin="0,0,8,0">
+
+                    <StackPanel Height="138"
+                                VerticalAlignment="Top" Margin="10,0,0,0" >
+                        <TextBlock 
+                            TextWrapping="Wrap" 
+                            HorizontalAlignment="Center" 
+                            Text="&#xE811;" 
+                            FontSize="56"
+                            FontFamily="Segoe MDL2 Assets" 
+                            Height="62" />
+                        <TextBlock 
+                            TextWrapping="Wrap"
+                            HorizontalAlignment="Center" 
+                            Text="Parcheggi non disponibili" 
+                            TextAlignment="Center"
+                            FontSize="28" 
+                            Width="179"  />
+
+                    </StackPanel>
+
                 </Border>
+
                 <!--Card Footer part-->
                 <hc:Card.Footer>
-                    <StackPanel Margin="10" Width="160">
-                        <!--Card First-level content-->
-                        <TextBlock TextWrapping="NoWrap"  Style="{DynamicResource TextBlockLargeBold}" TextTrimming="CharacterEllipsis" 
-                                       Text="Prenotazioni" 
-                                       HorizontalAlignment="Left"/>
+                    <StackPanel Margin="36,0,37,0" Width="160" Height="59">
+
                         <!--Card Secondary content-->
-                        <TextBlock TextWrapping="NoWrap" Style="{DynamicResource TextBlockDefault}" TextTrimming="CharacterEllipsis" 
-                                       Text="50" FontSize="16" Margin="0,6,0,0"
-                                       HorizontalAlignment="Left"/>
+                        <TextBlock TextWrapping="NoWrap" 
+                                   Style="{DynamicResource TextBlockDefault}" 
+                                   TextTrimming="CharacterEllipsis" 
+                                   Text="40" 
+                                   FontSize="25" 
+                                   Margin="0,6,0,0"
+                                   HorizontalAlignment="Center" 
+                                   Height="43" 
+                                   Width="32"/>
                     </StackPanel>
                 </hc:Card.Footer>
             </hc:Card>
@@ -92,19 +186,34 @@
 
         </StackPanel>
 
+        <!--Grid Incassi--> 
+        <Grid     
+            Margin="102,10,120,0" 
+            Grid.Row="2" 
+            HorizontalAlignment="Center"
+            x:Name="gridPanel"
+            >
 
-        <StackPanel Margin="24,10,0,0" Grid.Row="2" HorizontalAlignment="Stretch" Orientation="Horizontal">
-            <hc:Card Width="658" 
-                     Margin="20" 
+            <Grid.RowDefinitions>
+                <RowDefinition></RowDefinition>
+            </Grid.RowDefinitions>
+            
+            <hc:Card  
+                     Margin="20"
+                     Grid.Row="0"
+                     x:Name="Incassi"
+                     HorizontalAlignment="Center"
                      BorderBrush="#80BAE5">
-                
+
                 <DataGrid
                     Background="#80BAE5"         
                     AutoGenerateColumns="False"
                     CanUserAddRows="False"
+            
                     ItemsSource="{Binding Source}"
-                    Margin="0,0,-2,0"
-                    KeyboardNavigation.TabNavigation="Once">
+                   
+                    
+                    KeyboardNavigation.TabNavigation="Once" HorizontalAlignment="Center"  Width="1017" >
 
                     <DataGrid.Columns>
                         <!--
@@ -113,7 +222,6 @@
                         Consider adding header properties to Resources.resw
                     -->
                         <DataGridTextColumn Binding="{Binding OrderID}" Header="OrderID" />
-                        <DataGridTextColumn Binding="{Binding OrderDate}" Header="OrderDate" />
                         <DataGridTextColumn Binding="{Binding Company}" Header="Company" />
                         <DataGridTextColumn Binding="{Binding OrderTotal}" Header="OrderTotal" />
                         <DataGridTextColumn Binding="{Binding Status}" Header="Status" />
@@ -131,34 +239,103 @@
                     </DataGrid.Columns>
 
                 </DataGrid>
-                
-            </hc:Card>
-            <Button x:Name="Create" 
-                    Click="Create_Click" 
-                    Background="LightSkyBlue" 
-                    Content="Create" 
-                    FontSize="18" 
-                    Height="61" 
-                    Width="113" 
-                    Margin="38,10,20,100"/>
-            
-            <Button x:Name="Remove" 
-                    Background="#E66605" 
-                    Content="Remove" 
-                    FontSize="18" 
-                    Height="61" 
-                    Width="113" 
-                    Margin="8,10,20,100"/>
-            
-            <Button x:Name="Update" 
-                    Background="#8BE78B" 
-                    Content="Update" 
-                    FontSize="18" 
-                    Height="61" 
-                    Width="113" 
-                    Margin="8,10,20,100"/>
 
-        </StackPanel>
+            </hc:Card>
+
+            
+            <!--Grid Parcheggi Disponibili-->
+            <hc:Card  
+                     Margin="20"
+                     Grid.Row="0"
+                     x:Name="Disponibili"
+                     HorizontalAlignment="Center"
+                     BorderBrush="#80BAE5">
+
+                <DataGrid
+                    Background="#80BAE5"         
+                    AutoGenerateColumns="False"
+                    CanUserAddRows="False"
+            
+                    ItemsSource="{Binding Source}"
+                   
+                    
+                    KeyboardNavigation.TabNavigation="Once" HorizontalAlignment="Center"  Width="1017" >
+
+                    <DataGrid.Columns>
+                        <!--
+                        TODO WTS:
+                        Remove this column definitions and define columns for your data.
+                        Consider adding header properties to Resources.resw
+                    -->
+                        <DataGridTextColumn Binding="{Binding OrderID}" Header="OrderID" />
+                        <DataGridTextColumn Binding="{Binding OrderDate}" Header="OrderDate" />
+                        <DataGridTextColumn Binding="{Binding Company}" Header="Company" />
+                       
+                        <DataGridTextColumn Binding="{Binding Status}" Header="Status" />
+                        <DataGridTemplateColumn Header="Symbol">
+                            <DataGridTemplateColumn.CellTemplate>
+                                <DataTemplate>
+                                    <TextBlock
+                                    Margin="{StaticResource SmallLeftRightMargin}"
+                                    HorizontalAlignment="Left"
+                                    Style="{StaticResource SmallIconStyle}"
+                                    Text="{Binding Symbol}" />
+                                </DataTemplate>
+                            </DataGridTemplateColumn.CellTemplate>
+                        </DataGridTemplateColumn>
+                    </DataGrid.Columns>
+
+                </DataGrid>
+
+            </hc:Card>
+            
+            <!--Grid Parcheggi non disponibili-->
+            <hc:Card  
+                     Margin="20"
+                     Grid.Row="0"
+                     x:Name="NonDisponibili"
+                     HorizontalAlignment="Center"
+                     BorderBrush="#80BAE5">
+
+                <DataGrid
+                    
+                    Background="#80BAE5"         
+                    AutoGenerateColumns="False"
+                    CanUserAddRows="False"
+                    ItemsSource="{Binding Source}"
+                    KeyboardNavigation.TabNavigation="Once" 
+                    HorizontalAlignment="Center"  
+                    Width="1017" >
+
+                    <DataGrid.Columns>
+                        <!--
+                        TODO WTS:
+                        Remove this column definitions and define columns for your data.
+                        Consider adding header properties to Resources.resw
+                    -->
+                        <DataGridTextColumn Binding="{Binding OrderID}" Header="OrderID" />
+                        <DataGridTextColumn Binding="{Binding OrderDate}" Header="OrderDate" />
+                        <DataGridTextColumn Binding="{Binding OrderTotal}" Header="OrderTotal" />
+                        <DataGridTextColumn Binding="{Binding Status}" Header="Status" />
+                        <DataGridTemplateColumn Header="Symbol">
+                            <DataGridTemplateColumn.CellTemplate>
+                                <DataTemplate>
+                                    <TextBlock
+                                    Margin="{StaticResource SmallLeftRightMargin}"
+                                    HorizontalAlignment="Left"
+                                    Style="{StaticResource SmallIconStyle}"
+                                    Text="{Binding Symbol}" />
+                                </DataTemplate>
+                            </DataGridTemplateColumn.CellTemplate>
+                        </DataGridTemplateColumn>
+                    </DataGrid.Columns>
+
+                </DataGrid>
+
+            </hc:Card>
+        </Grid>
+        
+        
 
 
 

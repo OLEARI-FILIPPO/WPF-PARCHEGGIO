@@ -9,6 +9,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Web;
 using System.Windows;
+using System.Windows.Media;
 using System.Windows.Media.Animation;
 using WebAPI_Definitivo.Models;
 using WPF_DEFINITIVO.Helpers;
@@ -50,75 +51,94 @@ namespace WPF_DEFINITIVO.Views
 
             //Query inserimento persona
 
-            using (var client = new HttpClient())
+            if (Surname.Text == "Cognome" || Name.Text == "Nome" || LicensePlate.Text=="Targa" || datePicker.SelectedDate == DateTime.Now.Date )
             {
-                OwnerVehicle parametri = new OwnerVehicle()
+                MessageBox.Show("Error","Inserire tutti i dati richiesti",MessageBoxButton.OK, MessageBoxImage.Error);
+                Surname.BorderBrush = new SolidColorBrush(Colors.Red);
+                Name.BorderBrush = new SolidColorBrush(Colors.Red);
+                LicensePlate.BorderBrush = new SolidColorBrush(Colors.Red);
+                datePicker.BorderBrush = new SolidColorBrush(Colors.Red);
+
+            }
+            else
+            {
+                Surname.BorderBrush = new SolidColorBrush(Colors.Transparent);
+                Name.BorderBrush = new SolidColorBrush(Colors.Transparent);
+                LicensePlate.BorderBrush = new SolidColorBrush(Colors.Transparent);
+                datePicker.BorderBrush = new SolidColorBrush(Colors.Transparent);
+
+                using (var client = new HttpClient())
                 {
-                    Surname = creazione.Surname,
-                    Name = creazione.Name,
-                    DateBirth = creazione.DateBirth
-                };
-
-                //Autenticazione token
-                client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", NavigationLoginToLogout.Token);
-
-                //Chiamo l'api per la creazione del parcheggio
-                string url = "http://localhost:13636/api/v1/ParkingRecordsByName";
-
-                InfoParking i = new InfoParking();
-                i.InfoParkId = 1;
-                i.Ncol = 1;
-                i.Nrighe = 1;
-                i.NamePark = creazione.nomeParcheggio;
-
-                var response = await client.PostAsJsonAsync(url, i);
-                var list = await response.Content.ReadAsStringAsync();
-                List<Parking> ParkingObjectByName;
-
-                if (response.IsSuccessStatusCode)
-                {
-                    ParkingObjectByName = JsonConvert.DeserializeObject<List<Parking>>(list);
-
-                    client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", NavigationLoginToLogout.Token);
-                    
-                    var response2 = await client.GetAsync("http://localhost:13636/api/v1/VehicleList");
-                    var list2 = await response2.Content.ReadAsStringAsync();
-
-                    if(response2.IsSuccessStatusCode)
+                    OwnerVehicle parametri = new OwnerVehicle()
                     {
-                        List<Vehicle> VehicleObject = JsonConvert.DeserializeObject<List<Vehicle>>(list2);
+                        Surname = creazione.Surname,
+                        Name = creazione.Name,
+                        DateBirth = creazione.DateBirth
+                    };
 
-                        foreach (var a in ParkingObjectByName)
+                    //Autenticazione token
+                    client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", NavigationLoginToLogout.Token);
+
+                    //Chiamo l'api per la creazione del parcheggio
+                    string url = "http://localhost:13636/api/v1/ParkingRecordsByName";
+
+                    InfoParking i = new InfoParking();
+                    i.InfoParkId = 1;
+                    i.Ncol = 1;
+                    i.Nrighe = 1;
+                    i.NamePark = creazione.nomeParcheggio;
+
+                    var response = await client.PostAsJsonAsync(url, i);
+                    var list = await response.Content.ReadAsStringAsync();
+                    List<Parking> ParkingObjectByName;
+
+                    if (response.IsSuccessStatusCode)
+                    {
+                        ParkingObjectByName = JsonConvert.DeserializeObject<List<Parking>>(list);
+
+                        client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", NavigationLoginToLogout.Token);
+
+                        var response2 = await client.GetAsync("http://localhost:13636/api/v1/VehicleList");
+                        var list2 = await response2.Content.ReadAsStringAsync();
+
+                        if (response2.IsSuccessStatusCode)
                         {
-                            foreach (var b in VehicleObject)
+                            List<Vehicle> VehicleObject = JsonConvert.DeserializeObject<List<Vehicle>>(list2);
+
+                            foreach (var a in ParkingObjectByName)
                             {
-                                if (a.VehicleId == b.VehicleId)
+                                foreach (var b in VehicleObject)
                                 {
-                                    if (b.LicensePlate == creazione.Targa)
+                                    if (a.VehicleId == b.VehicleId)
                                     {
-                                        MessageBox.Show("Targa Già Presente");
-                                        goto EndOfLoop;
+                                        if (b.LicensePlate == creazione.Targa)
+                                        {
+                                            MessageBox.Show("Targa Già Presente");
+                                            goto EndOfLoop;
+                                        }
                                     }
                                 }
                             }
                         }
                     }
-                }
                 EndOfLoop:;
 
 
-                // Chiamata API
-                url = "http://localhost:13636/api/v1/parcheggio/" + creazione.Targa + "/" + creazione.nomeParcheggio + "/" + creazione.postoName + "";
+                    // Chiamata API
+                    url = "http://localhost:13636/api/v1/parcheggio/" + creazione.Targa + "/" + creazione.nomeParcheggio + "/" + creazione.postoName + "";
 
 
-                //Chiamata
-                var response3 = await client.PostAsJsonAsync(url, parametri);
-                var result = await response.Content.ReadAsStringAsync();
+                    //Chiamata
+                    var response3 = await client.PostAsJsonAsync(url, parametri);
+                    var result = await response.Content.ReadAsStringAsync();
 
-                this.Close();
-                MessageBox.Show("Veicolo inserito con successo");
+                    this.Close();
+                    MessageBox.Show("Veicolo inserito con successo");
 
+                }
             }
+
+            
 
 
 
@@ -133,6 +153,54 @@ namespace WPF_DEFINITIVO.Views
             d.Duration = TimeSpan.FromSeconds(0.5);
             d.EasingFunction = new QuadraticEase();
             grid.BeginAnimation(HeightProperty, d);
+        }
+
+        private void TextBox_GotFocus(object sender, RoutedEventArgs e) //TextBox Surname
+        {
+            Surname.Text = null;
+        }
+
+        private void Name_GotFocus(object sender, RoutedEventArgs e)
+        {
+            Name.Text = null;
+        }
+
+        private void LicensePlate_GotFocus(object sender, RoutedEventArgs e)
+        {
+            LicensePlate.Text = null;
+        }
+
+        private void grid_Loaded(object sender, RoutedEventArgs e)
+        {
+            LicensePlate.Text = "Targa";
+            Surname.Text = "Cognome";
+            Name.Text = "Nome";
+
+            datePicker.SelectedDate = DateTime.Now.Date;
+        }
+
+        private void Surname_LostFocus(object sender, RoutedEventArgs e)
+        {
+            if (Surname.Text == "")
+            {
+                Surname.Text = "Cognome";
+            }
+        }
+
+        private void Name_LostFocus(object sender, RoutedEventArgs e)
+        {
+            if (Name.Text == "")
+            {
+                Name.Text = "Nome";
+            }
+        }
+
+        private void LicensePlate_LostFocus(object sender, RoutedEventArgs e)
+        {
+            if (LicensePlate.Text == "")
+            {
+                LicensePlate.Text = "Targa";
+            }
         }
     }
 }

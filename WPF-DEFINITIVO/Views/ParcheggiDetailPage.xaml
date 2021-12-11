@@ -107,6 +107,7 @@
                     Margin="{StaticResource MediumTopMargin}"
                     Style="{StaticResource SubtitleTextStyle}"
                     Text="Storico Parcheggio" />
+                
                 <DataGrid
                     AutoGenerateColumns="False"
                     GridLinesVisibility="Horizontal"

@@ -378,7 +378,6 @@ namespace WPF_DEFINITIVO.Views
             
         }
 
-
-
+       
     }
 }

@@ -9,7 +9,7 @@
         Title="Metodo entra veicolo" MaxHeight="650"
         MaxWidth="700" Width="544" Height="545" Loaded="Window_Loaded">
 
-    <Grid x:Name="grid">
+    <Grid x:Name="grid" Loaded="grid_Loaded">
 
         <Grid.RowDefinitions>
             <RowDefinition Height="50"></RowDefinition>
@@ -29,7 +29,7 @@
                     Style="{StaticResource PageTitleStyle}"
                     Margin="24,0,0,0"
                     FontSize="18"
-                   >Aggiungi Parcheggio</TextBlock>
+                   >Entra nel Parchceggio</TextBlock>
 
         <StackPanel Grid.Row="1" 
                     Orientation="Horizontal" 
@@ -40,10 +40,13 @@
             <TextBox Text="{Binding Surname}"
                      Width="406" 
                      Height="60" 
+                     x:Name="Surname"
                      Foreground="Gray"
                      HorizontalAlignment="Center" 
                      FontSize="20" 
-                     VerticalAlignment="Center"></TextBox>
+                     LostFocus="Surname_LostFocus"
+                     VerticalAlignment="Center" 
+                     GotFocus="TextBox_GotFocus"></TextBox>
 
         </StackPanel>
 
@@ -56,6 +59,9 @@
                      Height="60" 
                      HorizontalAlignment="Center"
                      FontSize="20"
+                     x:Name="Name"
+                     LostFocus="Name_LostFocus"
+                     GotFocus="Name_GotFocus"
                      Foreground="Gray"
                      Text="{Binding Name}"
                      VerticalAlignment="Center"/>
@@ -72,6 +78,7 @@
                         FontSize="20"
                         Foreground="Gray"
                         Text="{Binding DateBirth}"
+                        x:Name="datePicker"
                         VerticalAlignment="Center"></DatePicker>
 
         </StackPanel>
@@ -85,6 +92,9 @@
                      Height="60" 
                      HorizontalAlignment="Center"
                      FontSize="20"
+                     x:Name="LicensePlate"
+                     LostFocus="LicensePlate_LostFocus"
+                     GotFocus="LicensePlate_GotFocus"
                      Foreground="Gray"
                      Text="{Binding Targa}"
                      VerticalAlignment="Center"/>
@@ -96,13 +106,13 @@
                     HorizontalAlignment="Center">
             <Button 
                     Name="entra"
-                    FontSize="14" 
+                    FontSize="18" 
                     Background="LightGreen" 
                     Height="48" Margin="15 0 0 0"
                     Width="130" Click="entra_Click">Entra</Button>
 
             <Button
-                    FontSize="14" 
+                    FontSize="18" 
                     Background="IndianRed" 
                     Height="48" Margin="50 0 0 0"
                     Width="130" 

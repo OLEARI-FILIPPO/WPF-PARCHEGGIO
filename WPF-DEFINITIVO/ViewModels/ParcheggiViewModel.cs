@@ -134,7 +134,7 @@ namespace WPF_DEFINITIVO.ViewModels
 
                 }
             }
-            await Task.Delay(51);
+            //await Task.Delay(51);
         }
 
 
@@ -175,7 +175,7 @@ namespace WPF_DEFINITIVO.ViewModels
 
                 }
             }
-            await Task.Delay(51);
+           // await Task.Delay(51);
 
         }
 
