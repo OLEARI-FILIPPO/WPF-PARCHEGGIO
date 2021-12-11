@@ -3,7 +3,7 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-        xmlns:local="clr-namespace:WPF_DEFINITIVO.Views" xmlns:viewmodels="clr-namespace:WPF_DEFINITIVO.ViewModels" d:DataContext="{d:DesignInstance Type=viewmodels:EntraWindowViewModel}"
+        xmlns:local="clr-namespace:WPF_DEFINITIVO.Views" xmlns:viewmodels="clr-namespace:WPF_DEFINITIVO.ViewModels" xmlns:hc="https://handyorg.github.io/handycontrol" d:DataContext="{d:DesignInstance Type=viewmodels:EntraWindowViewModel}"
         mc:Ignorable="d"
         WindowStartupLocation="CenterScreen"
         Title="Metodo entra veicolo" MaxHeight="650"
@@ -72,14 +72,15 @@
                     Orientation="Horizontal"  
                     HorizontalAlignment="Center">
 
-            <DatePicker Width="406" 
+            <hc:DatePicker Width="406" 
                         Height="60" 
                         HorizontalAlignment="Center"
                         FontSize="20"
                         Foreground="Gray"
                         Text="{Binding DateBirth}"
                         x:Name="datePicker"
-                        VerticalAlignment="Center"></DatePicker>
+                         hc:InfoElement.Placeholder="Data di nascita"
+                        VerticalAlignment="Center"></hc:DatePicker>
 
         </StackPanel>
 
