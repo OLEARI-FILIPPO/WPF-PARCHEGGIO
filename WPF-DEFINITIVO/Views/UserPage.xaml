@@ -206,9 +206,10 @@
 
                         <StackPanel Width="137" 
                                     Margin="0,25,0,0" 
-                                    Orientation="Horizontal" HorizontalAlignment="Center" Height="47">
-
-                            <Button x:Name="modifica" Click="modifica_Click" Width="137" FontSize="15" Background="#A0EFEB" Height="75">Modifica</Button>
+                                    Orientation="Horizontal" HorizontalAlignment="Center" Height="53">
+                            
+                            <Button  Margin="2" x:Name="modifica" Click="modifica_Click" Width="137" FontSize="15" Background="#A0EFEB" Height="75">Modifica</Button>
+                            <!--<Button  Margin="2" x:Name="modifica" Click="modifica_Click" Width="137" FontSize="15" Background="#A0EFEB" Height="75">Modifica</Button>-->
 
                         </StackPanel>
 

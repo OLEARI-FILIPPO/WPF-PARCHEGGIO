@@ -33,29 +33,36 @@ namespace WPF_DEFINITIVO.Views
 
             
             Disponibili.Visibility = System.Windows.Visibility.Hidden;
-            NonDisponibili.Visibility = System.Windows.Visibility.Hidden;
+            Utenti.Visibility = System.Windows.Visibility.Hidden;
 
         }
 
         private void Incasso_Clicked(object sender, System.Windows.RoutedEventArgs e)
         {
             Disponibili.Visibility = System.Windows.Visibility.Hidden;
-            NonDisponibili.Visibility = System.Windows.Visibility.Hidden;
+            Utenti.Visibility = System.Windows.Visibility.Hidden;
             Incassi.Visibility = System.Windows.Visibility.Visible;
         }
 
         private void Disponibili_Clicked(object sender, System.Windows.RoutedEventArgs e)
         {
             Disponibili.Visibility = System.Windows.Visibility.Visible;
-            NonDisponibili.Visibility = System.Windows.Visibility.Hidden;
+            Utenti.Visibility = System.Windows.Visibility.Hidden;
             Incassi.Visibility = System.Windows.Visibility.Hidden;
         }
 
         private void NonDisponibili_Clicked(object sender, System.Windows.RoutedEventArgs e)
         {
             Disponibili.Visibility = System.Windows.Visibility.Hidden;
-            NonDisponibili.Visibility = System.Windows.Visibility.Visible;
+            Utenti.Visibility = System.Windows.Visibility.Visible;
             Incassi.Visibility = System.Windows.Visibility.Hidden;
+        }
+
+        private void Button_Click(object sender, System.Windows.RoutedEventArgs e)
+        {
+            SignUp s = new SignUp();
+
+            s.ShowDialog();
         }
     }
 }

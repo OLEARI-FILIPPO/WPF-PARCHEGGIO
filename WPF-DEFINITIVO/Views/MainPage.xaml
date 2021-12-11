@@ -33,7 +33,7 @@
                     x:Name="cardPanel"
                     Margin="0,26,0,0" 
                     Width="884">
-            
+
             <!--Grid Incassi -->
             <hc:Card BorderBrush="#686B73" 
                      Background="#C1EEB0"  
@@ -125,7 +125,7 @@
                         <!--Card Secondary content-->
                         <TextBlock TextWrapping="NoWrap" Style="{DynamicResource TextBlockDefault}" TextTrimming="CharacterEllipsis" 
                                        Text="30" FontSize="25" Margin="0,6,0,0"
-                                       HorizontalAlignment="Center" Height="43" Width="36"/>
+                                       HorizontalAlignment="Center" Height="34" Width="32"/>
                     </StackPanel>
                 </hc:Card.Footer>
             </hc:Card>
@@ -144,19 +144,20 @@
                          Height="146"
                          Margin="0,0,8,0">
 
-                    <StackPanel Height="138"
-                                VerticalAlignment="Top" Margin="10,0,0,0" >
+                    <StackPanel Height="110"
+                                
+                                VerticalAlignment="Top" Margin="10,28,0,0" >
                         <TextBlock 
                             TextWrapping="Wrap" 
                             HorizontalAlignment="Center" 
-                            Text="&#xE811;" 
+                            Text="&#xE77B;" 
                             FontSize="56"
                             FontFamily="Segoe MDL2 Assets" 
                             Height="62" />
                         <TextBlock 
                             TextWrapping="Wrap"
                             HorizontalAlignment="Center" 
-                            Text="Parcheggi non disponibili" 
+                            Text="Utenti" 
                             TextAlignment="Center"
                             FontSize="28" 
                             Width="179"  />
@@ -186,18 +187,18 @@
 
         </StackPanel>
 
-        <!--Grid Incassi--> 
+        <!--Grid Incassi-->
         <Grid     
-            Margin="102,10,120,0" 
+            Margin="0,10,0,0" 
             Grid.Row="2" 
             HorizontalAlignment="Center"
-            x:Name="gridPanel"
+            x:Name="gridPanel" Width="1093"
             >
 
             <Grid.RowDefinitions>
                 <RowDefinition></RowDefinition>
             </Grid.RowDefinitions>
-            
+
             <hc:Card  
                      Margin="20"
                      Grid.Row="0"
@@ -242,7 +243,7 @@
 
             </hc:Card>
 
-            
+
             <!--Grid Parcheggi Disponibili-->
             <hc:Card  
                      Margin="20"
@@ -270,7 +271,7 @@
                         <DataGridTextColumn Binding="{Binding OrderID}" Header="OrderID" />
                         <DataGridTextColumn Binding="{Binding OrderDate}" Header="OrderDate" />
                         <DataGridTextColumn Binding="{Binding Company}" Header="Company" />
-                       
+
                         <DataGridTextColumn Binding="{Binding Status}" Header="Status" />
                         <DataGridTemplateColumn Header="Symbol">
                             <DataGridTemplateColumn.CellTemplate>
@@ -288,12 +289,12 @@
                 </DataGrid>
 
             </hc:Card>
-            
+
             <!--Grid Parcheggi non disponibili-->
             <hc:Card  
                      Margin="20"
                      Grid.Row="0"
-                     x:Name="NonDisponibili"
+                     x:Name="Utenti"
                      HorizontalAlignment="Center"
                      BorderBrush="#80BAE5">
 
@@ -305,7 +306,8 @@
                     ItemsSource="{Binding Source}"
                     KeyboardNavigation.TabNavigation="Once" 
                     HorizontalAlignment="Center"  
-                    Width="1017" >
+                    
+                    Width="1021" >
 
                     <DataGrid.Columns>
                         <!--
@@ -328,14 +330,25 @@
                                 </DataTemplate>
                             </DataGridTemplateColumn.CellTemplate>
                         </DataGridTemplateColumn>
+                        <DataGridTextColumn>
+                            
+                            <DataGridTextColumn.Header>
+                                <Grid Margin="0" Background="Transparent">
+
+                                    
+                                        <Button Grid.Column="0" Click="Button_Click" Content="Aggiungi Utente" Background="#F7AD86" />
+                                    
+                                </Grid>
+                            </DataGridTextColumn.Header>
+                        </DataGridTextColumn>
                     </DataGrid.Columns>
 
                 </DataGrid>
 
             </hc:Card>
         </Grid>
-        
-        
+
+
 
 
 
