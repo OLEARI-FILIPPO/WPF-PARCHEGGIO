@@ -143,7 +143,6 @@ namespace WPF_DEFINITIVO.Views
             }
             else
             {
-
                 UsernameTextBox.Text = "Username";
                 PasswordInserito.Password = "password";
                 DoubleAnimation d = new DoubleAnimation();

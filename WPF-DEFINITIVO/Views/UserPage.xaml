@@ -84,7 +84,7 @@
                             <TextBlock TextWrapping="Wrap" 
                                        VerticalAlignment="Center" 
                                        HorizontalAlignment="Center" 
-                                       Text="&#xE7EE;"  
+                                       Text="&#xE8B8;"  
                                        FontSize="130" 
                                        FontFamily="Segoe MDL2 Assets" />
                         </Border>
