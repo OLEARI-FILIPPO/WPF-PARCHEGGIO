@@ -32,10 +32,11 @@
                     x:Name="operations"
                     Orientation="Horizontal">
 
-            <DatePicker Grid.Row="1" 
+            <hc:DatePicker Grid.Row="1" 
                         Margin="24,0,20,0" 
                         Width="252" 
-                        Height="36"></DatePicker>
+                        hc:InfoElement.Placeholder="Seleziona una data"
+                        Height="36"></hc:DatePicker>
 
             <Button Background="#BB88F3" 
                     FontSize="17" 
