@@ -136,11 +136,11 @@ namespace WPF_DEFINITIVO.Views
 
                     await parcheggioView.GetParkingsByName(combo.Text);
                     // Colore Occupato : Rosso 
-                    if (combo.Text != "Nuovo-Parcheggio" && parcheggioView.ParkingObjectByName != null && parcheggioView.ParkingObjectByName[cont].Stato == true)
-                    {
-                        b.Background = (SolidColorBrush)new BrushConverter().ConvertFrom("#F77B7B");
-                        b.Name = "btn" + parcheggioView.ParkingObjectByName[cont].Id.ToString();        //Da mettere la targa
-                    }
+                    //if (combo.Text != "Nuovo-Parcheggio" && parcheggioView.ParkingObjectByName != null && parcheggioView.ParkingObjectByName[cont].Stato == true)
+                    //{
+                    //    b.Background = (SolidColorBrush)new BrushConverter().ConvertFrom("#F77B7B");
+                    //    b.Name = "btn" + parcheggioView.ParkingObjectByName[cont].Id.ToString();        //Da mettere la targa
+                    //}
                     b.SetResourceReference(Grid.EffectProperty, "EffectShadow2");
                     // b.Margin = new Thickness(3);
                     b.BorderThickness = new Thickness(1);

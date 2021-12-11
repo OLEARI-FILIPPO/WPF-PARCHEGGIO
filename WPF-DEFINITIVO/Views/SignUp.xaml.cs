@@ -40,7 +40,7 @@ namespace WPF_DEFINITIVO.Views
         private void grid_Loaded(object sender, RoutedEventArgs e)
         {
             
-            Username.Text = "Cognome";
+            Username.Text = "Username";
             Password.Password = "Password";
 
             Passwordtxt.Visibility = Visibility.Hidden;
@@ -52,7 +52,7 @@ namespace WPF_DEFINITIVO.Views
         {
             if (Username.Text == "")
             {
-                Username.Text = "Cognome";
+                Username.Text = "Username";
             }
         }
 
