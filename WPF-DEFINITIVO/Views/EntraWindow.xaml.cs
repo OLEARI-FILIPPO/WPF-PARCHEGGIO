@@ -153,6 +153,8 @@ namespace WPF_DEFINITIVO.Views
             d.Duration = TimeSpan.FromSeconds(0.5);
             d.EasingFunction = new QuadraticEase();
             grid.BeginAnimation(HeightProperty, d);
+
+            datePicker.Text = "Data di nascita";
         }
 
         private void TextBox_GotFocus(object sender, RoutedEventArgs e) //TextBox Surname

@@ -13,13 +13,7 @@ namespace WPF_DEFINITIVO.Views
             DataContext = viewModel;
         }
 
-        private void Create_Click(object sender, System.Windows.RoutedEventArgs e)
-        {
-            CreateOwner c = new CreateOwner();
-
-            c.ShowDialog(); //visualizzo form crea
-        }
-
+   
         private void Page_Loaded(object sender, System.Windows.RoutedEventArgs e)
         {
 

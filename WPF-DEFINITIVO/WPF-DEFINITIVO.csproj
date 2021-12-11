@@ -7,6 +7,9 @@
     <ApplicationManifest>app.manifest</ApplicationManifest>
   </PropertyGroup>
   <ItemGroup>
+    <Compile Remove="Views\CreateOwner.xaml.cs" />
+  </ItemGroup>
+  <ItemGroup>
     <None Remove="Views\gradient.png" />
     <None Remove="Views\hero-bg.png" />
     <None Remove="Views\Images\gradient.png" />
@@ -21,6 +24,9 @@
     <None Remove="Views\loginImage.png" />
     
     <None Remove="Views\svg.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Page Remove="Views\CreateOwner.xaml" />
   </ItemGroup>
   <ItemGroup>
     <Resource Include="Views\Images\hero-bg.png" />

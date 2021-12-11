@@ -29,7 +29,7 @@
                     Style="{StaticResource PageTitleStyle}"
                     Margin="24,0,0,0"
                     FontSize="18"
-                   >Entra nel Parchceggio</TextBlock>
+                   >Entra nel Parcheggio</TextBlock>
 
         <StackPanel Grid.Row="1" 
                     Orientation="Horizontal" 
