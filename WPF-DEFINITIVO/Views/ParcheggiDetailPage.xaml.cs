@@ -168,11 +168,6 @@ namespace WPF_DEFINITIVO.Views
                 //Autenticazione token
                 client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", NavigationLoginToLogout.Token);
 
-                //Chiamo le api per ottenere tutti i dati
-                //api da fare...
-
-                //da parkingid e infoparkid a id
-                //con quell'id prendo tutto l'oggetto per ricavare entry time date, vehicleId e infoparkid
 
                 //Chiamo l'api per ottenere i campi di history 
 

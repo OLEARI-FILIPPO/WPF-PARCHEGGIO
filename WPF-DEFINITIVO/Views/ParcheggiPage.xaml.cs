@@ -63,7 +63,6 @@ namespace WPF_DEFINITIVO.Views
             for (int j = 0; j < colonna; j++)
             {
                 ColumnDefinition cd = new ColumnDefinition();
-                   //cd.Width = GridLength.Auto;
                 DynamicGrid.ColumnDefinitions.Add(cd);
             }
         }
@@ -93,12 +92,9 @@ namespace WPF_DEFINITIVO.Views
 
                     TextBlock tb2 = new TextBlock()
                     {
-
-                        // string text = "P0" + iRow.ToString() + jCol.ToString(),
                         Text = "P0" + temp.ToString(),
                         FontSize = 18,
                         TextAlignment = TextAlignment.Center
-
                     };
 
                     StackPanel sp = new StackPanel()
@@ -114,15 +110,12 @@ namespace WPF_DEFINITIVO.Views
                         BorderThickness = new Thickness(1)
                     };
 
-                    // panel.BorderBrush = new SolidColorBrush(Colors.Black);
 
                     Grid.SetColumn(panel, jCol);
                     Grid.SetRow(panel, iRow);
 
                     Button b = new Button();
                     b.Name = "btn" + cont.ToString(); ;
-                    //  b.Width = widthButton;
-                    //  b.Height = heightButton;
 
                     b.HorizontalContentAlignment = HorizontalAlignment.Center;
                     b.VerticalContentAlignment = VerticalAlignment.Center;
@@ -143,11 +136,11 @@ namespace WPF_DEFINITIVO.Views
 
                     await parcheggioView.GetParkingsByName(combo.Text);
                     // Colore Occupato : Rosso 
-                    //if (combo.Text != "Nuovo-Parcheggio" && parcheggioView.ParkingObjectByName[cont].Stato == true)
-                    //{
-                    //    b.Background = (SolidColorBrush)new BrushConverter().ConvertFrom("#F77B7B");
-                    //    b.Name = "btn" + parcheggioView.ParkingObjectByName[cont].Id.ToString();        //Da mettere la targa
-                    //}
+                    if (combo.Text != "Nuovo-Parcheggio" && parcheggioView.ParkingObjectByName != null && parcheggioView.ParkingObjectByName[cont].Stato == true)
+                    {
+                        b.Background = (SolidColorBrush)new BrushConverter().ConvertFrom("#F77B7B");
+                        b.Name = "btn" + parcheggioView.ParkingObjectByName[cont].Id.ToString();        //Da mettere la targa
+                    }
                     b.SetResourceReference(Grid.EffectProperty, "EffectShadow2");
                     // b.Margin = new Thickness(3);
                     b.BorderThickness = new Thickness(1);

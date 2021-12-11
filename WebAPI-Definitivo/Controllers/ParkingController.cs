@@ -70,7 +70,7 @@ namespace WebAPI_Definitivo.Controllers
 
 
         [Authorize]
-        [HttpPost("parcheggio/{targa}/{nomeParcheggio}/{nomePosto}")]
+        [HttpPut("parcheggio/{targa}/{nomeParcheggio}/{nomePosto}")]
         //l'id è riferito al nome del parcheggio che l'utente ha cliccato
         public ActionResult AddParking(string targa, string nomeParcheggio, string nomePosto, [FromBody] OwnerVehicle persona)
         {
@@ -89,7 +89,7 @@ namespace WebAPI_Definitivo.Controllers
                             dateBirth: persona.DateBirth 
                         );
                     //Inserimento persona
-                    model.OwnerVehicle.Add(ownerVehicle);
+                    model.OwnerVehicle.Update(ownerVehicle);
                     model.SaveChanges();
 
                     OwnerVehicle owner = model.OwnerVehicle.FirstOrDefault(l => l.Surname == persona.Surname && l.Name == persona.Name && l.DateBirth == persona.DateBirth);
@@ -101,7 +101,7 @@ namespace WebAPI_Definitivo.Controllers
                             ownerId: owner.OwnerId
                         );
                     //Inserimento veicolo
-                    model.Vehicle.Add(nuovoVeicolo);
+                    model.Vehicle.Update(nuovoVeicolo);
                     model.SaveChanges();
 
                     //trovo park id
@@ -116,7 +116,7 @@ namespace WebAPI_Definitivo.Controllers
                             vehicleId: nuovoVeicolo.VehicleId,
                             infoParkId: Convert.ToInt32(infoParkId.InfoParkId.ToString())
                         );
-                    model.Parking.Add(parking);
+                    model.Parking.Update(parking);
                     model.SaveChanges();
 
 

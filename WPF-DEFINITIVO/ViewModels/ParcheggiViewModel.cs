@@ -122,6 +122,8 @@ namespace WPF_DEFINITIVO.ViewModels
                     var list = await response.Content.ReadAsStringAsync();
                     string ris = await response.Content.ReadAsStringAsync();
 
+                    ParkingObjectByName = null;
+                    //MessageBox.Show(ris);
                     if (response.IsSuccessStatusCode)
                     {
                         ParkingObjectByName = JsonConvert.DeserializeObject<List<Parking>>(list);
