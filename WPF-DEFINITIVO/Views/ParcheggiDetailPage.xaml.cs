@@ -27,13 +27,18 @@ namespace WPF_DEFINITIVO.Views
         string buttonName;
         string postoName;
         string parkingName;
+        string comboItemSelected;
         bool stato;
-        public ParcheggiDetailPage(string _postoName, Button _button, string _parkingName)
+        public ParcheggiDetailPage(string _postoName, Button _button, string _parkingName, string _comboItemSelected)
         {
             InitializeComponent();
+
+            comboItemSelected = _comboItemSelected;
             postoName = _postoName;
             parkingName = _parkingName;
             buttonName = _button.Name.Split("btn")[1];
+
+
             if (_button.Background == (SolidColorBrush)new BrushConverter().ConvertFrom("#F77B7B"))
                 stato = true;
             else
@@ -169,25 +174,51 @@ namespace WPF_DEFINITIVO.Views
                 //da parkingid e infoparkid a id
                 //con quell'id prendo tutto l'oggetto per ricavare entry time date, vehicleId e infoparkid
 
+                //Chiamo l'api per ottenere i campi di history 
 
-                //Oggetto da passare
-                History storico = new History
-                    (
-                        /*id: ,                   //id del parcheggio
-                        parkingId: postoName,   //id temporaneo del parcheggio
-                        stato: false,
-                        revenue: 5,             //da calcolare
-                        entryTimeDate: ,
-                        vehicleId: ,
-                        exitTimeDate: DateTime.UtcNow,         //da calcolare
-                        infoParkId: */
-                    ) ;
+                string url = "http://localhost:13636/api/v1/parking-from-id/" + postoName + "/" + comboItemSelected + "";
+
+                var response = await client.GetAsync(url);
+                var result = await response.Content.ReadAsStringAsync();
+
+                if (!response.IsSuccessStatusCode)
+                {
+                    MessageBox.Show("Veicolo non uscito.");
+                }
+                else
+                {
+                    Parking park = JsonConvert.DeserializeObject<Parking>(result);
+
+                    //Oggetto da passare
+                    History storico = new History
+                        (
+                            id: park.Id,            //id del parcheggio
+                            parkingId: postoName,   //id temporaneo del parcheggio
+                            stato: false,
+                            revenue: 5,             //da calcolare
+                            entryTimeDate: park.EntryTimeDate,
+                            vehicleId: park.VehicleId,
+                            exitTimeDate: DateTime.UtcNow,         
+                            infoParkId: park.InfoParkId
+                        );
 
 
-                //Chiamo l'api per la creazione del parcheggio
-                string url = "http://localhost:13636/api/v1/history";
+                    //Chiamo l'api per la creazione del parcheggio
+                    url = "http://localhost:13636/api/v1/history";
 
-                var response = await client.PostAsJsonAsync(url, storico);
+                    var response2 = await client.PostAsJsonAsync(url, storico);
+
+                    if (response2.IsSuccessStatusCode)
+                    {
+                        Close();
+                        MessageBox.Show("Veicolo uscito con successo.");
+                    }
+                    else
+                    {
+                        MessageBox.Show("Veicolo non uscito.");
+                    }
+                }
+                
             }
         }
     }

@@ -46,6 +46,30 @@ namespace WebAPI_Definitivo.Controllers
         }
 
         [Authorize]
+        [HttpGet("parking-from-id/{parkId}/{infoParkName}")]       //post per passare il body
+        public ActionResult ParkFromId(string parkId, string infoParkName)
+        {
+            try
+            {
+                using (ParkingManagementContext model = new ParkingManagementContext())
+                {
+                    var info = model.InfoParking.FirstOrDefault(f => f.NamePark == infoParkName);//oggetto del parcheggio selezionato
+
+                    Parking parkingFound = model.Parking.FirstOrDefault(f => f.ParkingId == parkId && f.InfoParkId == info.InfoParkId && f.Stato == true);
+                    if(parkingFound == null) { return NotFound("parcheggio non trovato"); }
+                    parkingFound.InfoPark = null;//Senno va in loop e crasha
+
+                    return Ok(parkingFound);
+                }
+            }
+            catch (Exception)
+            {
+                return Problem();
+            }
+        }
+
+
+        [Authorize]
         [HttpPost("parcheggio/{targa}/{nomeParcheggio}/{nomePosto}")]
         //l'id è riferito al nome del parcheggio che l'utente ha cliccato
         public ActionResult AddParking(string targa, string nomeParcheggio, string nomePosto, [FromBody] OwnerVehicle persona)
@@ -171,12 +195,6 @@ namespace WebAPI_Definitivo.Controllers
             {
                 using (ParkingManagementContext model = new ParkingManagementContext())
                 {
-                    //Metto stato = 0 nel parking
-
-
-                    //Calcolo della tariffa e aggiungo exittimedate
-
-
                     //Aggiorno history
                     model.History.Add(storico);
                     model.SaveChanges();

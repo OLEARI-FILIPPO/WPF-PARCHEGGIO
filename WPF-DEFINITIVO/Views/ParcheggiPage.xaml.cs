@@ -22,6 +22,7 @@ namespace WPF_DEFINITIVO.Views
     {
         ParcheggiViewModel parcheggioView;
         public event PropertyChangedEventHandler PropertyChanged;
+        public string comboItemSelected;
 
         protected void OnPropertyChanged(string name)
         {
@@ -221,7 +222,7 @@ namespace WPF_DEFINITIVO.Views
 
             Button b = (Button)sender;
             //apro il form che contiene i detagli nel parcheggio
-            ParcheggiDetailPage parcheggiDetailPage = new ParcheggiDetailPage(tb.Text, b, combo.Text); //e passo il nome del parcheggio
+            ParcheggiDetailPage parcheggiDetailPage = new ParcheggiDetailPage(tb.Text, b, combo.Text, comboItemSelected); //e passo il nome del parcheggio
             parcheggiDetailPage.ShowDialog();
         }
 
@@ -312,19 +313,18 @@ namespace WPF_DEFINITIVO.Views
 
                 RowLabel.Content = "Row";
                 ColLabel.Content = "Col";
-
-
-
             }
             else
             {
-
                 RowSlider.IsEnabled= false;
                 ColSlider.IsEnabled= false;
                 Create.IsEnabled = false;
                 InputName.IsEnabled= false;
                 RowLabel.IsEnabled = true;
                 ColLabel.IsEnabled = true;
+
+                //Mi salvo il menu selezionato per passarlo al dettaglio
+                comboItemSelected = combo.SelectedItem.ToString();
 
                 await parcheggioView.GetParkingRecords(combo.SelectedItem.ToString());
                 await parcheggioView.GetRowColumn(combo.SelectedItem.ToString());
@@ -337,9 +337,6 @@ namespace WPF_DEFINITIVO.Views
                 fadeAnimation.To = 1.0d;
                 DynamicGrid.BeginAnimation(Grid.OpacityProperty, fadeAnimation);
             }
-            
-            
-
         }
 
         public void CreaParcheggioSelezionato()
