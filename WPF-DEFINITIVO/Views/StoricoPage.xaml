@@ -5,7 +5,7 @@
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
-    xmlns:properties="clr-namespace:WPF_DEFINITIVO.Properties" xmlns:hc="https://handyorg.github.io/handycontrol"
+    xmlns:properties="clr-namespace:WPF_DEFINITIVO.Properties" xmlns:hc="https://handyorg.github.io/handycontrol" xmlns:viewmodels="clr-namespace:WPF_DEFINITIVO.ViewModels" d:DataContext="{d:DesignInstance Type=viewmodels:StoricoViewModel}"
     mc:Ignorable="d"
     d:DesignHeight="750" MinWidth="1290" Loaded="Page_Loaded">
 
@@ -54,7 +54,7 @@
                  Effect="{DynamicResource EffectShadow5}" 
                  Margin="57,37,87,37"  >
 
-            <DataGrid
+            <DataGrid Name="StoricoGrid"
                 
                 AutoGenerateColumns="False"
                
@@ -67,7 +67,7 @@
 
                 <DataGrid.Columns>
 
-                    <DataGridTextColumn Binding="{Binding OrderID}" Header="OrderID" />
+                    <DataGridTextColumn Binding="{Binding Id}" Header="OrderID" />
                     <DataGridTextColumn Binding="{Binding OrderDate}" Header="OrderDate" />
                     <DataGridTextColumn Binding="{Binding Company}" Header="Company" />
                     <DataGridTextColumn Binding="{Binding ShipTo}" Header="ShipTo" />

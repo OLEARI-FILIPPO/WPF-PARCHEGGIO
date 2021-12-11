@@ -1,7 +1,9 @@
 ﻿using HandyControl.Tools;
 using System;
+using System.Collections.Generic;
 using System.Windows.Controls;
 using System.Windows.Media.Animation;
+using WebAPI_Definitivo.Models;
 using WPF_DEFINITIVO.ViewModels;
 
 namespace WPF_DEFINITIVO.Views
@@ -19,8 +21,6 @@ namespace WPF_DEFINITIVO.Views
 
         private void DataGrid_Loaded(object sender, System.Windows.RoutedEventArgs e)
         {
-       
-
             DoubleAnimation d2 = new DoubleAnimation();
             d2.From = 0;
             d2.To = StoricoCard.ActualWidth;
