@@ -10,7 +10,7 @@
     x:Class="WPF_DEFINITIVO.Views.LoginPage"
   
     mc:Ignorable="d"
-    d:DesignHeight="750" MinWidth="1280" Loaded="LoginLoaded">
+    d:DesignHeight="750" MinWidth="1290" Loaded="LoginLoaded">
     <Page.Background>
         <ImageBrush ImageSource="Images/wave.png"/>
     </Page.Background>
