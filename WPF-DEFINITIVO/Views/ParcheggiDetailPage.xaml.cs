@@ -205,8 +205,19 @@ namespace WPF_DEFINITIVO.Views
 
                     if (response2.IsSuccessStatusCode)
                     {
-                        Close();
-                        MessageBox.Show("Veicolo uscito con successo.");
+                        url = "http://localhost:13636/api/v1/parcheggio/" + parkingName + "/" + postoName + "";
+
+                        //Chiamata
+                        var response3 = await client.PutAsJsonAsync(url, "");
+                        result = await response.Content.ReadAsStringAsync();
+
+                        if (response3.IsSuccessStatusCode)
+                        {
+                            Close();
+                            MessageBox.Show("Veicolo uscito con successo.");
+                        }
+                        else
+                            MessageBox.Show("Errore: parametri non aggiornati");
                     }
                     else
                     {

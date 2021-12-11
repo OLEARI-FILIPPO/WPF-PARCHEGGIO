@@ -90,12 +90,8 @@ namespace WPF_DEFINITIVO.Views
                         TextAlignment = TextAlignment.Center
                     };
 
-                    TextBlock tb2 = new TextBlock()
-                    {
-                        Text = "P0" + temp.ToString(),
-                        FontSize = 18,
-                        TextAlignment = TextAlignment.Center
-                    };
+
+                    
 
                     StackPanel sp = new StackPanel()
                     {
@@ -103,7 +99,6 @@ namespace WPF_DEFINITIVO.Views
                     };
 
                     sp.Children.Add(tb1);
-                    sp.Children.Add(tb2);
 
                     Border panel = new Border()
                     {
@@ -115,8 +110,7 @@ namespace WPF_DEFINITIVO.Views
                     Grid.SetRow(panel, iRow);
 
                     Button b = new Button();
-                    b.Name = "btn" + cont.ToString(); ;
-
+                    //b.Name = "btn" + cont.ToString(); ;
                     b.HorizontalContentAlignment = HorizontalAlignment.Center;
                     b.VerticalContentAlignment = VerticalAlignment.Center;
 
@@ -135,12 +129,21 @@ namespace WPF_DEFINITIVO.Views
                     b.Background = (SolidColorBrush)new BrushConverter().ConvertFrom("#93C7EA");
 
                     await parcheggioView.GetParkingsByName(combo.Text);
+                    b.Name = "btn" + parcheggioView.ParkingObjectByName[cont].ParkingId;
+
+                    TextBlock tb2 = new TextBlock()
+                    {
+                        Text = parcheggioView.ParkingObjectByName[cont].ParkingId,
+                        FontSize = 18,
+                        TextAlignment = TextAlignment.Center
+                    };
+                    sp.Children.Add(tb2);
+
                     // Colore Occupato : Rosso 
-                    //if (combo.Text != "Nuovo-Parcheggio" && parcheggioView.ParkingObjectByName != null && parcheggioView.ParkingObjectByName[cont].Stato == true)
-                    //{
-                    //    b.Background = (SolidColorBrush)new BrushConverter().ConvertFrom("#F77B7B");
-                    //    b.Name = "btn" + parcheggioView.ParkingObjectByName[cont].Id.ToString();        //Da mettere la targa
-                    //}
+                    if (combo.Text != "Nuovo-Parcheggio" && parcheggioView.ParkingObjectByName != null && parcheggioView.ParkingObjectByName[cont].Stato == true)
+                    {
+                        b.Background = (SolidColorBrush)new BrushConverter().ConvertFrom("#F77B7B");
+                    }
                     b.SetResourceReference(Grid.EffectProperty, "EffectShadow2");
                     // b.Margin = new Thickness(3);
                     b.BorderThickness = new Thickness(1);
@@ -205,7 +208,7 @@ namespace WPF_DEFINITIVO.Views
         }
 
         //Evento che visualizza i dettagli di un parcheggio
-        private void clickParhceggio(object sender, RoutedEventArgs e)
+        private async void clickParhceggio(object sender, RoutedEventArgs e)
         {
             //Creo l'istanza del dettaglio e la visualizzo come window aggiuntiva
 
@@ -217,6 +220,7 @@ namespace WPF_DEFINITIVO.Views
             //apro il form che contiene i detagli nel parcheggio
             ParcheggiDetailPage parcheggiDetailPage = new ParcheggiDetailPage(tb.Text, b, combo.Text, comboItemSelected); //e passo il nome del parcheggio
             parcheggiDetailPage.ShowDialog();
+            CreateDynamicGrid();
         }
 
         private void errorSlider()
