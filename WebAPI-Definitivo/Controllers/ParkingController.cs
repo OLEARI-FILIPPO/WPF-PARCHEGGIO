@@ -68,6 +68,36 @@ namespace WebAPI_Definitivo.Controllers
             }
         }
 
+        [Authorize]
+        [HttpPut("parcheggio/{nomeParcheggio}/{nomePosto}")]
+        //Reimposto i valori nella tabella parking
+        public ActionResult UpdateParking(string nomeParcheggio, string nomePosto)
+        {
+            try
+            {
+                using (ParkingManagementContext model = new ParkingManagementContext())
+                {
+                    //trovo park id
+                    var infoParkId = model.InfoParking.Where(w => w.NamePark == nomeParcheggio).FirstOrDefault();
+
+
+                    //Update Parking Record
+                    Parking parking = model.Parking.Where(w => w.ParkingId == nomePosto && w.InfoParkId == infoParkId.InfoParkId).FirstOrDefault();
+
+                    parking.Stato = false;
+                    parking.VehicleId = null;
+                    parking.EntryTimeDate = null;
+                    model.SaveChanges();
+
+                    return Ok("Update riuscito");
+                }
+            }
+            catch (Exception)
+            {
+                return Problem();
+            }
+        }
+
 
         [Authorize]
         [HttpPut("parcheggio/{targa}/{nomeParcheggio}/{nomePosto}")]
@@ -78,9 +108,6 @@ namespace WebAPI_Definitivo.Controllers
             {
                 using (ParkingManagementContext model = new ParkingManagementContext())
                 {
-                    string grado = HttpContext.User.Claims.FirstOrDefault(x => x.Type == "Grado").Value;
-                    if(grado != "1") { return Unauthorized(); }
-
                     //Il super user per ora può aggiungere il veicolo con la persona
                     OwnerVehicle ownerVehicle = new OwnerVehicle
                         (
@@ -108,21 +135,18 @@ namespace WebAPI_Definitivo.Controllers
                     var infoParkId = model.InfoParking.Where(w => w.NamePark == nomeParcheggio).FirstOrDefault();
                     
 
-                    //Parking record
-                    /*Parking parking = new Parking
-                        (
-                            parkingId: nomePosto,
-                            stato: true,
-                            entryTimeDate: DateTime.UtcNow,
-                            vehicleId: nuovoVeicolo.VehicleId,
-                            infoParkId: Convert.ToInt32(infoParkId.InfoParkId.ToString())
-                        );*/
+                    //Update Parking Record
                     Parking parking = model.Parking.Where(w => w.ParkingId == nomePosto && w.InfoParkId == infoParkId.InfoParkId).FirstOrDefault();
+                    
+                    parking.ParkingId = nomePosto;
                     parking.Stato = true;
+                    parking.EntryTimeDate = DateTime.Now;
+                    parking.VehicleId = nuovoVeicolo.VehicleId;
+                    parking.InfoParkId = Convert.ToInt32(infoParkId.InfoParkId.ToString());
                     model.SaveChanges();
 
 
-                    return Ok("Inserimento riuscito");
+                    return Ok("Update riuscito");
                 }
             }
             catch (Exception)

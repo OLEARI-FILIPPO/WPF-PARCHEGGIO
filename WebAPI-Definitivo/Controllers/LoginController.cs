@@ -27,7 +27,7 @@ namespace WebAPI_Definitivo.Controllers
                 {
                     SigningCredentials = new SigningCredentials(SecurityKeyGenerator.GetSecurityKey(candidate),
                     SecurityAlgorithms.HmacSha256Signature),
-                    Expires = DateTime.UtcNow.AddDays(1),
+                    Expires = DateTime.Now.AddDays(1),
                     Subject = new ClaimsIdentity(
                         new Claim[] 
                         { 
