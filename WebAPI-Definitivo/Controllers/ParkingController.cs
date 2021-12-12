@@ -420,6 +420,28 @@ namespace WebAPI_Definitivo.Controllers
             }
         }
 
-        //public Action
+
+        [Authorize]
+        [HttpGet("UsersInfo")]
+        public ActionResult GetUsers()
+        {
+            try
+            {
+                
+                using (ParkingManagementContext model = new ParkingManagementContext())
+                {
+                    List<Users> listOfUser;
+
+                    listOfUser = model.Users.ToList();
+
+                    return Ok(listOfUser);
+                }
+            }
+            catch (Exception)
+            {
+
+                return Problem();
+            }
+        }
     }
 }
