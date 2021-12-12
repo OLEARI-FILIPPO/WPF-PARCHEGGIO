@@ -135,9 +135,40 @@ namespace WPF_DEFINITIVO.Views
             modifica.IsEnabled= false ;
         }
 
-        private void modifica_Click(object sender, RoutedEventArgs e)
+        private async void modifica_Click(object sender, RoutedEventArgs e)
         {
-            
+
+
+            using (var client = new HttpClient())
+            {
+                client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", logout.Token);
+                string url = "http://localhost:13636/api/v1/ModifyUser/" + NavigationLoginToLogout._user.Username + "/" + NavigationLoginToLogout._user.Password + "/" + username.Text + "/" + password.Text;
+                var response = await client.GetAsync(url); //API controller name
+
+                string result = await response.Content.ReadAsStringAsync();
+
+                if (response.IsSuccessStatusCode)
+                {
+                    MessageBox.Show("Effetture il login con le nuove credenziali");
+                    //dopo il logout lo stato torna a false e il resto diventa null;
+                    NavigationLoginToLogout.isLoggedIn = false;
+                    NavigationLoginToLogout.result = null;
+                    NavigationLoginToLogout._user = null;
+
+                    //Tolgo menu tranne la schermata di login
+                    for (int i = ShellViewModel.MenuItems.Count - 1; i > 0; i--)
+                    {
+                        ShellViewModel.MenuItems.RemoveAt(i);
+                    }
+
+                    LoginPage user = new LoginPage(new LoginViewModel());
+                    NavigationService.Navigate(user);
+                }
+                else
+                {
+                    MessageBox.Show(result);
+                }
+            }
         }
     }
 }

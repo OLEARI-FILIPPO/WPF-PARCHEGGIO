@@ -190,29 +190,21 @@ namespace WPF_DEFINITIVO.Views
                 int riga = Int32.Parse(RowSlider.Value.ToString());
                 int colonna = Int32.Parse(ColSlider.Value.ToString());
 
-               await parcheggioView.CreateParcheggio(InputName.Text, riga, colonna);
+                await parcheggioView.CreateParcheggio(InputName.Text, riga, colonna);
+                //combo.Text = InputName.Text;
+                CreateDynamicRow(riga);
 
-                //CreateDynamicRow(riga);
+                CreateDynamicCol(colonna);
+                name = InputName.Text;
+                CreateDynamicGrid(InputName.Text);
 
-                //CreateDynamicCol(colonna);
-                //name = InputName.Text;
-                //CreateDynamicGrid(InputName.Text);
-
-                
-                //parcheggioView.GetParkings();
-
-                //combo.Items.Clear();
-
-                //combo.SelectedValue = combo.Items.Count - 1;
-                
-                
+                parcheggioView.Parking.Add(InputName.Text);
                 DoubleAnimation fadeAnimation = new DoubleAnimation();
                 fadeAnimation.Duration = TimeSpan.FromSeconds(0.5d);
                 fadeAnimation.EasingFunction = new QuadraticEase();
                 fadeAnimation.From = 0.0d;
                 fadeAnimation.To = 1.0d;
                 DynamicGrid.BeginAnimation(Grid.OpacityProperty, fadeAnimation);
-
             }
 
         }
@@ -337,6 +329,10 @@ namespace WPF_DEFINITIVO.Views
 
                 await parcheggioView.GetParkingRecords(combo.SelectedItem.ToString());
                 await parcheggioView.GetRowColumn(combo.SelectedItem.ToString());
+
+
+
+
                 CreaParcheggioSelezionato();
 
                 DoubleAnimation fadeAnimation = new DoubleAnimation();
