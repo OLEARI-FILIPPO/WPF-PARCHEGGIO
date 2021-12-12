@@ -43,19 +43,19 @@ namespace WebAPI_Definitivo.Controllers
         }
 
         [Authorize]
-        [HttpGet("getLicence/{source}")]
-        public ActionResult GetLicencePlate(ObservableCollection<History> source)
+        [HttpGet("getLicence/{idVeicoli}")]
+        public ActionResult GetLicencePlate(List<int> idVeicoli)
         {
             try
             {
                 using (ParkingManagementContext model = new ParkingManagementContext())
                 {
-                    ObservableCollection<string> targhe = new ObservableCollection<string>();
+                    List<string> targhe = new List<string>();
                     string i = "";
                     int c = 0;
-                    foreach (var item in source)
+                    foreach (var item in idVeicoli)
                     {
-                        i = model.Vehicle.Where(w => w.VehicleId == Convert.ToInt32(source[c].VehicleId)).FirstOrDefault().LicensePlate;
+                        i = model.Vehicle.Where(w => w.VehicleId == item).FirstOrDefault().LicensePlate;
                         targhe.Add(i);
                         c++;
                     }
@@ -70,19 +70,19 @@ namespace WebAPI_Definitivo.Controllers
         }
 
         [Authorize]
-        [HttpGet("getParkName/{source}")]
-        public ActionResult GetParkName(ObservableCollection<History> source)
+        [HttpGet("getParkName/{infoId}")]
+        public ActionResult GetParkName(List<int> infoId)
         {
             try
             {
                 using (ParkingManagementContext model = new ParkingManagementContext())
                 {
-                    ObservableCollection<string> nomi = new ObservableCollection<string>();
+                    List<string> nomi = new List<string>();
                     string i = "";
                     int c = 0;
-                    foreach (var item in source)
+                    foreach (var item in infoId)
                     {
-                        i = model.InfoParking.Where(w => w.InfoParkId == Convert.ToInt32(source[c].InfoParkId)).FirstOrDefault().NamePark;
+                        i = model.InfoParking.Where(w => w.InfoParkId == item).FirstOrDefault().NamePark;
                         nomi.Add(i);
                         c++;
                     }

@@ -57,8 +57,24 @@ namespace WPF_DEFINITIVO.ViewModels
                 }
 
 
+                /*List<int> idVeicoli = new List<int>();
+
+                foreach (var item in Source)
+                {
+                    idVeicoli.Add((int)item.VehicleId);
+                }
+
+
+                List<int> infoId = new List<int>();
+
+                foreach (var item in Source)
+                {
+                    infoId.Add((int)item.InfoParkId);
+                }
+
+
                 //Devo fare una lista di source.vehicleId ecc e passarla nell'url e dovrebbe andare
-                /*string url = "http://localhost:13636/api/v1/getLicence/" + Source + "";
+                string url = "http://localhost:13636/api/v1/getLicence/" + idVeicoli + "";
                 response = await client.GetAsync(url);
                 list = await response.Content.ReadAsStringAsync();
 
@@ -73,7 +89,7 @@ namespace WPF_DEFINITIVO.ViewModels
                     }
                 }
 
-                url = "http://localhost:13636/api/v1/getParkName/" + Source + "";
+                url = "http://localhost:13636/api/v1/getParkName/" + infoId + "";
                 response = await client.GetAsync(url);
                 list = await response.Content.ReadAsStringAsync();
                 collezione = JsonConvert.DeserializeObject<List<string>>(list);
