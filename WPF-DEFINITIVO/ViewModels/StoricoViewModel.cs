@@ -19,6 +19,10 @@ namespace WPF_DEFINITIVO.ViewModels
 {
     public class StoricoViewModel : ObservableObject, INavigationAware
     {
+
+        public DateTime DateBirth { get; set; } 
+
+
         public ObservableCollection<string> LicencePlate { get; set; } = new ObservableCollection<string>();
         public ObservableCollection<string> NamePark { get; set; } = new ObservableCollection<string>();
 
@@ -29,8 +33,6 @@ namespace WPF_DEFINITIVO.ViewModels
 
         public ObservableCollection<HistoryDisplay> HistoryDisplay { get; set; } = new ObservableCollection<HistoryDisplay>();
 
-        //public ObservableCollection<HistoryDisplay> HistoryDisplay { get; set; }
-
 
         public StoricoViewModel(ISampleDataService sampleDataService)
         {
@@ -40,12 +42,14 @@ namespace WPF_DEFINITIVO.ViewModels
         public async void OnNavigatedTo(object parameter)
         {
             Source.Clear();
+            HistoryDisplay.Clear();
+            HistoryHelper.oggetto = parameter;
 
             using (var client = new HttpClient())
             {
                 client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", NavigationLoginToLogout.Token);
 
-                var response = await client.GetAsync("http://localhost:13636/api/v1/history");
+                var response = await client.GetAsync("http://localhost:13636/api/v1/history/" + HistoryHelper.giorno + "/" + HistoryHelper.mese + "/" + HistoryHelper.anno + "");
                 var list = await response.Content.ReadAsStringAsync();
 
                 var lista = JsonConvert.DeserializeObject<ObservableCollection<History>>(list);
@@ -77,11 +81,6 @@ namespace WPF_DEFINITIVO.ViewModels
                 {
                     infoId.Add(Convert.ToInt32(item.InfoParkId));
                 }
-
-
-                //Devo fare una lista di source.vehicleId ecc e passarla nell'url e dovrebbe andare
-
-
 
                 string url = "http://localhost:13636/api/v1/getLicence";
                 response = await client.PostAsJsonAsync(url, idVeicoli);
@@ -126,7 +125,14 @@ namespace WPF_DEFINITIVO.ViewModels
                             )
                         );
                 }
+
+                HistoryHelper.giorno = 0;
             }
+        }
+
+        public void Refresh()
+        {
+            MessageBox.Show("fatto"); OnNavigatedTo(HistoryHelper.oggetto);
         }
 
         public void OnNavigatedFrom()

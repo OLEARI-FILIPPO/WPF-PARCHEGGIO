@@ -1,15 +1,19 @@
 ﻿using HandyControl.Tools;
 using System;
 using System.Collections.Generic;
+using System.Data;
+using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Media.Animation;
 using WebAPI_Definitivo.Models;
+using WPF_DEFINITIVO.Helpers;
 using WPF_DEFINITIVO.ViewModels;
 
 namespace WPF_DEFINITIVO.Views
 {
     public partial class StoricoPage : Page
     {
+        StoricoViewModel storico;
         public StoricoPage(StoricoViewModel viewModel)
         {
             InitializeComponent();
@@ -17,9 +21,10 @@ namespace WPF_DEFINITIVO.Views
             ConfigHelper.Instance.SetLang("it");
            // StoricoCard.BorderBrush.Opacity = 0;
             DataContext = viewModel;
+            storico = viewModel;
         }
 
-        private void DataGrid_Loaded(object sender, System.Windows.RoutedEventArgs e)
+        private void DataGrid_Loaded(object sender, RoutedEventArgs e)
         {
             DoubleAnimation d2 = new DoubleAnimation();
             d2.From = 0;
@@ -29,7 +34,7 @@ namespace WPF_DEFINITIVO.Views
             StoricoCard.BeginAnimation(WidthProperty, d2);
         }
 
-        private void Page_Loaded(object sender, System.Windows.RoutedEventArgs e)
+        private void Page_Loaded(object sender, RoutedEventArgs e)
         {
             DoubleAnimation d = new DoubleAnimation();
             d.From = 0;
@@ -37,6 +42,28 @@ namespace WPF_DEFINITIVO.Views
             d.Duration = TimeSpan.FromSeconds(1);
             d.EasingFunction = new QuadraticEase();
             operations.BeginAnimation(WidthProperty, d);
+        }
+
+        private void Button_Click(object sender, RoutedEventArgs e)
+        {
+            //MessageBox.Show(dataHistory.ToString());
+
+            //Salvo la data cosi la posso usare nel viewModel
+
+            string[] dataDivisa = dataHistory.ToString().Split("/");
+
+
+            HistoryHelper.giorno = Convert.ToInt32(dataDivisa[0]);
+            HistoryHelper.mese = Convert.ToInt32(dataDivisa[1]);
+            HistoryHelper.anno = Convert.ToInt32(dataDivisa[2].Substring(0, 4));
+
+            //CHIAMA LA FUNZIONE DEL VIEW MODEL
+            //storico.OnNavigatedTo("");
+            //DataGrid_Loaded(StoricoGrid, e);
+            StoricoGrid.Items.Refresh();
+
+            var sorico = (StoricoViewModel)DataContext;
+            storico.Refresh();
         }
     }
 }

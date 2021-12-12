@@ -39,18 +39,20 @@
                         Margin="24,0,20,0" 
                         Width="252" 
                         hc:InfoElement.Placeholder="Seleziona una data"
+                        Text="{Binding DateBirth}"
+                           Name="dataHistory"
                         Height="36"></hc:DatePicker>
 
             <Button Background="#BB88F3" 
                     FontSize="17" 
                     Content="Cerca" 
                     Height="36" 
-                    Width="82"></Button>
+                    Command="{Binding Refresh}"
+                    Width="82" Click="Button_Click"></Button>
 
         </StackPanel>
 
         <hc:Card  
-                 
                  x:Name="StoricoCard"  
                  Grid.Row="2"   
                  BorderBrush="#73DAE2"
@@ -79,45 +81,9 @@
                     <DataGridTextColumn Binding="{Binding ExitTimeDate}" Header="Exit Time" />
                     <DataGridTextColumn Binding="{Binding LicencePlate}"  Header="Targa" />
                     <DataGridTextColumn Binding="{Binding NamePark}" Header="Parking" />
-                    
+
                 </DataGrid.Columns>
             </DataGrid>
         </hc:Card>
-
-
-        <!--<Grid Grid.Row="2" Background="Transparent" VerticalAlignment="Center" HorizontalAlignment="Center" Height="572" Width="1111">
-            <DataGrid
-                AutoGenerateColumns="False"
-                GridLinesVisibility="Horizontal"
-                CanUserAddRows="False"
-                ItemsSource="{Binding Source}"
-                
-                
-                KeyboardNavigation.TabNavigation="Once">
-                <DataGrid.Columns>
-                    
-        
-                     
-        
-                    <DataGridTextColumn Binding="{Binding OrderID}" Header="OrderID" />
-                    <DataGridTextColumn Binding="{Binding OrderDate}" Header="OrderDate" />
-                    <DataGridTextColumn Binding="{Binding Company}" Header="Company" />
-                    <DataGridTextColumn Binding="{Binding ShipTo}" Header="ShipTo" />
-                    <DataGridTextColumn Binding="{Binding OrderTotal}" Header="OrderTotal" />
-                    <DataGridTextColumn Binding="{Binding Status}" Header="Status" />
-                    <DataGridTemplateColumn Header="Symbol">
-                        <DataGridTemplateColumn.CellTemplate>
-                            <DataTemplate>
-                                <TextBlock
-                                    Margin="{StaticResource SmallLeftRightMargin}"
-                                    HorizontalAlignment="Left"
-                                    Style="{StaticResource SmallIconStyle}"
-                                    Text="{Binding Symbol}" />
-                            </DataTemplate>
-                        </DataGridTemplateColumn.CellTemplate>
-                    </DataGridTemplateColumn>
-                </DataGrid.Columns>
-            </DataGrid>
-        </Grid>-->
     </Grid>
 </Page>
