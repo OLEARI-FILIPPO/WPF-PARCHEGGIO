@@ -1,13 +1,12 @@
-﻿<Page
-    x:Class="WPF_DEFINITIVO.Views.MainPage"
-    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
-    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
-    xmlns:properties="clr-namespace:WPF_DEFINITIVO.Properties" xmlns:hc="https://handyorg.github.io/handycontrol"
-    mc:Ignorable="d"
-    d:DesignHeight="750" MinWidth="1290" Loaded="Page_Loaded">
-
+﻿<Page x:Class="WPF_DEFINITIVO.Views.NormalUserMainPage"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:WPF_DEFINITIVO.Views"
+      xmlns:hc="https://handyorg.github.io/handycontrol"
+      mc:Ignorable="d" MinWidth="1290" d:DesignHeight="750" 
+      Title="NormalUserMainPage" Height="706" Loaded="Page_Loaded">
     <Page.Background>
         <ImageBrush ImageSource="Images/wave.png"/>
     </Page.Background>
@@ -24,7 +23,7 @@
         <TextBlock
             Style="{StaticResource PageTitleStyle}"
             Margin="{StaticResource MediumLeftMargin}"
-            Text="{x:Static properties:Resources.MainPageTitle}" />
+            Text="Main" />
 
 
         <StackPanel Orientation="Horizontal" 
@@ -41,8 +40,8 @@
                      BorderThickness="1" 
                      Effect="{DynamicResource EffectShadow2}"  
                      Margin="0,0,88,0" 
-                     x:Name="IncassiLabel"
-                     MouseDoubleClick="Incasso_Clicked"
+                     x:Name="UsciteLabel"
+                     MouseDoubleClick="UsciteLabel_MouseDoubleClick"
                      Width="235">
                 <!--Card Content section-->
                 <Border  CornerRadius="4,4,0,0"
@@ -58,9 +57,8 @@
                                    FontFamily="Segoe MDL2 Assets"
                                    Height="62" />
                         <TextBlock TextWrapping="Wrap" 
-                                   HorizontalAlignment="Center" 
-                                   Text="Incasso"  
-                                   FontSize="28"  />
+                                   HorizontalAlignment="Center"  
+                                   FontSize="28"  ><Run Language="it-it" Text="Uscite"/></TextBlock>
 
                     </StackPanel>
 
@@ -89,7 +87,7 @@
                      Width="235" 
                      MaxWidth="240" 
                      BorderThickness="1" 
-                     MouseDoubleClick="Disponibili_Clicked"
+                     MouseDoubleClick="Card_MouseDoubleClick"
                      Effect="{DynamicResource EffectShadow2}"
                      Margin="0,0,85,0">
                 <!--Card Content section-->
@@ -135,31 +133,31 @@
                      Width="235" 
                      MaxWidth="240" 
                      BorderThickness="1" 
-                     MouseDoubleClick="NonDisponibili_Clicked"
+                     MouseDoubleClick="Card_MouseDoubleClick_1"
                      Effect="{DynamicResource EffectShadow2}" 
                      Margin="0">
                 <!--Card Content section-->
                 <!--Card Content section-->
                 <Border  CornerRadius="4,4,0,0" 
                          Height="146"
-                         Margin="0,0,8,0">
+                         Margin="0,0,-2,0">
 
-                    <StackPanel Height="110"
-                                VerticalAlignment="Top" Margin="10,28,0,0" >
+                    <StackPanel Height="116"
+                                
+                                VerticalAlignment="Top" Margin="0,22,0,0" >
                         <TextBlock 
                             TextWrapping="Wrap" 
                             HorizontalAlignment="Center" 
-                            Text="&#xE7EC;" 
+                            Text="&#xE77B;" 
                             FontSize="56"
                             FontFamily="Segoe MDL2 Assets" 
                             Height="62" />
                         <TextBlock 
                             TextWrapping="Wrap"
                             HorizontalAlignment="Center" 
-                            Text="Veicoli" 
                             TextAlignment="Center"
                             FontSize="28" 
-                            Width="179"  />
+                            Width="179"  ><Run Language="it-it" Text="Veicoli"/></TextBlock>
 
                     </StackPanel>
 
@@ -186,12 +184,12 @@
 
         </StackPanel>
 
-        <!--Grid Incassi-->
+        <!--Grid Uscite-->
         <Grid     
             Margin="0,10,0,0" 
             Grid.Row="2" 
             HorizontalAlignment="Center"
-            x:Name="gridPanel" Width="1093"
+             Width="1093"
             >
 
             <Grid.RowDefinitions>
@@ -201,7 +199,7 @@
             <hc:Card  
                      Margin="20"
                      Grid.Row="0"
-                     x:Name="Incassi"
+                     x:Name="gridUscite"
                      HorizontalAlignment="Center"
                      BorderBrush="#80BAE5">
 
@@ -289,11 +287,11 @@
 
             </hc:Card>
 
-            <!--Grid Veicoli-->
+            <!-- Veicoli -->
             <hc:Card  
                      Margin="20"
                      Grid.Row="0"
-                     x:Name="Utenti"
+                     x:Name="gridVeicoli"
                      HorizontalAlignment="Center"
                      BorderBrush="#80BAE5">
 
@@ -330,13 +328,10 @@
                             </DataGridTemplateColumn.CellTemplate>
                         </DataGridTemplateColumn>
                         <DataGridTextColumn>
-                            
+
                             <DataGridTextColumn.Header>
                                 <Grid Margin="0" Background="Transparent">
-
-                                    
-                                        <Button Grid.Column="0" Click="Button_Click" Content="Aggiungi Veicoli" Background="#F7AD86" />
-                                    
+                                    <Button Grid.Column="0"  Content="Aggiungi Veicolo" Background="#F7AD86" />
                                 </Grid>
                             </DataGridTextColumn.Header>
                         </DataGridTextColumn>

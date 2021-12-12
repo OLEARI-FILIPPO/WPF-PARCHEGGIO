@@ -12,6 +12,7 @@ namespace WPF_DEFINITIVO.Helpers
         public static bool isLoggedIn;
         public static Users _user;
         public static string result;
+        public static int UserPriviledge;
 
         public static string Token;
 

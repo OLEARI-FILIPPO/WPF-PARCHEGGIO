@@ -394,5 +394,30 @@ namespace WebAPI_Definitivo.Controllers
                 return Problem();
             }
         }
+
+
+        [Authorize]
+        [HttpGet("NotParked")] //prende i parcheggi vuoti
+
+        public ActionResult GetNotParkedParking()
+        {
+            try
+            {
+                //MODIFICA: SI PUO ANCHE SOLO PASSARE IL NOME DEL PARCHEGGIO INVECE CHE TUTTO L'OGGETTO
+                using (ParkingManagementContext model = new ParkingManagementContext())
+                {
+                    List<Parking> listOfParkings;
+                    
+                    listOfParkings = model.Parking.Where(s => s.Stato == false).ToList();
+
+                    return Ok(listOfParkings);
+                }
+            }
+            catch (Exception)
+            {
+
+                return Problem();
+            }
+        }
     }
 }

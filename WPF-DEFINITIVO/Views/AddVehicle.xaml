@@ -1,0 +1,116 @@
+﻿<Window x:Class="WPF_DEFINITIVO.Views.AddVehicle"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+       xmlns:local="clr-namespace:WPF_DEFINITIVO.Views" xmlns:hc="https://handyorg.github.io/handycontrol"
+        mc:Ignorable="d"
+        Title="SignUp"  MaxHeight="546" MinWidth="550" MaxWidth="601" WindowStartupLocation="CenterScreen" Height="513" Width="558" >
+
+    <Grid>
+
+        <Grid x:Name="grid" Loaded="grid_Loaded">
+
+            <Grid.RowDefinitions>
+                <RowDefinition Height="50"></RowDefinition>
+                <RowDefinition Height="100"></RowDefinition>
+                <RowDefinition Height="100"></RowDefinition>
+                <RowDefinition Height="100"></RowDefinition>
+                <RowDefinition Height="80"></RowDefinition>
+               
+
+            </Grid.RowDefinitions>
+
+            <Grid.Background>
+                <ImageBrush ImageSource="Images/wave.png"/>
+            </Grid.Background>
+
+            <TextBlock
+                    Style="{StaticResource PageTitleStyle}"
+                    Margin="24,0,0,0"
+                    FontSize="18"
+                   >Aggiungi Macchina</TextBlock>
+
+            <StackPanel Grid.Row="1" 
+                    Orientation="Horizontal" 
+                    HorizontalAlignment="Center" 
+                    Width="406">
+
+                <TextBox Text="Targa"
+                     Width="406" 
+                     Height="60" 
+                     x:Name="Targa"
+                     Foreground="Gray"
+                     HorizontalAlignment="Center" 
+                     FontSize="20" 
+                     LostFocus="Targa_LostFocus"
+                     VerticalAlignment="Center" 
+                     GotFocus="Targa_GotFocus" ></TextBox>
+
+            </StackPanel>
+
+            <StackPanel Grid.Row="2" 
+                    Orientation="Horizontal" 
+                    HorizontalAlignment="Center" 
+                    Width="406">
+
+
+                <TextBox Text="Manufacturer"
+                     Width="406" 
+                     Height="60" 
+                     x:Name="Manufacturer"
+                     Foreground="Gray"
+                     HorizontalAlignment="Center" 
+                     FontSize="20" 
+                     LostFocus="Manufacturer_LostFocus"
+                     VerticalAlignment="Center" 
+                     GotFocus="Manufacturer_GotFocus" ></TextBox>
+
+            </StackPanel>
+
+
+            <StackPanel Grid.Row="3" 
+                    Orientation="Horizontal"  
+                    HorizontalAlignment="Center">
+
+                <TextBox Text="Modello"
+                     Width="406" 
+                     Height="60" 
+                     x:Name="Model"
+                     Foreground="Gray"
+                     HorizontalAlignment="Center" 
+                     FontSize="20" 
+                     LostFocus="Modello_LostFocus"
+                     VerticalAlignment="Center" 
+                     GotFocus="Modello_GotFocus" ></TextBox>
+
+            </StackPanel>
+
+           
+
+
+            <StackPanel Grid.Row="4" 
+                    Orientation="Horizontal"
+                    HorizontalAlignment="Center">
+                <Button 
+                    Name="Aggiungi"
+                    FontSize="18" 
+                    Background="LightGreen" 
+                    Height="48" Margin="15 0 0 0"
+                    Width="130">Aggiungi</Button>
+
+                <Button 
+                    Name="Annulla"
+                    FontSize="18" 
+                    Background="#CC303A"
+                    Height="48" Margin="15 0 0 0"
+                    Width="130" Click="Annulla_Click">Annulla</Button>
+
+
+            </StackPanel>
+
+
+
+        </Grid>
+    </Grid>
+</Window>

@@ -13,6 +13,7 @@ using WPF_DEFINITIVO.Contracts.ViewModels;
 using WPF_DEFINITIVO.Core.Contracts.Services;
 using WPF_DEFINITIVO.Core.Models;
 using WPF_DEFINITIVO.Helpers;
+using WPF_DEFINITIVO.Models;
 
 namespace WPF_DEFINITIVO.ViewModels
 {
@@ -25,6 +26,11 @@ namespace WPF_DEFINITIVO.ViewModels
 
         public ObservableCollection<History> Source { get; set; } = new ObservableCollection<History>();
         public object ParkingObject { get; private set; }
+
+        public ObservableCollection<HistoryDisplay> HistoryDisplay { get; set; } = new ObservableCollection<HistoryDisplay>();
+
+        //public ObservableCollection<HistoryDisplay> HistoryDisplay { get; set; }
+
 
         public StoricoViewModel(ISampleDataService sampleDataService)
         {
@@ -83,7 +89,6 @@ namespace WPF_DEFINITIVO.ViewModels
 
                 var collezione = JsonConvert.DeserializeObject<ObservableCollection<string>>(list);
 
-
                 if (response.IsSuccessStatusCode)
                 {
                     foreach (var item in collezione)
@@ -92,11 +97,11 @@ namespace WPF_DEFINITIVO.ViewModels
                     }
                 }
 
-                /*url = "http://localhost:13636/api/v1/getParkName/" + infoId + "";
-                response = await client.GetAsync(url);
+                url = "http://localhost:13636/api/v1/getParkName";
+                response = await client.PostAsJsonAsync(url, infoId);
                 list = await response.Content.ReadAsStringAsync();
-                collezione = JsonConvert.DeserializeObject<List<string>>(list);
 
+                collezione = JsonConvert.DeserializeObject<ObservableCollection<string>>(list);
 
                 if (response.IsSuccessStatusCode)
                 {
@@ -104,7 +109,23 @@ namespace WPF_DEFINITIVO.ViewModels
                     {
                         NamePark.Add(item);
                     }
-                }*/
+                }
+
+                for (int i = 0; i < Source.Count - 1; i++)
+                {
+                    HistoryDisplay.Add
+                        (
+                            new HistoryDisplay
+                            (
+                                Source[i].ParkingId,
+                                Source[i].Revenue,
+                                Source[i].EntryTimeDate,
+                                LicencePlate[i],
+                                Source[i].ExitTimeDate,
+                                NamePark[i]
+                            )
+                        );
+                }
             }
         }
 

@@ -6,13 +6,15 @@
         xmlns:local="clr-namespace:WPF_DEFINITIVO.Views" xmlns:viewmodels="clr-namespace:WPF_DEFINITIVO.ViewModels" xmlns:hc="https://handyorg.github.io/handycontrol" d:DataContext="{d:DesignInstance Type=viewmodels:EntraWindowViewModel}"
         mc:Ignorable="d"
         WindowStartupLocation="CenterScreen"
-        Title="Metodo entra veicolo" MaxHeight="650"
-        MaxWidth="700" Width="544" Height="545" Loaded="Window_Loaded">
+        Title="Metodo entra veicolo" MaxHeight="750"
+        MaxWidth="544" Width="544" Height="750" Loaded="Window_Loaded">
 
-    <Grid x:Name="grid" Loaded="grid_Loaded">
+    <Grid x:Name="grid" Loaded="grid_Loaded" Margin="0,0,0,1">
 
         <Grid.RowDefinitions>
             <RowDefinition Height="50"></RowDefinition>
+            <RowDefinition Height="100"></RowDefinition>
+            <RowDefinition Height="100"></RowDefinition>
             <RowDefinition Height="100"></RowDefinition>
             <RowDefinition Height="100"></RowDefinition>
             <RowDefinition Height="100"></RowDefinition>
@@ -101,8 +103,42 @@
                      VerticalAlignment="Center"/>
         </StackPanel>
 
+        <StackPanel Grid.Row="5"
+                    Orientation="Horizontal" 
+                    HorizontalAlignment="Center">
 
-        <StackPanel Grid.Row="5" 
+            <TextBox 
+                     Width="406" 
+                     Height="60" 
+                     HorizontalAlignment="Center"
+                     FontSize="20"
+                     x:Name="Manufacturer"
+                     LostFocus="Manufacturer_LostFocus"
+                     GotFocus="Manufacturer_GotFocus"
+                     Foreground="Gray"
+                     Text="Manufacturer"
+                     VerticalAlignment="Center"/>
+        </StackPanel>
+
+        <StackPanel Grid.Row="6"
+                    Orientation="Horizontal" 
+                    HorizontalAlignment="Center">
+
+            <TextBox 
+                     Width="406" 
+                     Height="60" 
+                     HorizontalAlignment="Center"
+                     FontSize="20"
+                     x:Name="Modello"
+                     LostFocus="Modello_LostFocus"
+                     GotFocus="Modello_GotFocus"
+                     Foreground="Gray"
+                     Text="Modello"
+                     VerticalAlignment="Center"/>
+        </StackPanel>
+
+
+        <StackPanel Grid.Row="7" 
                     Orientation="Horizontal"
                     HorizontalAlignment="Center">
             <Button 

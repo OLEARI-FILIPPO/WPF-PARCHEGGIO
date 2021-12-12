@@ -91,8 +91,6 @@ namespace WPF_DEFINITIVO.Views
                     };
 
 
-                    
-
                     StackPanel sp = new StackPanel()
                     {
                         Orientation = Orientation.Vertical
@@ -122,7 +120,7 @@ namespace WPF_DEFINITIVO.Views
                     b.Width = panel.Width;
                     b.Content = sp;
                     b.FontSize = 70;
-                    
+
 
                     b.Foreground = new SolidColorBrush(Colors.Black);
                     // Colore Libero : Blue

@@ -64,7 +64,7 @@
                
 
                 CanUserAddRows="False"
-                ItemsSource="{Binding Source}"
+                ItemsSource="{Binding HistoryDisplay}"
                 Background="#81B6E3"
                       
                 KeyboardNavigation.TabNavigation="Once"
@@ -82,8 +82,6 @@
                     
                 </DataGrid.Columns>
             </DataGrid>
-
-
         </hc:Card>
 
 
