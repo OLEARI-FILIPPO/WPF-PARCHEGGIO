@@ -46,6 +46,82 @@ namespace WebAPI_Definitivo.Controllers
         }
 
         [Authorize]
+        [HttpGet("history")]
+        public ActionResult History()
+        {
+            try
+            {
+                using (ParkingManagementContext model = new ParkingManagementContext())
+                {
+                    string grado = HttpContext.User.Claims.FirstOrDefault(x => x.Type == "Grado").Value;
+                    string username = HttpContext.User.Claims.FirstOrDefault(x => x.Type == "Username").Value;
+
+                    //Grado uno vedo tutto
+                    var history = model.History.ToList();
+                    if (history == null) { return NotFound("Nessun parcheggio corrispondente."); }
+
+                    if (grado == "1") { return Ok(history); }
+
+                    //Query per prendere i parcheggi di uno specifico user
+
+
+
+
+                    var userHistory = from storico in model.History
+                                      join vehicle in model.Vehicle on storico.VehicleId equals vehicle.VehicleId
+                                      join owner in model.OwnerVehicle on vehicle.OwnerId equals owner.OwnerId
+                                      join user in model.Users on owner.UserId equals user.Id
+
+                                      where user.Username == username
+                                      select new
+                                      {
+                                          HistoryId     = storico.HistoryId,
+                                          ID            = storico.Id,
+                                          ParkingId     = storico.ParkingId,
+                                          Stato         = storico.Stato,
+                                          Revenue       = storico.Revenue,
+                                          EntryTimeDate = storico.EntryTimeDate,
+                                          VehicleId     = storico.VehicleId,
+                                          ExitTimeDate  = storico.ExitTimeDate,
+                                          InfoParkId    = storico.InfoParkId,
+                                          Token         = storico.Token,
+                                          SearchDate    = storico.SearchDate
+                                      };
+
+                    if (userHistory.ToList() == null) { return NotFound("Nessun parcheggio corrispondente."); }
+
+                    return Ok(userHistory.ToList());
+                }
+            }
+            catch (Exception)
+            {
+                return Problem();
+            }
+        }
+
+
+        [Authorize]
+        [HttpPost("history")]
+        public ActionResult AddHistory([FromBody] History storico)
+        {
+            try
+            {
+                using (ParkingManagementContext model = new ParkingManagementContext())
+                {
+                    //Aggiorno history
+                    model.History.Add(storico);
+                    model.SaveChanges();
+
+                    return Ok();
+                }
+            }
+            catch (Exception)
+            {
+                return Problem();
+            }
+        }
+
+        [Authorize]
         [HttpGet("parking-from-id/{parkId}/{infoParkName}")]       //post per passare il body
         public ActionResult ParkFromId(string parkId, string infoParkName)
         {
@@ -98,7 +174,6 @@ namespace WebAPI_Definitivo.Controllers
             }
         }
 
-
         [Authorize]
         [HttpPut("parcheggio/{targa}/{nomeParcheggio}/{nomePosto}")]
         //l'id è riferito al nome del parcheggio che l'utente ha cliccato
@@ -108,12 +183,14 @@ namespace WebAPI_Definitivo.Controllers
             {
                 using (ParkingManagementContext model = new ParkingManagementContext())
                 {
+                    var id = HttpContext.User.Claims.FirstOrDefault(x => x.Type == "Id").Value;
                     //Il super user per ora può aggiungere il veicolo con la persona
                     OwnerVehicle ownerVehicle = new OwnerVehicle
                         (
                             surname: persona.Surname,
                             name: persona.Name,
-                            dateBirth: persona.DateBirth 
+                            dateBirth: persona.DateBirth,
+                            userId: Convert.ToInt32(id)
                         );
                     //Inserimento persona
                     model.OwnerVehicle.Add(ownerVehicle);
@@ -155,88 +232,8 @@ namespace WebAPI_Definitivo.Controllers
             }
         }
 
-        [Authorize]
-        [HttpGet("history")]
-        public ActionResult History()
-        {
-            try
-            {
-                using (ParkingManagementContext model = new ParkingManagementContext())
-                {
-                    string grado = HttpContext.User.Claims.FirstOrDefault(x => x.Type == "Grado").Value;
-                    string username = HttpContext.User.Claims.FirstOrDefault(x => x.Type == "Username").Value;
-
-                    //if (grado != "1") { return Unauthorized(); }
-
-                    //Grado uno vedo tutto
-
-                    var history = model.History.ToList();
-                    if(history == null) { return NotFound("Nessun parcheggio corrispondente."); }
-
-                    if(grado == "1") { return Ok(history); }
-
-                    //Query per prendere i parcheggi di uno specifico user
-
-                    var userHistory = from storico in model.History
-                                      join vehicle in model.Vehicle on storico.VehicleId equals vehicle.VehicleId
-                                      join owner in model.OwnerVehicle on vehicle.OwnerId equals owner.OwnerId
-                                      join user in model.Users on owner.UserId equals user.Id
-
-                                      where(user.Username == username)
-                                      select new 
-                                      { 
-                                          HistoryId      =      storico.HistoryId, 
-                                          ID             =      storico.Id,
-                                          ParkingId      =      storico.ParkingId,
-                                          Stato          =      storico.Stato,
-                                          Revenue        =      storico.Revenue,
-                                          EntryTimeDate  =      storico.EntryTimeDate,
-                                          ExitTimeDate   =      storico.ExitTimeDate,
-                                          InfoParkId     =      storico.InfoParkId,
-                                          Token          =      storico.Token,
-                                          SearchDate     =      storico.SearchDate
-                                      };
-
-                    if(userHistory.ToList() == null) { return NotFound("Nessun parcheggio corrispondente."); }
-
-                    return Ok(userHistory.ToList());
-
-                    //Grado 2 vedo le mie auto
-
-
-
-                }
-            }
-            catch (Exception)
-            {
-                return Problem();
-            }
-        }
-
-        [Authorize]
-        [HttpPost("history")]
-        public ActionResult AddHistory([FromBody] History storico)
-        {
-            try
-            {
-                using (ParkingManagementContext model = new ParkingManagementContext())
-                {
-                    //Aggiorno history
-                    model.History.Add(storico);
-                    model.SaveChanges();
-
-                    return Ok();
-                }
-            }
-            catch (Exception)
-            {
-                return Problem();
-            }
-        }
-
+        
         //GET ALL VEHICLES
-
-
         [Authorize]
         [HttpGet("ParkingList")]
 
@@ -265,7 +262,6 @@ namespace WebAPI_Definitivo.Controllers
                 return Problem();
             }
         }
-
 
         [Authorize]
         [HttpGet("ParkingRecords")] //prende tutti i record tabella parking
@@ -298,7 +294,6 @@ namespace WebAPI_Definitivo.Controllers
 
         [Authorize]
         [HttpPost("/api/v1/ParkingRecordsByName")] //prende tutti i record tabella parking
-
         public ActionResult GetParkingRecordsSingle([FromBody] InfoParking i)
         {
             try

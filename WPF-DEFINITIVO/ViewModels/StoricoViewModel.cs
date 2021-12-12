@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.Diagnostics;
 using System.Net.Http;
 using System.Net.Http.Headers;
 using System.Windows;
@@ -17,9 +18,12 @@ namespace WPF_DEFINITIVO.ViewModels
 {
     public class StoricoViewModel : ObservableObject, INavigationAware
     {
+        public ObservableCollection<string> LicencePlate { get; set; } = new ObservableCollection<string>();
+        public ObservableCollection<string> NamePark { get; set; } = new ObservableCollection<string>();
+
         private readonly ISampleDataService _sampleDataService;
 
-        public ObservableCollection<Parking> Source { get; set; } = new ObservableCollection<Parking>();
+        public ObservableCollection<History> Source { get; set; } = new ObservableCollection<History>();
         public object ParkingObject { get; private set; }
 
         public StoricoViewModel(ISampleDataService sampleDataService)
@@ -38,7 +42,7 @@ namespace WPF_DEFINITIVO.ViewModels
                 var response = await client.GetAsync("http://localhost:13636/api/v1/history");
                 var list = await response.Content.ReadAsStringAsync();
 
-                var lista = JsonConvert.DeserializeObject<ObservableCollection<Parking>>(list);
+                var lista = JsonConvert.DeserializeObject<ObservableCollection<History>>(list);
 
                 if (response.IsSuccessStatusCode)
                 {
@@ -51,6 +55,37 @@ namespace WPF_DEFINITIVO.ViewModels
                 {
                     MessageBox.Show("Nessuna cronologia presente.");
                 }
+
+
+                //Devo fare una lista di source.vehicleId ecc e passarla nell'url e dovrebbe andare
+                /*string url = "http://localhost:13636/api/v1/getLicence/" + Source + "";
+                response = await client.GetAsync(url);
+                list = await response.Content.ReadAsStringAsync();
+
+                var collezione = JsonConvert.DeserializeObject<List<string>>(list);
+
+
+                if (response.IsSuccessStatusCode)
+                {
+                    foreach (var item in collezione)
+                    {
+                        LicencePlate.Add(item);
+                    }
+                }
+
+                url = "http://localhost:13636/api/v1/getParkName/" + Source + "";
+                response = await client.GetAsync(url);
+                list = await response.Content.ReadAsStringAsync();
+                collezione = JsonConvert.DeserializeObject<List<string>>(list);
+
+
+                if (response.IsSuccessStatusCode)
+                {
+                    foreach (var item in collezione)
+                    {
+                        NamePark.Add(item);
+                    }
+                }*/
             }
         }
 
