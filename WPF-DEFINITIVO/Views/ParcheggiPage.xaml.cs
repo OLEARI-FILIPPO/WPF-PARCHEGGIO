@@ -191,20 +191,9 @@ namespace WPF_DEFINITIVO.Views
                 int colonna = Int32.Parse(ColSlider.Value.ToString());
 
                 await parcheggioView.CreateParcheggio(InputName.Text, riga, colonna);
-                //combo.Text = InputName.Text;
-                CreateDynamicRow(riga);
-
-                CreateDynamicCol(colonna);
-                name = InputName.Text;
-                CreateDynamicGrid(InputName.Text);
-
                 parcheggioView.Parking.Add(InputName.Text);
-                DoubleAnimation fadeAnimation = new DoubleAnimation();
-                fadeAnimation.Duration = TimeSpan.FromSeconds(0.5d);
-                fadeAnimation.EasingFunction = new QuadraticEase();
-                fadeAnimation.From = 0.0d;
-                fadeAnimation.To = 1.0d;
-                DynamicGrid.BeginAnimation(Grid.OpacityProperty, fadeAnimation);
+
+                
             }
 
         }
