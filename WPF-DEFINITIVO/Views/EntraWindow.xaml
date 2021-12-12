@@ -81,6 +81,7 @@
                         Foreground="Gray"
                         Text="{Binding DateBirth}"
                         x:Name="datePicker"
+                       
                          hc:InfoElement.Placeholder="Data di nascita"
                         VerticalAlignment="Center"></hc:DatePicker>
 
