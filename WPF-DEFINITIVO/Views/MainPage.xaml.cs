@@ -8,16 +8,20 @@ namespace WPF_DEFINITIVO.Views
 {
     public partial class MainPage : Page
     {
+        MainViewModel main;
         public MainPage(MainViewModel viewModel)
         {
             InitializeComponent();
             DataContext = viewModel;
+
+            main = viewModel;
         }
 
    
         private void Page_Loaded(object sender, System.Windows.RoutedEventArgs e)
         {
 
+            //disp.ItemsSource = main.Source;
             if (NavigationLoginToLogout.UserPriviledge == 2)
             {
                 NormalUserMainPage page = new NormalUserMainPage(); 

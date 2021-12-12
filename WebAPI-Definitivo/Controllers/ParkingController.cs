@@ -445,6 +445,29 @@ namespace WebAPI_Definitivo.Controllers
         }
 
         [Authorize]
+        [HttpGet("getVehicle")] //prende i parcheggi vuoti
+        public ActionResult GetVehicle()
+        {
+            try
+            {
+                //MODIFICA: SI PUO ANCHE SOLO PASSARE IL NOME DEL PARCHEGGIO INVECE CHE TUTTO L'OGGETTO
+                using (ParkingManagementContext model = new ParkingManagementContext())
+                {
+                    List<Vehicle> listOfVehicle;
+
+                    listOfVehicle = model.Vehicle.ToList();
+
+                    return Ok(listOfVehicle);
+                }
+            }
+            catch (Exception)
+            {
+
+                return Problem();
+            }
+        }
+
+        [Authorize]
         [HttpGet("NewPark/{nomeParcheggio}/{righe}/{colonne}")] //prende i parcheggi vuoti
         public ActionResult NewPark(string nomeParcheggio, string righe, string colonne)
         {

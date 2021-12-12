@@ -145,18 +145,19 @@
                          Margin="0,0,8,0">
 
                     <StackPanel Height="110"
+                                
                                 VerticalAlignment="Top" Margin="10,28,0,0" >
                         <TextBlock 
                             TextWrapping="Wrap" 
                             HorizontalAlignment="Center" 
-                            Text="&#xE7EC;" 
+                            Text="&#xE77B;" 
                             FontSize="56"
                             FontFamily="Segoe MDL2 Assets" 
                             Height="62" />
                         <TextBlock 
                             TextWrapping="Wrap"
                             HorizontalAlignment="Center" 
-                            Text="Veicoli" 
+                            Text="Utenti" 
                             TextAlignment="Center"
                             FontSize="28" 
                             Width="179"  />
@@ -267,19 +268,18 @@
                         Remove this column definitions and define columns for your data.
                         Consider adding header properties to Resources.resw
                     -->
-                        <DataGridTextColumn Binding="{Binding ParkingId}" Header="Parcheggio" />
-                        <DataGridTextColumn Binding="{Binding Stato}" Header="Stato" />
-                        <DataGridTextColumn Binding="{Binding InfoParkId}" Header="InfoParkId" />
+                        <DataGridTextColumn Binding="{Binding ParkingId}" Header="OrderID" />
+                        <DataGridTextColumn Binding="{Binding Stato}" Header="OrderDate" />
+                        <DataGridTextColumn Binding="{Binding InfoParkId}" Header="Company" />
 
-                        
-                      
+                     
                     </DataGrid.Columns>
 
                 </DataGrid>
 
             </hc:Card>
 
-            <!--Grid Veicoli-->
+            <!--Grid Parcheggi non disponibili-->
             <hc:Card  
                      Margin="20"
                      Grid.Row="0"
@@ -320,13 +320,13 @@
                             </DataGridTemplateColumn.CellTemplate>
                         </DataGridTemplateColumn>
                         <DataGridTextColumn>
-                            
+
                             <DataGridTextColumn.Header>
                                 <Grid Margin="0" Background="Transparent">
 
-                                    
-                                        <Button Grid.Column="0" Click="Button_Click" Content="Aggiungi Veicoli" Background="#F7AD86" />
-                                    
+
+                                    <Button Grid.Column="0" Click="Button_Click" Content="Aggiungi Utente" Background="#F7AD86" />
+
                                 </Grid>
                             </DataGridTextColumn.Header>
                         </DataGridTextColumn>
