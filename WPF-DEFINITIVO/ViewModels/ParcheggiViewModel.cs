@@ -111,13 +111,8 @@ namespace WPF_DEFINITIVO.ViewModels
                 using (var client = new HttpClient())
                 {
                     client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", NavigationLoginToLogout.Token);
-                    string url = "http://localhost:13636/api/v1/ParkingRecordsByName";
-                    InfoParking i = new InfoParking();
-                    i.InfoParkId = 1;
-                    i.Ncol = 1;
-                    i.Nrighe = 1;
-                    i.NamePark = nomeParcheggio;
-                    var response = await client.PostAsJsonAsync(url, i);
+                    string url = "http://localhost:13636/api/v1/ParkingRecordsByName/" + nomeParcheggio;
+                    var response = await client.GetAsync(url);
                     //await response.Content.ReadAsStringAsync();
                     var list = await response.Content.ReadAsStringAsync();
                     string ris = await response.Content.ReadAsStringAsync();

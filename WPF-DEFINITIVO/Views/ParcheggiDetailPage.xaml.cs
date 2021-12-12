@@ -69,10 +69,14 @@ namespace WPF_DEFINITIVO.Views
             {
                 using (var client = new HttpClient())
                 {
+                    if (stato)
+                        statoPark.Text = "Occupato";
+                    else
+                        statoPark.Text = "Libero";
                     // Creo lista di Parcheggi
                     client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", NavigationLoginToLogout.Token);
 
-                    var response = await client.GetAsync("http://localhost:13636/api/v1/ParkingRecords");
+                    var response = await client.GetAsync("http://localhost:13636/api/v1/ParkingRecordsByName/" + parkingName);
                     var list = await response.Content.ReadAsStringAsync();
 
                     ObservableCollection<Parking> ParkingObject = JsonConvert.DeserializeObject<ObservableCollection<Parking>>(list);

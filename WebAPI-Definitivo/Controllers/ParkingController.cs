@@ -371,8 +371,8 @@ namespace WebAPI_Definitivo.Controllers
         }
 
         [Authorize]
-        [HttpPost("/api/v1/ParkingRecordsByName")] //prende tutti i record tabella parking
-        public ActionResult GetParkingRecordsSingle([FromBody] InfoParking i)
+        [HttpGet("/api/v1/ParkingRecordsByName/{nomeParcheggio}")] //prende tutti i record tabella parking
+        public ActionResult GetParkingRecordsSingle(string nomeParcheggio)
         {
             try
             {
@@ -382,7 +382,7 @@ namespace WebAPI_Definitivo.Controllers
                     List<Parking> listOfParkings;
                     long id;
 
-                    id = model.InfoParking.Where(w => w.NamePark == i.NamePark).Select(s => s.InfoParkId).FirstOrDefault();
+                    id = model.InfoParking.Where(w => w.NamePark == nomeParcheggio).Select(s => s.InfoParkId).FirstOrDefault();
                     listOfParkings = model.Parking.Where(w => w.InfoParkId == id).ToList();
 
                     return Ok(listOfParkings);
