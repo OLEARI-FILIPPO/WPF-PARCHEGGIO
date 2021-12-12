@@ -163,6 +163,7 @@ namespace WPF_DEFINITIVO.ViewModels
                             }
 
                         }
+                        await Task.Delay(51);
                     }
                     else
                     {
@@ -211,8 +212,8 @@ namespace WPF_DEFINITIVO.ViewModels
                         var listParkingRecords = await responseParkingRecords.Content.ReadAsStringAsync();
 
                         parkingsRecords = JsonConvert.DeserializeObject< List<Parking> >(listParkingRecords);
-
                         //MessageBox.Show(listParkingRecords);
+                        await Task.Delay(51);
 
                     }
                     else
