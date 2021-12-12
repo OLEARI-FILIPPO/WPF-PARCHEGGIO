@@ -185,17 +185,6 @@ namespace WebAPI_Definitivo.Controllers
                 {
                     var id = HttpContext.User.Claims.FirstOrDefault(x => x.Type == "Id").Value;
                     //Il super user per ora può aggiungere il veicolo con la persona
-                    /* OwnerVehicle ownerVehicle = new OwnerVehicle
-                         (
-                             surname: persona.Surname,
-                             name: persona.Name,
-                             dateBirth: persona.DateBirth,
-                             userId: Convert.ToInt32(id)
-                         );*/
-                    //Inserimento persona
-
-                    /*OwnerVehicle owner = model.OwnerVehicle.FirstOrDefault(l => l.Surname == persona.Surname && l.Name == persona.Name && l.DateBirth == persona.DateBirth);
-                    if(owner == null) { return Problem("persona non trovata"); }*/
                     bool controlTarga = true;// variabile controllo corretto inserimento della targa
                     bool controlCognome = true;
                     bool controlNome = true;
@@ -284,6 +273,7 @@ namespace WebAPI_Definitivo.Controllers
                     }
                     if (controlloVeicolo == null &&  controlloEta)
                     {
+                        persona.UserId = Convert.ToInt32(id);
                         model.OwnerVehicle.Add(persona);
                         model.SaveChanges();
                         model.Vehicle.Add(nuovoVeicolo);
@@ -302,7 +292,6 @@ namespace WebAPI_Definitivo.Controllers
                         parking.VehicleId = nuovoVeicolo.VehicleId;
                         parking.InfoParkId = Convert.ToInt32(infoParkId.InfoParkId.ToString());
                         model.SaveChanges();
-
 
                         return Ok("Update riuscito");
                     }
