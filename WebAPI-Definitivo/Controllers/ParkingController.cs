@@ -175,9 +175,9 @@ namespace WebAPI_Definitivo.Controllers
         }
 
         [Authorize]
-        [HttpPut("parcheggio/{targa}/{nomeParcheggio}/{nomePosto}")]
+        [HttpPut("parcheggio/{targa}/{nomeParcheggio}/{nomePosto}/{nomeManufactorer}/{nomeModel}")]
         //l'id è riferito al nome del parcheggio che l'utente ha cliccato
-        public ActionResult AddParking(string targa, string nomeParcheggio, string nomePosto, [FromBody] OwnerVehicle persona)
+        public ActionResult AddParking(string targa, string nomeParcheggio, string nomePosto, string nomeManufactorer, string nomeModel, [FromBody] OwnerVehicle persona)
         {
             try
             {

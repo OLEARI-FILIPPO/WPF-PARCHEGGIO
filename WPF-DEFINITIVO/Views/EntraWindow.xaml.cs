@@ -51,7 +51,7 @@ namespace WPF_DEFINITIVO.Views
 
             //Query inserimento persona
 
-            if (Surname.Text == "Cognome" || Name.Text == "Nome" || LicensePlate.Text=="Targa" || Manufacturer.Text == "Manufacturer" || Modello.Text == "Modello"|| datePicker.SelectedDate == DateTime.Now.Date )
+            if (Surname.Text == "" || Name.Text == "" || LicensePlate.Text=="" || Manufacturer.Text == "" || Modello.Text == ""|| datePicker.SelectedDate == DateTime.Now.Date)
             {
                 MessageBox.Show("Inserire tutti i dati richiesti", "Error",MessageBoxButton.OK, MessageBoxImage.Error);
                 Surname.BorderBrush = new SolidColorBrush(Colors.Red);
@@ -89,7 +89,7 @@ namespace WPF_DEFINITIVO.Views
                     client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", NavigationLoginToLogout.Token);
 
                     // Chiamata API
-                    string url = "http://localhost:13636/api/v1/parcheggio/" + creazione.Targa + "/" + creazione.nomeParcheggio + "/" + creazione.postoName + "";
+                    string url = "http://localhost:13636/api/v1/parcheggio/" + creazione.Targa + "/" + creazione.nomeParcheggio + "/" + creazione.postoName + "/" + creazione.Manufactorer + "/" + creazione.Model;
 
 
                     //Chiamata
