@@ -31,6 +31,8 @@ namespace WPF_DEFINITIVO.Views
             creazione = viewModel;
         }
 
+        private string startingDate = "01/01/1945";
+
         public event PropertyChangedEventHandler PropertyChanged;
 
         protected void OnPropertyChanged(string name)
@@ -51,7 +53,7 @@ namespace WPF_DEFINITIVO.Views
 
             //Query inserimento persona
 
-            if (Surname.Text == "" || Name.Text == "" || LicensePlate.Text=="" || Manufacturer.Text == "" || Modello.Text == ""|| datePicker.SelectedDate == DateTime.Now.Date)
+            if (Surname.Text == "Cognome" || Name.Text == "Nome" || LicensePlate.Text=="Targa" || Manufacturer.Text == "Manufacturer" || Modello.Text=="Modello"|| datePicker.SelectedDate == null)
             {
                 MessageBox.Show("Inserire tutti i dati richiesti", "Error",MessageBoxButton.OK, MessageBoxImage.Error);
                 Surname.BorderBrush = new SolidColorBrush(Colors.Red);
@@ -118,7 +120,9 @@ namespace WPF_DEFINITIVO.Views
             d.EasingFunction = new QuadraticEase();
             grid.BeginAnimation(HeightProperty, d);
 
-            datePicker.Text = "Data di nascita";
+            Manufacturer.Text = "Manufacturer";
+            Modello.Text = "Modello";
+
         }
 
         private void TextBox_GotFocus(object sender, RoutedEventArgs e) //TextBox Surname
@@ -142,7 +146,9 @@ namespace WPF_DEFINITIVO.Views
             Surname.Text = "Cognome";
             Name.Text = "Nome";
 
-            datePicker.SelectedDate = DateTime.Now.Date;
+            
+            datePicker.SelectedDate = null;
+            datePicker.DisplayDateStart = Convert.ToDateTime(startingDate);
         }
 
         private void Surname_LostFocus(object sender, RoutedEventArgs e)
