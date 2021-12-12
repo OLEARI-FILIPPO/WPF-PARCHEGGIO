@@ -70,7 +70,7 @@ namespace WebAPI_Definitivo.Controllers
         }
 
         [Authorize]
-        [HttpGet("getParkName/{infoId}")]
+        [HttpPost("getParkName")]
         public ActionResult GetParkName(List<int> infoId)
         {
             try
