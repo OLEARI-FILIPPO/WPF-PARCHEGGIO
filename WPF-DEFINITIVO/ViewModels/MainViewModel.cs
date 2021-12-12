@@ -2,6 +2,7 @@
 using System.Collections.ObjectModel;
 using System.Net.Http;
 using System.Net.Http.Headers;
+using System.Threading.Tasks;
 using Microsoft.Toolkit.Mvvm.ComponentModel;
 using Microsoft.Toolkit.Mvvm.Input;
 using Newtonsoft.Json;
@@ -13,29 +14,27 @@ using WPF_DEFINITIVO.Helpers;
 
 namespace WPF_DEFINITIVO.ViewModels
 {
-    public class MainViewModel : ObservableObject, INavigationAware
+    public class MainViewModel : ObservableObject
     {
         public MainViewModel()
         {
 
 
         }
-        private readonly ISampleDataService _sampleDataService;
+      //  private readonly ISampleDataService _sampleDataService;
 
-        public ObservableCollection<Parking> Source { get; } = new ObservableCollection<Parking>();
+        public ObservableCollection<Parking> SourceDisp { get; } = new ObservableCollection<Parking>();
+        public ObservableCollection<Vehicle> Vehicle { get; } = new ObservableCollection<Vehicle> { new Vehicle() };
 
-        public MainViewModel(ISampleDataService sampleDataService)
-        {
-            _sampleDataService = sampleDataService;
-        }
 
+        public string nParking;
+        public string nVehicle; 
         public ObservableCollection<Parking> ParkingObject;
-        public async void OnNavigatedTo(object parameter)
+
+        public async Task GetParking()
         {
-            Source.Clear();
+            SourceDisp.Clear();
 
-
-            // Replace this with your actual data
             using (var client = new HttpClient())
             {
 
@@ -49,9 +48,39 @@ namespace WPF_DEFINITIVO.ViewModels
 
                 foreach (Parking item in ParkingObject)
                 {
-                    Source.Add(item);
+                    SourceDisp.Add(item);
                 }
             }
+
+
+            nParking = SourceDisp.Count.ToString();
+
+        }
+
+        private ObservableCollection<Vehicle> VehicleObject;
+
+        public async Task getVehicle()
+        {
+            Vehicle.Clear();
+
+            using (var client = new HttpClient())
+            {
+
+                client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", NavigationLoginToLogout.Token);
+
+                var response = await client.GetAsync("http://localhost:13636/api/v1/getVehicle");
+
+                var data = await response.Content.ReadAsStringAsync();
+
+                VehicleObject = JsonConvert.DeserializeObject<ObservableCollection<Vehicle>>(data);
+
+                foreach (Vehicle item in VehicleObject)
+                {
+                    Vehicle.Add(item);
+                }
+            }
+
+            nVehicle = VehicleObject.Count.ToString();
 
 
         }

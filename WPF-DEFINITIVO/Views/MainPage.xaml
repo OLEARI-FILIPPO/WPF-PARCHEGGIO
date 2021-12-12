@@ -123,9 +123,9 @@
                     <StackPanel Margin="36,0,37,0" Width="160" Height="59">
 
                         <!--Card Secondary content-->
-                        <TextBlock TextWrapping="NoWrap" Style="{DynamicResource TextBlockDefault}" TextTrimming="CharacterEllipsis" 
-                                       Text="30" FontSize="25" Margin="0,6,0,0"
-                                       HorizontalAlignment="Center" Height="34" Width="32"/>
+                        <TextBlock x:Name="dispParkings" TextAlignment="Center" TextWrapping="NoWrap" Style="{DynamicResource TextBlockDefault}" TextTrimming="CharacterEllipsis" 
+                                        FontSize="25" Margin="0,6,0,0"
+                                       HorizontalAlignment="Center" Height="34" Width="128"/>
                     </StackPanel>
                 </hc:Card.Footer>
             </hc:Card>
@@ -150,14 +150,14 @@
                         <TextBlock 
                             TextWrapping="Wrap" 
                             HorizontalAlignment="Center" 
-                            Text="&#xE77B;" 
+                            Text="&#xE7EC;" 
                             FontSize="56"
                             FontFamily="Segoe MDL2 Assets" 
                             Height="62" />
                         <TextBlock 
                             TextWrapping="Wrap"
                             HorizontalAlignment="Center" 
-                            Text="Utenti" 
+                            Text="Veicoli Entrati" 
                             TextAlignment="Center"
                             FontSize="28" 
                             Width="179"  />
@@ -168,10 +168,11 @@
 
                 <!--Card Footer part-->
                 <hc:Card.Footer>
-                    <StackPanel Margin="36,0,37,0" Width="160" Height="59">
+                    <StackPanel Margin="10,0,8,0" Height="59">
 
                         <!--Card Secondary content-->
-                        <TextBlock TextWrapping="NoWrap" 
+                        <TextBlock TextWrapping="NoWrap"
+                                   x:Name="vehicles"
                                    Style="{DynamicResource TextBlockDefault}" 
                                    TextTrimming="CharacterEllipsis" 
                                    Text="40" 
@@ -257,7 +258,7 @@
                     AutoGenerateColumns="False"
                     CanUserAddRows="False"
             
-                    ItemsSource="{Binding Source}"
+                    ItemsSource="{Binding SourceDisp}"
                    
                     
                     KeyboardNavigation.TabNavigation="Once" HorizontalAlignment="Center"  Width="1017" >
@@ -268,9 +269,9 @@
                         Remove this column definitions and define columns for your data.
                         Consider adding header properties to Resources.resw
                     -->
-                        <DataGridTextColumn Binding="{Binding ParkingId}" Header="OrderID" />
-                        <DataGridTextColumn Binding="{Binding Stato}" Header="OrderDate" />
-                        <DataGridTextColumn Binding="{Binding InfoParkId}" Header="Company" />
+                        <DataGridTextColumn Binding="{Binding ParkingId}" Header="Parcheggio" />
+                        <DataGridTextColumn Binding="{Binding Stato}" Header="Stato" />
+                        <DataGridTextColumn Binding="{Binding InfoParkId}" Header="InfoParkId" />
 
                      
                     </DataGrid.Columns>
@@ -292,7 +293,7 @@
                     Background="#80BAE5"         
                     AutoGenerateColumns="False"
                     CanUserAddRows="False"
-                    ItemsSource="{Binding Source}"
+                    ItemsSource="{Binding Vehicle}"
                     KeyboardNavigation.TabNavigation="Once" 
                     HorizontalAlignment="Center"  
                     
@@ -304,32 +305,10 @@
                         Remove this column definitions and define columns for your data.
                         Consider adding header properties to Resources.resw
                     -->
-                        <DataGridTextColumn Binding="{Binding OrderID}" Header="OrderID" />
-                        <DataGridTextColumn Binding="{Binding OrderDate}" Header="OrderDate" />
-                        <DataGridTextColumn Binding="{Binding OrderTotal}" Header="OrderTotal" />
-                        <DataGridTextColumn Binding="{Binding Status}" Header="Status" />
-                        <DataGridTemplateColumn Header="Symbol">
-                            <DataGridTemplateColumn.CellTemplate>
-                                <DataTemplate>
-                                    <TextBlock
-                                    Margin="{StaticResource SmallLeftRightMargin}"
-                                    HorizontalAlignment="Left"
-                                    Style="{StaticResource SmallIconStyle}"
-                                    Text="{Binding Symbol}" />
-                                </DataTemplate>
-                            </DataGridTemplateColumn.CellTemplate>
-                        </DataGridTemplateColumn>
-                        <DataGridTextColumn>
-
-                            <DataGridTextColumn.Header>
-                                <Grid Margin="0" Background="Transparent">
-
-
-                                    <Button Grid.Column="0" Click="Button_Click" Content="Aggiungi Utente" Background="#F7AD86" />
-
-                                </Grid>
-                            </DataGridTextColumn.Header>
-                        </DataGridTextColumn>
+                        <DataGridTextColumn Binding="{Binding Model}" Header="Model" />
+                        <DataGridTextColumn Binding="{Binding Manufacturer}" Header="Manufacturer" />
+                        <DataGridTextColumn Binding="{Binding LicensePlate}" Header="Targa" />
+                       
                     </DataGrid.Columns>
 
                 </DataGrid>
