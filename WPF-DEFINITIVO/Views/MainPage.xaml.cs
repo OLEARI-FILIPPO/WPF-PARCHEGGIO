@@ -14,13 +14,18 @@ namespace WPF_DEFINITIVO.Views
             InitializeComponent();
             DataContext = viewModel;
 
+
             main = viewModel;
         }
 
    
-        private void Page_Loaded(object sender, System.Windows.RoutedEventArgs e)
+        private async void Page_Loaded(object sender, System.Windows.RoutedEventArgs e)
         {
+           await main.GetParking();
+           await main.getVehicle();
 
+            dispParkings.Text = main.nParking;
+            vehicles.Text = main.nVehicle;
             //disp.ItemsSource = main.Source;
             if (NavigationLoginToLogout.UserPriviledge == 2)
             {
