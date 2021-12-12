@@ -31,6 +31,7 @@ namespace WPF_DEFINITIVO.ViewModels
 
         private ObservableCollection<string> parkings = new ObservableCollection<string>();
 
+        public string Selected { get; set; }
         public ObservableCollection<string> Parking
         {
             get { return parkings; }

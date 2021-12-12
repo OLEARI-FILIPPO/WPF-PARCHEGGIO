@@ -9,7 +9,7 @@
     xmlns:properties="clr-namespace:WPF_DEFINITIVO.Properties"
     xmlns:behaviors="clr-namespace:WPF_DEFINITIVO.Behaviors"
     xmlns:hc="https://handyorg.github.io/handycontrol"
-    xmlns:ui="http://schemas.modernwpf.com/2019"
+    xmlns:ui="http://schemas.modernwpf.com/2019" xmlns:viewmodels="clr-namespace:WPF_DEFINITIVO.ViewModels" d:DataContext="{d:DesignInstance Type=viewmodels:ParcheggiViewModel}"
     mc:Ignorable="d"
     d:DesignHeight="750" MinWidth="1290" Loaded="ParcheggiLoaded" >
 
@@ -40,6 +40,7 @@
                             FontFamily="calibri"
                             VerticalAlignment="Center" 
                             ItemsSource="{Binding Parking}"
+                            SelectedValuePath="{Binding Selected}"
                             x:Name="combo"
                             Height="35"
                             FontSize="16"
