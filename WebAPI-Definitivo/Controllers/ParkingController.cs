@@ -250,54 +250,50 @@ namespace WebAPI_Definitivo.Controllers
                         return Problem("Inserire correttamente il nome");
                     if (!controlCognome)
                         return Problem("Inserire correttamente il cognome");
-                    Vehicle nuovoVeicolo = new Vehicle
-                        (
-                            licensePlate: targa,       
-                            ownerId: persona.OwnerId
-                        );
+                    
                     //Inserimento veicolo
-                    Vehicle controlloVeicolo = model.Vehicle.Where(w => w.LicensePlate == nuovoVeicolo.LicensePlate).FirstOrDefault();
+                    Vehicle controlloVeicolo = model.Vehicle.Where(w => w.LicensePlate == targa).FirstOrDefault();
                     int tempoAnni = DateTime.Now.Year - persona.DateBirth.Year;
                     int tempoMesi = DateTime.Now.Month - persona.DateBirth.Month;
                     int tempoGiorni = DateTime.Now.Day - persona.DateBirth.Day;
                     bool controlloEta = true;
-                    if (tempoAnni  <= 14)
-                    {
-                        if (tempoMesi <= 0)
-                        {
-                            if (tempoAnni < 0)
-                            {
-                                controlloEta = false;
-                            }
-                        }
-                    }
-                    if (controlloVeicolo == null &&  controlloEta)
+
+                    if (tempoAnni < 14)
+                        controlloEta = false;
+
+                    if (tempoAnni == 14 && tempoMesi < 0)
+                        controlloEta = false;
+
+                    if (tempoAnni == 14 && tempoMesi == 0 && tempoGiorni < 0)
+                        controlloEta = false;
+
+                    if (controlloVeicolo == null && controlloEta)
                     {
                         persona.UserId = Convert.ToInt32(id);
                         model.OwnerVehicle.Add(persona);
                         model.SaveChanges();
+                        Vehicle nuovoVeicolo = new Vehicle
+                        (
+                            licensePlate: targa,
+                            ownerId: persona.OwnerId
+                        );
                         model.Vehicle.Add(nuovoVeicolo);
                         model.SaveChanges();
-
                         //trovo park id
-                        var infoParkId = model.InfoParking.Where(w => w.NamePark == nomeParcheggio).FirstOrDefault();
-
-
+                        InfoParking infoParkId = model.InfoParking.Where(w => w.NamePark == nomeParcheggio).FirstOrDefault();
                         //Update Parking Record
                         Parking parking = model.Parking.Where(w => w.ParkingId == nomePosto && w.InfoParkId == infoParkId.InfoParkId).FirstOrDefault();
 
-                        parking.ParkingId = nomePosto;
                         parking.Stato = true;
                         parking.EntryTimeDate = DateTime.Now;
                         parking.VehicleId = nuovoVeicolo.VehicleId;
-                        parking.InfoParkId = Convert.ToInt32(infoParkId.InfoParkId.ToString());
                         model.SaveChanges();
 
                         return Ok("Update riuscito");
                     }
                     else if(controlloVeicolo != null)
                     {
-                        string risposta = "L'auto targata " + nuovoVeicolo.LicensePlate + "è già presente nel parcheggio.";
+                        string risposta = "L'auto targata " + targa + "è già presente nel parcheggio.";
                         return Problem("L'auto da parcheggiare è già presente nel parcheggio.");
 
                     }
