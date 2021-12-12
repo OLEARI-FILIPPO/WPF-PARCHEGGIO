@@ -481,7 +481,7 @@ namespace WebAPI_Definitivo.Controllers
                             }
                         }
                         model.SaveChanges();
-                        return Ok("Parcheggio creato correttamente");
+                        return Ok("Parcheggio creato correttamente selezionare il parcheggio...");
                     }
                     else
                         return Problem("Inserire correttamente tutti i campi");
