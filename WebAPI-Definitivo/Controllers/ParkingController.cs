@@ -58,6 +58,7 @@ namespace WebAPI_Definitivo.Controllers
 
                     //Grado uno vedo tutto
                     List<History> history = new List<History>(); 
+
                     if (giorno == 0) { history = model.History.ToList(); }
                     else { history = model.History.Where(w => w.EntryTimeDate.Value.Day == giorno && w.EntryTimeDate.Value.Month == mese && w.EntryTimeDate.Value.Year == anno).ToList(); }
                     
