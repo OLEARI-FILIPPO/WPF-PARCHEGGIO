@@ -164,6 +164,8 @@ namespace WPF_DEFINITIVO.Views
             }
         }
         string name;
+
+        bool justcreated = false;
         private async void Create_Click(object sender, System.Windows.RoutedEventArgs e)
         {
 
@@ -188,16 +190,22 @@ namespace WPF_DEFINITIVO.Views
                 int riga = Int32.Parse(RowSlider.Value.ToString());
                 int colonna = Int32.Parse(ColSlider.Value.ToString());
 
-                await parcheggioView.CreateParcheggio(InputName.Text, riga, colonna);
-                //combo.Text = InputName.Text;
-                CreateDynamicRow(riga);
+               await parcheggioView.CreateParcheggio(InputName.Text, riga, colonna);
 
-                CreateDynamicCol(colonna);
-                name = InputName.Text;
-                CreateDynamicGrid(InputName.Text);
-                parcheggioView.GetParkings();
+                //CreateDynamicRow(riga);
+
+                //CreateDynamicCol(colonna);
+                //name = InputName.Text;
+                //CreateDynamicGrid(InputName.Text);
+
                 
-                combo.SelectedIndex = combo.Items.Count;
+                //parcheggioView.GetParkings();
+
+                //combo.Items.Clear();
+
+                //combo.SelectedValue = combo.Items.Count - 1;
+                
+                
                 DoubleAnimation fadeAnimation = new DoubleAnimation();
                 fadeAnimation.Duration = TimeSpan.FromSeconds(0.5d);
                 fadeAnimation.EasingFunction = new QuadraticEase();
@@ -208,6 +216,8 @@ namespace WPF_DEFINITIVO.Views
             }
 
         }
+
+
 
         //Evento che visualizza i dettagli di un parcheggio
         private async void clickParhceggio(object sender, RoutedEventArgs e)
@@ -244,7 +254,7 @@ namespace WPF_DEFINITIVO.Views
 
         private async void ParcheggiLoaded(object sender, RoutedEventArgs e)
         {
-            parcheggioView.GetParkings();
+         //   parcheggioView.GetParkings();
             RowSlider.IsEnabled = false;
             ColSlider.IsEnabled = false;
             Create.IsEnabled = false;

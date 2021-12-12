@@ -267,22 +267,12 @@
                         Remove this column definitions and define columns for your data.
                         Consider adding header properties to Resources.resw
                     -->
-                        <DataGridTextColumn Binding="{Binding OrderID}" Header="OrderID" />
-                        <DataGridTextColumn Binding="{Binding OrderDate}" Header="OrderDate" />
-                        <DataGridTextColumn Binding="{Binding Company}" Header="Company" />
+                        <DataGridTextColumn Binding="{Binding ParkingId}" Header="Parcheggio" />
+                        <DataGridTextColumn Binding="{Binding Stato}" Header="Stato" />
+                        <DataGridTextColumn Binding="{Binding InfoParkId}" Header="InfoParkId" />
 
-                        <DataGridTextColumn Binding="{Binding Status}" Header="Status" />
-                        <DataGridTemplateColumn Header="Symbol">
-                            <DataGridTemplateColumn.CellTemplate>
-                                <DataTemplate>
-                                    <TextBlock
-                                    Margin="{StaticResource SmallLeftRightMargin}"
-                                    HorizontalAlignment="Left"
-                                    Style="{StaticResource SmallIconStyle}"
-                                    Text="{Binding Symbol}" />
-                                </DataTemplate>
-                            </DataGridTemplateColumn.CellTemplate>
-                        </DataGridTemplateColumn>
+                        
+                      
                     </DataGrid.Columns>
 
                 </DataGrid>

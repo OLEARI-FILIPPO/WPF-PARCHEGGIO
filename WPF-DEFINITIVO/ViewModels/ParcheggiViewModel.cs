@@ -33,7 +33,8 @@ namespace WPF_DEFINITIVO.ViewModels
 
         public ObservableCollection<string> Parking
         {
-            get { return parkings; }
+            get { 
+                   GetParkings(); return parkings; OnPropertyChanged("parkings"); }
             set
             {
                 this.parkings = value;
@@ -64,7 +65,7 @@ namespace WPF_DEFINITIVO.ViewModels
             }
         }
 
-        public List<InfoParking> ParkingObject;
+        public ObservableCollection<InfoParking> ParkingObject;
         public async void GetParkings()
         {
             if (NavigationLoginToLogout.isLoggedIn)
@@ -78,7 +79,7 @@ namespace WPF_DEFINITIVO.ViewModels
                     var list = await response.Content.ReadAsStringAsync();
                     //response.Wait();
 
-                    ParkingObject = JsonConvert.DeserializeObject<List<InfoParking>>(list);
+                    ParkingObject = JsonConvert.DeserializeObject<ObservableCollection<InfoParking>>(list);
 
                     //List<string> Parkings = new List<string>();
 
