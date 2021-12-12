@@ -46,8 +46,8 @@ namespace WebAPI_Definitivo.Controllers
         }
 
         [Authorize]
-        [HttpGet("history")]
-        public ActionResult History()
+        [HttpGet("history/{giorno}/{mese}/{anno}")]
+        public ActionResult History(int giorno, int mese, int anno)
         {
             try
             {
@@ -57,17 +57,23 @@ namespace WebAPI_Definitivo.Controllers
                     string username = HttpContext.User.Claims.FirstOrDefault(x => x.Type == "Username").Value;
 
                     //Grado uno vedo tutto
-                    var history = model.History.ToList();
+                    List<History> history = new List<History>(); 
+                    if (giorno == 0) { history = model.History.ToList(); }
+                    else { history = model.History.Where(w => w.EntryTimeDate.Value.Day == giorno && w.EntryTimeDate.Value.Month == mese && w.EntryTimeDate.Value.Year == anno).ToList(); }
+                    
+
+
                     if (history == null) { return NotFound("Nessun parcheggio corrispondente."); }
 
-                    if (grado == "1") { return Ok(history); }
+                    
+                    return Ok(history); 
 
                     //Query per prendere i parcheggi di uno specifico user
 
 
 
 
-                    var userHistory = from storico in model.History
+                    /*var userHistory = from storico in model.History
                                       join vehicle in model.Vehicle on storico.VehicleId equals vehicle.VehicleId
                                       join owner in model.OwnerVehicle on vehicle.OwnerId equals owner.OwnerId
                                       join user in model.Users on owner.UserId equals user.Id
@@ -89,8 +95,8 @@ namespace WebAPI_Definitivo.Controllers
                                       };
 
                     if (userHistory.ToList() == null) { return NotFound("Nessun parcheggio corrispondente."); }
-
-                    return Ok(userHistory.ToList());
+                    */
+                    //return Ok(userHistory.ToList());
                 }
             }
             catch (Exception)
