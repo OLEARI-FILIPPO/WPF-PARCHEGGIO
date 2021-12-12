@@ -197,13 +197,12 @@ namespace WPF_DEFINITIVO.Views
                 CreateDynamicGrid(InputName.Text);
 
                 parcheggioView.Parking.Add(InputName.Text);
-                combo.SelectedIndex = combo.Items.Count - 1;
-                /*DoubleAnimation fadeAnimation = new DoubleAnimation();
+                DoubleAnimation fadeAnimation = new DoubleAnimation();
                 fadeAnimation.Duration = TimeSpan.FromSeconds(0.5d);
                 fadeAnimation.EasingFunction = new QuadraticEase();
                 fadeAnimation.From = 0.0d;
                 fadeAnimation.To = 1.0d;
-                DynamicGrid.BeginAnimation(Grid.OpacityProperty, fadeAnimation);*/
+                DynamicGrid.BeginAnimation(Grid.OpacityProperty, fadeAnimation);
             }
 
         }
