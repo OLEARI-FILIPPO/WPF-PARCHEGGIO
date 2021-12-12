@@ -185,45 +185,138 @@ namespace WebAPI_Definitivo.Controllers
                 {
                     var id = HttpContext.User.Claims.FirstOrDefault(x => x.Type == "Id").Value;
                     //Il super user per ora può aggiungere il veicolo con la persona
-                    OwnerVehicle ownerVehicle = new OwnerVehicle
-                        (
-                            surname: persona.Surname,
-                            name: persona.Name,
-                            dateBirth: persona.DateBirth,
-                            userId: Convert.ToInt32(id)
-                        );
+                    /* OwnerVehicle ownerVehicle = new OwnerVehicle
+                         (
+                             surname: persona.Surname,
+                             name: persona.Name,
+                             dateBirth: persona.DateBirth,
+                             userId: Convert.ToInt32(id)
+                         );*/
                     //Inserimento persona
-                    model.OwnerVehicle.Add(ownerVehicle);
-                    model.SaveChanges();
 
-                    OwnerVehicle owner = model.OwnerVehicle.FirstOrDefault(l => l.Surname == persona.Surname && l.Name == persona.Name && l.DateBirth == persona.DateBirth);
-                    if(owner == null) { return Problem("persona non trovata"); }
+                    /*OwnerVehicle owner = model.OwnerVehicle.FirstOrDefault(l => l.Surname == persona.Surname && l.Name == persona.Name && l.DateBirth == persona.DateBirth);
+                    if(owner == null) { return Problem("persona non trovata"); }*/
+                    bool controlTarga = true;// variabile controllo corretto inserimento della targa
+                    bool controlCognome = true;
+                    bool controlNome = true;
 
+                    targa = targa.ToUpper();
+                    // Controllo il corretto inserimento della targa.
+                    if (targa.Length != 7)
+                        controlTarga = false;
+                    for (int i = 0; i < targa.Length; i++)
+                    {
+                        int converAscii = (int)targa[i];
+                        if (!controlTarga)
+                            break;
+                        if (i == 0 || i == 1 || i == 5 || i == 6)           // controllo che le prime e le ultime cifre della targa siano lettere
+                        {
+                            if (converAscii < 65 || converAscii > 90)
+                            {
+                                controlTarga = false;
+                                break;
+                            }
+                        }
+                        if (i == 2 || i == 3 || i == 4)
+                            if (converAscii < 48 || converAscii > 57)     // controllo che le cifre centrali della targa siano numeri
+                            {
+                                controlTarga = false;
+                                break;
+                            }
+                    }
+
+                    if(!controlTarga)
+                    {
+                        return Problem("Inserire correttamente la targa");
+                    }
+
+                    for (int i = 0; i < persona.Name.Length; i++)
+                    {
+                        int converAscii = (int)persona.Name[i];
+                        if (!controlNome)
+                            break;
+
+                        if (converAscii < 65 || converAscii > 90 && converAscii < 97 || converAscii > 122)
+                        {
+                            controlNome = false;
+                            break;
+                        }
+
+                    }
+                    for (int i = 0; i < persona.Surname.Length; i++)
+                    {
+                        int converAscii = (int)persona.Surname[i];
+                        if (!controlCognome)
+                            break;
+
+                        if (converAscii < 65 || converAscii > 90 && converAscii < 97 || converAscii > 122)
+                        {
+                            controlCognome = false;
+                            break;
+                        }
+
+                    }
+
+                    if (!controlNome)
+                        return Problem("Inserire correttamente il nome");
+                    if (!controlCognome)
+                        return Problem("Inserire correttamente il cognome");
                     Vehicle nuovoVeicolo = new Vehicle
                         (
                             licensePlate: targa,       
-                            ownerId: owner.OwnerId
+                            ownerId: persona.OwnerId
                         );
                     //Inserimento veicolo
-                    model.Vehicle.Add(nuovoVeicolo);
-                    model.SaveChanges();
+                    Vehicle controlloVeicolo = model.Vehicle.Where(w => w.LicensePlate == nuovoVeicolo.LicensePlate).FirstOrDefault();
+                    int tempoAnni = DateTime.Now.Year - persona.DateBirth.Year;
+                    int tempoMesi = DateTime.Now.Month - persona.DateBirth.Month;
+                    int tempoGiorni = DateTime.Now.Day - persona.DateBirth.Day;
+                    bool controlloEta = true;
+                    if (tempoAnni  <= 14)
+                    {
+                        if (tempoMesi <= 0)
+                        {
+                            if (tempoAnni < 0)
+                            {
+                                controlloEta = false;
+                            }
+                        }
+                    }
+                    if (controlloVeicolo == null &&  controlloEta)
+                    {
+                        model.OwnerVehicle.Add(persona);
+                        model.SaveChanges();
+                        model.Vehicle.Add(nuovoVeicolo);
+                        model.SaveChanges();
 
-                    //trovo park id
-                    var infoParkId = model.InfoParking.Where(w => w.NamePark == nomeParcheggio).FirstOrDefault();
-                    
-
-                    //Update Parking Record
-                    Parking parking = model.Parking.Where(w => w.ParkingId == nomePosto && w.InfoParkId == infoParkId.InfoParkId).FirstOrDefault();
-                    
-                    parking.ParkingId = nomePosto;
-                    parking.Stato = true;
-                    parking.EntryTimeDate = DateTime.Now;
-                    parking.VehicleId = nuovoVeicolo.VehicleId;
-                    parking.InfoParkId = Convert.ToInt32(infoParkId.InfoParkId.ToString());
-                    model.SaveChanges();
+                        //trovo park id
+                        var infoParkId = model.InfoParking.Where(w => w.NamePark == nomeParcheggio).FirstOrDefault();
 
 
-                    return Ok("Update riuscito");
+                        //Update Parking Record
+                        Parking parking = model.Parking.Where(w => w.ParkingId == nomePosto && w.InfoParkId == infoParkId.InfoParkId).FirstOrDefault();
+
+                        parking.ParkingId = nomePosto;
+                        parking.Stato = true;
+                        parking.EntryTimeDate = DateTime.Now;
+                        parking.VehicleId = nuovoVeicolo.VehicleId;
+                        parking.InfoParkId = Convert.ToInt32(infoParkId.InfoParkId.ToString());
+                        model.SaveChanges();
+
+
+                        return Ok("Update riuscito");
+                    }
+                    else if(controlloVeicolo != null)
+                    {
+                        string risposta = "L'auto targata " + nuovoVeicolo.LicensePlate + "è già presente nel parcheggio.";
+                        return Problem("L'auto da parcheggiare è già presente nel parcheggio.");
+
+                    }
+                    else
+                    {
+                        return Problem("Il parcheggio è prenotabile sono da utenti con almeno 14 anni");
+                    }
+
                 }
             }
             catch (Exception)

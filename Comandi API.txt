@@ -12,7 +12,7 @@ __COMANDI WEB API
 
 dotnet tool install --global dotnet-ef
 
-dotnet ef dbcontext scaffold "Server=DESKTOP-M63NC6P\SQLEXPRESSNEW;Database=ParkingManagement; User Id=sa; Password=;" Microsoft.EntityFrameworkCore.SqlServer -o Models
+dotnet ef dbcontext scaffold "Server=DESKTOP-M63NC6P\SQLEXPRESSNEW;Database=ParkingManagement; User Id=sa; Password=;" Microsoft.EntityFrameworkCore.SqlServer --force -o Models
 
 __Autenticazione windows
 Trusted_Connect

@@ -76,10 +76,9 @@ namespace WPF_DEFINITIVO.Views
                     var list = await response.Content.ReadAsStringAsync();
 
                     ObservableCollection<Parking> ParkingObject = JsonConvert.DeserializeObject<ObservableCollection<Parking>>(list);
-
                     foreach(var a in ParkingObject)
                     {
-                        if (a.Id.ToString() == buttonName)
+                        if (a.ParkingId.ToString() == buttonName)
                         {
                             DataEntrata.Text = a.EntryTimeDate.ToString();
                             break;
@@ -93,13 +92,11 @@ namespace WPF_DEFINITIVO.Views
                     var response2 = await client.GetAsync("http://localhost:13636/api/v1/VehicleList");
 
                     var list2 = await response2.Content.ReadAsStringAsync();
-                    string ris = await response2.Content.ReadAsStringAsync();
 
                     List<Vehicle> VehicleObject = JsonConvert.DeserializeObject<List<Vehicle>>(list2);
-
                     foreach (var a in ParkingObject)
                     {
-                        if (a.Id.ToString() == buttonName)
+                        if (a.ParkingId.ToString() == buttonName)
                         {
                             foreach (var b in VehicleObject)
                             {
@@ -125,10 +122,9 @@ namespace WPF_DEFINITIVO.Views
                     var list3 = await response3.Content.ReadAsStringAsync();
 
                     ObservableCollection<OwnerVehicle> OwnerVehicleObject = JsonConvert.DeserializeObject<ObservableCollection<OwnerVehicle>>(list3);
-                    
                     foreach (var a in ParkingObject)
                     {
-                        if (a.Id.ToString() == buttonName)
+                        if (a.ParkingId.ToString() == buttonName)
                         {
                             foreach (var b in VehicleObject)
                             {

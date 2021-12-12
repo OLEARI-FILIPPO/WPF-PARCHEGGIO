@@ -69,75 +69,78 @@ namespace WPF_DEFINITIVO.Views
 
                 using (var client = new HttpClient())
                 {
+                    DateTime data = creazione.DateBirth;
+                    MessageBox.Show(creazione.DateBirth.ToString());
                     OwnerVehicle parametri = new OwnerVehicle()
                     {
                         Surname = creazione.Surname,
                         Name = creazione.Name,
-                        DateBirth = creazione.DateBirth
+                        DateBirth = data
                     };
 
                     //Autenticazione token
+                    /* client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", NavigationLoginToLogout.Token);
+
+                     //Chiamo l'api per la creazione del parcheggio
+                     string url = "http://localhost:13636/api/v1/ParkingRecordsByName";
+
+                     InfoParking i = new InfoParking();
+                     i.InfoParkId = 1;
+                     i.Ncol = 1;
+                     i.Nrighe = 1;
+                     i.NamePark = creazione.nomeParcheggio;
+
+                     var response = await client.PostAsJsonAsync(url, i);
+                     var list = await response.Content.ReadAsStringAsync();
+                     List<Parking> ParkingObjectByName;
+
+                     if (response.IsSuccessStatusCode)
+                     {
+                         ParkingObjectByName = JsonConvert.DeserializeObject<List<Parking>>(list);
+
+                         client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", NavigationLoginToLogout.Token);
+
+                         var response2 = await client.GetAsync("http://localhost:13636/api/v1/VehicleList");
+                         var list2 = await response2.Content.ReadAsStringAsync();
+
+                         if (response2.IsSuccessStatusCode)
+                         {
+                             List<Vehicle> VehicleObject = JsonConvert.DeserializeObject<List<Vehicle>>(list2);
+
+                             foreach (var a in ParkingObjectByName)
+                             {
+                                 foreach (var b in VehicleObject)
+                                 {
+                                     if (a.VehicleId == b.VehicleId)
+                                     {
+                                         if (b.LicensePlate == creazione.Targa)
+                                         {
+                                             MessageBox.Show("Targa Già Presente");
+                                             goto EndOfLoop;
+                                         }
+                                     }
+                                 }
+                             }
+                         }
+                     }
+                 EndOfLoop:;*/
+
                     client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", NavigationLoginToLogout.Token);
 
-                    //Chiamo l'api per la creazione del parcheggio
-                    string url = "http://localhost:13636/api/v1/ParkingRecordsByName";
-
-                    InfoParking i = new InfoParking();
-                    i.InfoParkId = 1;
-                    i.Ncol = 1;
-                    i.Nrighe = 1;
-                    i.NamePark = creazione.nomeParcheggio;
-
-                    var response = await client.PostAsJsonAsync(url, i);
-                    var list = await response.Content.ReadAsStringAsync();
-                    List<Parking> ParkingObjectByName;
-
-                    if (response.IsSuccessStatusCode)
-                    {
-                        ParkingObjectByName = JsonConvert.DeserializeObject<List<Parking>>(list);
-
-                        client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", NavigationLoginToLogout.Token);
-
-                        var response2 = await client.GetAsync("http://localhost:13636/api/v1/VehicleList");
-                        var list2 = await response2.Content.ReadAsStringAsync();
-
-                        if (response2.IsSuccessStatusCode)
-                        {
-                            List<Vehicle> VehicleObject = JsonConvert.DeserializeObject<List<Vehicle>>(list2);
-
-                            foreach (var a in ParkingObjectByName)
-                            {
-                                foreach (var b in VehicleObject)
-                                {
-                                    if (a.VehicleId == b.VehicleId)
-                                    {
-                                        if (b.LicensePlate == creazione.Targa)
-                                        {
-                                            MessageBox.Show("Targa Già Presente");
-                                            goto EndOfLoop;
-                                        }
-                                    }
-                                }
-                            }
-                        }
-                    }
-                EndOfLoop:;
-
-
                     // Chiamata API
-                    url = "http://localhost:13636/api/v1/parcheggio/" + creazione.Targa + "/" + creazione.nomeParcheggio + "/" + creazione.postoName + "";
+                    string url = "http://localhost:13636/api/v1/parcheggio/" + creazione.Targa + "/" + creazione.nomeParcheggio + "/" + creazione.postoName + "";
 
 
                     //Chiamata
                     var response3 = await client.PutAsJsonAsync(url, parametri);
-                    var result = await response.Content.ReadAsStringAsync();
+                    string result = await response3.Content.ReadAsStringAsync();
 
                     if (response3.IsSuccessStatusCode)
                     {
                         this.Close();
                     }
                     else
-                        MessageBox.Show("Errore");
+                        MessageBox.Show(result);
 
 
                 }
