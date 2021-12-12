@@ -53,7 +53,7 @@ namespace WPF_DEFINITIVO.Views
 
             //Query inserimento persona
 
-            if (Surname.Text == "Cognome" || Name.Text == "Nome" || LicensePlate.Text=="Targa" || Manufacturer.Text == "Manufacturer" || Modello.Text=="Modello"|| datePicker.SelectedDate == null)
+            if (Surname.Text == "Cognome" || Name.Text == "Nome" || LicensePlate.Text=="Targa" || Manufacturer.Text == "Marca" || Modello.Text=="Modello"|| datePicker.SelectedDate == null)
             {
                 MessageBox.Show("Inserire tutti i dati richiesti", "Error",MessageBoxButton.OK, MessageBoxImage.Error);
                 Surname.BorderBrush = new SolidColorBrush(Colors.Red);
@@ -120,7 +120,7 @@ namespace WPF_DEFINITIVO.Views
             d.EasingFunction = new QuadraticEase();
             grid.BeginAnimation(HeightProperty, d);
 
-            Manufacturer.Text = "Manufacturer";
+            Manufacturer.Text = "Marca";
             Modello.Text = "Modello";
 
         }
@@ -179,7 +179,7 @@ namespace WPF_DEFINITIVO.Views
         {
             if (Manufacturer.Text == "")
             {
-                Manufacturer.Text = "Manufacturer";
+                Manufacturer.Text = "Marca";
             }
         }
 

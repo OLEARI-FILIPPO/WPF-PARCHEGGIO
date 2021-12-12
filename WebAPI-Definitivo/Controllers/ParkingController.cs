@@ -416,7 +416,6 @@ namespace WebAPI_Definitivo.Controllers
 
         [Authorize]
         [HttpGet("NotParked")] //prende i parcheggi vuoti
-
         public ActionResult GetNotParkedParking()
         {
             try
@@ -429,6 +428,56 @@ namespace WebAPI_Definitivo.Controllers
                     listOfParkings = model.Parking.Where(s => s.Stato == false).ToList();
 
                     return Ok(listOfParkings);
+                }
+            }
+            catch (Exception)
+            {
+
+                return Problem();
+            }
+        }
+
+        [Authorize]
+        [HttpGet("NewPark/{nomeParcheggio}/{righe}/{colonne}")] //prende i parcheggi vuoti
+        public ActionResult NewPark(string nomeParcheggio, string righe, string colonne)
+        {
+            try
+            {
+                //MODIFICA: SI PUO ANCHE SOLO PASSARE IL NOME DEL PARCHEGGIO INVECE CHE TUTTO L'OGGETTO
+                using (ParkingManagementContext model = new ParkingManagementContext())
+                {
+                    int nRighe = Int32.Parse(righe);
+                    int nColonne = Int32.Parse(colonne);
+                    if (nomeParcheggio != "" && nRighe >= 2 && nColonne >= 2 && nRighe <= 10 && nColonne <= 10)
+                    {
+                        InfoParking pInfo = new InfoParking(nomeParcheggio, nRighe, nColonne);
+                        model.InfoParking.Add(pInfo);
+                        model.SaveChanges();
+
+                        
+                        int cont = 0;
+                        for(int i = 0; i < nRighe; i++)
+                        {
+                            for (int j = 0; j < nColonne; j++)
+                            {
+                                Parking p = new Parking();
+                                if (cont < 10)
+                                    p.ParkingId = "P0" + cont;
+                                else
+                                    p.ParkingId = "P" + cont;
+                                p.Stato = false;
+                                p.InfoParkId = pInfo.InfoParkId;
+                                cont++;
+
+                                model.Parking.Add(p);
+                                model.SaveChanges();
+                            }
+                        }
+                        model.SaveChanges();
+                        return Ok("Parcheggio creato correttamente");
+                    }
+                    else
+                        return Problem("Inserire correttamente tutti i campi");
                 }
             }
             catch (Exception)
