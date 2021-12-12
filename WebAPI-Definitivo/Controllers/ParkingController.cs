@@ -183,7 +183,7 @@ namespace WebAPI_Definitivo.Controllers
             {
                 using (ParkingManagementContext model = new ParkingManagementContext())
                 {
-                    //var id = HttpContext.User.Claims.FirstOrDefault(x => x.Type == "Id").Value;
+                    var id = HttpContext.User.Claims.FirstOrDefault(x => x.Type == "Id").Value;
                     //Il super user per ora può aggiungere il veicolo con la persona
                     bool controlTarga = true;// variabile controllo corretto inserimento della targa
                     bool controlCognome = true;
