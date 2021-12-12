@@ -6,6 +6,8 @@ namespace WPF_DEFINITIVO.Models
 {
     public class HistoryDisplay
     {
+
+        public HistoryDisplay() { }
         public HistoryDisplay(string parkingId, decimal? revenue, DateTime? entryTimeDate, string licencePlate, DateTime? exitTimeDate, string namePark)
         {
             ParkingId = parkingId;
