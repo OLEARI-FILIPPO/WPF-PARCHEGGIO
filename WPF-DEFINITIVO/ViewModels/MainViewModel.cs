@@ -2,6 +2,7 @@
 using System.Collections.ObjectModel;
 using Microsoft.Toolkit.Mvvm.ComponentModel;
 using Microsoft.Toolkit.Mvvm.Input;
+using WebAPI_Definitivo.Models;
 using WPF_DEFINITIVO.Contracts.ViewModels;
 using WPF_DEFINITIVO.Core.Contracts.Services;
 using WPF_DEFINITIVO.Core.Models;
@@ -37,6 +38,8 @@ namespace WPF_DEFINITIVO.ViewModels
                 Source.Add(item);
             }
         }
+
+        //private ObservableCollection<Parking>
 
         public void OnNavigatedFrom()
         {

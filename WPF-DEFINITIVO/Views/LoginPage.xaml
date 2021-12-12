@@ -83,7 +83,7 @@
                             Text="{Binding Username}" 
                             FontSize="20" 
                             Foreground="Gray"
-                            BorderBrush="Gray"
+                           
                             x:Name="UsernameTextBox"
                             Height="52" 
                             FontFamily="Sans-Serif"
@@ -93,23 +93,43 @@
 
                     </StackPanel>
 
-                    <StackPanel  Margin="0,30,50,30"
-                                VerticalAlignment="Center"
-                                Orientation="Horizontal" 
-                                Width="314">
+                    <Grid Margin="0,30,56.5,30"
+                          
+                                HorizontalAlignment="Center"
+                                Width="318">
 
-                        <hc:PasswordBox Width="304" 
-                                 x:Name="PasswordInserito"
-                                 FontSize="20"
-                                 Foreground="Gray"
-                                 BorderBrush="Transparent"
-                                 FontFamily="Sans-Serif"
-                                
+
+
+                        <PasswordBox Width="302" 
+                                     Height="52" 
+                                     HorizontalAlignment="Center"
+                                     FontSize="20"
+                                     
+                                     x:Name="PasswordInserito"
+                                     LostFocus="PasswordInserito_LostFocus"
+                                     GotFocus="PasswordInserito_GotFocus"
+                                     Foreground="Gray"
+                                     VerticalAlignment="Center"/>
+
+                        <TextBox Width="302"
                                  Height="52" 
-                                 GotFocus="PasswordInserito_GotFocus" 
-                                 LostFocus="PasswordInserito_LostFocus" ></hc:PasswordBox>
+                                 HorizontalAlignment="Center"
+                                 FontSize="20"
+                                 x:Name="Passwordtxt"
+                                 Foreground="Gray"
+                                 VerticalAlignment="Center"/>
 
-                    </StackPanel>
+                        <Button HorizontalAlignment="Left"
+                                Margin="260,0,0,0" 
+                                Width="48" 
+                                Content="&#xE7B3;" 
+                                FontSize="20"
+                                x:Name="visible"
+                                BorderBrush="Transparent"
+                                FontFamily="Segoe MDL2 Assets" Height="32" Click="visible_Click" ></Button>
+
+
+                    </Grid>
 
 
                     <Button 

@@ -85,6 +85,8 @@ namespace WPF_DEFINITIVO.Views
 
                     login.Token = result; //mi salvo il token
 
+                    NavigationLoginToLogout.UserPriviledge = Convert.ToInt32(grado);
+
                     NavigationLoginToLogout.Token = result;
 
                     if (response.IsSuccessStatusCode)
@@ -109,6 +111,7 @@ namespace WPF_DEFINITIVO.Views
                            );
                         }
                         
+                      
                         ShellViewModel.MenuItems.Add
                         (
                             new HamburgerMenuGlyphItem() { Label = Properties.Resources.ShellStoricoPage, Glyph = "\uF738", TargetPageType = typeof(StoricoViewModel) }
@@ -138,11 +141,13 @@ namespace WPF_DEFINITIVO.Views
 
                 UserPage _userpage = new UserPage(new UserViewModel(NavigationLoginToLogout._user, NavigationLoginToLogout.result));
 
+
                 NavigationService.Navigate(_userpage);
 
             }
             else
             {
+                Passwordtxt.Visibility = Visibility.Hidden;
                 UsernameTextBox.Text = "Username";
                 PasswordInserito.Password = "password";
                 DoubleAnimation d = new DoubleAnimation();
@@ -152,6 +157,8 @@ namespace WPF_DEFINITIVO.Views
                 d.EasingFunction = new QuadraticEase();
                 log.BeginAnimation(HeightProperty, d);
             }
+
+          
             
         }
 
@@ -178,6 +185,25 @@ namespace WPF_DEFINITIVO.Views
             if(UsernameTextBox.Text == "")
             {
                 UsernameTextBox.Text = "Username";
+            }
+        }
+
+        bool state = false;
+        private void visible_Click(object sender, RoutedEventArgs e)
+        {
+            if (state == false)
+            {
+                Passwordtxt.Text = PasswordInserito.Password;
+                Passwordtxt.Visibility = Visibility.Visible;
+                PasswordInserito.Visibility = Visibility.Hidden;
+                state = true;
+            }
+            else
+            {
+
+                Passwordtxt.Visibility = Visibility.Hidden;
+                PasswordInserito.Visibility = Visibility.Visible;
+                state = false;
             }
         }
     }

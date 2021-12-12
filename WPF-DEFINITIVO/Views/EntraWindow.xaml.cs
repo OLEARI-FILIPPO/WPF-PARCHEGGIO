@@ -51,14 +51,15 @@ namespace WPF_DEFINITIVO.Views
 
             //Query inserimento persona
 
-            if (Surname.Text == "Cognome" || Name.Text == "Nome" || LicensePlate.Text=="Targa" || datePicker.SelectedDate == DateTime.Now.Date )
+            if (Surname.Text == "Cognome" || Name.Text == "Nome" || LicensePlate.Text=="Targa" || Manufacturer.Text == "Manufacturer" || Modello.Text == "Modello"|| datePicker.SelectedDate == DateTime.Now.Date )
             {
-                MessageBox.Show("Error","Inserire tutti i dati richiesti",MessageBoxButton.OK, MessageBoxImage.Error);
+                MessageBox.Show("Inserire tutti i dati richiesti", "Error",MessageBoxButton.OK, MessageBoxImage.Error);
                 Surname.BorderBrush = new SolidColorBrush(Colors.Red);
                 Name.BorderBrush = new SolidColorBrush(Colors.Red);
                 LicensePlate.BorderBrush = new SolidColorBrush(Colors.Red);
                 datePicker.BorderBrush = new SolidColorBrush(Colors.Red);
-
+                Manufacturer.BorderBrush = new SolidColorBrush(Colors.Red);
+                Modello.BorderBrush = new SolidColorBrush(Colors.Red);
             }
             else
             {
@@ -66,6 +67,8 @@ namespace WPF_DEFINITIVO.Views
                 Name.BorderBrush = new SolidColorBrush(Colors.Transparent);
                 LicensePlate.BorderBrush = new SolidColorBrush(Colors.Transparent);
                 datePicker.BorderBrush = new SolidColorBrush(Colors.Transparent);
+                Manufacturer.BorderBrush = new SolidColorBrush(Colors.Transparent);
+                Modello.BorderBrush = new SolidColorBrush(Colors.Transparent);
 
                 using (var client = new HttpClient())
                 {
@@ -143,11 +146,6 @@ namespace WPF_DEFINITIVO.Views
                 }
             }
 
-            
-
-
-
-
         }
 
         private void Window_Loaded(object sender, RoutedEventArgs e)
@@ -208,6 +206,32 @@ namespace WPF_DEFINITIVO.Views
             {
                 LicensePlate.Text = "Targa";
             }
+        }
+
+        private void Manufacturer_LostFocus(object sender, RoutedEventArgs e)
+        {
+            if (Manufacturer.Text == "")
+            {
+                Manufacturer.Text = "Manufacturer";
+            }
+        }
+
+        private void Manufacturer_GotFocus(object sender, RoutedEventArgs e)
+        {
+            Manufacturer.Text = null;
+        }
+
+        private void Modello_LostFocus(object sender, RoutedEventArgs e)
+        {
+            if(Modello.Text == "")
+            {
+               Modello.Text = "Modello";
+            }
+        }
+
+        private void Modello_GotFocus(object sender, RoutedEventArgs e)
+        {
+            Modello.Text = null;
         }
     }
 }

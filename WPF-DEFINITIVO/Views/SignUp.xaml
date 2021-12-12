@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:WPF_DEFINITIVO.Views" xmlns:hc="https://handyorg.github.io/handycontrol"
         mc:Ignorable="d"
-        Title="SignUp" Height="546" Width="601" Loaded="Window_Loaded" WindowStartupLocation="CenterScreen" >
+        Title="SignUp" MinHeight="546" MaxHeight="546" MinWidth="601" MaxWidth="601" Loaded="Window_Loaded" WindowStartupLocation="CenterScreen" >
 
     <Grid>
 
