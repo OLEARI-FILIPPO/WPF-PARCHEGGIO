@@ -69,15 +69,20 @@ namespace WPF_DEFINITIVO.Views
 
                 using (var client = new HttpClient())
                 {
-                    DateTime data = creazione.DateBirth;
-                    MessageBox.Show(creazione.DateBirth.ToString());
+                    int giorno = Int32.Parse(datePicker.Text.Split("/")[0]);
+                    int mese = Int32.Parse(datePicker.Text.Split("/")[1]);
+                    int anno = Int32.Parse(datePicker.Text.Split("/")[2]);
+
+                    creazione.DateBirth = new DateTime(anno, mese, giorno);
                     OwnerVehicle parametri = new OwnerVehicle()
                     {
                         Surname = creazione.Surname,
                         Name = creazione.Name,
-                        DateBirth = data
+                        DateBirth = creazione.DateBirth
+
                     };
 
+                    MessageBox.Show(creazione.DateBirth.ToString());
                     //Autenticazione token
                     /* client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", NavigationLoginToLogout.Token);
 
