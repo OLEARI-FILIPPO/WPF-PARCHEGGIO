@@ -24,6 +24,7 @@ namespace WPF_DEFINITIVO.ViewModels
       //  private readonly ISampleDataService _sampleDataService;
 
         public ObservableCollection<Parking> SourceDisp { get; } = new ObservableCollection<Parking>();
+        public ObservableCollection<Parking> Allparkings { get; } = new ObservableCollection<Parking>();
         public ObservableCollection<Vehicle> Vehicle { get; } = new ObservableCollection<Vehicle> { new Vehicle() };
 
 
@@ -54,6 +55,57 @@ namespace WPF_DEFINITIVO.ViewModels
 
 
             nParking = SourceDisp.Count.ToString();
+
+        }
+
+
+        private ObservableCollection<Parking> allParkingsObject;
+        public async Task AllParkingsRev()
+        {
+            using (var client = new HttpClient())
+            {
+
+                client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", NavigationLoginToLogout.Token);
+
+                var response = await client.GetAsync("http://localhost:13636/api/v1/ParkingRecords");
+
+                var data = await response.Content.ReadAsStringAsync();
+
+                allParkingsObject = JsonConvert.DeserializeObject<ObservableCollection<Parking>>(data);
+
+                foreach (Parking item in allParkingsObject)
+                {
+                    Allparkings.Add(item);
+                }
+            }
+        }
+
+        public string totRevenue;
+        public async Task calculateRevenue()
+        {
+           string result;
+
+
+            using (var client = new HttpClient())
+            {
+
+                client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", NavigationLoginToLogout.Token);
+
+                var response = await client.GetAsync("http://localhost:13636/api/v1/Incassi");
+
+                var data = await response.Content.ReadAsStringAsync();
+
+                result = data.ToString();
+
+                foreach (Vehicle item in VehicleObject)
+                {
+                    Vehicle.Add(item);
+                }
+
+                totRevenue = result;
+            }
+
+           
 
         }
 

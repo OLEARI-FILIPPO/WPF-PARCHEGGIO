@@ -23,9 +23,11 @@ namespace WPF_DEFINITIVO.Views
         {
            await main.GetParking();
            await main.getVehicle();
-
+           await main.calculateRevenue();
+            await main.AllParkingsRev();
             dispParkings.Text = main.nParking;
             vehicles.Text = main.nVehicle;
+            rev.Text = main.totRevenue;
             //disp.ItemsSource = main.Source;
             if (NavigationLoginToLogout.UserPriviledge == 2)
             {
