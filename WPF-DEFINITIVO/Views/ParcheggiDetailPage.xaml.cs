@@ -183,13 +183,14 @@ namespace WPF_DEFINITIVO.Views
                 {
                     Parking park = JsonConvert.DeserializeObject<Parking>(result);
 
+                    DateTime OraEntrata = (DateTime)park.EntryTimeDate;
                     //Oggetto da passare
                     History storico = new History
                         (
                             id: park.Id,            //id del parcheggio
                             parkingId: postoName,   //id temporaneo del parcheggio
                             stato: false,
-                            revenue: 5,             //da calcolare
+                            revenue: (DateTime.UtcNow - OraEntrata).Hours * 2,             //da calcolare
                             entryTimeDate: park.EntryTimeDate,
                             vehicleId: park.VehicleId,
                             exitTimeDate: DateTime.UtcNow,         

@@ -541,5 +541,26 @@ namespace WebAPI_Definitivo.Controllers
                 return Problem();
             }
         }
+
+        [Authorize]
+        [HttpGet("Incassi")]
+        public ActionResult GetIncassi()
+        {
+            try
+            {
+
+                using (ParkingManagementContext model = new ParkingManagementContext())
+                {
+                    decimal somma = (decimal)model.Parking.Sum(s => s.Revenue);
+
+                    return Ok(somma);
+                }
+            }
+            catch (Exception)
+            {
+
+                return Problem();
+            }
+        }
     }
 }
