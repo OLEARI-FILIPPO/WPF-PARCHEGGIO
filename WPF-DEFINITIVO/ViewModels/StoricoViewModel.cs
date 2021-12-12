@@ -108,23 +108,25 @@ namespace WPF_DEFINITIVO.ViewModels
                     {
                         NamePark.Add(item);
                     }
+
+                    for (int i = 0; i < Source.Count; i++)
+                    {
+                        HistoryDisplay.Add
+                            (
+                                new HistoryDisplay
+                                (
+                                    Source[i].ParkingId,
+                                    Source[i].Revenue,
+                                    Source[i].EntryTimeDate,
+                                    LicencePlate[i],
+                                    Source[i].ExitTimeDate,
+                                    NamePark[i]
+                                )
+                            );
+                    }
                 }
 
-                for (int i = 0; i < Source.Count - 1; i++)
-                {
-                    HistoryDisplay.Add
-                        (
-                            new HistoryDisplay
-                            (
-                                Source[i].ParkingId,
-                                Source[i].Revenue,
-                                Source[i].EntryTimeDate,
-                                LicencePlate[i],
-                                Source[i].ExitTimeDate,
-                                NamePark[i]
-                            )
-                        );
-                }
+                
 
                 HistoryHelper.giorno = 0;
             }
