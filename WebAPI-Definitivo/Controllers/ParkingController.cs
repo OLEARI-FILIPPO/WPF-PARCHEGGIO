@@ -46,6 +46,82 @@ namespace WebAPI_Definitivo.Controllers
         }
 
         [Authorize]
+        [HttpGet("history")]
+        public ActionResult History()
+        {
+            try
+            {
+                using (ParkingManagementContext model = new ParkingManagementContext())
+                {
+                    string grado = HttpContext.User.Claims.FirstOrDefault(x => x.Type == "Grado").Value;
+                    string username = HttpContext.User.Claims.FirstOrDefault(x => x.Type == "Username").Value;
+
+                    //Grado uno vedo tutto
+                    var history = model.History.ToList();
+                    if (history == null) { return NotFound("Nessun parcheggio corrispondente."); }
+
+                    if (grado == "1") { return Ok(history); }
+
+                    //Query per prendere i parcheggi di uno specifico user
+
+
+
+
+                    var userHistory = from storico in model.History
+                                      join vehicle in model.Vehicle on storico.VehicleId equals vehicle.VehicleId
+                                      join owner in model.OwnerVehicle on vehicle.OwnerId equals owner.OwnerId
+                                      join user in model.Users on owner.UserId equals user.Id
+
+                                      where user.Username == username
+                                      select new
+                                      {
+                                          HistoryId     = storico.HistoryId,
+                                          ID            = storico.Id,
+                                          ParkingId     = storico.ParkingId,
+                                          Stato         = storico.Stato,
+                                          Revenue       = storico.Revenue,
+                                          EntryTimeDate = storico.EntryTimeDate,
+                                          VehicleId     = storico.VehicleId,
+                                          ExitTimeDate  = storico.ExitTimeDate,
+                                          InfoParkId    = storico.InfoParkId,
+                                          Token         = storico.Token,
+                                          SearchDate    = storico.SearchDate
+                                      };
+
+                    if (userHistory.ToList() == null) { return NotFound("Nessun parcheggio corrispondente."); }
+
+                    return Ok(userHistory.ToList());
+                }
+            }
+            catch (Exception)
+            {
+                return Problem();
+            }
+        }
+
+
+        [Authorize]
+        [HttpPost("history")]
+        public ActionResult AddHistory([FromBody] History storico)
+        {
+            try
+            {
+                using (ParkingManagementContext model = new ParkingManagementContext())
+                {
+                    //Aggiorno history
+                    model.History.Add(storico);
+                    model.SaveChanges();
+
+                    return Ok();
+                }
+            }
+            catch (Exception)
+            {
+                return Problem();
+            }
+        }
+
+        [Authorize]
         [HttpGet("parking-from-id/{parkId}/{infoParkName}")]       //post per passare il body
         public ActionResult ParkFromId(string parkId, string infoParkName)
         {
@@ -98,7 +174,6 @@ namespace WebAPI_Definitivo.Controllers
             }
         }
 
-
         [Authorize]
         [HttpPut("parcheggio/{targa}/{nomeParcheggio}/{nomePosto}")]
         //l'id è riferito al nome del parcheggio che l'utente ha cliccato
@@ -108,102 +183,124 @@ namespace WebAPI_Definitivo.Controllers
             {
                 using (ParkingManagementContext model = new ParkingManagementContext())
                 {
+                    var id = HttpContext.User.Claims.FirstOrDefault(x => x.Type == "Id").Value;
                     //Il super user per ora può aggiungere il veicolo con la persona
-                    OwnerVehicle ownerVehicle = new OwnerVehicle
-                        (
-                            surname: persona.Surname,
-                            name: persona.Name,
-                            dateBirth: persona.DateBirth 
-                        );
-                    //Inserimento persona
-                    model.OwnerVehicle.Add(ownerVehicle);
-                    model.SaveChanges();
+                    bool controlTarga = true;// variabile controllo corretto inserimento della targa
+                    bool controlCognome = true;
+                    bool controlNome = true;
 
-                    OwnerVehicle owner = model.OwnerVehicle.FirstOrDefault(l => l.Surname == persona.Surname && l.Name == persona.Name && l.DateBirth == persona.DateBirth);
-                    if(owner == null) { return Problem("persona non trovata"); }
+                    targa = targa.ToUpper();
+                    // Controllo il corretto inserimento della targa.
+                    if (targa.Length != 7)
+                        controlTarga = false;
+                    for (int i = 0; i < targa.Length; i++)
+                    {
+                        int converAscii = (int)targa[i];
+                        if (!controlTarga)
+                            break;
+                        if (i == 0 || i == 1 || i == 5 || i == 6)           // controllo che le prime e le ultime cifre della targa siano lettere
+                        {
+                            if (converAscii < 65 || converAscii > 90)
+                            {
+                                controlTarga = false;
+                                break;
+                            }
+                        }
+                        if (i == 2 || i == 3 || i == 4)
+                            if (converAscii < 48 || converAscii > 57)     // controllo che le cifre centrali della targa siano numeri
+                            {
+                                controlTarga = false;
+                                break;
+                            }
+                    }
 
-                    Vehicle nuovoVeicolo = new Vehicle
-                        (
-                            licensePlate: targa,       
-                            ownerId: owner.OwnerId
-                        );
+                    if(!controlTarga)
+                    {
+                        return Problem("Inserire correttamente la targa");
+                    }
+
+                    for (int i = 0; i < persona.Name.Length; i++)
+                    {
+                        int converAscii = (int)persona.Name[i];
+                        if (!controlNome)
+                            break;
+
+                        if (converAscii < 65 || converAscii > 90 && converAscii < 97 || converAscii > 122)
+                        {
+                            controlNome = false;
+                            break;
+                        }
+
+                    }
+                    for (int i = 0; i < persona.Surname.Length; i++)
+                    {
+                        int converAscii = (int)persona.Surname[i];
+                        if (!controlCognome)
+                            break;
+
+                        if (converAscii < 65 || converAscii > 90 && converAscii < 97 || converAscii > 122)
+                        {
+                            controlCognome = false;
+                            break;
+                        }
+
+                    }
+
+                    if (!controlNome)
+                        return Problem("Inserire correttamente il nome");
+                    if (!controlCognome)
+                        return Problem("Inserire correttamente il cognome");
+                    
                     //Inserimento veicolo
-                    model.Vehicle.Add(nuovoVeicolo);
-                    model.SaveChanges();
+                    Vehicle controlloVeicolo = model.Vehicle.Where(w => w.LicensePlate == targa).FirstOrDefault();
+                    int tempoAnni = DateTime.Now.Year - persona.DateBirth.Year;
+                    int tempoMesi = DateTime.Now.Month - persona.DateBirth.Month;
+                    int tempoGiorni = DateTime.Now.Day - persona.DateBirth.Day;
+                    bool controlloEta = true;
 
-                    //trovo park id
-                    var infoParkId = model.InfoParking.Where(w => w.NamePark == nomeParcheggio).FirstOrDefault();
-                    
+                    if (tempoAnni < 14)
+                        controlloEta = false;
 
-                    //Update Parking Record
-                    Parking parking = model.Parking.Where(w => w.ParkingId == nomePosto && w.InfoParkId == infoParkId.InfoParkId).FirstOrDefault();
-                    
-                    parking.ParkingId = nomePosto;
-                    parking.Stato = true;
-                    parking.EntryTimeDate = DateTime.Now;
-                    parking.VehicleId = nuovoVeicolo.VehicleId;
-                    parking.InfoParkId = Convert.ToInt32(infoParkId.InfoParkId.ToString());
-                    model.SaveChanges();
+                    if (tempoAnni == 14 && tempoMesi < 0)
+                        controlloEta = false;
 
+                    if (tempoAnni == 14 && tempoMesi == 0 && tempoGiorni < 0)
+                        controlloEta = false;
 
-                    return Ok("Update riuscito");
-                }
-            }
-            catch (Exception)
-            {
-                return Problem();
-            }
-        }
+                    if (controlloVeicolo == null && controlloEta)
+                    {
+                        persona.UserId = Convert.ToInt32(id);
+                        model.OwnerVehicle.Add(persona);
+                        model.SaveChanges();
+                        Vehicle nuovoVeicolo = new Vehicle
+                        (
+                            licensePlate: targa,
+                            ownerId: persona.OwnerId
+                        );
+                        model.Vehicle.Add(nuovoVeicolo);
+                        model.SaveChanges();
+                        //trovo park id
+                        InfoParking infoParkId = model.InfoParking.Where(w => w.NamePark == nomeParcheggio).FirstOrDefault();
+                        //Update Parking Record
+                        Parking parking = model.Parking.Where(w => w.ParkingId == nomePosto && w.InfoParkId == infoParkId.InfoParkId).FirstOrDefault();
 
-        [Authorize]
-        [HttpGet("history")]
-        public ActionResult History()
-        {
-            try
-            {
-                using (ParkingManagementContext model = new ParkingManagementContext())
-                {
-                    string grado = HttpContext.User.Claims.FirstOrDefault(x => x.Type == "Grado").Value;
-                    string username = HttpContext.User.Claims.FirstOrDefault(x => x.Type == "Username").Value;
+                        parking.Stato = true;
+                        parking.EntryTimeDate = DateTime.Now;
+                        parking.VehicleId = nuovoVeicolo.VehicleId;
+                        model.SaveChanges();
 
-                    //if (grado != "1") { return Unauthorized(); }
+                        return Ok("Update riuscito");
+                    }
+                    else if(controlloVeicolo != null)
+                    {
+                        string risposta = "L'auto targata " + targa + "è già presente nel parcheggio.";
+                        return Problem("L'auto da parcheggiare è già presente nel parcheggio.");
 
-                    //Grado uno vedo tutto
-
-                    var history = model.History.ToList();
-                    if(history == null) { return NotFound("Nessun parcheggio corrispondente."); }
-
-                    if(grado == "1") { return Ok(history); }
-
-                    //Query per prendere i parcheggi di uno specifico user
-
-                    var userHistory = from storico in model.History
-                                      join vehicle in model.Vehicle on storico.VehicleId equals vehicle.VehicleId
-                                      join owner in model.OwnerVehicle on vehicle.OwnerId equals owner.OwnerId
-                                      join user in model.Users on owner.UserId equals user.Id
-
-                                      where(user.Username == username)
-                                      select new 
-                                      { 
-                                          HistoryId      =      storico.HistoryId, 
-                                          ID             =      storico.Id,
-                                          ParkingId      =      storico.ParkingId,
-                                          Stato          =      storico.Stato,
-                                          Revenue        =      storico.Revenue,
-                                          EntryTimeDate  =      storico.EntryTimeDate,
-                                          ExitTimeDate   =      storico.ExitTimeDate,
-                                          InfoParkId     =      storico.InfoParkId,
-                                          Token          =      storico.Token,
-                                          SearchDate     =      storico.SearchDate
-                                      };
-
-                    if(userHistory.ToList() == null) { return NotFound("Nessun parcheggio corrispondente."); }
-
-                    return Ok(userHistory.ToList());
-
-                    //Grado 2 vedo le mie auto
-
-
+                    }
+                    else
+                    {
+                        return Problem("Il parcheggio è prenotabile sono da utenti con almeno 14 anni");
+                    }
 
                 }
             }
@@ -213,30 +310,8 @@ namespace WebAPI_Definitivo.Controllers
             }
         }
 
-        [Authorize]
-        [HttpPost("history")]
-        public ActionResult AddHistory([FromBody] History storico)
-        {
-            try
-            {
-                using (ParkingManagementContext model = new ParkingManagementContext())
-                {
-                    //Aggiorno history
-                    model.History.Add(storico);
-                    model.SaveChanges();
-
-                    return Ok();
-                }
-            }
-            catch (Exception)
-            {
-                return Problem();
-            }
-        }
-
+        
         //GET ALL VEHICLES
-
-
         [Authorize]
         [HttpGet("ParkingList")]
 
@@ -265,7 +340,6 @@ namespace WebAPI_Definitivo.Controllers
                 return Problem();
             }
         }
-
 
         [Authorize]
         [HttpGet("ParkingRecords")] //prende tutti i record tabella parking
@@ -298,7 +372,6 @@ namespace WebAPI_Definitivo.Controllers
 
         [Authorize]
         [HttpPost("/api/v1/ParkingRecordsByName")] //prende tutti i record tabella parking
-
         public ActionResult GetParkingRecordsSingle([FromBody] InfoParking i)
         {
             try

@@ -2,18 +2,19 @@
 using Microsoft.AspNetCore.Mvc;
 using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Linq;
 using System.Threading.Tasks;
 using WebAPI_Definitivo.Models;
 
 namespace WebAPI_Definitivo.Controllers
 {
-    [Route("api/v1/[controller]")]
+    [Route("api/v1")]
     [ApiController]
     public class VehicleController : Controller
     {
         [Authorize]
-        [HttpGet("/api/v1/VehicleList")]
+        [HttpGet("VehicleList")]
 
         public ActionResult GetVehicleList()
         {
@@ -41,6 +42,58 @@ namespace WebAPI_Definitivo.Controllers
             }
         }
 
-        
+        [Authorize]
+        [HttpPost("getLicence")]
+        public ActionResult GetLicencePlate([FromBody]List<int> idVeicoli)
+        {
+            try
+            {
+                using (ParkingManagementContext model = new ParkingManagementContext())
+                {
+                    List<string> targhe = new List<string>();
+                    string i = "";
+                    int c = 0;
+                    foreach (var item in idVeicoli)
+                    {
+                        i = model.Vehicle.Where(w => w.VehicleId == item).FirstOrDefault().LicensePlate;
+                        targhe.Add(i);
+                        c++;
+                    }
+
+                    return Ok(targhe);
+                }
+            }
+            catch (Exception)
+            {
+                return Problem();
+            }
+        }
+
+        [Authorize]
+        [HttpPost("getParkName")]
+        public ActionResult GetParkName(List<int> infoId)
+        {
+            try
+            {
+                using (ParkingManagementContext model = new ParkingManagementContext())
+                {
+                    List<string> nomi = new List<string>();
+                    string i = "";
+                    int c = 0;
+                    foreach (var item in infoId)
+                    {
+                        i = model.InfoParking.Where(w => w.InfoParkId == item).FirstOrDefault().NamePark;
+                        nomi.Add(i);
+                        c++;
+                    }
+
+                    return Ok(nomi);
+                }
+            }
+            catch (Exception)
+            {
+                return Problem();
+            }
+        }
     }
 }

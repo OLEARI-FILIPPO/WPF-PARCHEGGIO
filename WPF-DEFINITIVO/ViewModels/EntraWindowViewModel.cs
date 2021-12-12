@@ -19,7 +19,6 @@ namespace WPF_DEFINITIVO.ViewModels
         {
 
         }
-
         private string surname;
         private string name;
         private DateTime dateBirth;

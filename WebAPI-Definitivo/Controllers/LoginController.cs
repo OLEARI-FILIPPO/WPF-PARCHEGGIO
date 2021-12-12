@@ -32,7 +32,8 @@ namespace WebAPI_Definitivo.Controllers
                         new Claim[] 
                         { 
                             new Claim("Username", candidate.Username.ToString()) ,
-                            new Claim("Grado", candidate.Grado.ToString())      //privilegio
+                            new Claim("Grado", candidate.Grado.ToString()) ,     //privilegio
+                            new Claim("Id", candidate.Id.ToString())      
                         })
                 };
                 SecurityToken token = tokenHandler.CreateToken(tokenDescriptor);

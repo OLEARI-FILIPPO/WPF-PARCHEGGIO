@@ -11,7 +11,7 @@ namespace WebAPI_Definitivo.Models
     {
         public Vehicle()
         {
-            Parking = new HashSet<Parking>();
+            
         }
 
         public Vehicle(string licensePlate, long ownerId)

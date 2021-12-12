@@ -5,7 +5,10 @@
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
-    xmlns:properties="clr-namespace:WPF_DEFINITIVO.Properties" xmlns:hc="https://handyorg.github.io/handycontrol" xmlns:viewmodels="clr-namespace:WPF_DEFINITIVO.ViewModels" d:DataContext="{d:DesignInstance Type=viewmodels:StoricoViewModel}"
+    xmlns:properties="clr-namespace:WPF_DEFINITIVO.Properties" 
+    xmlns:hc="https://handyorg.github.io/handycontrol" 
+    xmlns:viewmodels="clr-namespace:WPF_DEFINITIVO.ViewModels" 
+    d:DataContext="{d:DesignInstance Type=viewmodels:StoricoViewModel}"
     mc:Ignorable="d"
     d:DesignHeight="750" MinWidth="1290" Loaded="Page_Loaded">
 
@@ -54,41 +57,31 @@
                  BorderThickness="1" 
                  Effect="{DynamicResource EffectShadow5}" 
                  Margin="57,37,87,37"  >
-
+            <!--ItemsSource="{Binding Source}"-->
             <DataGrid Name="StoricoGrid"
                 
                 AutoGenerateColumns="False"
                
+
                 CanUserAddRows="False"
-                ItemsSource="{Binding Source}"
+                ItemsSource="{Binding HistoryDisplay}"
                 Background="#81B6E3"
+                      
                 KeyboardNavigation.TabNavigation="Once"
                  Effect="{DynamicResource EffectShadow2}" Loaded="DataGrid_Loaded">
-                
+
 
                 <DataGrid.Columns>
 
-                    <DataGridTextColumn Binding="{Binding Id}" Header="OrderID" />
-                    <DataGridTextColumn Binding="{Binding OrderDate}" Header="OrderDate" />
-                    <DataGridTextColumn Binding="{Binding Company}" Header="Company" />
-                    <DataGridTextColumn Binding="{Binding ShipTo}" Header="ShipTo" />
-                    <DataGridTextColumn Binding="{Binding OrderTotal}" Header="OrderTotal" />
-                    <DataGridTextColumn Binding="{Binding Status}" Header="Status" />
-                    <DataGridTemplateColumn Header="Symbol">
-                        <DataGridTemplateColumn.CellTemplate>
-                            <DataTemplate>
-                                <TextBlock
-                                    Margin="{StaticResource SmallLeftRightMargin}"
-                                    HorizontalAlignment="Left"
-                                    Style="{StaticResource SmallIconStyle}"
-                                    Text="{Binding Symbol}" />
-                            </DataTemplate>
-                        </DataGridTemplateColumn.CellTemplate>
-                    </DataGridTemplateColumn>
+                    <DataGridTextColumn Binding="{Binding ParkingId}" Header="Spot" />
+                    <DataGridTextColumn Binding="{Binding Revenue}" Header="Revenue" />
+                    <DataGridTextColumn Binding="{Binding EntryTimeDate}" Header="Entry Time" />
+                    <DataGridTextColumn Binding="{Binding ExitTimeDate}" Header="Exit Time" />
+                    <DataGridTextColumn Binding="{Binding LicencePlate}"  Header="Targa" />
+                    <DataGridTextColumn Binding="{Binding NamePark}" Header="Parking" />
+                    
                 </DataGrid.Columns>
             </DataGrid>
-
-
         </hc:Card>
 
 

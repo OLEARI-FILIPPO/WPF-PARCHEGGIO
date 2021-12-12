@@ -14,11 +14,12 @@ namespace WebAPI_Definitivo.Models
             Vehicle = new HashSet<Vehicle>();
         }
 
-        public OwnerVehicle(string surname, string name, DateTime dateBirth)
+        public OwnerVehicle(string surname, string name, DateTime dateBirth, int userId)
         {
             Surname = surname;
             Name = name;
             DateBirth = dateBirth;
+            UserId = userId;
         }
 
         public long OwnerId { get; set; }
