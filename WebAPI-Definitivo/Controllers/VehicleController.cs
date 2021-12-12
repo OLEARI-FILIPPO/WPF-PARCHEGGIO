@@ -43,8 +43,8 @@ namespace WebAPI_Definitivo.Controllers
         }
 
         [Authorize]
-        [HttpGet("getLicence/{idVeicoli}")]
-        public ActionResult GetLicencePlate(List<int> idVeicoli)
+        [HttpPost("getLicence")]
+        public ActionResult GetLicencePlate([FromBody]List<int> idVeicoli)
         {
             try
             {

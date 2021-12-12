@@ -57,11 +57,11 @@ namespace WPF_DEFINITIVO.ViewModels
                 }
 
 
-                /*List<int> idVeicoli = new List<int>();
+                List<int> idVeicoli = new List<int>();
 
                 foreach (var item in Source)
                 {
-                    idVeicoli.Add((int)item.VehicleId);
+                    idVeicoli.Add(Convert.ToInt32(item.VehicleId));
                 }
 
 
@@ -69,16 +69,19 @@ namespace WPF_DEFINITIVO.ViewModels
 
                 foreach (var item in Source)
                 {
-                    infoId.Add((int)item.InfoParkId);
+                    infoId.Add(Convert.ToInt32(item.InfoParkId));
                 }
 
 
                 //Devo fare una lista di source.vehicleId ecc e passarla nell'url e dovrebbe andare
-                string url = "http://localhost:13636/api/v1/getLicence/" + idVeicoli + "";
-                response = await client.GetAsync(url);
+
+
+
+                string url = "http://localhost:13636/api/v1/getLicence";
+                response = await client.PostAsJsonAsync(url, idVeicoli);
                 list = await response.Content.ReadAsStringAsync();
 
-                var collezione = JsonConvert.DeserializeObject<List<string>>(list);
+                var collezione = JsonConvert.DeserializeObject<ObservableCollection<string>>(list);
 
 
                 if (response.IsSuccessStatusCode)
@@ -89,7 +92,7 @@ namespace WPF_DEFINITIVO.ViewModels
                     }
                 }
 
-                url = "http://localhost:13636/api/v1/getParkName/" + infoId + "";
+                /*url = "http://localhost:13636/api/v1/getParkName/" + infoId + "";
                 response = await client.GetAsync(url);
                 list = await response.Content.ReadAsStringAsync();
                 collezione = JsonConvert.DeserializeObject<List<string>>(list);

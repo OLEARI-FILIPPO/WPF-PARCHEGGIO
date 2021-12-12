@@ -57,25 +57,27 @@
                  BorderThickness="1" 
                  Effect="{DynamicResource EffectShadow5}" 
                  Margin="57,37,87,37"  >
-
+            <!--ItemsSource="{Binding Source}"-->
             <DataGrid Name="StoricoGrid"
                 
                 AutoGenerateColumns="False"
                
+
                 CanUserAddRows="False"
                 ItemsSource="{Binding Source}"
                 Background="#81B6E3"
+                      
                 KeyboardNavigation.TabNavigation="Once"
                  Effect="{DynamicResource EffectShadow2}" Loaded="DataGrid_Loaded">
-                
+
 
                 <DataGrid.Columns>
 
-                    <DataGridTextColumn Binding="{Binding Source.ParkingId}" Header="Spot" />
-                    <DataGridTextColumn Binding="{Binding Source.Revenue}" Header="Revenue" />
-                    <DataGridTextColumn Binding="{Binding Source.EntryTimeDate}" Header="Entry Time" />
-                    <DataGridTextColumn Binding="{Binding Source.ExitTimeDate}" Header="Exit Time" />
-                    <DataGridTextColumn Binding="{Binding LicencePlate}" Header="Targa" />
+                    <DataGridTextColumn Binding="{Binding ParkingId}" Header="Spot" />
+                    <DataGridTextColumn Binding="{Binding Revenue}" Header="Revenue" />
+                    <DataGridTextColumn Binding="{Binding EntryTimeDate}" Header="Entry Time" />
+                    <DataGridTextColumn Binding="{Binding ExitTimeDate}" Header="Exit Time" />
+                    <DataGridTextColumn Binding="{Binding LicencePlate}"  Header="Targa" />
                     <DataGridTextColumn Binding="{Binding NamePark}" Header="Parking" />
                     
                 </DataGrid.Columns>
