@@ -310,7 +310,7 @@ namespace WebAPI_Definitivo.Controllers
                         Parking parking = model.Parking.Where(w => w.ParkingId == nomePosto && w.InfoParkId == infoParkId.InfoParkId).FirstOrDefault();
 
                         parking.Stato = true;
-                        parking.EntryTimeDate = DateTime.Now;
+                        parking.EntryTimeDate = DateTime.UtcNow.AddHours(1);
                         parking.VehicleId = nuovoVeicolo.VehicleId;
                         model.SaveChanges();
 

@@ -57,7 +57,8 @@
 
                             <StackPanel
                             Margin="{StaticResource SmallLeftTopMargin}"  Height="65">
-                                <Button FontSize="14" 
+                                <Button x:Name="Enter"
+                                        FontSize="14" 
                                         Background="#C4E9D7" 
                                         HorizontalAlignment="Left" 
                                         Content="Entra" 

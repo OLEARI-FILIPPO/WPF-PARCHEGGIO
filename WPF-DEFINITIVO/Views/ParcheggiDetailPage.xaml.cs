@@ -39,12 +39,24 @@ namespace WPF_DEFINITIVO.Views
             buttonName = _button.Name.Split("btn")[1];
 
 
-            if (_button.Background == (SolidColorBrush)new BrushConverter().ConvertFrom("#F77B7B"))
+            if (_button.Background.ToString() == "#FFF77B7B")
                 stato = true;
             else
                 stato = false;
             ParkingNameLabel.Text = postoName;
             DataContext = this;
+
+            if (stato)
+            {
+                Exit.IsEnabled = true;
+                Enter.IsEnabled = false;
+            }
+            else
+            {
+                Exit.IsEnabled = false;
+                Enter.IsEnabled = true;
+            }
+
 
             // DataContext = this;
         }
@@ -184,13 +196,18 @@ namespace WPF_DEFINITIVO.Views
                     Parking park = JsonConvert.DeserializeObject<Parking>(result);
 
                     DateTime OraEntrata = (DateTime)park.EntryTimeDate;
+                    decimal costo = (decimal)(DateTime.UtcNow - OraEntrata).TotalHours;
+                    if (costo == 0)
+                        costo = 1;
+
+                    decimal tariffa = 2;
                     //Oggetto da passare
                     History storico = new History
                         (
                             id: park.Id,            //id del parcheggio
                             parkingId: postoName,   //id temporaneo del parcheggio
                             stato: false,
-                            revenue: (DateTime.UtcNow - OraEntrata).Hours * 2,             //da calcolare
+                            revenue: costo * tariffa,            
                             entryTimeDate: park.EntryTimeDate,
                             vehicleId: park.VehicleId,
                             exitTimeDate: DateTime.UtcNow,         
