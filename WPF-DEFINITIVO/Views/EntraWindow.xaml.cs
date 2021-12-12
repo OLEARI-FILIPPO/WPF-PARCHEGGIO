@@ -53,7 +53,7 @@ namespace WPF_DEFINITIVO.Views
 
             //Query inserimento persona
 
-            if (Surname.Text == "Cognome" || Name.Text == "Nome" || LicensePlate.Text=="Targa" || Manufacturer.Text == "Manufacturer" || Modello.Text=="Modello"|| datePicker.SelectedDate == null)
+            if (Surname.Text == "Cognome" || Name.Text == "Nome" || LicensePlate.Text=="Targa" || Manufacturer.Text == "Marca" || Modello.Text=="Modello"|| datePicker.SelectedDate == null)
             {
                 MessageBox.Show("Inserire tutti i dati richiesti", "Error",MessageBoxButton.OK, MessageBoxImage.Error);
                 Surname.BorderBrush = new SolidColorBrush(Colors.Red);
@@ -87,58 +87,11 @@ namespace WPF_DEFINITIVO.Views
 
                     };
 
-                    MessageBox.Show(creazione.DateBirth.ToString());
-                    //Autenticazione token
-                    /* client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", NavigationLoginToLogout.Token);
-
-                     //Chiamo l'api per la creazione del parcheggio
-                     string url = "http://localhost:13636/api/v1/ParkingRecordsByName";
-
-                     InfoParking i = new InfoParking();
-                     i.InfoParkId = 1;
-                     i.Ncol = 1;
-                     i.Nrighe = 1;
-                     i.NamePark = creazione.nomeParcheggio;
-
-                     var response = await client.PostAsJsonAsync(url, i);
-                     var list = await response.Content.ReadAsStringAsync();
-                     List<Parking> ParkingObjectByName;
-
-                     if (response.IsSuccessStatusCode)
-                     {
-                         ParkingObjectByName = JsonConvert.DeserializeObject<List<Parking>>(list);
-
-                         client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", NavigationLoginToLogout.Token);
-
-                         var response2 = await client.GetAsync("http://localhost:13636/api/v1/VehicleList");
-                         var list2 = await response2.Content.ReadAsStringAsync();
-
-                         if (response2.IsSuccessStatusCode)
-                         {
-                             List<Vehicle> VehicleObject = JsonConvert.DeserializeObject<List<Vehicle>>(list2);
-
-                             foreach (var a in ParkingObjectByName)
-                             {
-                                 foreach (var b in VehicleObject)
-                                 {
-                                     if (a.VehicleId == b.VehicleId)
-                                     {
-                                         if (b.LicensePlate == creazione.Targa)
-                                         {
-                                             MessageBox.Show("Targa Già Presente");
-                                             goto EndOfLoop;
-                                         }
-                                     }
-                                 }
-                             }
-                         }
-                     }
-                 EndOfLoop:;*/
 
                     client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", NavigationLoginToLogout.Token);
 
                     // Chiamata API
-                    string url = "http://localhost:13636/api/v1/parcheggio/" + creazione.Targa + "/" + creazione.nomeParcheggio + "/" + creazione.postoName + "";
+                    string url = "http://localhost:13636/api/v1/parcheggio/" + creazione.Targa + "/" + creazione.nomeParcheggio + "/" + creazione.postoName + "/" + creazione.Manufactorer + "/" + creazione.Model;
 
 
                     //Chiamata
@@ -167,7 +120,7 @@ namespace WPF_DEFINITIVO.Views
             d.EasingFunction = new QuadraticEase();
             grid.BeginAnimation(HeightProperty, d);
 
-            Manufacturer.Text = "Manufacturer";
+            Manufacturer.Text = "Marca";
             Modello.Text = "Modello";
 
         }
@@ -226,7 +179,7 @@ namespace WPF_DEFINITIVO.Views
         {
             if (Manufacturer.Text == "")
             {
-                Manufacturer.Text = "Manufacturer";
+                Manufacturer.Text = "Marca";
             }
         }
 

@@ -52,7 +52,7 @@
                             <StackPanel
                                 Margin="{StaticResource SmallLeftTopMargin}">
                                 <TextBlock Style="{StaticResource SubtitleTextStyle}" Text="Stato" />
-                                <TextBlock Style="{StaticResource BodyTextStyle}" Text="Occupato" />
+                                <TextBlock Name="statoPark" Style="{StaticResource BodyTextStyle}" />
                             </StackPanel>
 
                             <StackPanel

@@ -67,7 +67,7 @@ namespace WPF_DEFINITIVO.Views
             }
         }
 
-        private async void CreateDynamicGrid()
+        private async void CreateDynamicGrid(string parcheggioAttuale)
         {
             int cont = 0;
             int temp = 1;
@@ -126,7 +126,7 @@ namespace WPF_DEFINITIVO.Views
                     // Colore Libero : Blue
                     b.Background = (SolidColorBrush)new BrushConverter().ConvertFrom("#93C7EA");
 
-                    await parcheggioView.GetParkingsByName(combo.Text);
+                    await parcheggioView.GetParkingsByName(parcheggioAttuale);
                     b.Name = "btn" + parcheggioView.ParkingObjectByName[cont].ParkingId;
 
                     TextBlock tb2 = new TextBlock()
@@ -163,8 +163,8 @@ namespace WPF_DEFINITIVO.Views
                 }
             }
         }
-
-        private void Create_Click(object sender, System.Windows.RoutedEventArgs e)
+        string name;
+        private async void Create_Click(object sender, System.Windows.RoutedEventArgs e)
         {
 
             if (InputName.Text == "Nome Parcheggio")
@@ -188,12 +188,16 @@ namespace WPF_DEFINITIVO.Views
                 int riga = Int32.Parse(RowSlider.Value.ToString());
                 int colonna = Int32.Parse(ColSlider.Value.ToString());
 
+                await parcheggioView.CreateParcheggio(InputName.Text, riga, colonna);
+                //combo.Text = InputName.Text;
                 CreateDynamicRow(riga);
 
                 CreateDynamicCol(colonna);
-
-                CreateDynamicGrid();
-
+                name = InputName.Text;
+                CreateDynamicGrid(InputName.Text);
+                parcheggioView.GetParkings();
+                
+                combo.SelectedIndex = combo.Items.Count;
                 DoubleAnimation fadeAnimation = new DoubleAnimation();
                 fadeAnimation.Duration = TimeSpan.FromSeconds(0.5d);
                 fadeAnimation.EasingFunction = new QuadraticEase();
@@ -218,7 +222,7 @@ namespace WPF_DEFINITIVO.Views
             //apro il form che contiene i detagli nel parcheggio
             ParcheggiDetailPage parcheggiDetailPage = new ParcheggiDetailPage(tb.Text, b, combo.Text, comboItemSelected); //e passo il nome del parcheggio
             parcheggiDetailPage.ShowDialog();
-            CreateDynamicGrid();
+            CreateDynamicGrid(combo.Text);
         }
 
         private void errorSlider()
@@ -347,7 +351,7 @@ namespace WPF_DEFINITIVO.Views
 
             CreateDynamicCol(colonna);
 
-            CreateDynamicGrid();
+            CreateDynamicGrid(combo.Text);
         }
 
         private void InputNameDoubleClick(object sender, System.Windows.Input.MouseButtonEventArgs e)

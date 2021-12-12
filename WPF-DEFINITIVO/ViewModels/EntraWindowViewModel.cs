@@ -23,6 +23,8 @@ namespace WPF_DEFINITIVO.ViewModels
         private string name;
         private DateTime dateBirth;
         private string targa;
+        private string manufactorer;
+        private string model;
 
         public string Surname
         {
@@ -61,6 +63,26 @@ namespace WPF_DEFINITIVO.ViewModels
             {
                 targa = value;
                 OnPropertyChanged("targa");
+            }
+        }
+
+        public string Manufactorer
+        {
+            get { return manufactorer; }
+            set
+            {
+                manufactorer = value;
+                OnPropertyChanged("manufactorer");
+            }
+        }
+
+        public string Model
+        {
+            get { return model; }
+            set
+            {
+                model = value;
+                OnPropertyChanged("model");
             }
         }
 
