@@ -336,7 +336,7 @@ namespace WebAPI_Definitivo.Controllers
         }
 
         
-        //GET ALL VEHICLES
+        
         [Authorize]
         [HttpGet("ParkingList")]
 
