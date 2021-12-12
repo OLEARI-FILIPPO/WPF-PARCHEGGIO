@@ -117,7 +117,7 @@
                      LostFocus="Manufacturer_LostFocus"
                      GotFocus="Manufacturer_GotFocus"
                      Foreground="Gray"
-                     Text="Manufacturer"
+                     Text="{Binding Manufactorer}"
                      VerticalAlignment="Center"/>
         </StackPanel>
 
@@ -134,7 +134,7 @@
                      LostFocus="Modello_LostFocus"
                      GotFocus="Modello_GotFocus"
                      Foreground="Gray"
-                     Text="Modello"
+                     Text="{Binding Model}"
                      VerticalAlignment="Center"/>
         </StackPanel>
 

@@ -14,6 +14,13 @@ namespace WebAPI_Definitivo.Models
             Parking = new HashSet<Parking>();
         }
 
+        public InfoParking(string nomeParcheggio, int righe, int colonne)
+        {
+            NamePark = nomeParcheggio;
+            Nrighe = righe;
+            Ncol = colonne;
+        }
+
         public long InfoParkId { get; set; }
         public string NamePark { get; set; }
         public int Ncol { get; set; }

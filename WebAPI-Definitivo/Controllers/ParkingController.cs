@@ -182,9 +182,9 @@ namespace WebAPI_Definitivo.Controllers
         }
 
         [Authorize]
-        [HttpPut("parcheggio/{targa}/{nomeParcheggio}/{nomePosto}")]
+        [HttpPut("parcheggio/{targa}/{nomeParcheggio}/{nomePosto}/{nomeManufactorer}/{nomeModel}")]
         //l'id è riferito al nome del parcheggio che l'utente ha cliccato
-        public ActionResult AddParking(string targa, string nomeParcheggio, string nomePosto, [FromBody] OwnerVehicle persona)
+        public ActionResult AddParking(string targa, string nomeParcheggio, string nomePosto, string nomeManufactorer, string nomeModel, [FromBody] OwnerVehicle persona)
         {
             try
             {
@@ -195,6 +195,7 @@ namespace WebAPI_Definitivo.Controllers
                     bool controlTarga = true;// variabile controllo corretto inserimento della targa
                     bool controlCognome = true;
                     bool controlNome = true;
+                    bool controlManu = true;
 
                     targa = targa.ToUpper();
                     // Controllo il corretto inserimento della targa.
@@ -257,7 +258,24 @@ namespace WebAPI_Definitivo.Controllers
                         return Problem("Inserire correttamente il nome");
                     if (!controlCognome)
                         return Problem("Inserire correttamente il cognome");
-                    
+
+                    for (int i = 0; i < nomeManufactorer.Length; i++)
+                    {
+                        int converAscii = (int)nomeManufactorer[i];
+                        if (!controlCognome)
+                            break;
+
+                        if (converAscii < 65 || converAscii > 90 && converAscii < 97 || converAscii > 122)
+                        {
+                            controlManu = false;
+                            break;
+                        }
+
+                    }
+
+                    if (!controlManu)
+                        return Problem("Inserire correttamente la marca");
+
                     //Inserimento veicolo
                     Vehicle controlloVeicolo = model.Vehicle.Where(w => w.LicensePlate == targa).FirstOrDefault();
                     int tempoAnni = DateTime.Now.Year - persona.DateBirth.Year;
@@ -378,8 +396,8 @@ namespace WebAPI_Definitivo.Controllers
         }
 
         [Authorize]
-        [HttpPost("/api/v1/ParkingRecordsByName")] //prende tutti i record tabella parking
-        public ActionResult GetParkingRecordsSingle([FromBody] InfoParking i)
+        [HttpGet("/api/v1/ParkingRecordsByName/{nomeParcheggio}")] //prende tutti i record tabella parking
+        public ActionResult GetParkingRecordsSingle(string nomeParcheggio)
         {
             try
             {
@@ -389,7 +407,7 @@ namespace WebAPI_Definitivo.Controllers
                     List<Parking> listOfParkings;
                     long id;
 
-                    id = model.InfoParking.Where(w => w.NamePark == i.NamePark).Select(s => s.InfoParkId).FirstOrDefault();
+                    id = model.InfoParking.Where(w => w.NamePark == nomeParcheggio).Select(s => s.InfoParkId).FirstOrDefault();
                     listOfParkings = model.Parking.Where(w => w.InfoParkId == id).ToList();
 
                     return Ok(listOfParkings);
@@ -405,7 +423,6 @@ namespace WebAPI_Definitivo.Controllers
 
         [Authorize]
         [HttpGet("NotParked")] //prende i parcheggi vuoti
-
         public ActionResult GetNotParkedParking()
         {
             try
@@ -418,6 +435,56 @@ namespace WebAPI_Definitivo.Controllers
                     listOfParkings = model.Parking.Where(s => s.Stato == false).ToList();
 
                     return Ok(listOfParkings);
+                }
+            }
+            catch (Exception)
+            {
+
+                return Problem();
+            }
+        }
+
+        [Authorize]
+        [HttpGet("NewPark/{nomeParcheggio}/{righe}/{colonne}")] //prende i parcheggi vuoti
+        public ActionResult NewPark(string nomeParcheggio, string righe, string colonne)
+        {
+            try
+            {
+                //MODIFICA: SI PUO ANCHE SOLO PASSARE IL NOME DEL PARCHEGGIO INVECE CHE TUTTO L'OGGETTO
+                using (ParkingManagementContext model = new ParkingManagementContext())
+                {
+                    int nRighe = Int32.Parse(righe);
+                    int nColonne = Int32.Parse(colonne);
+                    if (nomeParcheggio != "" && nRighe >= 2 && nColonne >= 2 && nRighe <= 10 && nColonne <= 10)
+                    {
+                        InfoParking pInfo = new InfoParking(nomeParcheggio, nRighe, nColonne);
+                        model.InfoParking.Add(pInfo);
+                        model.SaveChanges();
+
+                        
+                        int cont = 0;
+                        for(int i = 0; i < nRighe; i++)
+                        {
+                            for (int j = 0; j < nColonne; j++)
+                            {
+                                Parking p = new Parking();
+                                if (cont < 10)
+                                    p.ParkingId = "P0" + cont;
+                                else
+                                    p.ParkingId = "P" + cont;
+                                p.Stato = false;
+                                p.InfoParkId = pInfo.InfoParkId;
+                                cont++;
+
+                                model.Parking.Add(p);
+                                model.SaveChanges();
+                            }
+                        }
+                        model.SaveChanges();
+                        return Ok("Parcheggio creato correttamente");
+                    }
+                    else
+                        return Problem("Inserire correttamente tutti i campi");
                 }
             }
             catch (Exception)
