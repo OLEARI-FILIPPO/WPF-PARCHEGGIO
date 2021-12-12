@@ -5,7 +5,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
-using WebAPI_Definitivo.Model;
+using WebAPI_Definitivo.Models;
 
 namespace WebAPI_Definitivo.Controllers
 {
