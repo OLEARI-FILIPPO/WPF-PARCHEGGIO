@@ -188,6 +188,7 @@ namespace WebAPI_Definitivo.Controllers
                     bool controlTarga = true;// variabile controllo corretto inserimento della targa
                     bool controlCognome = true;
                     bool controlNome = true;
+                    bool controlManu = true;
 
                     targa = targa.ToUpper();
                     // Controllo il corretto inserimento della targa.
@@ -250,7 +251,24 @@ namespace WebAPI_Definitivo.Controllers
                         return Problem("Inserire correttamente il nome");
                     if (!controlCognome)
                         return Problem("Inserire correttamente il cognome");
-                    
+
+                    for (int i = 0; i < nomeManufactorer.Length; i++)
+                    {
+                        int converAscii = (int)nomeManufactorer[i];
+                        if (!controlCognome)
+                            break;
+
+                        if (converAscii < 65 || converAscii > 90 && converAscii < 97 || converAscii > 122)
+                        {
+                            controlManu = false;
+                            break;
+                        }
+
+                    }
+
+                    if (!controlManu)
+                        return Problem("Inserire correttamente la marca");
+
                     //Inserimento veicolo
                     Vehicle controlloVeicolo = model.Vehicle.Where(w => w.LicensePlate == targa).FirstOrDefault();
                     int tempoAnni = DateTime.Now.Year - persona.DateBirth.Year;
