@@ -23,11 +23,10 @@ namespace WPF_DEFINITIVO.ViewModels
 
 
         }
-      //  private readonly ISampleDataService _sampleDataService;
 
         public ObservableCollection<IncassiDisplay> IncassiDisplay { get; } = new ObservableCollection<IncassiDisplay>();
         public ObservableCollection<Parking> SourceDisp { get; } = new ObservableCollection<Parking>();
-        //public ObservableCollection<Parking> Allparkings { get; } = new ObservableCollection<Parking>();
+        public ObservableCollection<ParkingDisplay> Allparkings { get; } = new ObservableCollection<ParkingDisplay>();
         public ObservableCollection<Vehicle> Vehicle { get; } = new ObservableCollection<Vehicle> { new Vehicle() };
 
 
@@ -51,19 +50,52 @@ namespace WPF_DEFINITIVO.ViewModels
 
                 ParkingObject = JsonConvert.DeserializeObject<ObservableCollection<Parking>>(data);
 
+
                 foreach (Parking item in ParkingObject)
                 {
                     SourceDisp.Add(item);
                 }
+
+                //Chiamata get id
+
+                List<int> infoPark = new List<int>();
+                foreach (var item in SourceDisp)
+                {
+                    infoPark.Add(Convert.ToInt32(item.InfoParkId));
+                }
+
+                List<string> posti = new List<string>();
+                foreach (var item in SourceDisp)
+                {
+                    posti.Add(item.ParkingId);
+                }
+
+                ObservableCollection<string> parcheggi = new ObservableCollection<string>();
+
+                response = await client.PostAsJsonAsync("http://localhost:13636/api/v1/getParkName", infoPark);
+                data = await response.Content.ReadAsStringAsync();
+                parcheggi = JsonConvert.DeserializeObject<ObservableCollection<string>>(data);
+
+                for (int i = 0; i < SourceDisp.Count; i++)
+                {
+                    Allparkings.Add
+                        (
+                            new ParkingDisplay
+                            (
+                                nomePosto: posti[i],
+                                stato: "Libero",
+                                nomeParcheggio: parcheggi[i]
+                            )
+                        );
+                }
             }
 
-
+            //Rimane uguale
             nParking = SourceDisp.Count.ToString();
 
         }
 
 
-        private ObservableCollection<Parking> allParkingsObject;
         public async Task AllParkingsRev()
         {
             IncassiDisplay.Clear();

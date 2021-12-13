@@ -25,8 +25,11 @@ namespace WebAPI_Definitivo.Controllers
                 var tokenHandler = new JwtSecurityTokenHandler();
                 var tokenDescriptor = new SecurityTokenDescriptor
                 {
-                    SigningCredentials = new SigningCredentials(SecurityKeyGenerator.GetSecurityKey(candidate),
-                    SecurityAlgorithms.HmacSha256Signature),
+                    SigningCredentials = new SigningCredentials
+                    (
+                        SecurityKeyGenerator.GetSecurityKey(candidate),
+                        SecurityAlgorithms.HmacSha256Signature
+                    ),
                     Expires = DateTime.Now.AddDays(1),
                     Subject = new ClaimsIdentity(
                         new Claim[] 
