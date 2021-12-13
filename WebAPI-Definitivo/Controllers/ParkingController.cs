@@ -278,6 +278,7 @@ namespace WebAPI_Definitivo.Controllers
 
                     //Inserimento veicolo
                     Vehicle controlloVeicolo = model.Vehicle.Where(w => w.LicensePlate == targa).FirstOrDefault();
+
                     int tempoAnni = DateTime.Now.Year - persona.DateBirth.Year;
                     int tempoMesi = DateTime.Now.Month - persona.DateBirth.Month;
                     int tempoGiorni = DateTime.Now.Day - persona.DateBirth.Day;
@@ -321,8 +322,8 @@ namespace WebAPI_Definitivo.Controllers
                     }
                     else if(controlloVeicolo != null)
                     {
-                        string risposta = "L'auto targata " + targa + "è già presente nel parcheggio.";
-                        return Problem("L'auto da parcheggiare è già presente nel parcheggio.");
+                        string risposta = "L'auto è già presente nel parcheggio.";
+                        return Problem(risposta);
 
                     }
                     else
