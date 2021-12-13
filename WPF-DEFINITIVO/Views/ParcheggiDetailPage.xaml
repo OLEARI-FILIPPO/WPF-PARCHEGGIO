@@ -7,7 +7,7 @@
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     WindowStartupLocation="CenterScreen"
     mc:Ignorable="d"
-    d:DesignHeight="320" MinWidth="700" MaxWidth="720" Loaded="Window_Loaded" Width="692">
+    MinHeight="350" MinWidth="750" MaxWidth="720" Loaded="Window_Loaded" Width="692">
     <Grid x:Name="grid">
         <Grid.Background>
             <ImageBrush ImageSource="Images/wave.png"/>
@@ -15,15 +15,15 @@
 
 
         <StackPanel
-                Margin="{StaticResource MediumLeftTopRightBottomMargin}">
-            <Grid>
+                Margin="24,24,24,28">
+            <Grid Height="250">
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="Auto" />
                     <ColumnDefinition Width="*" />
                 </Grid.ColumnDefinitions>
                 <Grid
                         Width="200"
-                        Height="208"
+                        Height="250"
                         Grid.Column="0"
                         Grid.Row="0"
                        >
@@ -36,7 +36,7 @@
                     </Button>
                 </Grid>
 
-                <Grid Grid.Column="1" Margin="10,0,10,0">
+                <Grid Grid.Column="1" Margin="10,0,10,22">
                     <Grid.ColumnDefinitions>
                         <ColumnDefinition Width="150"/>
                         <ColumnDefinition />
