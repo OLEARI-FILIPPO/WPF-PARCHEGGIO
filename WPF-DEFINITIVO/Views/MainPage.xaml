@@ -83,7 +83,7 @@
                                    TextAlignment="Center"
                                    HorizontalAlignment="Center" 
                                    Height="43" 
-                                   Width="194"/>
+                                   Width="66"/>
                     </StackPanel>
                 </hc:Card.Footer>
             </hc:Card>
