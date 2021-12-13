@@ -14,7 +14,5 @@ namespace WPF_DEFINITIVO.Helpers
         public static object oggetto;
 
         public static DateTime dataPresa;
-
-
     }
 }

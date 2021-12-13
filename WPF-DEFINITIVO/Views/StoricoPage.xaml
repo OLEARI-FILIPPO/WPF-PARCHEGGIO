@@ -39,8 +39,7 @@
                         Margin="24,0,20,0" 
                         Width="252" 
                         hc:InfoElement.Placeholder="Seleziona una data"
-                        Text="{Binding DateBirth}"
-                           Name="dataHistory"
+                        Name="dataHistory"
                         Height="36"></hc:DatePicker>
 
             <Button Background="#BB88F3" 
@@ -60,25 +59,23 @@
                  Effect="{DynamicResource EffectShadow5}" 
                  Margin="57,37,87,37"  >
             <!--ItemsSource="{Binding Source}"-->
-            <DataGrid Name="StoricoGrid"
-                
-                AutoGenerateColumns="False"
-               
-
-                CanUserAddRows="False"
-                ItemsSource="{Binding HistoryDisplay}"
-                Background="#81B6E3"
-                      
-               
-                 Effect="{DynamicResource EffectShadow2}" Loaded="DataGrid_Loaded">
+            <DataGrid   Name="StoricoGrid"
+                        AutoGenerateColumns="False"
+                        CanUserAddRows="False"
+                        IsReadOnly="True"
+                        ItemsSource="{Binding HistoryDisplay}"
+                        Background="#81B6E3"
+                        FontSize="18"
+                        ColumnWidth="2*"
+                        Effect="{DynamicResource EffectShadow2}" Loaded="DataGrid_Loaded">
 
 
                 <DataGrid.Columns>
 
                     <DataGridTextColumn Binding="{Binding ParkingId}" Header="Spot" />
                     <DataGridTextColumn Binding="{Binding Revenue}" Header="Revenue" />
-                    <DataGridTextColumn Binding="{Binding EntryTimeDate}" Header="Entry Time" />
-                    <DataGridTextColumn Binding="{Binding ExitTimeDate}" Header="Exit Time" />
+                    <DataGridTextColumn Binding="{Binding EntryTimeDate, StringFormat='dd/MM/yyy'}" Header="Entry Date" />
+                    <DataGridTextColumn Binding="{Binding ExitTimeDate, StringFormat='dd/MM/yyy'}" Header="Exit Date" />
                     <DataGridTextColumn Binding="{Binding LicencePlate}"  Header="Targa" />
                     <DataGridTextColumn Binding="{Binding NamePark}" Header="Parking" />
 
