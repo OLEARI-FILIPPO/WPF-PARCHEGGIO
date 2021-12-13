@@ -68,7 +68,7 @@
                                VerticalAlignment="Center" 
                                HorizontalAlignment="Left"
                                
-                               Margin="40,0,0,5" Text="Welcome back!" FontFamily="Sans-Serif"  FontSize="40" />
+                               Margin="40,0,0,5" Text="Welcome back!" FontFamily="CocoSharp Trial"  FontSize="40" />
 
 
 

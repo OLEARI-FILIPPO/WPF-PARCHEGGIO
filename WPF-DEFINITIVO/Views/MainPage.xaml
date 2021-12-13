@@ -189,7 +189,7 @@
                                    x:Name="vehicles"
                                    Style="{DynamicResource TextBlockDefault}" 
                                    TextTrimming="CharacterEllipsis" 
-                                   Text="40" 
+                                   Text="" 
                                    FontSize="25" 
                                    Margin="0,12,0,0"
                                    FontFamily="CocoSharp Trial"
