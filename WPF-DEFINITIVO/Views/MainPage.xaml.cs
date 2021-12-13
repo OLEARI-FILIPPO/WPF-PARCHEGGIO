@@ -70,7 +70,7 @@ namespace WPF_DEFINITIVO.Views
 
             dispParkings.Text = main.nParking;
             vehicles.Text = main.nVehicle;
-            rev.Text = main.totRevenue;
+            rev.Text = main.totRevenue + "€";
 
         }
 
@@ -131,7 +131,7 @@ namespace WPF_DEFINITIVO.Views
                             if(response.IsSuccessStatusCode)
                             {
                                 await main.AllParkingsRev();
-                                rev.Text = somma.ToString();
+                                rev.Text = somma.ToString() +"€";
                                 System.Windows.MessageBox.Show("Parcheggio eliminato correttamente", "Infomation", MessageBoxButton.OK, MessageBoxImage.Information);
                                 break;
                             }
