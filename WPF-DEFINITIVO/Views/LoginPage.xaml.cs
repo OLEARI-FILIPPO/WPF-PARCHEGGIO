@@ -175,7 +175,7 @@ namespace WPF_DEFINITIVO.Views
         private void PasswordInserito_GotFocus(object sender, RoutedEventArgs e)
         {
 
-            if (PasswordInserito.Password == "Password")
+            if (PasswordInserito.Password == "password")
             {
                 PasswordInserito.Password = null;
             }
