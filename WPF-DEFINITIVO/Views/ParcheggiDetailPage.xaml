@@ -7,7 +7,7 @@
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     WindowStartupLocation="CenterScreen"
     mc:Ignorable="d"
-    MinHeight="350" MinWidth="750" MaxWidth="720" Loaded="Window_Loaded" Width="692">
+    MinHeight="359" MinWidth="750" MaxWidth="720" Loaded="Window_Loaded" Width="692">
     <Grid x:Name="grid">
         <Grid.Background>
             <ImageBrush ImageSource="Images/wave.png"/>
