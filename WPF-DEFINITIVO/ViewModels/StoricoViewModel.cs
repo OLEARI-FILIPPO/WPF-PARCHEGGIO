@@ -90,6 +90,7 @@ namespace WPF_DEFINITIVO.ViewModels
 
                 if (response.IsSuccessStatusCode)
                 {
+                    LicencePlate.Clear();
                     foreach (var item in collezione)
                     {
                         LicencePlate.Add(item);
@@ -104,6 +105,7 @@ namespace WPF_DEFINITIVO.ViewModels
 
                 if (response.IsSuccessStatusCode)
                 {
+                    NamePark.Clear();
                     foreach (var item in collezione)
                     {
                         NamePark.Add(item);
