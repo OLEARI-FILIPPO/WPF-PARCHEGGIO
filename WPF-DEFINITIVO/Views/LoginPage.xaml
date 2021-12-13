@@ -1,5 +1,5 @@
 ﻿<Page
-   
+    FontFamily="Caviar Dreams"
     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
@@ -61,14 +61,14 @@
                                VerticalAlignment="Center" 
                                HorizontalAlignment="Left" 
                                Background="Transparent" 
-                               Margin="40,20,0,0" Text="Hello" FontFamily="CaviarDreams" FontSize="40" />
+                               Margin="40,20,0,0" Text="Hello" FontFamily="Caviar Dreams" FontSize="40" />
 
 
                     <TextBlock TextWrapping="Wrap"  
                                VerticalAlignment="Center" 
                                HorizontalAlignment="Left"
                                
-                               Margin="40,0,0,5" Text="Welcome back!" FontFamily="CaviarDreams"  FontSize="40" />
+                               Margin="40,0,0,5" Text="Welcome back!" FontFamily="Caviar Dreams"  FontSize="40" />
 
 
 
@@ -86,7 +86,7 @@
                            
                             x:Name="UsernameTextBox"
                             Height="52" 
-                            FontFamily="CaviarDreams"
+                            FontFamily="Caviar Dreams"
                             GotFocus="UsernameTextBox_GotFocus"
                             LostFocus="UsernameTextBox_LostFocus"></TextBox>
 
@@ -103,7 +103,7 @@
                                      Height="52" 
                                      HorizontalAlignment="Center"
                                      FontSize="20"
-                                     FontFamily="CaviarDreams"
+                                     FontFamily="Caviar Dreams"
                                      x:Name="PasswordInserito"
                                      LostFocus="PasswordInserito_LostFocus"
                                      GotFocus="PasswordInserito_GotFocus"
@@ -119,7 +119,7 @@
                                  
                                  x:Name="Passwordtxt"
                                  Foreground="Gray"
-                                 FontFamily="CaviarDreams"
+                                 FontFamily="Caviar Dreams"
                                  VerticalAlignment="Center"/>
 
                         <Button HorizontalAlignment="Left"
@@ -141,7 +141,7 @@
                             VerticalAlignment="Center"
                             FontSize="25" 
                             Height="50" Width="206" 
-                             FontFamily="CaviarDreams">Login</Button>
+                             FontFamily="Caviar Dreams">Login</Button>
 
 
                 </StackPanel>

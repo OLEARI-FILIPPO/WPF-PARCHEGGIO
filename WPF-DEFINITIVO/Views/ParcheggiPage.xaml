@@ -1,4 +1,5 @@
 ﻿<Page
+    FontFamily="Caviar Dreams"
     x:Class="WPF_DEFINITIVO.Views.ParcheggiPage"
     Name="PageParcheggio"
     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
@@ -41,8 +42,8 @@
                             ItemsSource="{Binding Path=Parking, Mode=OneWay}"
                             x:Name="combo"
                             Height="35"
-                            FontSize="16"
-                            FontFamily="CaviarDreams"
+                            FontSize="15"
+                            FontFamily="Caviar Dreams"
                             Foreground="Gray"
                             BorderBrush="Gray"
                             SelectionChanged="combo_SelectionChanged"
@@ -53,7 +54,7 @@
                    FontSize="14" 
                    Height="35" 
                    Margin="20,0,10,0" 
-                   FontFamily="CaviarDreams"
+                   FontFamily="Caviar Dreams"
                    Width="76"/>
 
             <Slider x:Name="RowSlider" 
@@ -69,7 +70,7 @@
                    FontSize="14" 
                    Height="35"
                    Margin="10,0,10,0"
-                   FontFamily="CaviarDreams"
+                   FontFamily="Caviar Dreams"
                    Width="76"/>
 
             <Slider x:Name="ColSlider" 
@@ -88,7 +89,7 @@
                      x:Name="InputName" 
                      Foreground="Gray" 
                      BorderBrush="Gray" 
-                      FontFamily="CaviarDreams"
+                      FontFamily="Caviar Dreams"
                      
                      Text="Nome Parcheggio"  
                      GotFocus="InputName_GotFocus" 
@@ -100,7 +101,7 @@
                             FontSize="16"
                             Background="#BBEFEF"
                             Height="35" Width="70"
-                           FontFamily="CaviarDreams"
+                           FontFamily="Caviar Dreams"
                    
                             x:Name="Create" RenderTransformOrigin="1.01,0.466"
                             />

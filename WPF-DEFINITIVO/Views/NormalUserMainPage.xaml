@@ -1,4 +1,5 @@
-﻿<Page x:Class="WPF_DEFINITIVO.Views.NormalUserMainPage"
+﻿<Page FontFamily="Caviar Dreams"
+    x:Class="WPF_DEFINITIVO.Views.NormalUserMainPage"
       xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
       xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
       xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
@@ -110,7 +111,7 @@
                             HorizontalAlignment="Center" 
                             Text="Parcheggi disponibili" 
                             FontSize="28" 
-                            Width="130"  />
+                            Width="141" Height="103"  />
 
                     </StackPanel>
 
