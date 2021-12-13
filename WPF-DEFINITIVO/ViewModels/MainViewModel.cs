@@ -120,11 +120,6 @@ namespace WPF_DEFINITIVO.ViewModels
 
                 result = data.ToString();
 
-                foreach (Vehicle item in VehicleObject)
-                {
-                    Vehicle.Add(item);
-                }
-
                 totRevenue = result;
             }
 

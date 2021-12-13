@@ -301,7 +301,10 @@ namespace WebAPI_Definitivo.Controllers
                         (
                             licensePlate: targa,
                             ownerId: persona.OwnerId
+                            
                         );
+                        nuovoVeicolo.Manufacturer = nomeManufactorer;
+                        nuovoVeicolo.Model = nomeModel;
                         model.Vehicle.Add(nuovoVeicolo);
                         model.SaveChanges();
                         //trovo park id
