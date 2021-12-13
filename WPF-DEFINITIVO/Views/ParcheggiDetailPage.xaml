@@ -1,4 +1,5 @@
 ﻿<Window
+    FontFamily="Caviar Dreams"
     x:Class="WPF_DEFINITIVO.Views.ParcheggiDetailPage"
     Name="detailPage"
     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
@@ -31,7 +32,7 @@
                     <Button x:Name="btnPosto" Grid.Row="2" Height="160" Width="163" FontSize="30">
                         <StackPanel HorizontalAlignment="Center" VerticalAlignment="Center" Orientation="Vertical" Height="103">
                             <TextBlock Text="&#xE804;" Margin="3,0,0,0" HorizontalAlignment="Center" FontSize="45" FontFamily="Segoe MDL2 Assets" Height="53" Width="48"/>
-                            <TextBlock FontFamily="CaviarDreams" x:Name="ParkingNameLabel" Height="47"><Run Text="P001"/></TextBlock>
+                            <TextBlock FontFamily="Caviar Dreams" x:Name="ParkingNameLabel" Height="47"><Run Text="P001"/></TextBlock>
                         </StackPanel>
                     </Button>
                 </Grid>
@@ -48,8 +49,8 @@
 
                         <StackPanel
                                 Margin="{StaticResource SmallLeftTopMargin}">
-                            <TextBlock FontFamily="CocoSharp Trial" Style="{StaticResource SubtitleTextStyle}" Text="Stato" />
-                            <TextBlock  FontFamily="CocoSharp Trial" Name="statoPark" Style="{StaticResource BodyTextStyle}" />
+                            <TextBlock FontFamily="Caviar Dreams" Style="{StaticResource SubtitleTextStyle}" Text="Stato" />
+                            <TextBlock  FontFamily="Caviar Dreams" Name="statoPark" Style="{StaticResource BodyTextStyle}" />
                         </StackPanel>
 
                         <StackPanel
@@ -59,7 +60,7 @@
                                         Background="#C4E9D7" 
                                         HorizontalAlignment="Left" 
                                         Content="Entra" 
-                                        FontFamily="CaviarDreams"
+                                        FontFamily="Caviar Dreams"
                                         Margin="0,20,20,0" 
                                         Height="42" Width="68" 
                                         Click="Button_Click"/>
@@ -67,7 +68,7 @@
 
                         <StackPanel
                             Margin="{StaticResource SmallLeftTopMargin}">
-                            <Button FontFamily="CocoSharp Trial" FontSize="14" BorderBrush="Transparent" x:Name="Exit" Background="#F7A5A0" Content="Uscita" HorizontalAlignment="Left" Height="46" Width="67" Click="Exit_Click" />
+                            <Button FontFamily="Caviar Dreams" FontSize="14" BorderBrush="Transparent" x:Name="Exit" Background="#F7A5A0" Content="Uscita" HorizontalAlignment="Left" Height="46" Width="67" Click="Exit_Click" />
 
                         </StackPanel>
                     </StackPanel>
@@ -78,29 +79,29 @@
                         <StackPanel
                                  Margin="{StaticResource SmallLeftTopMargin}">
 
-                            <TextBlock FontFamily="CaviarDreams" Style="{StaticResource SubtitleTextStyle}" Text="Macchina Parcheggiata: " />
-                            <TextBlock FontFamily="CaviarDreams"  Name="Targa" Style="{StaticResource BodyTextStyle}" />
+                            <TextBlock FontFamily="Caviar Dreams" Style="{StaticResource SubtitleTextStyle}" Text="Macchina Parcheggiata: " />
+                            <TextBlock FontFamily="Caviar Dreams"  Name="Targa" Style="{StaticResource BodyTextStyle}" />
 
                         </StackPanel>
 
                         <StackPanel
                                  Margin="{StaticResource SmallLeftTopMargin}">
-                            <TextBlock FontFamily="CaviarDreams" Style="{StaticResource SubtitleTextStyle}" Text="Propietario: " />
-                            <TextBlock FontFamily="CaviarDreams" Name="Proprietario" Style="{StaticResource BodyTextStyle}" />
+                            <TextBlock FontFamily="Caviar Dreams" Style="{StaticResource SubtitleTextStyle}" Text="Propietario: " />
+                            <TextBlock FontFamily="Caviar Dreams" Name="Proprietario" Style="{StaticResource BodyTextStyle}" />
 
                         </StackPanel>
 
                         <StackPanel
                                  Margin="{StaticResource SmallLeftTopMargin}">
-                            <TextBlock FontFamily="CaviarDreams" Style="{StaticResource SubtitleTextStyle}" Text="Data di Entrata: " />
-                            <TextBlock FontFamily="CaviarDreams" Name="DataEntrata" Style="{StaticResource BodyTextStyle}"  />
+                            <TextBlock FontFamily="Caviar Dreams" Style="{StaticResource SubtitleTextStyle}" Text="Data di Entrata: " />
+                            <TextBlock FontFamily="Caviar Dreams" Name="DataEntrata" Style="{StaticResource BodyTextStyle}"  />
 
                         </StackPanel>
 
                         <StackPanel
                                  Margin="{StaticResource SmallLeftTopMargin}">
-                            <TextBlock FontFamily="CaviarDreams" Style="{StaticResource SubtitleTextStyle}" Text="Tariffa: " />
-                            <TextBlock  FontFamily="CaviarDreams" Name="Tariffa" Style="{StaticResource BodyTextStyle}" Text="2.00€ al ora" />
+                            <TextBlock FontFamily="Caviar Dreams" Style="{StaticResource SubtitleTextStyle}" Text="Tariffa: " />
+                            <TextBlock  FontFamily="Caviar Dreams" Name="Tariffa" Style="{StaticResource BodyTextStyle}" Text="2.00€ al ora" />
 
                         </StackPanel>
 

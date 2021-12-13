@@ -1,4 +1,5 @@
 ﻿<Page
+    FontFamily="Caviar Dreams"
     Name="mainPage"
     x:Class="WPF_DEFINITIVO.Views.MainPage"
     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
@@ -61,7 +62,7 @@
                                    Height="67" 
                                    TextAlignment="Center" Width="62"/>
                         <TextBlock TextWrapping="Wrap"
-                                    FontFamily="CaviarDreams"
+                                    FontFamily="Caviar Dreams"
                                    
                                    HorizontalAlignment="Center" 
                                    Text="Incasso"  
@@ -82,7 +83,7 @@
                                    x:Name="rev" 
                                    FontSize="25"
                                    TextAlignment="Center"
-                                   FontFamily="CocoSharp Trial"
+                                   FontFamily="Caviar Dreams"
                                    HorizontalAlignment="Center"
                                    VerticalAlignment="Center" 
                                    Height="40" Width="78"/>
@@ -116,10 +117,10 @@
                         <TextBlock 
                             TextWrapping="Wrap"
                             HorizontalAlignment="Center"
-                            FontFamily="CaviarDreams"
+                            FontFamily="Caviar Dreams"
                             Text="Parcheggi disponibili" 
                             FontSize="28" 
-                            Width="130"  />
+                            Width="134" Height="121"  />
 
                     </StackPanel>
 
@@ -133,7 +134,7 @@
                         <TextBlock x:Name="dispParkings" TextAlignment="Center" TextWrapping="NoWrap" Style="{DynamicResource TextBlockDefault}" TextTrimming="CharacterEllipsis" 
                                         FontSize="25" Margin="0,12,0,0"
                                         VerticalAlignment="Center"
-                                        FontFamily="CaviarDreams"
+                                        FontFamily="Caviar Dreams"
                                         HorizontalAlignment="Center" Height="34" Width="128"/>
                     </StackPanel>
                 </hc:Card.Footer>
@@ -166,7 +167,7 @@
                         <TextBlock 
                             TextWrapping="Wrap"
                             HorizontalAlignment="Center"
-                            FontFamily="CaviarDreams"
+                            FontFamily="Caviar Dreams"
                             Text="Veicoli Entrati" 
                             TextAlignment="Center"
                             FontSize="28" 
@@ -188,7 +189,7 @@
                                    Text="" 
                                    FontSize="25" 
                                    Margin="0,12,0,0"
-                                   FontFamily="CaviarDreams"  
+                                   FontFamily="Caviar Dreams"  
                                    
                                    HorizontalAlignment="Center" 
                                    Height="37" 
@@ -225,7 +226,7 @@
                     CanUserAddRows="False"
                     FontSize="16"
                     ColumnWidth="2*"
-                    FontFamily="CocoSharp Trial"
+                    FontFamily="Caviar Dreams"
                     ItemsSource="{Binding IncassiDisplay}"
                     Name="gridIncassi"
                    ColumnHeaderHeight="60"
@@ -278,7 +279,7 @@
                     ItemsSource="{Binding Allparkings}"
                     FontSize="16"
                     
-                    FontFamily="CocoSharp Trial"
+                    FontFamily="Caviar Dreams"
                     ColumnWidth="2*"
                     
                     
@@ -306,7 +307,7 @@
                      BorderBrush="#80BAE5">
 
                 <DataGrid
-                    FontFamily="CocoSharp Trial"
+                    FontFamily="Caviar Dreams"
 
                     FontSize="16"
                     ColumnWidth="2*"

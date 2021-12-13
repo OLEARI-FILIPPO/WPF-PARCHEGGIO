@@ -1,4 +1,5 @@
-﻿<Window x:Class="WPF_DEFINITIVO.Views.EntraWindow"
+﻿<Window 
+        x:Class="WPF_DEFINITIVO.Views.EntraWindow"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
@@ -7,7 +8,7 @@
         mc:Ignorable="d"
         WindowStartupLocation="CenterScreen"
         Title="Metodo entra veicolo" MaxHeight="750"
-        MaxWidth="544" Width="544" Height="750" Loaded="Window_Loaded"  FontFamily="CocoSharp Trial">
+        MaxWidth="544" Width="544" Height="750" Loaded="Window_Loaded"  FontFamily="Caviar Dreams">
 
     <Grid x:Name="grid" Loaded="grid_Loaded" Margin="0,0,0,1">
 
@@ -31,7 +32,7 @@
                     Style="{StaticResource PageTitleStyle}"
                     Margin="24,0,0,0"
                     FontSize="18"
-                    FontFamily="CocoSharp Trial"
+                    FontFamily="Caviar Dreams"
                    >Entra nel Parcheggio</TextBlock>
 
         <StackPanel Grid.Row="1" 
@@ -50,7 +51,7 @@
                      FontSize="20" 
                      LostFocus="Surname_LostFocus"
                      VerticalAlignment="Center" 
-                     FontFamily="CaviarDreams"
+                     FontFamily="Caviar Dreams"
                      GotFocus="TextBox_GotFocus"></TextBox>
 
         </StackPanel>
@@ -65,7 +66,7 @@
                      HorizontalAlignment="Center"
                      FontSize="20"
                      x:Name="Name"
-                     FontFamily="CaviarDreams"
+                     FontFamily="Caviar Dreams"
                      LostFocus="Name_LostFocus"
                      GotFocus="Name_GotFocus"
                      Foreground="Gray"
@@ -83,7 +84,7 @@
                         Height="60" 
                         HorizontalAlignment="Center"
                         FontSize="20"
-                        FontFamily="CaviarDreams"
+                        FontFamily="Caviar Dreams"
                         Foreground="Gray"
                         Text="{Binding DateBirth}"
                         x:Name="datePicker"
@@ -102,7 +103,7 @@
                      HorizontalAlignment="Center"
                      FontSize="20"
                      x:Name="LicensePlate"
-                     FontFamily="CaviarDreams"
+                     FontFamily="Caviar Dreams"
                      LostFocus="LicensePlate_LostFocus"
                      GotFocus="LicensePlate_GotFocus"
                      Foreground="Gray"
@@ -124,7 +125,7 @@
                      LostFocus="Manufacturer_LostFocus"
                      GotFocus="Manufacturer_GotFocus"
                      Foreground="Gray"
-                     FontFamily="CaviarDreams"
+                     FontFamily="Caviar Dreams"
                      Text="{Binding Manufactorer}"
                      VerticalAlignment="Center"/>
         </StackPanel>
@@ -142,7 +143,7 @@
                      LostFocus="Modello_LostFocus"
                      GotFocus="Modello_GotFocus"
                      Foreground="Gray"
-                      FontFamily="CaviarDreams"
+                      FontFamily="Caviar Dreams"
                      Text="{Binding Model}"
                      VerticalAlignment="Center"/>
         </StackPanel>
@@ -155,7 +156,7 @@
                     Name="entra"
                     FontSize="18" 
                     Background="LightGreen" 
-                     FontFamily="CaviarDreams"
+                     FontFamily="Caviar Dreams"
                     Height="48" Margin="15 0 0 0"
                     Width="130" Click="entra_Click">Entra</Button>
 
@@ -164,7 +165,7 @@
                     Background="IndianRed" 
                     Height="48" Margin="50 0 0 0"
                     Width="130" 
-                    FontFamily="CaviarDreams"
+                    FontFamily="Caviar Dreams"
                     Click="Button_Click">ANNULLA</Button>
         </StackPanel>
 
