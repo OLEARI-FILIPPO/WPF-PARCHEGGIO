@@ -59,17 +59,15 @@
                  Effect="{DynamicResource EffectShadow5}" 
                  Margin="57,37,87,37"  >
             <!--ItemsSource="{Binding Source}"-->
-            <DataGrid Name="StoricoGrid"
-                
-                AutoGenerateColumns="False"
-               
-
-                CanUserAddRows="False"
-                ItemsSource="{Binding HistoryDisplay}"
-                Background="#81B6E3"
-                      
-               
-                 Effect="{DynamicResource EffectShadow2}" Loaded="DataGrid_Loaded">
+            <DataGrid   Name="StoricoGrid"
+                        AutoGenerateColumns="False"
+                        CanUserAddRows="False"
+                        IsReadOnly="True"
+                        ItemsSource="{Binding HistoryDisplay}"
+                        Background="#81B6E3"
+                        FontSize="18"
+                        ColumnWidth="2*"
+                        Effect="{DynamicResource EffectShadow2}" Loaded="DataGrid_Loaded">
 
 
                 <DataGrid.Columns>
