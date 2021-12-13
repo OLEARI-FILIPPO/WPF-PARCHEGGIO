@@ -39,8 +39,7 @@
                         Margin="24,0,20,0" 
                         Width="252" 
                         hc:InfoElement.Placeholder="Seleziona una data"
-                        Text="{Binding DateBirth}"
-                           Name="dataHistory"
+                        Name="dataHistory"
                         Height="36"></hc:DatePicker>
 
             <Button Background="#BB88F3" 
@@ -77,8 +76,8 @@
 
                     <DataGridTextColumn Binding="{Binding ParkingId}" Header="Spot" />
                     <DataGridTextColumn Binding="{Binding Revenue}" Header="Revenue" />
-                    <DataGridTextColumn Binding="{Binding EntryTimeDate}" Header="Entry Time" />
-                    <DataGridTextColumn Binding="{Binding ExitTimeDate}" Header="Exit Time" />
+                    <DataGridTextColumn Binding="{Binding EntryTimeDate, StringFormat='dd/MM/yyy'}" Header="Entry Date" />
+                    <DataGridTextColumn Binding="{Binding ExitTimeDate, StringFormat='dd/MM/yyy'}" Header="Exit Date" />
                     <DataGridTextColumn Binding="{Binding LicencePlate}"  Header="Targa" />
                     <DataGridTextColumn Binding="{Binding NamePark}" Header="Parking" />
 

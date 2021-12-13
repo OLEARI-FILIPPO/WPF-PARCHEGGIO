@@ -42,6 +42,8 @@ namespace WPF_DEFINITIVO.Views
             d.Duration = TimeSpan.FromSeconds(1);
             d.EasingFunction = new QuadraticEase();
             operations.BeginAnimation(WidthProperty, d);
+
+            dataHistory.SelectedDate = DateTime.Today;
         }
 
         private void Button_Click(object sender, RoutedEventArgs e)
