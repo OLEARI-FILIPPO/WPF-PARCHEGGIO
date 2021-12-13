@@ -31,7 +31,7 @@ namespace WPF_DEFINITIVO.Views
             creazione = viewModel;
         }
 
-        private string startingDate = "01/01/1945";
+        private string startingDate = "01/01/2001";
 
         public event PropertyChangedEventHandler PropertyChanged;
 
@@ -127,17 +127,29 @@ namespace WPF_DEFINITIVO.Views
 
         private void TextBox_GotFocus(object sender, RoutedEventArgs e) //TextBox Surname
         {
-            Surname.Text = null;
+            if (Surname.Text == "Cognome")
+            {
+               Surname.Text = null;
+            }
+
         }
 
         private void Name_GotFocus(object sender, RoutedEventArgs e)
         {
-            Name.Text = null;
+            if (Name.Text == "Nome")
+            {
+                Name.Text = null;
+            }
+
         }
 
         private void LicensePlate_GotFocus(object sender, RoutedEventArgs e)
         {
-            LicensePlate.Text = null;
+            if (LicensePlate.Text == "Targa")
+            {
+                Manufacturer.Text = null;
+            }
+
         }
 
         private void grid_Loaded(object sender, RoutedEventArgs e)
@@ -185,7 +197,12 @@ namespace WPF_DEFINITIVO.Views
 
         private void Manufacturer_GotFocus(object sender, RoutedEventArgs e)
         {
-            Manufacturer.Text = null;
+
+            if (Manufacturer.Text == "Cognome")
+            {
+                Manufacturer.Text = null;
+            }
+           
         }
 
         private void Modello_LostFocus(object sender, RoutedEventArgs e)
@@ -198,7 +215,11 @@ namespace WPF_DEFINITIVO.Views
 
         private void Modello_GotFocus(object sender, RoutedEventArgs e)
         {
-            Modello.Text = null;
+            if (Modello.Text == "Modello")
+            {
+                Manufacturer.Text = null;
+            }
+
         }
     }
 }
