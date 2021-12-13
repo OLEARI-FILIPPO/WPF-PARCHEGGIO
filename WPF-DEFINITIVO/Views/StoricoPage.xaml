@@ -25,6 +25,7 @@
             <RowDefinition Height="*" />
         </Grid.RowDefinitions>
         <TextBlock
+            FontFamily="CaviarDreams"
             Style="{StaticResource PageTitleStyle}"
             Margin="{StaticResource MediumLeftMargin}"
             Text="{x:Static properties:Resources.StoricoPageTitle}" />
@@ -39,6 +40,7 @@
                         Margin="24,0,20,0" 
                         Width="252" 
                         hc:InfoElement.Placeholder="Seleziona una data"
+                           FontFamily="CaviarDreams"
                         Name="dataHistory"
                         Height="36"></hc:DatePicker>
 
@@ -46,6 +48,7 @@
                     FontSize="17" 
                     Content="Cerca" 
                     Height="36" 
+                    FontFamily="CaviarDreams"
                     Command="{Binding Refresh}"
                     Width="82" Click="Button_Click"></Button>
 
@@ -99,6 +102,7 @@
                         Background="#81B6E3"
                         FontSize="18"
                         ColumnWidth="2*"
+                        FontFamily="CaviarDreams"
                         Effect="{DynamicResource EffectShadow2}" Loaded="DataGrid_Loaded">
 
 

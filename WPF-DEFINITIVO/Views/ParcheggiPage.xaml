@@ -42,7 +42,7 @@
                             x:Name="combo"
                             Height="35"
                             FontSize="16"
-                            FontFamily="CocoSharp Trial"
+                            FontFamily="CaviarDreams"
                             Foreground="Gray"
                             BorderBrush="Gray"
                             SelectionChanged="combo_SelectionChanged"
@@ -53,6 +53,7 @@
                    FontSize="14" 
                    Height="35" 
                    Margin="20,0,10,0" 
+                   FontFamily="CaviarDreams"
                    Width="76"/>
 
             <Slider x:Name="RowSlider" 
@@ -68,6 +69,7 @@
                    FontSize="14" 
                    Height="35"
                    Margin="10,0,10,0"
+                   FontFamily="CaviarDreams"
                    Width="76"/>
 
             <Slider x:Name="ColSlider" 
@@ -86,7 +88,7 @@
                      x:Name="InputName" 
                      Foreground="Gray" 
                      BorderBrush="Gray" 
-                            FontFamily="CocoSharp Trial"
+                      FontFamily="CaviarDreams"
                      
                      Text="Nome Parcheggio"  
                      GotFocus="InputName_GotFocus" 
@@ -98,7 +100,7 @@
                             FontSize="16"
                             Background="#BBEFEF"
                             Height="35" Width="70"
-                            FontFamily="CocoSharp Trial"
+                           FontFamily="CaviarDreams"
                    
                             x:Name="Create" RenderTransformOrigin="1.01,0.466"
                             />

@@ -61,14 +61,14 @@
                                VerticalAlignment="Center" 
                                HorizontalAlignment="Left" 
                                Background="Transparent" 
-                               Margin="40,20,0,0" Text="Hello" FontFamily="CocoSharp Trial" FontSize="40" />
+                               Margin="40,20,0,0" Text="Hello" FontFamily="CaviarDreams" FontSize="40" />
 
 
                     <TextBlock TextWrapping="Wrap"  
                                VerticalAlignment="Center" 
                                HorizontalAlignment="Left"
                                
-                               Margin="40,0,0,5" Text="Welcome back!" FontFamily="CocoSharp Trial"  FontSize="40" />
+                               Margin="40,0,0,5" Text="Welcome back!" FontFamily="CaviarDreams"  FontSize="40" />
 
 
 
@@ -86,8 +86,7 @@
                            
                             x:Name="UsernameTextBox"
                             Height="52" 
-                            FontFamily="Sans-Serif"
-                           
+                            FontFamily="CaviarDreams"
                             GotFocus="UsernameTextBox_GotFocus"
                             LostFocus="UsernameTextBox_LostFocus"></TextBox>
 
@@ -104,7 +103,7 @@
                                      Height="52" 
                                      HorizontalAlignment="Center"
                                      FontSize="20"
-                                     
+                                     FontFamily="CaviarDreams"
                                      x:Name="PasswordInserito"
                                      LostFocus="PasswordInserito_LostFocus"
                                      GotFocus="PasswordInserito_GotFocus"
@@ -115,8 +114,12 @@
                                  Height="52" 
                                  HorizontalAlignment="Center"
                                  FontSize="20"
+                                     
+                               
+                                 
                                  x:Name="Passwordtxt"
                                  Foreground="Gray"
+                                 FontFamily="CaviarDreams"
                                  VerticalAlignment="Center"/>
 
                         <Button HorizontalAlignment="Left"
@@ -138,7 +141,7 @@
                             VerticalAlignment="Center"
                             FontSize="25" 
                             Height="50" Width="206" 
-                             FontFamily="CocoSharp Trial">Login</Button>
+                             FontFamily="CaviarDreams">Login</Button>
 
 
                 </StackPanel>

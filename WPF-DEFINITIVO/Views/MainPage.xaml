@@ -59,9 +59,9 @@
                                    FontSize="56"
                                    FontFamily="Segoe MDL2 Assets"
                                    Height="67" 
-                                   TextAlignment="Center" Width="94"/>
+                                   TextAlignment="Center" Width="62"/>
                         <TextBlock TextWrapping="Wrap"
-                                   FontFamily="CocoSharp Trial"
+                                    FontFamily="CaviarDreams"
                                    
                                    HorizontalAlignment="Center" 
                                    Text="Incasso"  
@@ -116,9 +116,7 @@
                         <TextBlock 
                             TextWrapping="Wrap"
                             HorizontalAlignment="Center"
-                       
-                            FontFamily="CocoSharp Trial"
-                            
+                            FontFamily="CaviarDreams"
                             Text="Parcheggi disponibili" 
                             FontSize="28" 
                             Width="130"  />
@@ -135,8 +133,7 @@
                         <TextBlock x:Name="dispParkings" TextAlignment="Center" TextWrapping="NoWrap" Style="{DynamicResource TextBlockDefault}" TextTrimming="CharacterEllipsis" 
                                         FontSize="25" Margin="0,12,0,0"
                                         VerticalAlignment="Center"
-                                        FontFamily="CocoSharp Trial"
-                                   
+                                        FontFamily="CaviarDreams"
                                         HorizontalAlignment="Center" Height="34" Width="128"/>
                     </StackPanel>
                 </hc:Card.Footer>
@@ -169,8 +166,7 @@
                         <TextBlock 
                             TextWrapping="Wrap"
                             HorizontalAlignment="Center"
-                        FontFamily="CocoSharp Trial"
-                            
+                            FontFamily="CaviarDreams"
                             Text="Veicoli Entrati" 
                             TextAlignment="Center"
                             FontSize="28" 
@@ -192,7 +188,7 @@
                                    Text="" 
                                    FontSize="25" 
                                    Margin="0,12,0,0"
-                                   FontFamily="CocoSharp Trial"
+                                   FontFamily="CaviarDreams"  
                                    
                                    HorizontalAlignment="Center" 
                                    Height="37" 
@@ -311,6 +307,7 @@
 
                 <DataGrid
                     FontFamily="CocoSharp Trial"
+
                     FontSize="16"
                     ColumnWidth="2*"
                     Background="#80BAE5"         

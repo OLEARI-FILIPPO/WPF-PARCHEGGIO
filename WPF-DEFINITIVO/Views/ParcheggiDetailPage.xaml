@@ -29,9 +29,9 @@
                        >
 
                     <Button x:Name="btnPosto" Grid.Row="2" Height="160" Width="163" FontSize="30">
-                        <StackPanel HorizontalAlignment="Center" VerticalAlignment="Center" Orientation="Vertical" Height="121">
+                        <StackPanel HorizontalAlignment="Center" VerticalAlignment="Center" Orientation="Vertical" Height="103">
                             <TextBlock Text="&#xE804;" Margin="3,0,0,0" HorizontalAlignment="Center" FontSize="45" FontFamily="Segoe MDL2 Assets" Height="53" Width="48"/>
-                            <TextBlock FontFamily="CocoSharp Trial" x:Name="ParkingNameLabel" Height="47"><Run Text="P001"/></TextBlock>
+                            <TextBlock FontFamily="CaviarDreams" x:Name="ParkingNameLabel" Height="47"><Run Text="P001"/></TextBlock>
                         </StackPanel>
                     </Button>
                 </Grid>
@@ -59,7 +59,7 @@
                                         Background="#C4E9D7" 
                                         HorizontalAlignment="Left" 
                                         Content="Entra" 
-                                         FontFamily="CocoSharp Trial"
+                                        FontFamily="CaviarDreams"
                                         Margin="0,20,20,0" 
                                         Height="42" Width="68" 
                                         Click="Button_Click"/>
@@ -77,29 +77,30 @@
 
                         <StackPanel
                                  Margin="{StaticResource SmallLeftTopMargin}">
-                            <TextBlock Style="{StaticResource SubtitleTextStyle}" Text="Macchina Parcheggiata: " />
-                            <TextBlock FontFamily="CocoSharp Trial"   Name="Targa" Style="{StaticResource BodyTextStyle}" />
+
+                            <TextBlock FontFamily="CaviarDreams" Style="{StaticResource SubtitleTextStyle}" Text="Macchina Parcheggiata: " />
+                            <TextBlock FontFamily="CaviarDreams"  Name="Targa" Style="{StaticResource BodyTextStyle}" />
 
                         </StackPanel>
 
                         <StackPanel
                                  Margin="{StaticResource SmallLeftTopMargin}">
-                            <TextBlock FontFamily="CocoSharp Trial" Style="{StaticResource SubtitleTextStyle}" Text="Propietario: " />
-                            <TextBlock FontFamily="CocoSharp Trial" Name="Proprietario" Style="{StaticResource BodyTextStyle}" />
+                            <TextBlock FontFamily="CaviarDreams" Style="{StaticResource SubtitleTextStyle}" Text="Propietario: " />
+                            <TextBlock FontFamily="CaviarDreams" Name="Proprietario" Style="{StaticResource BodyTextStyle}" />
 
                         </StackPanel>
 
                         <StackPanel
                                  Margin="{StaticResource SmallLeftTopMargin}">
-                            <TextBlock FontFamily="CocoSharp Trial" Style="{StaticResource SubtitleTextStyle}" Text="Data di Entrata: " />
-                            <TextBlock FontFamily="CocoSharp Trial" Name="DataEntrata" Style="{StaticResource BodyTextStyle}"  />
+                            <TextBlock FontFamily="CaviarDreams" Style="{StaticResource SubtitleTextStyle}" Text="Data di Entrata: " />
+                            <TextBlock FontFamily="CaviarDreams" Name="DataEntrata" Style="{StaticResource BodyTextStyle}"  />
 
                         </StackPanel>
 
                         <StackPanel
                                  Margin="{StaticResource SmallLeftTopMargin}">
-                            <TextBlock FontFamily="CocoSharp Trial" Style="{StaticResource SubtitleTextStyle}" Text="Tariffa: " />
-                            <TextBlock  FontFamily="CocoSharp Trial" Name="Tariffa" Style="{StaticResource BodyTextStyle}" Text="2.00€ al ora" />
+                            <TextBlock FontFamily="CaviarDreams" Style="{StaticResource SubtitleTextStyle}" Text="Tariffa: " />
+                            <TextBlock  FontFamily="CaviarDreams" Name="Tariffa" Style="{StaticResource BodyTextStyle}" Text="2.00€ al ora" />
 
                         </StackPanel>
 

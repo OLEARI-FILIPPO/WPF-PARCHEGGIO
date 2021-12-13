@@ -64,7 +64,7 @@
                                Background="Transparent" 
                                Margin="40,20,0,0" 
                                Text="Profilo-Utente" 
-                               FontFamily="CocoSharp Trial" 
+                              FontFamily="CaviarDreams"
                                FontSize="40" />
 
                     <hc1:Card Width="348"
@@ -97,7 +97,7 @@
                                         Width="150" 
                                         Height="50" 
                                         FontSize="20"
-                                        FontFamily="CocoSharp Trial"
+                                       FontFamily="CaviarDreams"
                                         Click="Button_Click"
                                         Background="#8DA4E8"
                                         BorderBrush="#8DA4E8"/>
@@ -120,13 +120,13 @@
                                 BorderBrush="Transparent" 
                                 Background="Transparent" 
                                 Height="44" Margin="2,0,0,0"
-                                FontFamily="CocoSharp Trial"
+                               FontFamily="CaviarDreams"
                                 FontSize="16"/>
                             <TextBox Width="292" 
                                      FontSize="15" 
                                      Foreground="Gray" 
                                      Text="Username"
-                                     FontFamily="CocoSharp Trial"
+                                     FontFamily="CaviarDreams"
                                      x:Name="username"
                                      Height="44" GotFocus="TextBox_GotFocus" LostFocus="TextBox_LostFocus_1"></TextBox>
                         </StackPanel>
@@ -139,7 +139,7 @@
                                 BorderBrush="Transparent"
                                 Background="Transparent"
                                 Height="44" 
-                                FontFamily="CocoSharp Trial"
+                               FontFamily="CaviarDreams"
                                 Margin="5.5,0,6,0" 
                                 FontSize="15">Password</Label>
 
@@ -147,7 +147,8 @@
                                      FontSize="16" 
                                      Foreground="Gray" 
                                      Text="Password"
-                                     FontFamily="CocoSharp Trial"
+                                    
+                                     FontFamily="CaviarDreams"
                                      Height="44" x:Name="password" GotFocus="TextBox_GotFocus_1" LostFocus="TextBox_LostFocus"></TextBox>
                         </StackPanel>
 
@@ -159,7 +160,7 @@
                                 BorderBrush="Transparent"
                                 Background="Transparent"
                                 Height="44" 
-                                FontFamily="CocoSharp Trial"
+                               FontFamily="CaviarDreams"
                                 Margin="2,0,6,0" 
                                 FontSize="15">Privilegde</Label>
 
@@ -181,7 +182,7 @@
                                 Background="Transparent"
                                 Height="44" 
                                 Margin="-6,0,0,0" 
-                                FontFamily="CocoSharp Trial"
+                               FontFamily="CaviarDreams"
                                 FontSize="15" Width="101">Last-Login</Label>
 
                             <Label Width="290.5" 
@@ -189,7 +190,7 @@
                                      Content="{Binding lastLogin}"
                                      FontSize="16" 
                                      Foreground="Gray"
-                                   FontFamily="CocoSharp Trial"
+                                   FontFamily="CaviarDreams"
                                      HorizontalContentAlignment="Left"
                                      Height="44"></Label>
                         </StackPanel>
@@ -202,7 +203,7 @@
                                 BorderBrush="Transparent"
                                 Background="Transparent"
                                 Height="44" 
-                                FontFamily="CocoSharp Trial"
+                               FontFamily="CaviarDreams"
                                 Margin="-6,0,0,0" 
                                 FontSize="15" Width="101">Last-Logout</Label>
 
@@ -210,7 +211,7 @@
                                      Name="lbLogout"
                                      Content="{Binding lastLogout}"
                                      FontSize="16" 
-                                   FontFamily="CocoSharp Trial"
+                                  FontFamily="CaviarDreams"
                                      Foreground="Gray" 
                                      HorizontalContentAlignment="Left"
                                      Height="44"></Label>
@@ -223,7 +224,7 @@
 
 
 
-                            <Button FontFamily="CocoSharp Trial"     Margin="2" x:Name="modifica" Click="modifica_Click" Width="137" FontSize="15" Background="#A0EFEB" Height="75">Modifica</Button>
+                            <Button FontFamily="CaviarDreams"     Margin="2" x:Name="modifica" Click="modifica_Click" Width="137" FontSize="15" Background="#A0EFEB" Height="75">Modifica</Button>
                             <!--<Button  Margin="2" x:Name="modifica" Click="modifica_Click" Width="137" FontSize="15" Background="#A0EFEB" Height="75">Modifica</Button>-->
 
                         </StackPanel>

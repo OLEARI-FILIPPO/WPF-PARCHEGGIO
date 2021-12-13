@@ -50,7 +50,7 @@
                      FontSize="20" 
                      LostFocus="Surname_LostFocus"
                      VerticalAlignment="Center" 
-                     FontFamily="CocoSharp Trial"
+                     FontFamily="CaviarDreams"
                      GotFocus="TextBox_GotFocus"></TextBox>
 
         </StackPanel>
@@ -65,7 +65,7 @@
                      HorizontalAlignment="Center"
                      FontSize="20"
                      x:Name="Name"
-                      FontFamily="CocoSharp Trial"
+                     FontFamily="CaviarDreams"
                      LostFocus="Name_LostFocus"
                      GotFocus="Name_GotFocus"
                      Foreground="Gray"
@@ -83,7 +83,7 @@
                         Height="60" 
                         HorizontalAlignment="Center"
                         FontSize="20"
-                        FontFamily="CocoSharp Trial"
+                        FontFamily="CaviarDreams"
                         Foreground="Gray"
                         Text="{Binding DateBirth}"
                         x:Name="datePicker"
@@ -102,11 +102,12 @@
                      HorizontalAlignment="Center"
                      FontSize="20"
                      x:Name="LicensePlate"
+                     FontFamily="CaviarDreams"
                      LostFocus="LicensePlate_LostFocus"
                      GotFocus="LicensePlate_GotFocus"
                      Foreground="Gray"
                      Text="{Binding Targa}"
-                      FontFamily="CocoSharp Trial"
+                      
                      VerticalAlignment="Center"/>
         </StackPanel>
 
@@ -123,7 +124,7 @@
                      LostFocus="Manufacturer_LostFocus"
                      GotFocus="Manufacturer_GotFocus"
                      Foreground="Gray"
-                      FontFamily="CocoSharp Trial"
+                     FontFamily="CaviarDreams"
                      Text="{Binding Manufactorer}"
                      VerticalAlignment="Center"/>
         </StackPanel>
@@ -141,7 +142,7 @@
                      LostFocus="Modello_LostFocus"
                      GotFocus="Modello_GotFocus"
                      Foreground="Gray"
-                     FontFamily="CocoSharp Trial"
+                      FontFamily="CaviarDreams"
                      Text="{Binding Model}"
                      VerticalAlignment="Center"/>
         </StackPanel>
@@ -154,6 +155,7 @@
                     Name="entra"
                     FontSize="18" 
                     Background="LightGreen" 
+                     FontFamily="CaviarDreams"
                     Height="48" Margin="15 0 0 0"
                     Width="130" Click="entra_Click">Entra</Button>
 
@@ -162,6 +164,7 @@
                     Background="IndianRed" 
                     Height="48" Margin="50 0 0 0"
                     Width="130" 
+                    FontFamily="CaviarDreams"
                     Click="Button_Click">ANNULLA</Button>
         </StackPanel>
 
