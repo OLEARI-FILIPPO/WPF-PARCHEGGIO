@@ -4,6 +4,7 @@ using System.Collections.ObjectModel;
 using System.Diagnostics;
 using System.Net.Http;
 using System.Net.Http.Headers;
+using System.Threading.Tasks;
 using System.Windows;
 using Microsoft.Toolkit.Mvvm.ComponentModel;
 using Microsoft.Toolkit.Mvvm.Input;
@@ -20,9 +21,9 @@ namespace WPF_DEFINITIVO.ViewModels
     public class StoricoViewModel : ObservableObject, INavigationAware
     {
 
-        public DateTime DateBirth { get; set; } 
+        public DateTime DateBirth { get; set; }
 
-
+        public bool check;
         public ObservableCollection<string> LicencePlate { get; set; } = new ObservableCollection<string>();
         public ObservableCollection<string> NamePark { get; set; } = new ObservableCollection<string>();
 
@@ -40,6 +41,11 @@ namespace WPF_DEFINITIVO.ViewModels
         }
 
         public async void OnNavigatedTo(object parameter)
+        {
+            await GeneraHistory(parameter);
+        }
+
+        public async Task GeneraHistory(object parameter)
         {
             Source.Clear();
             HistoryDisplay.Clear();
@@ -111,6 +117,7 @@ namespace WPF_DEFINITIVO.ViewModels
                         NamePark.Add(item);
                     }
 
+
                     for (int i = 0; i < Source.Count; i++)
                     {
                         HistoryDisplay.Add
@@ -126,17 +133,27 @@ namespace WPF_DEFINITIVO.ViewModels
                                 )
                             );
                     }
+
+                    if (HistoryDisplay.Count == 0)
+                    {
+                        HistoryDisplay displayEmpty = new HistoryDisplay();
+                        displayEmpty.ParkingId = "NESSUNN VEICOLO TROVATO PER LA DATA INSERITA";
+                        HistoryDisplay.Add(displayEmpty);
+                        HistoryHelper.check = false;
+                    }
+                    else
+                    {
+                        HistoryHelper.check = true;
+                    }
                 }
-
-                
-
                 HistoryHelper.giorno = 0;
             }
         }
 
-        public void Refresh()
+        public async Task RefreshAsync()
         {
-            MessageBox.Show("fatto"); OnNavigatedTo(HistoryHelper.oggetto);
+            //MessageBox.Show("fatto"); 
+            await GeneraHistory(HistoryHelper.oggetto);
         }
 
         public void OnNavigatedFrom()

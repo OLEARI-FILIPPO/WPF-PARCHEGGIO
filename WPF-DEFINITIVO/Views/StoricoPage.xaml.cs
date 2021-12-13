@@ -2,6 +2,7 @@
 using System;
 using System.Collections.Generic;
 using System.Data;
+using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Media.Animation;
@@ -22,6 +23,7 @@ namespace WPF_DEFINITIVO.Views
            // StoricoCard.BorderBrush.Opacity = 0;
             DataContext = viewModel;
             storico = viewModel;
+            StoricoCard2.Visibility = Visibility.Hidden;
         }
 
         private void DataGrid_Loaded(object sender, RoutedEventArgs e)
@@ -46,7 +48,7 @@ namespace WPF_DEFINITIVO.Views
             dataHistory.SelectedDate = DateTime.Today;
         }
 
-        private void Button_Click(object sender, RoutedEventArgs e)
+        private async void Button_ClickAsync(object sender, RoutedEventArgs e)
         {
             //MessageBox.Show(dataHistory.ToString());
 
@@ -65,7 +67,17 @@ namespace WPF_DEFINITIVO.Views
             StoricoGrid.Items.Refresh();
 
             var sorico = (StoricoViewModel)DataContext;
-            storico.Refresh();
+            await storico.RefreshAsync();
+
+            if(HistoryHelper.check == false)
+            {
+                StoricoGrid2.Visibility = Visibility.Visible;
+            }
+            else
+            {
+                StoricoGrid2.Visibility = Visibility.Hidden;
+            }
+
         }
     }
 }

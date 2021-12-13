@@ -1,4 +1,6 @@
-﻿namespace WPF_DEFINITIVO.Contracts.ViewModels
+﻿using System.Threading.Tasks;
+
+namespace WPF_DEFINITIVO.Contracts.ViewModels
 {
     public interface INavigationAware
     {
