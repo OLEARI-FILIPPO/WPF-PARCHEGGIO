@@ -129,7 +129,7 @@ namespace WPF_DEFINITIVO.ViewModels
                     if(HistoryDisplay.Count == 0)
                     {
                         HistoryDisplay displayEmpty = new HistoryDisplay();
-                        displayEmpty.ParkingId = "NESSUNN VEICOLO TROVATO PER LA DATA INSERITA";
+                        displayEmpty.ParkingId = "NESSUN VEICOLO TROVATO PER LA DATA INSERITA";
                         HistoryDisplay.Add(displayEmpty);
                         HistoryHelper.check = false;
                     }
