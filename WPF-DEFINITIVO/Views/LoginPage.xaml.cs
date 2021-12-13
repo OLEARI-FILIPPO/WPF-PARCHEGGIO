@@ -174,7 +174,12 @@ namespace WPF_DEFINITIVO.Views
 
         private void PasswordInserito_GotFocus(object sender, RoutedEventArgs e)
         {
-            PasswordInserito.Password = null;
+
+            if (PasswordInserito.Password == "Password")
+            {
+                PasswordInserito.Password = null;
+            }
+            
         }
 
         private void PasswordInserito_LostFocus(object sender, RoutedEventArgs e)
@@ -187,7 +192,12 @@ namespace WPF_DEFINITIVO.Views
 
         private void UsernameTextBox_GotFocus(object sender, RoutedEventArgs e)
         {
-            UsernameTextBox.Text = null;
+
+            if (UsernameTextBox.Text == "Username")
+            {
+                UsernameTextBox.Text = null;
+            }
+            
         }
 
         private void UsernameTextBox_LostFocus(object sender, RoutedEventArgs e)
