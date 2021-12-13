@@ -509,7 +509,7 @@ namespace WebAPI_Definitivo.Controllers
                     if(controlInfo != null)
                         return Problem("Il nome di questo parcheggio è già presente");
 
-                    if (nomeParcheggio != "" && nRighe >= 2 && nColonne >= 2 && nRighe <= 10 && nColonne <= 10)
+                    if (nomeParcheggio != "" && nRighe > 0 && nColonne > 0 && nRighe <= 10 && nColonne <= 10)
                     {
                         InfoParking pInfo = new InfoParking(nomeParcheggio, nRighe, nColonne);
                         model.InfoParking.Add(pInfo);

@@ -2,6 +2,7 @@
 using System;
 using System.Collections.Generic;
 using System.Data;
+using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Media.Animation;
@@ -71,7 +72,9 @@ namespace WPF_DEFINITIVO.Views
             if(HistoryHelper.check == false)
                 StoricoCard2.Visibility = Visibility.Visible;
             else
-                StoricoCard2.Visibility = Visibility.Hidden;
+            {
+                StoricoGrid2.Visibility = Visibility.Hidden;
+            }
 
         }
     }

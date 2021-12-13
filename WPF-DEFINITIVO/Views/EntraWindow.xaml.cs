@@ -1,4 +1,5 @@
-﻿using HandyControl.Tools;
+﻿using HandyControl.Data;
+using HandyControl.Tools;
 using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
@@ -55,6 +56,7 @@ namespace WPF_DEFINITIVO.Views
 
             if (Surname.Text == "Cognome" || Name.Text == "Nome" || LicensePlate.Text=="Targa" || Manufacturer.Text == "Marca" || Modello.Text=="Modello"|| datePicker.SelectedDate == null)
             {
+               
                 MessageBox.Show("Inserire tutti i dati richiesti", "Error",MessageBoxButton.OK, MessageBoxImage.Error);
                 Surname.BorderBrush = new SolidColorBrush(Colors.Red);
                 Name.BorderBrush = new SolidColorBrush(Colors.Red);
@@ -98,12 +100,14 @@ namespace WPF_DEFINITIVO.Views
                     var response3 = await client.PutAsJsonAsync(url, parametri);
                     string result = await response3.Content.ReadAsStringAsync();
 
+                   // string error = result.Split(new string[] { })
+
                     if (response3.IsSuccessStatusCode)
                     {
                         this.Close();
                     }
                     else
-                        MessageBox.Show(result);
+                        MessageBox.Show(error,"Error", MessageBoxButton.OK, MessageBoxImage.Error);
 
 
                 }
@@ -147,7 +151,7 @@ namespace WPF_DEFINITIVO.Views
         {
             if (LicensePlate.Text == "Targa")
             {
-                Manufacturer.Text = null;
+                LicensePlate.Text = null;
             }
 
         }
@@ -198,7 +202,7 @@ namespace WPF_DEFINITIVO.Views
         private void Manufacturer_GotFocus(object sender, RoutedEventArgs e)
         {
 
-            if (Manufacturer.Text == "Cognome")
+            if (Manufacturer.Text == "Marca")
             {
                 Manufacturer.Text = null;
             }
@@ -217,7 +221,7 @@ namespace WPF_DEFINITIVO.Views
         {
             if (Modello.Text == "Modello")
             {
-                Manufacturer.Text = null;
+               Modello.Text = null;
             }
 
         }

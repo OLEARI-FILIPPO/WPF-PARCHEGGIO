@@ -40,6 +40,11 @@ namespace WPF_DEFINITIVO.ViewModels
 
         public async Task OnNavigatedTo(object parameter)
         {
+            await GeneraHistory(parameter);
+        }
+
+        public async Task GeneraHistory(object parameter)
+        {
             Source.Clear();
             HistoryDisplay.Clear();
             HistoryHelper.oggetto = parameter;
@@ -126,7 +131,7 @@ namespace WPF_DEFINITIVO.ViewModels
                             );
                     }
 
-                    if(HistoryDisplay.Count == 0)
+                    if (HistoryDisplay.Count == 0)
                     {
                         HistoryDisplay displayEmpty = new HistoryDisplay();
                         displayEmpty.ParkingId = "NESSUNN VEICOLO TROVATO PER LA DATA INSERITA";
