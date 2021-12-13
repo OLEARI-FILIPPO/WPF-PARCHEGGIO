@@ -614,5 +614,43 @@ namespace WebAPI_Definitivo.Controllers
                 return Problem();
             }
         }
+
+        [Authorize]
+        [HttpGet("DeletePark/{name}")]
+        public ActionResult GetIncassiByID(string name)
+        {
+            try
+            {
+
+                using (ParkingManagementContext model = new ParkingManagementContext())
+                {
+                    long id = model.InfoParking.Where(w => w.NamePark == name).Select(s => s.InfoParkId).FirstOrDefault();
+                    List<Parking> parks = model.Parking.Where(w => w.InfoParkId == id).ToList();
+
+                    foreach(var a in parks)
+                    {
+                        model.Parking.Remove(a);
+                    }
+                    model.SaveChanges();
+
+                    List<History> history = model.History.Where(w => w.InfoParkId == id).ToList();
+                    foreach(var a in history)
+                    {
+                        model.History.Remove(a);
+                    }
+                    model.SaveChanges();
+
+                    InfoParking info = model.InfoParking.Where(w => w.NamePark == name).FirstOrDefault();
+                    model.InfoParking.Remove(info);
+                    model.SaveChanges();
+                    return Ok("Parcheggio eliminato correttamente");
+                }
+            }
+            catch (Exception)
+            {
+
+                return Problem();
+            }
+        }
     }
 }

@@ -150,30 +150,37 @@ namespace WPF_DEFINITIVO.Views
                 var response = await client.GetAsync(url); //API controller name
 
                 string result = await response.Content.ReadAsStringAsync();
-
-                if (response.IsSuccessStatusCode)
+                if(username.Text != "" && password.Text != "")
                 {
-                    MessageBox.Show("Effetture il login con le nuove credenziali","Information",MessageBoxButton.OK, MessageBoxImage.Information);
-                    //dopo il logout lo stato torna a false e il resto diventa null;
-                    NavigationLoginToLogout.isLoggedIn = false;
-                    NavigationLoginToLogout.result = null;
-                    NavigationLoginToLogout._user = null;
-
-                    //Tolgo menu tranne la schermata di login
-                    for (int i = ShellViewModel.MenuItems.Count - 1; i > 0; i--)
+                    if (response.IsSuccessStatusCode)
                     {
-                        ShellViewModel.MenuItems.RemoveAt(i);
-                    }
+                        MessageBox.Show("Effetture il login con le nuove credenziali", "Information", MessageBoxButton.OK, MessageBoxImage.Information);
+                        //dopo il logout lo stato torna a false e il resto diventa null;
+                        NavigationLoginToLogout.isLoggedIn = false;
+                        NavigationLoginToLogout.result = null;
+                        NavigationLoginToLogout._user = null;
 
-                    LoginPage user = new LoginPage(new LoginViewModel());
-                    NavigationService.Navigate(user);
+                        //Tolgo menu tranne la schermata di login
+                        for (int i = ShellViewModel.MenuItems.Count - 1; i > 0; i--)
+                        {
+                            ShellViewModel.MenuItems.RemoveAt(i);
+                        }
+
+                        LoginPage user = new LoginPage(new LoginViewModel());
+                        NavigationService.Navigate(user);
+                    }
+                    else
+                    {
+                        string[] errore = result.Split("username");
+                        if (errore.Length > 1)
+                            System.Windows.MessageBox.Show("L'username attuale è la stessa del nuovo", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+                        string[] errore2 = result.Split("password");
+                        if (errore2.Length > 1)
+                            System.Windows.MessageBox.Show("La password attuale è la stessa della nuova", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+                    }
                 }
                 else
-                {
-
-
-                    MessageBox.Show(result); // ?
-                }
+                    System.Windows.MessageBox.Show("Inserire tutti i campi", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
             }
         }
     }

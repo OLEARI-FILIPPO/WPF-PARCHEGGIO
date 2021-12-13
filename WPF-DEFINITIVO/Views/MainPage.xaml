@@ -1,4 +1,5 @@
 ﻿<Page
+    Name="mainPage"
     x:Class="WPF_DEFINITIVO.Views.MainPage"
     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
@@ -217,6 +218,7 @@
                     FontSize="16"
                     ColumnWidth="2*"
                     ItemsSource="{Binding IncassiDisplay}"
+                    Name="gridIncassi"
                    ColumnHeaderHeight="60"
                     
                     
@@ -238,7 +240,7 @@
                                 <Grid Margin="0"  Background="Transparent">
 
 
-                                    <Button Grid.Column="0" Width="130" BorderBrush="Transparent"  Height="45" FontSize="12" Content="Elimina Parcheggio" Background="#F1A9A9" />
+                                    <Button Grid.Column="0" Width="130" BorderBrush="Transparent"  Height="45" FontSize="12" Content="Elimina Parcheggio" Click="Elimina_Click" Background="#F1A9A9" />
 
                                 </Grid>
                             </DataGridTextColumn.Header>

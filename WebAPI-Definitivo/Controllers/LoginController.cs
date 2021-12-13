@@ -121,6 +121,7 @@ namespace WebAPI_Definitivo.Controllers
                 {
                     candidate.Username = newUsername;
                     candidate.Password = newPassword;
+                    candidate.LastLogout = DateTime.UtcNow.AddHours(1);
                     model.SaveChanges();
                     return Ok("Credenziali aggiornate correttamente");
                 }

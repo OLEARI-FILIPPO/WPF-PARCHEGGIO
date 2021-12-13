@@ -98,6 +98,7 @@ namespace WPF_DEFINITIVO.ViewModels
 
         public async Task AllParkingsRev()
         {
+            IncassiDisplay.Clear();
             using (var client = new HttpClient())
             {
 
@@ -190,5 +191,6 @@ namespace WPF_DEFINITIVO.ViewModels
         public void OnNavigatedFrom()
         {
         }
+
     }
 }

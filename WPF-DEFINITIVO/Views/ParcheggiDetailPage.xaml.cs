@@ -197,7 +197,7 @@ namespace WPF_DEFINITIVO.Views
 
                 if (!response.IsSuccessStatusCode)
                 {
-                    MessageBox.Show("Veicolo non uscito.");
+                    System.Windows.MessageBox.Show("Errore: uscita non effettuata", "Eror", MessageBoxButton.OK, MessageBoxImage.Error);
                 }
                 else
                 {
@@ -240,14 +240,16 @@ namespace WPF_DEFINITIVO.Views
                         if (response3.IsSuccessStatusCode)
                         {
                             Close();
-                            MessageBox.Show("Veicolo uscito con successo.\n Tariffa totale: " + costo * tariffa + "€");
+                            string ris = "Veicolo uscito con successo.\n Tariffa totale: " + costo * tariffa + "€";
+                            System.Windows.MessageBox.Show(ris, "Information", MessageBoxButton.OK, MessageBoxImage.Information);
+
                         }
                         else
-                            MessageBox.Show("Errore: parametri non aggiornati");
+                            System.Windows.MessageBox.Show("Errore: parametri non aggiornati", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
                     }
                     else
                     {
-                        MessageBox.Show("Veicolo non uscito.");
+                        System.Windows.MessageBox.Show("Errore: uscita non effettuata", "Eror", MessageBoxButton.OK, MessageBoxImage.Error);
                     }
                 }
                 
