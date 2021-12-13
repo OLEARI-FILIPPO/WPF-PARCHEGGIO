@@ -48,15 +48,17 @@
                 <Border  CornerRadius="4,4,0,0"
                          Width="160" 
                          Height="98"
-                         Margin="36,0,37,0">
+                         Margin="36,0,37,0"
+                         HorizontalAlignment="Center">
 
-                    <StackPanel Margin="0,0,0,-12">
+                    <StackPanel HorizontalAlignment="Center" Margin="0,0,0,-12">
                         <TextBlock
                                    HorizontalAlignment="Center"
                                    Text="&#xE825;"  
                                    FontSize="56"
                                    FontFamily="Segoe MDL2 Assets"
-                                   Height="62" />
+                                   Height="62" 
+                                   TextAlignment="Center"/>
                         <TextBlock TextWrapping="Wrap" 
                                    HorizontalAlignment="Center" 
                                    Text="Incasso"  
@@ -80,7 +82,7 @@
                                    TextAlignment="Center"
                                    HorizontalAlignment="Center" 
                                    Height="43" 
-                                   Width="224"/>
+                                   Width="194"/>
                     </StackPanel>
                 </hc:Card.Footer>
             </hc:Card>
