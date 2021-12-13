@@ -240,7 +240,7 @@ namespace WPF_DEFINITIVO.Views
                         if (response3.IsSuccessStatusCode)
                         {
                             Close();
-                            MessageBox.Show("Veicolo uscito con successo.");
+                            MessageBox.Show("Veicolo uscito con successo.\n Tariffa totale: " + costo * tariffa + "€");
                         }
                         else
                             MessageBox.Show("Errore: parametri non aggiornati");

@@ -46,8 +46,8 @@
                     FontSize="17" 
                     Content="Cerca" 
                     Height="36" 
-                    Command="{Binding RefreshAsync}"
-                    Width="82" Click="Button_ClickAsync"></Button>
+                    Command="{Binding Refresh}"
+                    Width="82" Click="Button_Click"></Button>
 
         </StackPanel>
 
