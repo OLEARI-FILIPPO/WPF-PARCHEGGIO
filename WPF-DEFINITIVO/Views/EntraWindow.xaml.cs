@@ -111,10 +111,9 @@ namespace WPF_DEFINITIVO.Views
                     }
                     else
                     {
-                        string[] errore = result.Split("targa");
+                        string[] errore = result.Split("auto");
                         if (errore.Length > 1)
-                            System.Windows.MessageBox.Show("Inserire correttamente la targa", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
-
+                            System.Windows.MessageBox.Show("La targa inserita è già presente tra i veicoli", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
 
                         string[] errore2 = result.Split("anni");
                         if (errore2.Length > 1)
@@ -127,8 +126,17 @@ namespace WPF_DEFINITIVO.Views
                         string[] errore4 = result.Split(" nome");
                         if (errore4.Length > 1)
                             System.Windows.MessageBox.Show("Inserire correttamente il nome", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+
+                        string[] errore5 = result.Split("targa");
+                        if (errore5.Length > 1)
+                            System.Windows.MessageBox.Show("Inserire correttamente la targa", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+
+                        string[] errore6 = result.Split("marca");
+                        if (errore6.Length > 1)
+                            System.Windows.MessageBox.Show("Inserire correttamente la marca", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+
                     }
-                        
+
 
 
                 }
