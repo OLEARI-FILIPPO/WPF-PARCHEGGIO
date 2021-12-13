@@ -31,6 +31,7 @@ namespace WPF_DEFINITIVO.ViewModels
 
         private ObservableCollection<string> parkings = new ObservableCollection<string>();
         public ObservableCollection<InfoParking> parkingsTemp = new ObservableCollection<InfoParking>();
+
         public ObservableCollection<string> Parking
         {
             get { 
@@ -109,7 +110,7 @@ namespace WPF_DEFINITIVO.ViewModels
                     }
                     else
                     {
-                        MessageBox.Show(list);
+                        System.Windows.MessageBox.Show("Nessuno parcheggio trovato", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
                     }
 
 
@@ -141,7 +142,7 @@ namespace WPF_DEFINITIVO.ViewModels
                     }
                     else
                     {
-                        MessageBox.Show(list);
+                        System.Windows.MessageBox.Show("Nessuno parcheggio trovato", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
                     }
 
 
@@ -183,9 +184,9 @@ namespace WPF_DEFINITIVO.ViewModels
                     }
                     else
                     {
-                        MessageBox.Show(list);
+                        System.Windows.MessageBox.Show("Nessuno parcheggio trovato", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
                     }
-                    
+
 
                 }
             }
@@ -234,7 +235,8 @@ namespace WPF_DEFINITIVO.ViewModels
                     }
                     else
                     {
-                        MessageBox.Show(list);
+                        System.Windows.MessageBox.Show("Non esistono i record del parcheggio selezionato", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+                        
                     }
 
 
@@ -257,12 +259,14 @@ namespace WPF_DEFINITIVO.ViewModels
                     if (response.IsSuccessStatusCode)
                     {
 
-                        MessageBox.Show(list);
+                        System.Windows.MessageBox.Show(list, "Information", MessageBoxButton.OK, MessageBoxImage.Information);
+
+
 
                     }
                     else
                     {
-                        MessageBox.Show(list);
+                        System.Windows.MessageBox.Show("Inserire correttamente tutti i campi", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
                     }
 
 

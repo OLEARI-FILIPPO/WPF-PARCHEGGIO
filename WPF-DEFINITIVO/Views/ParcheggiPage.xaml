@@ -60,7 +60,7 @@
                     ValueChanged="RowSlider_ValueChanged" 
                     IsSnapToTickEnabled="True" Width="111" 
                     Margin="20,0,0,0" Height="19" 
-                    Minimum="2" 
+                   
                     Maximum="10" />
 
             <Label x:Name="ColLabel" 
@@ -77,7 +77,7 @@
                     Width="111" 
                     Margin="20,0,0,0" 
                     Height="20" 
-                    Minimum="2"
+                    
                     Maximum="10" />
 
             <TextBox Margin="20,0,0,0" 

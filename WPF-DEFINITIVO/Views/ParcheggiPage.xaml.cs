@@ -163,21 +163,26 @@ namespace WPF_DEFINITIVO.Views
                 }
             }
         }
-        string name;
-
-        bool justcreated = false;
+      
         private async void Create_Click(object sender, System.Windows.RoutedEventArgs e)
         {
+            
 
-            if (InputName.Text == "Nome Parcheggio")
+            if (InputName.Text == "Nome Parcheggio" || RowSlider.Value == 0 || ColSlider.Value == 0 )
             {
 
                 InputName.BorderBrush = new SolidColorBrush(Colors.Red);
+                RowSlider.BorderBrush = new SolidColorBrush(Colors.Red);
+                ColSlider.BorderBrush= new SolidColorBrush(Colors.Red);
+                RowLabel.BorderBrush = new SolidColorBrush(Colors.Red);
+                ColLabel.BorderBrush = new SolidColorBrush(Colors.Red);
                 //System.Windows.MessageBox.Show("Inserire il nome del parcheggio");
 
-                if (System.Windows.MessageBox.Show("Inserire il nome del parcheggio", "Error", MessageBoxButton.OK, MessageBoxImage.Error) == MessageBoxResult.OK)
+                if (System.Windows.MessageBox.Show("Inserire corretamente tutti i campi", "Error", MessageBoxButton.OK, MessageBoxImage.Error) == MessageBoxResult.OK )
                 {
                     InputName.BorderBrush = new SolidColorBrush(Colors.Gray);
+                    RowLabel.BorderBrush = new SolidColorBrush(Colors.Gray);
+                    ColLabel.BorderBrush = new SolidColorBrush(Colors.Gray);
                 }
 
             }
@@ -201,7 +206,7 @@ namespace WPF_DEFINITIVO.Views
 
 
         //Evento che visualizza i dettagli di un parcheggio
-        private async void clickParhceggio(object sender, RoutedEventArgs e)
+        private  void clickParhceggio(object sender, RoutedEventArgs e)
         {
             //Creo l'istanza del dettaglio e la visualizzo come window aggiuntiva
 
@@ -233,8 +238,11 @@ namespace WPF_DEFINITIVO.Views
             popup.ShowDialog();
         }
 
-        private async void ParcheggiLoaded(object sender, RoutedEventArgs e)
+        private void ParcheggiLoaded(object sender, RoutedEventArgs e)
         {
+            RowSlider.Value = 0;
+            ColSlider.Value = 0;
+
          //   parcheggioView.GetParkings();
             RowSlider.IsEnabled = false;
             ColSlider.IsEnabled = false;

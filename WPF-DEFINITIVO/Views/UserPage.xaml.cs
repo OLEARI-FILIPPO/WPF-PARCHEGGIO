@@ -85,7 +85,7 @@ namespace WPF_DEFINITIVO.Views
                 }
                 else
                 {
-                    MessageBox.Show(result);
+                    MessageBox.Show(result); // ?
                 }
             }
             
@@ -170,7 +170,7 @@ namespace WPF_DEFINITIVO.Views
                 }
                 else
                 {
-                    MessageBox.Show(result);
+                    MessageBox.Show(result); // ?
                 }
             }
         }
