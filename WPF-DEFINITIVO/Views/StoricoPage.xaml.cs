@@ -5,6 +5,7 @@ using System.Data;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
+using System.Windows.Media;
 using System.Windows.Media.Animation;
 using WebAPI_Definitivo.Models;
 using WPF_DEFINITIVO.Helpers;
@@ -20,10 +21,10 @@ namespace WPF_DEFINITIVO.Views
             InitializeComponent();
             DataContext = viewModel;
             ConfigHelper.Instance.SetLang("it");
-           // StoricoCard.BorderBrush.Opacity = 0;
             DataContext = viewModel;
             storico = viewModel;
             StoricoCard2.Visibility = Visibility.Hidden;
+            StoricoGrid2.RowBackground = (SolidColorBrush)new BrushConverter().ConvertFrom("#f29d9d");
         }
 
         private void DataGrid_Loaded(object sender, RoutedEventArgs e)
@@ -50,8 +51,6 @@ namespace WPF_DEFINITIVO.Views
 
         private async void Button_Click(object sender, RoutedEventArgs e)
         {
-            //MessageBox.Show(dataHistory.ToString());
-
             //Salvo la data cosi la posso usare nel viewModel
 
             string[] dataDivisa = dataHistory.ToString().Split("/");
@@ -62,10 +61,6 @@ namespace WPF_DEFINITIVO.Views
             HistoryHelper.anno = Convert.ToInt32(dataDivisa[2].Substring(0, 4));
 
             //CHIAMA LA FUNZIONE DEL VIEW MODEL
-            //storico.OnNavigatedTo("");
-            //DataGrid_Loaded(StoricoGrid, e);
-            StoricoGrid.Items.Refresh();
-
             var sorico = (StoricoViewModel)DataContext;
             await storico.Refresh();
 

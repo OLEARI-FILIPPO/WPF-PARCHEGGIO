@@ -146,8 +146,6 @@ namespace WPF_DEFINITIVO.ViewModels
 
         public async Task Refresh()
         {
-            //MessageBox.Show("fatto"); 
-            //HistoryHelper.check
             await OnNavigatedTo(HistoryHelper.oggetto);
         }
 
