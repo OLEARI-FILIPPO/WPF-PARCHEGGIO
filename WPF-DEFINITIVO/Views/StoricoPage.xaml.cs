@@ -47,7 +47,7 @@ namespace WPF_DEFINITIVO.Views
             dataHistory.SelectedDate = DateTime.Today;
         }
 
-        private void Button_Click(object sender, RoutedEventArgs e)
+        private async void Button_Click(object sender, RoutedEventArgs e)
         {
             //MessageBox.Show(dataHistory.ToString());
 
@@ -66,9 +66,9 @@ namespace WPF_DEFINITIVO.Views
             StoricoGrid.Items.Refresh();
 
             var sorico = (StoricoViewModel)DataContext;
-            storico.Refresh();
+            await storico.Refresh();
 
-            if(HistoryHelper.check == true)
+            if(HistoryHelper.check == false)
                 StoricoCard2.Visibility = Visibility.Visible;
             else
                 StoricoCard2.Visibility = Visibility.Hidden;

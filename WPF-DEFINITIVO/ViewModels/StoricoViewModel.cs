@@ -22,8 +22,6 @@ namespace WPF_DEFINITIVO.ViewModels
     {
 
         public DateTime DateBirth { get; set; }
-
-        public bool check;
         public ObservableCollection<string> LicencePlate { get; set; } = new ObservableCollection<string>();
         public ObservableCollection<string> NamePark { get; set; } = new ObservableCollection<string>();
 
@@ -40,12 +38,11 @@ namespace WPF_DEFINITIVO.ViewModels
             _sampleDataService = sampleDataService;
         }
 
-        public async void OnNavigatedTo(object parameter)
+        public async Task OnNavigatedTo(object parameter)
         {
             Source.Clear();
             HistoryDisplay.Clear();
             HistoryHelper.oggetto = parameter;
-
             using (var client = new HttpClient())
             {
                 client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", NavigationLoginToLogout.Token);
@@ -134,7 +131,10 @@ namespace WPF_DEFINITIVO.ViewModels
                         HistoryDisplay displayEmpty = new HistoryDisplay();
                         displayEmpty.ParkingId = "NESSUNN VEICOLO TROVATO PER LA DATA INSERITA";
                         HistoryDisplay.Add(displayEmpty);
+                        HistoryHelper.check = false;
                     }
+                    else
+                        HistoryHelper.check = true;
 
                 }
 
@@ -144,11 +144,11 @@ namespace WPF_DEFINITIVO.ViewModels
             }
         }
 
-        public void Refresh()
+        public async Task Refresh()
         {
             //MessageBox.Show("fatto"); 
             //HistoryHelper.check
-            OnNavigatedTo(HistoryHelper.oggetto);
+            await OnNavigatedTo(HistoryHelper.oggetto);
         }
 
         public void OnNavigatedFrom()
