@@ -19,7 +19,6 @@ namespace WebAPI_Definitivo.Models
             LicensePlate = licensePlate;
             OwnerId = ownerId;
         }
-
         public long VehicleId { get; set; }
         public string Manufacturer { get; set; }
         public string Model { get; set; }

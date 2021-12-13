@@ -68,18 +68,19 @@
 
                 <!--Card Footer part-->
                 <hc:Card.Footer>
-                    <StackPanel Margin="37,0,37,0" Width="160" Height="59">
+                    <StackPanel  Margin="0,0,-2,0" Height="59">
 
                         <!--Card Secondary content-->
                         <TextBlock TextWrapping="NoWrap" 
                                    Style="{DynamicResource TextBlockDefault}" 
                                    TextTrimming="CharacterEllipsis" 
-                                   Text="500.0$" 
+                                   x:Name="rev" 
                                    FontSize="25" 
                                    Margin="0,6,0,0"
+                                   TextAlignment="Center"
                                    HorizontalAlignment="Center" 
                                    Height="43" 
-                                   Width="84"/>
+                                   Width="224"/>
                     </StackPanel>
                 </hc:Card.Footer>
             </hc:Card>
@@ -123,9 +124,9 @@
                     <StackPanel Margin="36,0,37,0" Width="160" Height="59">
 
                         <!--Card Secondary content-->
-                        <TextBlock TextWrapping="NoWrap" Style="{DynamicResource TextBlockDefault}" TextTrimming="CharacterEllipsis" 
-                                       Text="30" FontSize="25" Margin="0,6,0,0"
-                                       HorizontalAlignment="Center" Height="34" Width="32"/>
+                        <TextBlock x:Name="dispParkings" TextAlignment="Center" TextWrapping="NoWrap" Style="{DynamicResource TextBlockDefault}" TextTrimming="CharacterEllipsis" 
+                                        FontSize="25" Margin="0,6,0,0"
+                                       HorizontalAlignment="Center" Height="34" Width="128"/>
                     </StackPanel>
                 </hc:Card.Footer>
             </hc:Card>
@@ -145,6 +146,7 @@
                          Margin="0,0,8,0">
 
                     <StackPanel Height="110"
+                                
                                 VerticalAlignment="Top" Margin="10,28,0,0" >
                         <TextBlock 
                             TextWrapping="Wrap" 
@@ -156,7 +158,7 @@
                         <TextBlock 
                             TextWrapping="Wrap"
                             HorizontalAlignment="Center" 
-                            Text="Veicoli" 
+                            Text="Veicoli Entrati" 
                             TextAlignment="Center"
                             FontSize="28" 
                             Width="179"  />
@@ -167,10 +169,11 @@
 
                 <!--Card Footer part-->
                 <hc:Card.Footer>
-                    <StackPanel Margin="36,0,37,0" Width="160" Height="59">
+                    <StackPanel Margin="10,0,8,0" Height="59">
 
                         <!--Card Secondary content-->
-                        <TextBlock TextWrapping="NoWrap" 
+                        <TextBlock TextWrapping="NoWrap"
+                                   x:Name="vehicles"
                                    Style="{DynamicResource TextBlockDefault}" 
                                    TextTrimming="CharacterEllipsis" 
                                    Text="40" 
@@ -210,7 +213,7 @@
                     AutoGenerateColumns="False"
                     CanUserAddRows="False"
             
-                    ItemsSource="{Binding Source}"
+                    ItemsSource="{Binding IncassiDisplay}"
                    
                     
                     KeyboardNavigation.TabNavigation="Once" HorizontalAlignment="Center"  Width="1017" >
@@ -221,21 +224,12 @@
                         Remove this column definitions and define columns for your data.
                         Consider adding header properties to Resources.resw
                     -->
-                        <DataGridTextColumn Binding="{Binding OrderID}" Header="OrderID" />
-                        <DataGridTextColumn Binding="{Binding Company}" Header="Company" />
-                        <DataGridTextColumn Binding="{Binding OrderTotal}" Header="OrderTotal" />
-                        <DataGridTextColumn Binding="{Binding Status}" Header="Status" />
-                        <DataGridTemplateColumn Header="Symbol">
-                            <DataGridTemplateColumn.CellTemplate>
-                                <DataTemplate>
-                                    <TextBlock
-                                    Margin="{StaticResource SmallLeftRightMargin}"
-                                    HorizontalAlignment="Left"
-                                    Style="{StaticResource SmallIconStyle}"
-                                    Text="{Binding Symbol}" />
-                                </DataTemplate>
-                            </DataGridTemplateColumn.CellTemplate>
-                        </DataGridTemplateColumn>
+                        <DataGridTextColumn Binding="{Binding NamePark}" Header="NamePark" />
+                        <DataGridTextColumn Binding="{Binding Ncol,TargetNullValue=NULL}" Header="Colonne" />
+                        <DataGridTextColumn Binding="{Binding Nrighe, TargetNullValue=NULL}" Header="Righe"    />
+                        <DataGridTextColumn Binding="{Binding Revenue, TargetNullValue=NULL}" Header="Guadagno"    />
+                        
+           
                     </DataGrid.Columns>
 
                 </DataGrid>
@@ -256,7 +250,7 @@
                     AutoGenerateColumns="False"
                     CanUserAddRows="False"
             
-                    ItemsSource="{Binding Source}"
+                    ItemsSource="{Binding SourceDisp}"
                    
                     
                     KeyboardNavigation.TabNavigation="Once" HorizontalAlignment="Center"  Width="1017" >
@@ -267,29 +261,18 @@
                         Remove this column definitions and define columns for your data.
                         Consider adding header properties to Resources.resw
                     -->
-                        <DataGridTextColumn Binding="{Binding OrderID}" Header="OrderID" />
-                        <DataGridTextColumn Binding="{Binding OrderDate}" Header="OrderDate" />
-                        <DataGridTextColumn Binding="{Binding Company}" Header="Company" />
+                        <DataGridTextColumn Binding="{Binding ParkingId}" Header="Parcheggio" />
+                        <DataGridTextColumn Binding="{Binding Stato}" Header="Stato" />
+                        <DataGridTextColumn Binding="{Binding InfoParkId}" Header="InfoParkId" />
 
-                        <DataGridTextColumn Binding="{Binding Status}" Header="Status" />
-                        <DataGridTemplateColumn Header="Symbol">
-                            <DataGridTemplateColumn.CellTemplate>
-                                <DataTemplate>
-                                    <TextBlock
-                                    Margin="{StaticResource SmallLeftRightMargin}"
-                                    HorizontalAlignment="Left"
-                                    Style="{StaticResource SmallIconStyle}"
-                                    Text="{Binding Symbol}" />
-                                </DataTemplate>
-                            </DataGridTemplateColumn.CellTemplate>
-                        </DataGridTemplateColumn>
+                     
                     </DataGrid.Columns>
 
                 </DataGrid>
 
             </hc:Card>
 
-            <!--Grid Veicoli-->
+            <!--Grid Parcheggi non disponibili-->
             <hc:Card  
                      Margin="20"
                      Grid.Row="0"
@@ -302,7 +285,7 @@
                     Background="#80BAE5"         
                     AutoGenerateColumns="False"
                     CanUserAddRows="False"
-                    ItemsSource="{Binding Source}"
+                    ItemsSource="{Binding Vehicle}"
                     KeyboardNavigation.TabNavigation="Once" 
                     HorizontalAlignment="Center"  
                     
@@ -314,32 +297,10 @@
                         Remove this column definitions and define columns for your data.
                         Consider adding header properties to Resources.resw
                     -->
-                        <DataGridTextColumn Binding="{Binding OrderID}" Header="OrderID" />
-                        <DataGridTextColumn Binding="{Binding OrderDate}" Header="OrderDate" />
-                        <DataGridTextColumn Binding="{Binding OrderTotal}" Header="OrderTotal" />
-                        <DataGridTextColumn Binding="{Binding Status}" Header="Status" />
-                        <DataGridTemplateColumn Header="Symbol">
-                            <DataGridTemplateColumn.CellTemplate>
-                                <DataTemplate>
-                                    <TextBlock
-                                    Margin="{StaticResource SmallLeftRightMargin}"
-                                    HorizontalAlignment="Left"
-                                    Style="{StaticResource SmallIconStyle}"
-                                    Text="{Binding Symbol}" />
-                                </DataTemplate>
-                            </DataGridTemplateColumn.CellTemplate>
-                        </DataGridTemplateColumn>
-                        <DataGridTextColumn>
-                            
-                            <DataGridTextColumn.Header>
-                                <Grid Margin="0" Background="Transparent">
-
-                                    
-                                        <Button Grid.Column="0" Click="Button_Click" Content="Aggiungi Veicoli" Background="#F7AD86" />
-                                    
-                                </Grid>
-                            </DataGridTextColumn.Header>
-                        </DataGridTextColumn>
+                        <DataGridTextColumn Binding="{Binding Model}" Header="Model" />
+                        <DataGridTextColumn Binding="{Binding Manufacturer}" Header="Manufacturer" />
+                        <DataGridTextColumn Binding="{Binding LicensePlate}" Header="Targa" />
+                       
                     </DataGrid.Columns>
 
                 </DataGrid>

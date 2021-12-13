@@ -301,7 +301,10 @@ namespace WebAPI_Definitivo.Controllers
                         (
                             licensePlate: targa,
                             ownerId: persona.OwnerId
+                            
                         );
+                        nuovoVeicolo.Manufacturer = nomeManufactorer;
+                        nuovoVeicolo.Model = nomeModel;
                         model.Vehicle.Add(nuovoVeicolo);
                         model.SaveChanges();
                         //trovo park id
@@ -310,7 +313,7 @@ namespace WebAPI_Definitivo.Controllers
                         Parking parking = model.Parking.Where(w => w.ParkingId == nomePosto && w.InfoParkId == infoParkId.InfoParkId).FirstOrDefault();
 
                         parking.Stato = true;
-                        parking.EntryTimeDate = DateTime.Now;
+                        parking.EntryTimeDate = DateTime.UtcNow.AddHours(1);
                         parking.VehicleId = nuovoVeicolo.VehicleId;
                         model.SaveChanges();
 
@@ -336,7 +339,7 @@ namespace WebAPI_Definitivo.Controllers
         }
 
         
-        //GET ALL VEHICLES
+        
         [Authorize]
         [HttpGet("ParkingList")]
 
@@ -420,6 +423,30 @@ namespace WebAPI_Definitivo.Controllers
             }
         }
 
+        [Authorize]
+        [HttpGet("/api/v1/ParkingRecordByID/{idParcheggio}")] //prende tutti i record tabella parking
+        public ActionResult GetParkingRecordByID(long idParcheggio)
+        {
+            try
+            {
+                //MODIFICA: SI PUO ANCHE SOLO PASSARE IL NOME DEL PARCHEGGIO INVECE CHE TUTTO L'OGGETTO
+                using (ParkingManagementContext model = new ParkingManagementContext())
+                {
+                    List<Parking> listOfParkings;
+                    string nome;
+
+                    nome = model.InfoParking.Where(w => w.InfoParkId == idParcheggio).Select(s => s.NamePark).FirstOrDefault();
+
+                    return Ok(nome);
+                }
+            }
+            catch (Exception)
+            {
+
+                return Problem();
+            }
+        }
+
 
         [Authorize]
         [HttpGet("NotParked")] //prende i parcheggi vuoti
@@ -445,6 +472,29 @@ namespace WebAPI_Definitivo.Controllers
         }
 
         [Authorize]
+        [HttpGet("getVehicle")] //prende i parcheggi vuoti
+        public ActionResult GetVehicle()
+        {
+            try
+            {
+                //MODIFICA: SI PUO ANCHE SOLO PASSARE IL NOME DEL PARCHEGGIO INVECE CHE TUTTO L'OGGETTO
+                using (ParkingManagementContext model = new ParkingManagementContext())
+                {
+                    List<Vehicle> listOfVehicle;
+
+                    listOfVehicle = model.Vehicle.ToList();
+
+                    return Ok(listOfVehicle);
+                }
+            }
+            catch (Exception)
+            {
+
+                return Problem();
+            }
+        }
+
+        [Authorize]
         [HttpGet("NewPark/{nomeParcheggio}/{righe}/{colonne}")] //prende i parcheggi vuoti
         public ActionResult NewPark(string nomeParcheggio, string righe, string colonne)
         {
@@ -455,6 +505,11 @@ namespace WebAPI_Definitivo.Controllers
                 {
                     int nRighe = Int32.Parse(righe);
                     int nColonne = Int32.Parse(colonne);
+
+                    InfoParking controlInfo = model.InfoParking.Where(w => w.NamePark == nomeParcheggio).FirstOrDefault();
+                    if(controlInfo != null)
+                        return Problem("Il nome di questo parcheggio è già presente");
+
                     if (nomeParcheggio != "" && nRighe >= 2 && nColonne >= 2 && nRighe <= 10 && nColonne <= 10)
                     {
                         InfoParking pInfo = new InfoParking(nomeParcheggio, nRighe, nColonne);
@@ -481,7 +536,7 @@ namespace WebAPI_Definitivo.Controllers
                             }
                         }
                         model.SaveChanges();
-                        return Ok("Parcheggio creato correttamente");
+                        return Ok("Parcheggio creato correttamente selezionare il parcheggio...");
                     }
                     else
                         return Problem("Inserire correttamente tutti i campi");
@@ -495,5 +550,70 @@ namespace WebAPI_Definitivo.Controllers
         }
 
         //public Action
+
+        [Authorize]
+        [HttpGet("UsersInfo")]
+        public ActionResult GetUsers()
+        {
+            try
+            {
+                
+                using (ParkingManagementContext model = new ParkingManagementContext())
+                {
+                    List<Users> listOfUser;
+
+                    listOfUser = model.Users.ToList();
+
+                    return Ok(listOfUser);
+                }
+            }
+            catch (Exception)
+            {
+
+                return Problem();
+            }
+        }
+
+        [Authorize]
+        [HttpGet("Incassi")]
+        public ActionResult GetIncassi()
+        {
+            try
+            {
+
+                using (ParkingManagementContext model = new ParkingManagementContext())
+                {
+                    decimal somma = (decimal)model.History.Sum(s => s.Revenue);
+
+                    return Ok(somma);
+                }
+            }
+            catch (Exception)
+            {
+
+                return Problem();
+            }
+        }
+
+        [Authorize]
+        [HttpGet("GetIncassiByID/{ID}")]
+        public ActionResult GetIncassiByID(long ID)
+        {
+            try
+            {
+
+                using (ParkingManagementContext model = new ParkingManagementContext())
+                {
+                    decimal somma = (decimal)model.History.Where(w => w.InfoParkId == ID).Sum(s => s.Revenue);
+
+                    return Ok(somma);
+                }
+            }
+            catch (Exception)
+            {
+
+                return Problem();
+            }
+        }
     }
 }

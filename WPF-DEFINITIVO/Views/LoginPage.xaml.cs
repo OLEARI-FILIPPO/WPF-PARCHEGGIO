@@ -17,6 +17,7 @@ using MahApps.Metro.Controls;
 using Microsoft.AspNetCore.Http;
 using System.IdentityModel.Tokens.Jwt;
 using System.Linq;
+using System.Net;
 
 namespace WPF_DEFINITIVO.Views
 {
@@ -46,7 +47,11 @@ namespace WPF_DEFINITIVO.Views
 
         private async void Button_Click(object sender, RoutedEventArgs e)
         {
-            
+            bool check = false;
+       
+      
+
+
 
             if (UsernameTextBox.Text == "Username" || PasswordInserito.Password == "password")
             {
@@ -66,6 +71,7 @@ namespace WPF_DEFINITIVO.Views
 
                 using (var client = new HttpClient())
                 {
+
                     Users credenziali = new Users()
                     {
                         Username = login.Username,
@@ -78,22 +84,27 @@ namespace WPF_DEFINITIVO.Views
 
                     string result = await response.Content.ReadAsStringAsync();
 
-                    //Ottengo il grado traducendo il token che mi arriva dalla Richiesta post
-                    var handler = new JwtSecurityTokenHandler();
-                    var token = handler.ReadJwtToken(result);
-                    string grado = token.Claims.FirstOrDefault(x => x.Type == "Grado").Value;
 
-                    login.Token = result; //mi salvo il token
-
-                    NavigationLoginToLogout.UserPriviledge = Convert.ToInt32(grado);
-
-                    NavigationLoginToLogout.Token = result;
-
-                    if (response.IsSuccessStatusCode)
+                    if (response.StatusCode == HttpStatusCode.NotFound)
                     {
+                       MessageBox.Show("Username o password errarti", "Error",MessageBoxButton.OK, MessageBoxImage.Error);
+                    }
+                    else if (response.IsSuccessStatusCode)
+                    {
+                        //Ottengo il grado traducendo il token che mi arriva dalla Richiesta post
+                        var handler = new JwtSecurityTokenHandler();
+                        var token = handler.ReadJwtToken(result);
+                        string grado = token.Claims.FirstOrDefault(x => x.Type == "Grado").Value;
+
+                        login.Token = result; //mi salvo il token
+
+                        NavigationLoginToLogout.UserPriviledge = Convert.ToInt32(grado);
+
+                        NavigationLoginToLogout.Token = result;
+
                         NavigationLoginToLogout.result = result; //Ho creato una classe nella cartella Helper del progetto utilizzo questa classe per salvare lo stato della pagina
                         NavigationLoginToLogout.isLoggedIn = true;
-
+                   
                         //Rimuovo il login
 
                         //Aggiungo menu

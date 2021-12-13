@@ -8,16 +8,27 @@ namespace WPF_DEFINITIVO.Views
 {
     public partial class MainPage : Page
     {
+        MainViewModel main;
         public MainPage(MainViewModel viewModel)
         {
             InitializeComponent();
             DataContext = viewModel;
+
+
+            main = viewModel;
         }
 
    
-        private void Page_Loaded(object sender, System.Windows.RoutedEventArgs e)
+        private async void Page_Loaded(object sender, System.Windows.RoutedEventArgs e)
         {
-
+           await main.GetParking();
+           await main.getVehicle();
+           await main.calculateRevenue();
+            await main.AllParkingsRev();
+            dispParkings.Text = main.nParking;
+            vehicles.Text = main.nVehicle;
+            rev.Text = main.totRevenue;
+            //disp.ItemsSource = main.Source;
             if (NavigationLoginToLogout.UserPriviledge == 2)
             {
                 NormalUserMainPage page = new NormalUserMainPage(); 

@@ -95,5 +95,53 @@ namespace WebAPI_Definitivo.Controllers
                 return Ok();
             }
         }
+        
+        [Authorize]
+        [HttpGet("ModifyUser/{username}/{password}/{newUsername}/{newPassword}")]
+        public ActionResult ModifyUser(string username, string password, string newUsername, string newPassword)
+        {
+            using (ParkingManagementContext model = new ParkingManagementContext())
+            {
+                Users candidate = model.Users.Where(w => w.Username == username && w.Password == password).FirstOrDefault();
+                Users candidate2 = model.Users.Where(w => w.Username == newUsername).FirstOrDefault();
+
+                if(newUsername == username)
+                    return Problem("L'username attuale è la stessa del nuovo");
+                if (newPassword == username)
+                    return Problem("La password attuale è la stessa della nuova");
+                if (newUsername == "")
+                    return Problem("Inserire correttamente l'username");
+                if (newPassword == "")
+                    return Problem("Inserire correttamente la password");
+
+                if (candidate2 == null)
+                {
+                    candidate.Username = newUsername;
+                    candidate.Password = newPassword;
+                    model.SaveChanges();
+                    return Ok("Credenziali aggiornate correttamente");
+                }
+                else
+                    return Problem("Username già utilizzato");
+            }
+        }
+
+        [Authorize]
+        [HttpGet("GetLogin/{username}/{password}")]
+        public ActionResult GetLogin(string username, string password)
+        {
+            using (ParkingManagementContext model = new ParkingManagementContext())
+            {
+                Users candidate = model.Users.Where(w => w.Username == username && w.Password == password).FirstOrDefault();
+                
+
+                if (candidate != null)
+                {
+                    return Ok(candidate);
+                }
+                else
+                    return NotFound();
+            }
+        }
     }
 }

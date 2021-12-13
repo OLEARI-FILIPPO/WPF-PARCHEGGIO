@@ -69,7 +69,7 @@
                 ItemsSource="{Binding HistoryDisplay}"
                 Background="#81B6E3"
                       
-                KeyboardNavigation.TabNavigation="Once"
+               
                  Effect="{DynamicResource EffectShadow2}" Loaded="DataGrid_Loaded">
 
 

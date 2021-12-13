@@ -177,9 +177,10 @@
                                 FontSize="15" Width="101">Last-Login</Label>
 
                             <Label Width="290.5" 
+                                     Name="lbLogin"
+                                     Content="{Binding lastLogin}"
                                      FontSize="16" 
                                      Foreground="Gray" 
-                                     Content="SuperUser"
                                      HorizontalContentAlignment="Left"
                                      Height="44"></Label>
                         </StackPanel>
@@ -196,9 +197,10 @@
                                 FontSize="15" Width="101">Last-Logout</Label>
 
                             <Label Width="290.6" 
+                                     Name="lbLogout"
+                                     Content="{Binding lastLogout}"
                                      FontSize="16" 
                                      Foreground="Gray" 
-                                     Content="SuperUser"
                                      HorizontalContentAlignment="Left"
                                      Height="44"></Label>
                         </StackPanel>

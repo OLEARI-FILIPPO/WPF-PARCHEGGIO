@@ -164,6 +164,8 @@ namespace WPF_DEFINITIVO.Views
             }
         }
         string name;
+
+        bool justcreated = false;
         private async void Create_Click(object sender, System.Windows.RoutedEventArgs e)
         {
 
@@ -189,24 +191,14 @@ namespace WPF_DEFINITIVO.Views
                 int colonna = Int32.Parse(ColSlider.Value.ToString());
 
                 await parcheggioView.CreateParcheggio(InputName.Text, riga, colonna);
-                //combo.Text = InputName.Text;
-                CreateDynamicRow(riga);
+                await parcheggioView.GetParkings();
 
-                CreateDynamicCol(colonna);
-                name = InputName.Text;
-                CreateDynamicGrid(InputName.Text);
 
-                parcheggioView.Parking.Add(InputName.Text);
-                combo.SelectedIndex = combo.Items.Count - 1;
-                /*DoubleAnimation fadeAnimation = new DoubleAnimation();
-                fadeAnimation.Duration = TimeSpan.FromSeconds(0.5d);
-                fadeAnimation.EasingFunction = new QuadraticEase();
-                fadeAnimation.From = 0.0d;
-                fadeAnimation.To = 1.0d;
-                DynamicGrid.BeginAnimation(Grid.OpacityProperty, fadeAnimation);*/
             }
 
         }
+
+
 
         //Evento che visualizza i dettagli di un parcheggio
         private async void clickParhceggio(object sender, RoutedEventArgs e)
@@ -243,7 +235,7 @@ namespace WPF_DEFINITIVO.Views
 
         private async void ParcheggiLoaded(object sender, RoutedEventArgs e)
         {
-            parcheggioView.GetParkings();
+         //   parcheggioView.GetParkings();
             RowSlider.IsEnabled = false;
             ColSlider.IsEnabled = false;
             Create.IsEnabled = false;

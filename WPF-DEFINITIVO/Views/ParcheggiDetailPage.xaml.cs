@@ -39,12 +39,32 @@ namespace WPF_DEFINITIVO.Views
             buttonName = _button.Name.Split("btn")[1];
 
 
-            if (_button.Background == (SolidColorBrush)new BrushConverter().ConvertFrom("#F77B7B"))
+            if (_button.Background.ToString() == "#FFF77B7B")
                 stato = true;
             else
                 stato = false;
             ParkingNameLabel.Text = postoName;
             DataContext = this;
+            btnPosto.Foreground = new SolidColorBrush(Colors.Black);
+            btnPosto.BorderThickness = new Thickness(1);
+            if (stato)
+            {
+                Exit.IsEnabled = true;
+                Enter.IsEnabled = false;
+                btnPosto.Background = (SolidColorBrush)new BrushConverter().ConvertFrom("#F77B7B");
+            }
+            else
+            {
+                Exit.IsEnabled = false;
+                Enter.IsEnabled = true;
+                btnPosto.Background = (SolidColorBrush)new BrushConverter().ConvertFrom("#93C7EA");
+            }
+
+            storicoGrid.Visibility = Visibility.Hidden;
+            textstorico.Visibility = Visibility.Hidden;
+            detailPage.Height = 300;
+            detailPage.MaxHeight = 301;
+
 
             // DataContext = this;
         }
@@ -183,16 +203,23 @@ namespace WPF_DEFINITIVO.Views
                 {
                     Parking park = JsonConvert.DeserializeObject<Parking>(result);
 
+                    DateTime OraEntrata = (DateTime)park.EntryTimeDate;
+                    decimal costo = (decimal)(DateTime.UtcNow.AddHours(1) - OraEntrata).TotalHours;
+
+                    if (costo < 1)
+                        costo = 1;
+
+                    decimal tariffa = 2;
                     //Oggetto da passare
                     History storico = new History
                         (
                             id: park.Id,            //id del parcheggio
                             parkingId: postoName,   //id temporaneo del parcheggio
                             stato: false,
-                            revenue: 5,             //da calcolare
+                            revenue: costo * tariffa,            
                             entryTimeDate: park.EntryTimeDate,
                             vehicleId: park.VehicleId,
-                            exitTimeDate: DateTime.UtcNow,         
+                            exitTimeDate: DateTime.UtcNow.AddHours(1),         
                             infoParkId: park.InfoParkId
                         );
 

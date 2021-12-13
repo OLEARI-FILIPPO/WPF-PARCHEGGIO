@@ -30,11 +30,11 @@ namespace WPF_DEFINITIVO.ViewModels
         }
 
         private ObservableCollection<string> parkings = new ObservableCollection<string>();
-
-        public string Selected { get; set; }
+        public ObservableCollection<InfoParking> parkingsTemp = new ObservableCollection<InfoParking>();
         public ObservableCollection<string> Parking
         {
-            get { return parkings; }
+            get { 
+                   GetParkings(); return parkings; OnPropertyChanged("parkings"); }
             set
             {
                 this.parkings = value;
@@ -65,9 +65,10 @@ namespace WPF_DEFINITIVO.ViewModels
             }
         }
 
-        public List<InfoParking> ParkingObject;
-        public async void GetParkings()
+        public ObservableCollection<InfoParking> ParkingObject;
+        public async Task GetParkings()
         {
+            parkingsTemp.Clear();
             if (NavigationLoginToLogout.isLoggedIn)
             {
                 using (var client = new HttpClient())
@@ -79,18 +80,32 @@ namespace WPF_DEFINITIVO.ViewModels
                     var list = await response.Content.ReadAsStringAsync();
                     //response.Wait();
 
-                    ParkingObject = JsonConvert.DeserializeObject<List<InfoParking>>(list);
+                    ParkingObject = JsonConvert.DeserializeObject<ObservableCollection<InfoParking>>(list);
 
                     //List<string> Parkings = new List<string>();
 
                     if (response.IsSuccessStatusCode)
                     {
-                        parkings.Add("Nuovo-Parcheggio");
-
-                        foreach (var item in ParkingObject)
+                        InfoParking i = new InfoParking("Nuovo-Parcheggio", riga, colonna);
+                        parkingsTemp.Add(i);
+                        foreach (var a in ParkingObject)
                         {
-                            parkings.Add(item.NamePark.ToString());
+                            parkingsTemp.Add(a);
                         }
+
+                        foreach (var a in parkingsTemp)
+                        {
+                            bool trovato = false;
+                            foreach (var b in parkings)
+                            {
+                                if (a.NamePark == b)
+                                    trovato = true;
+                            }
+                            if(!trovato)
+                                parkings.Add(a.NamePark.ToString());
+                        }
+
+
                     }
                     else
                     {
