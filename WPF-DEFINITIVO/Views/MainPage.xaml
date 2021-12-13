@@ -4,7 +4,7 @@
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
-    xmlns:properties="clr-namespace:WPF_DEFINITIVO.Properties" xmlns:hc="https://handyorg.github.io/handycontrol"
+    xmlns:properties="clr-namespace:WPF_DEFINITIVO.Properties" xmlns:hc="https://handyorg.github.io/handycontrol" xmlns:viewmodels="clr-namespace:WPF_DEFINITIVO.ViewModels" d:DataContext="{d:DesignInstance Type=viewmodels:MainViewModel}"
     mc:Ignorable="d"
     d:DesignHeight="750" MinWidth="1290" Loaded="Page_Loaded">
 
@@ -264,20 +264,16 @@
                     Background="#80BAE5"         
                     AutoGenerateColumns="False"
                     CanUserAddRows="False"
-                    ItemsSource="{Binding SourceDisp}"
+                    ItemsSource="{Binding Allparkings}"
                     FontSize="16"
                     ColumnWidth="2*"
                     KeyboardNavigation.TabNavigation="Once" HorizontalAlignment="Center"  Width="1017" >
 
                     <DataGrid.Columns>
-                        <!--
-                        TODO WTS:
-                        Remove this column definitions and define columns for your data.
-                        Consider adding header properties to Resources.resw
-                    -->
-                        <DataGridTextColumn Binding="{Binding ParkingId}" Header="Parcheggio" />
+                        
+                        <DataGridTextColumn Binding="{Binding NomePosto}" Header="Posto" />
                         <DataGridTextColumn Binding="{Binding Stato}" Header="Stato" />
-                        <DataGridTextColumn Binding="{Binding InfoParkId}" Header="InfoParkId" />
+                        <DataGridTextColumn Binding="{Binding NomeParcheggio}" Header="Parcheggio" />
 
                      
                     </DataGrid.Columns>
@@ -308,11 +304,7 @@
                     Width="1021" >
 
                     <DataGrid.Columns>
-                        <!--
-                        TODO WTS:
-                        Remove this column definitions and define columns for your data.
-                        Consider adding header properties to Resources.resw
-                    -->
+                        
                         <DataGridTextColumn Binding="{Binding Model}" Header="Model" />
                         <DataGridTextColumn Binding="{Binding Manufacturer}" Header="Manufacturer" />
                         <DataGridTextColumn Binding="{Binding LicensePlate}" Header="Targa" />
