@@ -213,7 +213,7 @@
                     AutoGenerateColumns="False"
                     CanUserAddRows="False"
             
-                    ItemsSource="{Binding Allparkings}"
+                    ItemsSource="{Binding IncassiDisplay}"
                    
                     
                     KeyboardNavigation.TabNavigation="Once" HorizontalAlignment="Center"  Width="1017" >
@@ -224,9 +224,10 @@
                         Remove this column definitions and define columns for your data.
                         Consider adding header properties to Resources.resw
                     -->
-                        <DataGridTextColumn Binding="{Binding ParkingId}" Header="Parcheggio" />
-                        <DataGridTextColumn Binding="{Binding Revenue,TargetNullValue=NULL}" Header="Incasso" />
-                        <DataGridTextColumn Binding="{Binding InfoParkId, TargetNullValue=NULL}" Header="NomeParcheggio"    />
+                        <DataGridTextColumn Binding="{Binding NamePark}" Header="NamePark" />
+                        <DataGridTextColumn Binding="{Binding Ncol,TargetNullValue=NULL}" Header="Colonne" />
+                        <DataGridTextColumn Binding="{Binding Nrighe, TargetNullValue=NULL}" Header="Righe"    />
+                        <DataGridTextColumn Binding="{Binding Revenue, TargetNullValue=NULL}" Header="Guadagno"    />
                         
            
                     </DataGrid.Columns>

@@ -30,7 +30,8 @@ namespace WebAPI_Definitivo.Models
         {
             if (!optionsBuilder.IsConfigured)
             {
-                optionsBuilder.UseSqlServer(Startup.ConnectionString);
+#warning To protect potentially sensitive information in your connection string, you should move it out of source code. See http://go.microsoft.com/fwlink/?LinkId=723263 for guidance on storing connection strings.
+                optionsBuilder.UseSqlServer("Server=DESKTOP-C85IVGL\\SQLEXPRESSNEW;Database=ParkingManagement; User Id=sa; Password=Ciao*2002;");
             }
         }
 
@@ -55,15 +56,6 @@ namespace WebAPI_Definitivo.Models
                     .IsFixedLength();
 
                 entity.Property(e => e.Revenue).HasColumnType("decimal(18, 0)");
-
-                entity.Property(e => e.SearchDate)
-                    .HasColumnType("date")
-                    .HasDefaultValueSql("(getdate())");
-
-                entity.Property(e => e.Token)
-                    .HasMaxLength(5)
-                    .IsUnicode(false)
-                    .IsFixedLength();
             });
 
             modelBuilder.Entity<InfoParking>(entity =>
@@ -107,13 +99,6 @@ namespace WebAPI_Definitivo.Models
                 entity.Property(e => e.ParkingId)
                     .IsRequired()
                     .HasMaxLength(3)
-                    .IsUnicode(false)
-                    .IsFixedLength();
-
-                entity.Property(e => e.Revenue).HasColumnType("decimal(18, 0)");
-
-                entity.Property(e => e.Token)
-                    .HasMaxLength(5)
                     .IsUnicode(false)
                     .IsFixedLength();
 

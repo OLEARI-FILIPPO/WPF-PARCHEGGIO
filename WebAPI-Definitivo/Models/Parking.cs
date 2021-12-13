@@ -20,16 +20,15 @@ namespace WebAPI_Definitivo.Models
 
         public Parking()
         {
-            
+
         }
+
         public long Id { get; set; }
         public string ParkingId { get; set; }
         public bool Stato { get; set; }
-        public decimal? Revenue { get; set; }
         public DateTime? EntryTimeDate { get; set; }
         public long? VehicleId { get; set; }
         public long InfoParkId { get; set; }
-        public string Token { get; set; }
 
         public virtual InfoParking InfoPark { get; set; }
         public virtual Vehicle Vehicle { get; set; }

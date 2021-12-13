@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Net.Http;
 using System.Net.Http.Headers;
@@ -11,6 +12,7 @@ using WPF_DEFINITIVO.Contracts.ViewModels;
 using WPF_DEFINITIVO.Core.Contracts.Services;
 using WPF_DEFINITIVO.Core.Models;
 using WPF_DEFINITIVO.Helpers;
+using WPF_DEFINITIVO.Models;
 
 namespace WPF_DEFINITIVO.ViewModels
 {
@@ -23,8 +25,9 @@ namespace WPF_DEFINITIVO.ViewModels
         }
       //  private readonly ISampleDataService _sampleDataService;
 
+        public ObservableCollection<IncassiDisplay> IncassiDisplay { get; } = new ObservableCollection<IncassiDisplay>();
         public ObservableCollection<Parking> SourceDisp { get; } = new ObservableCollection<Parking>();
-        public ObservableCollection<Parking> Allparkings { get; } = new ObservableCollection<Parking>();
+        //public ObservableCollection<Parking> Allparkings { get; } = new ObservableCollection<Parking>();
         public ObservableCollection<Vehicle> Vehicle { get; } = new ObservableCollection<Vehicle> { new Vehicle() };
 
 
@@ -68,27 +71,35 @@ namespace WPF_DEFINITIVO.ViewModels
 
                 client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", NavigationLoginToLogout.Token);
 
-                var response = await client.GetAsync("http://localhost:13636/api/v1/ParkingRecords");
+                string url = "http://localhost:13636/api/v1/ParkingList";
+                var response = await client.GetAsync(url);
 
                 var data = await response.Content.ReadAsStringAsync();
+                ObservableCollection<InfoParking> info = JsonConvert.DeserializeObject<ObservableCollection<InfoParking>>(data);
 
-                allParkingsObject = JsonConvert.DeserializeObject<ObservableCollection<Parking>>(data);
-
-                foreach (Parking item in allParkingsObject)
+                if(response.IsSuccessStatusCode)
                 {
-                    Allparkings.Add(item);
-                    //client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", NavigationLoginToLogout.Token);
+                    foreach(var a in info)
+                    {
+                        client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", NavigationLoginToLogout.Token);
 
-                    //string url = "http://localhost:13636/api/v1/ParkingRecordByID" + "/" + item.InfoParkId;
-                    //var response2 = await client.GetAsync(url);
+                        string url2 = "http://localhost:13636/api/v1/GetIncassiByID/" + a.InfoParkId;
+                        var response2 = await client.GetAsync(url2);
 
-                    //var data2 = await response.Content.ReadAsStringAsync();
+                        var data2 = await response2.Content.ReadAsStringAsync();
 
-                    //if(response2.IsSuccessStatusCode)
-                    //{
-                    //    InfoParkIdNome = JsonConvert.DeserializeObject<string>(data);
-                    //}
+                        if(response2.IsSuccessStatusCode)
+                        {
+                            decimal? somma = JsonConvert.DeserializeObject<decimal>(data2);
+                            IncassiDisplay.Add(new IncassiDisplay(a.NamePark, a.Nrighe, a.Ncol, somma));
+                        }
+
+
+                    }
                 }
+                
+
+                
             }
         }
 

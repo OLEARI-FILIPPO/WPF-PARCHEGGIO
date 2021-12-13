@@ -580,7 +580,28 @@ namespace WebAPI_Definitivo.Controllers
 
                 using (ParkingManagementContext model = new ParkingManagementContext())
                 {
-                    decimal somma = (decimal)model.Parking.Sum(s => s.Revenue);
+                    decimal somma = (decimal)model.History.Sum(s => s.Revenue);
+
+                    return Ok(somma);
+                }
+            }
+            catch (Exception)
+            {
+
+                return Problem();
+            }
+        }
+
+        [Authorize]
+        [HttpGet("GetIncassiByID/{ID}")]
+        public ActionResult GetIncassiByID(long ID)
+        {
+            try
+            {
+
+                using (ParkingManagementContext model = new ParkingManagementContext())
+                {
+                    decimal somma = (decimal)model.History.Where(w => w.InfoParkId == ID).Sum(s => s.Revenue);
 
                     return Ok(somma);
                 }

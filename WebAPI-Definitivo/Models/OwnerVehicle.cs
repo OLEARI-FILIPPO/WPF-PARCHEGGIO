@@ -21,7 +21,6 @@ namespace WebAPI_Definitivo.Models
             DateBirth = dateBirth;
             UserId = userId;
         }
-
         public long OwnerId { get; set; }
         public string Surname { get; set; }
         public string Name { get; set; }

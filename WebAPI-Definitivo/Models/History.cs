@@ -20,10 +20,6 @@ namespace WebAPI_Definitivo.Models
             VehicleId = vehicleId;
             ExitTimeDate = exitTimeDate;
             InfoParkId = infoParkId;
-
-            //Per ora nulli
-            Token = null;
-            SearchDate = null;
         }
 
         public long HistoryId { get; set; }
@@ -35,7 +31,5 @@ namespace WebAPI_Definitivo.Models
         public long? VehicleId { get; set; }
         public DateTime? ExitTimeDate { get; set; }
         public long InfoParkId { get; set; }
-        public string Token { get; set; }
-        public DateTime? SearchDate { get; set; }
     }
 }
