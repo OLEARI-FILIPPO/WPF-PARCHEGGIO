@@ -212,7 +212,8 @@
                     Background="#80BAE5"         
                     AutoGenerateColumns="False"
                     CanUserAddRows="False"
-            
+                    FontSize="16"
+                    ColumnWidth="2*"
                     ItemsSource="{Binding IncassiDisplay}"
                    
                     
@@ -249,10 +250,9 @@
                     Background="#80BAE5"         
                     AutoGenerateColumns="False"
                     CanUserAddRows="False"
-            
                     ItemsSource="{Binding SourceDisp}"
-                   
-                    
+                    FontSize="16"
+                    ColumnWidth="2*"
                     KeyboardNavigation.TabNavigation="Once" HorizontalAlignment="Center"  Width="1017" >
 
                     <DataGrid.Columns>
@@ -281,7 +281,9 @@
                      BorderBrush="#80BAE5">
 
                 <DataGrid
-                    
+            
+                    FontSize="16"
+                    ColumnWidth="2*"
                     Background="#80BAE5"         
                     AutoGenerateColumns="False"
                     CanUserAddRows="False"
