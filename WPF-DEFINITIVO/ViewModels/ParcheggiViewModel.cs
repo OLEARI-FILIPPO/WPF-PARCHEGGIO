@@ -95,7 +95,14 @@ namespace WPF_DEFINITIVO.ViewModels
 
                         foreach (var a in parkingsTemp)
                         {
-                            parkings.Add(a.NamePark.ToString());
+                            bool trovato = false;
+                            foreach (var b in parkings)
+                            {
+                                if (a.NamePark == b)
+                                    trovato = true;
+                            }
+                            if(!trovato)
+                                parkings.Add(a.NamePark.ToString());
                         }
 
 
