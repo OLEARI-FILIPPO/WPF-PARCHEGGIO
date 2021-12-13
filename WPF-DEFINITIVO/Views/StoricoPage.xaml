@@ -81,6 +81,33 @@
 
                 </DataGrid.Columns>
             </DataGrid>
+
+
+        </hc:Card>
+        <hc:Card  
+                 x:Name="StoricoCard2"  
+                 Grid.Row="2"   
+                 BorderBrush="#73DAE2"
+                 BorderThickness="1" 
+                 Effect="{DynamicResource EffectShadow5}" 
+                 Margin="57,37,87,37"  >
+            <DataGrid   Name="StoricoGrid2"
+                        AutoGenerateColumns="False"
+                        CanUserAddRows="False"
+                        IsReadOnly="True"
+                        ItemsSource="{Binding HistoryDisplay}"
+                        Background="#81B6E3"
+                        FontSize="18"
+                        ColumnWidth="2*"
+                        Effect="{DynamicResource EffectShadow2}" Loaded="DataGrid_Loaded">
+
+
+                <DataGrid.Columns>
+
+                    <DataGridTextColumn Binding="{Binding ParkingId}" Header="Not found" />
+
+                </DataGrid.Columns>
+            </DataGrid>
         </hc:Card>
     </Grid>
 </Page>

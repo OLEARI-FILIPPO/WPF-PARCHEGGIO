@@ -4,6 +4,7 @@ using System.Collections.ObjectModel;
 using System.Diagnostics;
 using System.Net.Http;
 using System.Net.Http.Headers;
+using System.Threading.Tasks;
 using System.Windows;
 using Microsoft.Toolkit.Mvvm.ComponentModel;
 using Microsoft.Toolkit.Mvvm.Input;
@@ -20,9 +21,9 @@ namespace WPF_DEFINITIVO.ViewModels
     public class StoricoViewModel : ObservableObject, INavigationAware
     {
 
-        public DateTime DateBirth { get; set; } 
+        public DateTime DateBirth { get; set; }
 
-
+        public bool check;
         public ObservableCollection<string> LicencePlate { get; set; } = new ObservableCollection<string>();
         public ObservableCollection<string> NamePark { get; set; } = new ObservableCollection<string>();
 
@@ -111,6 +112,7 @@ namespace WPF_DEFINITIVO.ViewModels
                         NamePark.Add(item);
                     }
 
+
                     for (int i = 0; i < Source.Count; i++)
                     {
                         HistoryDisplay.Add
@@ -126,6 +128,14 @@ namespace WPF_DEFINITIVO.ViewModels
                                 )
                             );
                     }
+
+                    if(HistoryDisplay.Count == 0)
+                    {
+                        HistoryDisplay displayEmpty = new HistoryDisplay();
+                        displayEmpty.ParkingId = "NESSUNN VEICOLO TROVATO PER LA DATA INSERITA";
+                        HistoryDisplay.Add(displayEmpty);
+                    }
+
                 }
 
                 
@@ -136,7 +146,9 @@ namespace WPF_DEFINITIVO.ViewModels
 
         public void Refresh()
         {
-            MessageBox.Show("fatto"); OnNavigatedTo(HistoryHelper.oggetto);
+            //MessageBox.Show("fatto"); 
+            //HistoryHelper.check
+            OnNavigatedTo(HistoryHelper.oggetto);
         }
 
         public void OnNavigatedFrom()

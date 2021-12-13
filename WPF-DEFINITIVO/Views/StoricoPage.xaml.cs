@@ -22,6 +22,7 @@ namespace WPF_DEFINITIVO.Views
            // StoricoCard.BorderBrush.Opacity = 0;
             DataContext = viewModel;
             storico = viewModel;
+            StoricoCard2.Visibility = Visibility.Hidden;
         }
 
         private void DataGrid_Loaded(object sender, RoutedEventArgs e)
@@ -66,6 +67,12 @@ namespace WPF_DEFINITIVO.Views
 
             var sorico = (StoricoViewModel)DataContext;
             storico.Refresh();
+
+            if(HistoryHelper.check == true)
+                StoricoCard2.Visibility = Visibility.Visible;
+            else
+                StoricoCard2.Visibility = Visibility.Hidden;
+
         }
     }
 }
