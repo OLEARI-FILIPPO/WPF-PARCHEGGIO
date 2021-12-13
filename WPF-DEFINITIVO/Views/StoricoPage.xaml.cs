@@ -69,12 +69,10 @@ namespace WPF_DEFINITIVO.Views
             var sorico = (StoricoViewModel)DataContext;
             await storico.Refresh();
 
-            if(HistoryHelper.check == false)
+            if (HistoryHelper.check == false)
                 StoricoCard2.Visibility = Visibility.Visible;
             else
-            {
-                StoricoGrid2.Visibility = Visibility.Hidden;
-            }
+                StoricoCard2.Visibility = Visibility.Hidden;
 
         }
     }

@@ -89,25 +89,47 @@ namespace WPF_DEFINITIVO.Views
 
                     };
 
-
-                    client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", NavigationLoginToLogout.Token);
-
-                    // Chiamata API
-                    string url = "http://localhost:13636/api/v1/parcheggio/" + creazione.Targa + "/" + creazione.nomeParcheggio + "/" + creazione.postoName + "/" + creazione.Manufactorer + "/" + creazione.Model;
-
-
-                    //Chiamata
-                    var response3 = await client.PutAsJsonAsync(url, parametri);
-                    string result = await response3.Content.ReadAsStringAsync();
-
-                   // string error = result.Split(new string[] { })
-
-                    if (response3.IsSuccessStatusCode)
+                    if (MessageBox.Show("Sei sicuro di aver inserito correttamente i dati", "Question", MessageBoxButton.YesNo, MessageBoxImage.Question) == MessageBoxResult.Yes)
                     {
-                        this.Close();
+                        client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", NavigationLoginToLogout.Token);
+
+                        // Chiamata API
+                        string url = "http://localhost:13636/api/v1/parcheggio/" + creazione.Targa + "/" + creazione.nomeParcheggio + "/" + creazione.postoName + "/" + creazione.Manufactorer + "/" + creazione.Model;
+
+
+                        //Chiamata
+                        var response3 = await client.PutAsJsonAsync(url, parametri);
+                        string result = await response3.Content.ReadAsStringAsync();
+
+                        // string error = result.Split(new string[] { })
+
+                        if (response3.IsSuccessStatusCode)
+                        {
+
+
+                            this.Close();
+                        }
+                        else
+                        {
+                            string[] errore = result.Split("targa");
+                            if (errore.Length > 1)
+                                System.Windows.MessageBox.Show("Inserire correttamente la targa", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+
+
+                            string[] errore2 = result.Split("anni");
+                            if (errore2.Length > 1)
+                                System.Windows.MessageBox.Show("Il parcheggio è prenotabile sono da utenti con almeno 14 anni", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+
+                            string[] errore3 = result.Split("cognome");
+                            if (errore3.Length > 1)
+                                System.Windows.MessageBox.Show("Inserire correttamente il cognome", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+
+                            string[] errore4 = result.Split(" nome");
+                            if (errore4.Length > 1)
+                                System.Windows.MessageBox.Show("Inserire correttamente il nome", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+                        }
                     }
-                    else
-                        MessageBox.Show(error,"Error", MessageBoxButton.OK, MessageBoxImage.Error);
+                        
 
 
                 }
