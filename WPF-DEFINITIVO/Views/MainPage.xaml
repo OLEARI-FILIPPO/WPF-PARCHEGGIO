@@ -60,7 +60,9 @@
                                    FontFamily="Segoe MDL2 Assets"
                                    Height="67" 
                                    TextAlignment="Center" Width="94"/>
-                        <TextBlock TextWrapping="Wrap" 
+                        <TextBlock TextWrapping="Wrap"
+                                   FontFamily="CocoSharp Trial"
+                                   
                                    HorizontalAlignment="Center" 
                                    Text="Incasso"  
                                    FontSize="28"  />
@@ -80,6 +82,7 @@
                                    x:Name="rev" 
                                    FontSize="25"
                                    TextAlignment="Center"
+                                   FontFamily="CocoSharp Trial"
                                    HorizontalAlignment="Center"
                                    VerticalAlignment="Center" 
                                    Height="40" Width="78"/>
@@ -112,7 +115,10 @@
                             Height="62" />
                         <TextBlock 
                             TextWrapping="Wrap"
-                            HorizontalAlignment="Center" 
+                            HorizontalAlignment="Center"
+                       
+                            FontFamily="CocoSharp Trial"
+                            
                             Text="Parcheggi disponibili" 
                             FontSize="28" 
                             Width="130"  />
@@ -129,6 +135,8 @@
                         <TextBlock x:Name="dispParkings" TextAlignment="Center" TextWrapping="NoWrap" Style="{DynamicResource TextBlockDefault}" TextTrimming="CharacterEllipsis" 
                                         FontSize="25" Margin="0,12,0,0"
                                         VerticalAlignment="Center"
+                                        FontFamily="CocoSharp Trial"
+                                   
                                         HorizontalAlignment="Center" Height="34" Width="128"/>
                     </StackPanel>
                 </hc:Card.Footer>
@@ -160,7 +168,9 @@
                             Height="62" />
                         <TextBlock 
                             TextWrapping="Wrap"
-                            HorizontalAlignment="Center" 
+                            HorizontalAlignment="Center"
+                        FontFamily="CocoSharp Trial"
+                            
                             Text="Veicoli Entrati" 
                             TextAlignment="Center"
                             FontSize="28" 
@@ -182,6 +192,8 @@
                                    Text="40" 
                                    FontSize="25" 
                                    Margin="0,12,0,0"
+                                   FontFamily="CocoSharp Trial"
+                                   
                                    HorizontalAlignment="Center" 
                                    Height="37" 
                                    Width="32"/>
@@ -217,6 +229,7 @@
                     CanUserAddRows="False"
                     FontSize="16"
                     ColumnWidth="2*"
+                    FontFamily="CocoSharp Trial"
                     ItemsSource="{Binding IncassiDisplay}"
                     Name="gridIncassi"
                    ColumnHeaderHeight="60"
@@ -268,7 +281,11 @@
                     CanUserAddRows="False"
                     ItemsSource="{Binding Allparkings}"
                     FontSize="16"
+                    
+                    FontFamily="CocoSharp Trial"
                     ColumnWidth="2*"
+                    
+                    
                     KeyboardNavigation.TabNavigation="Once" HorizontalAlignment="Center"  Width="1017" >
 
                     <DataGrid.Columns>
@@ -293,12 +310,15 @@
                      BorderBrush="#80BAE5">
 
                 <DataGrid
-            
+                    FontFamily="CocoSharp Trial"
                     FontSize="16"
                     ColumnWidth="2*"
                     Background="#80BAE5"         
                     AutoGenerateColumns="False"
                     CanUserAddRows="False"
+                                   
+                    
+                    
                     ItemsSource="{Binding Vehicle}"
                     KeyboardNavigation.TabNavigation="Once" 
                     HorizontalAlignment="Center"  

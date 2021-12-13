@@ -50,9 +50,6 @@ namespace WPF_DEFINITIVO.Views
             bool check = false;
        
       
-
-
-
             if (UsernameTextBox.Text == "Username" || PasswordInserito.Password == "password")
             {
                 UsernameTextBox.BorderBrush = new SolidColorBrush(Colors.Red);

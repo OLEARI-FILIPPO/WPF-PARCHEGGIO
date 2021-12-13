@@ -7,7 +7,7 @@
         mc:Ignorable="d"
         WindowStartupLocation="CenterScreen"
         Title="Metodo entra veicolo" MaxHeight="750"
-        MaxWidth="544" Width="544" Height="750" Loaded="Window_Loaded">
+        MaxWidth="544" Width="544" Height="750" Loaded="Window_Loaded"  FontFamily="CocoSharp Trial">
 
     <Grid x:Name="grid" Loaded="grid_Loaded" Margin="0,0,0,1">
 
@@ -31,10 +31,12 @@
                     Style="{StaticResource PageTitleStyle}"
                     Margin="24,0,0,0"
                     FontSize="18"
+                    FontFamily="CocoSharp Trial"
                    >Entra nel Parcheggio</TextBlock>
 
         <StackPanel Grid.Row="1" 
-                    Orientation="Horizontal" 
+                    Orientation="Horizontal"
+                    
                     HorizontalAlignment="Center" 
                     Width="406">
 
@@ -48,6 +50,7 @@
                      FontSize="20" 
                      LostFocus="Surname_LostFocus"
                      VerticalAlignment="Center" 
+                     FontFamily="CocoSharp Trial"
                      GotFocus="TextBox_GotFocus"></TextBox>
 
         </StackPanel>
@@ -62,10 +65,12 @@
                      HorizontalAlignment="Center"
                      FontSize="20"
                      x:Name="Name"
+                      FontFamily="CocoSharp Trial"
                      LostFocus="Name_LostFocus"
                      GotFocus="Name_GotFocus"
                      Foreground="Gray"
                      Text="{Binding Name}"
+                     
                      VerticalAlignment="Center"/>
 
         </StackPanel>
@@ -78,11 +83,11 @@
                         Height="60" 
                         HorizontalAlignment="Center"
                         FontSize="20"
+                        FontFamily="CocoSharp Trial"
                         Foreground="Gray"
                         Text="{Binding DateBirth}"
                         x:Name="datePicker"
-                       
-                         hc:InfoElement.Placeholder="Data di nascita"
+                        hc:InfoElement.Placeholder="Data di nascita"
                         VerticalAlignment="Center"></hc:DatePicker>
 
         </StackPanel>
@@ -101,6 +106,7 @@
                      GotFocus="LicensePlate_GotFocus"
                      Foreground="Gray"
                      Text="{Binding Targa}"
+                      FontFamily="CocoSharp Trial"
                      VerticalAlignment="Center"/>
         </StackPanel>
 
@@ -117,6 +123,7 @@
                      LostFocus="Manufacturer_LostFocus"
                      GotFocus="Manufacturer_GotFocus"
                      Foreground="Gray"
+                      FontFamily="CocoSharp Trial"
                      Text="{Binding Manufactorer}"
                      VerticalAlignment="Center"/>
         </StackPanel>
@@ -134,6 +141,7 @@
                      LostFocus="Modello_LostFocus"
                      GotFocus="Modello_GotFocus"
                      Foreground="Gray"
+                     FontFamily="CocoSharp Trial"
                      Text="{Binding Model}"
                      VerticalAlignment="Center"/>
         </StackPanel>

@@ -37,12 +37,12 @@
         <StackPanel x:Name="operations" Orientation="Horizontal" Grid.Row="1" Margin="{StaticResource MediumLeftMargin}">
 
             <ComboBox   Width="200" 
-                            FontFamily="calibri"
                             VerticalAlignment="Center" 
                             ItemsSource="{Binding Path=Parking, Mode=OneWay}"
                             x:Name="combo"
                             Height="35"
                             FontSize="16"
+                            FontFamily="CocoSharp Trial"
                             Foreground="Gray"
                             BorderBrush="Gray"
                             SelectionChanged="combo_SelectionChanged"
@@ -85,7 +85,9 @@
                      Height="35" Width="152" 
                      x:Name="InputName" 
                      Foreground="Gray" 
-                     BorderBrush="Gray"  
+                     BorderBrush="Gray" 
+                            FontFamily="CocoSharp Trial"
+                     
                      Text="Nome Parcheggio"  
                      GotFocus="InputName_GotFocus" 
                      LostFocus="InputName_LostFocus"></TextBox>
@@ -93,10 +95,10 @@
             <Button Content="Create" 
                     Click="Create_Click"
                             Margin="20,0,0,0"
-                            FontFamily="calibri"
                             FontSize="16"
                             Background="#BBEFEF"
                             Height="35" Width="70"
+                            FontFamily="CocoSharp Trial"
                    
                             x:Name="Create" RenderTransformOrigin="1.01,0.466"
                             />
