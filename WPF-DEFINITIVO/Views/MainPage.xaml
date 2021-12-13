@@ -215,7 +215,8 @@
                     FontSize="16"
                     ColumnWidth="2*"
                     ItemsSource="{Binding IncassiDisplay}"
-                   
+                   ColumnHeaderHeight="60"
+                    
                     
                     KeyboardNavigation.TabNavigation="Once" HorizontalAlignment="Center"  Width="1017" >
 
@@ -229,8 +230,19 @@
                         <DataGridTextColumn Binding="{Binding Ncol,TargetNullValue=NULL}" Header="Colonne" />
                         <DataGridTextColumn Binding="{Binding Nrighe, TargetNullValue=NULL}" Header="Righe"    />
                         <DataGridTextColumn Binding="{Binding Revenue, TargetNullValue=NULL}" Header="Guadagno"    />
-                        
-           
+                        <DataGridTextColumn>
+
+                            <DataGridTextColumn.Header >
+                                <Grid Margin="0"  Background="Transparent">
+
+
+                                    <Button Grid.Column="0" Width="130" BorderBrush="Transparent"  Height="45" FontSize="12" Content="Elimina Parcheggio" Background="#F1A9A9" />
+
+                                </Grid>
+                            </DataGridTextColumn.Header>
+                            
+                        </DataGridTextColumn>
+
                     </DataGrid.Columns>
 
                 </DataGrid>
