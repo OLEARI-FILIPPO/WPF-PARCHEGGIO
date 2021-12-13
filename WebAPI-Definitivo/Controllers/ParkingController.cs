@@ -432,7 +432,6 @@ namespace WebAPI_Definitivo.Controllers
                 //MODIFICA: SI PUO ANCHE SOLO PASSARE IL NOME DEL PARCHEGGIO INVECE CHE TUTTO L'OGGETTO
                 using (ParkingManagementContext model = new ParkingManagementContext())
                 {
-                    List<Parking> listOfParkings;
                     string nome;
 
                     nome = model.InfoParking.Where(w => w.InfoParkId == idParcheggio).Select(s => s.NamePark).FirstOrDefault();

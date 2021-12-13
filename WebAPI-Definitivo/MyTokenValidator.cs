@@ -19,7 +19,7 @@ namespace WebAPI_Definitivo
                 validationParameters.IssuerSigningKey = SecurityKeyGenerator.GetSecurityKey(userName);
                 return base.ValidateToken(token, validationParameters, out validatedToken);
             }
-            catch (Exception e) { validatedToken = null; return new ClaimsPrincipal(); }
+            catch (Exception) { validatedToken = null; return new ClaimsPrincipal(); }
         }
     }
 }
