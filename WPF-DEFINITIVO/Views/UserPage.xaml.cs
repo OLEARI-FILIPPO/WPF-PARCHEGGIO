@@ -51,7 +51,7 @@ namespace WPF_DEFINITIVO.Views
         {
             PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(name));
         }
-        private async void Button_Click(object sender, RoutedEventArgs e)
+        private async void Button_Click(object sender, RoutedEventArgs e)//Bottone del logout
         {
            
             Users credenziali = new Users()
@@ -85,7 +85,7 @@ namespace WPF_DEFINITIVO.Views
                 }
                 else
                 {
-                    MessageBox.Show(result); // ?
+                    MessageBox.Show("Error di logout","Error",MessageBoxButton.OK, MessageBoxImage.Error); //
                 }
             }
             
@@ -153,7 +153,7 @@ namespace WPF_DEFINITIVO.Views
 
                 if (response.IsSuccessStatusCode)
                 {
-                    MessageBox.Show("Effetture il login con le nuove credenziali");
+                    MessageBox.Show("Effetture il login con le nuove credenziali","Information",MessageBoxButton.OK, MessageBoxImage.Information);
                     //dopo il logout lo stato torna a false e il resto diventa null;
                     NavigationLoginToLogout.isLoggedIn = false;
                     NavigationLoginToLogout.result = null;
@@ -170,6 +170,8 @@ namespace WPF_DEFINITIVO.Views
                 }
                 else
                 {
+
+
                     MessageBox.Show(result); // ?
                 }
             }

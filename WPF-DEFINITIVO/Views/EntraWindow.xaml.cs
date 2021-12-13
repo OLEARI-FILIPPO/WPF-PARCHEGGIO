@@ -54,6 +54,8 @@ namespace WPF_DEFINITIVO.Views
 
             //Query inserimento persona
 
+            
+
             if (Surname.Text == "Cognome" || Name.Text == "Nome" || LicensePlate.Text=="Targa" || Manufacturer.Text == "Marca" || Modello.Text=="Modello"|| datePicker.SelectedDate == null)
             {
                
@@ -100,7 +102,7 @@ namespace WPF_DEFINITIVO.Views
                     var response3 = await client.PutAsJsonAsync(url, parametri);
                     string result = await response3.Content.ReadAsStringAsync();
 
-                   // string error = result.Split(new string[] { })
+                    string error = "";
 
                     if (response3.IsSuccessStatusCode)
                     {

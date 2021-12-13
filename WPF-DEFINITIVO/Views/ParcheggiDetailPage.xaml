@@ -7,56 +7,54 @@
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     WindowStartupLocation="CenterScreen"
     mc:Ignorable="d"
-    d:DesignHeight="750" MinWidth="750" MaxWidth="800" d:DesignWidth="750" Loaded="Window_Loaded">
+    d:DesignHeight="320" MinWidth="700" MaxWidth="720" Loaded="Window_Loaded" Width="692">
     <Grid x:Name="grid">
         <Grid.Background>
             <ImageBrush ImageSource="Images/wave.png"/>
         </Grid.Background>
 
-        <ScrollViewer
-            x:Name="contentScroll"
-            IsTabStop="True">
-            <StackPanel
+
+        <StackPanel
                 Margin="{StaticResource MediumLeftTopRightBottomMargin}">
-                <Grid>
-                    <Grid.ColumnDefinitions>
-                        <ColumnDefinition Width="Auto" />
-                        <ColumnDefinition Width="*" />
-                    </Grid.ColumnDefinitions>
-                    <Grid
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="Auto" />
+                    <ColumnDefinition Width="*" />
+                </Grid.ColumnDefinitions>
+                <Grid
                         Width="200"
                         Height="208"
                         Grid.Column="0"
                         Grid.Row="0"
-                        VerticalAlignment="Top">
+                       >
 
-                        <Button x:Name="btnPosto" Grid.Row="2" Height="160" Width="163" FontSize="30">
-                            <StackPanel HorizontalAlignment="Center" VerticalAlignment="Center" Orientation="Vertical" Height="121">
-                                <TextBlock Text="&#xE804;" Margin="3,0,0,0" HorizontalAlignment="Center" FontSize="45" FontFamily="Segoe MDL2 Assets" Height="53" Width="48"/>
-                                <TextBlock x:Name="ParkingNameLabel" Height="47"><Run Text="P001"/></TextBlock>
-                            </StackPanel>
-                        </Button>
-                    </Grid>
+                    <Button x:Name="btnPosto" Grid.Row="2" Height="160" Width="163" FontSize="30">
+                        <StackPanel HorizontalAlignment="Center" VerticalAlignment="Center" Orientation="Vertical" Height="121">
+                            <TextBlock Text="&#xE804;" Margin="3,0,0,0" HorizontalAlignment="Center" FontSize="45" FontFamily="Segoe MDL2 Assets" Height="53" Width="48"/>
+                            <TextBlock x:Name="ParkingNameLabel" Height="47"><Run Text="P001"/></TextBlock>
+                        </StackPanel>
+                    </Button>
+                </Grid>
 
-                    <Grid Grid.Column="1" Margin="10,0,10,0">
-                        <Grid.ColumnDefinitions>
-                            <ColumnDefinition Width="150"/>
-                            <ColumnDefinition />
-                        </Grid.ColumnDefinitions>
+                <Grid Grid.Column="1" Margin="10,0,10,0">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="150"/>
+                        <ColumnDefinition />
+                    </Grid.ColumnDefinitions>
 
-                        <StackPanel
+                    <StackPanel
                           Grid.Column="0"
                           Grid.Row="0" Margin="0,0,5,0" Height="200">
 
-                            <StackPanel
+                        <StackPanel
                                 Margin="{StaticResource SmallLeftTopMargin}">
-                                <TextBlock Style="{StaticResource SubtitleTextStyle}" Text="Stato" />
-                                <TextBlock Name="statoPark" Style="{StaticResource BodyTextStyle}" />
-                            </StackPanel>
+                            <TextBlock Style="{StaticResource SubtitleTextStyle}" Text="Stato" />
+                            <TextBlock Name="statoPark" Style="{StaticResource BodyTextStyle}" />
+                        </StackPanel>
 
-                            <StackPanel
+                        <StackPanel
                             Margin="{StaticResource SmallLeftTopMargin}"  Height="65">
-                                <Button x:Name="Enter"
+                            <Button x:Name="Enter"
                                         FontSize="14" 
                                         Background="#C4E9D7" 
                                         HorizontalAlignment="Left" 
@@ -64,86 +62,55 @@
                                         Margin="0,20,20,0" 
                                         Height="42" Width="68" 
                                         Click="Button_Click"/>
-                            </StackPanel>
-
-                            <StackPanel
-                            Margin="{StaticResource SmallLeftTopMargin}">
-                                <Button FontSize="14" x:Name="Exit" Background="#F7A5A0" Content="Uscita" HorizontalAlignment="Left" Height="46" Width="67" Click="Exit_Click" />
-
-                            </StackPanel>
                         </StackPanel>
 
                         <StackPanel
+                            Margin="{StaticResource SmallLeftTopMargin}">
+                            <Button FontSize="14" x:Name="Exit" Background="#F7A5A0" Content="Uscita" HorizontalAlignment="Left" Height="46" Width="67" Click="Exit_Click" />
+
+                        </StackPanel>
+                    </StackPanel>
+
+                    <StackPanel
                             Grid.Column="1">
 
-                            <StackPanel
+                        <StackPanel
                                  Margin="{StaticResource SmallLeftTopMargin}">
-                                <TextBlock Style="{StaticResource SubtitleTextStyle}" Text="Macchina Parcheggiata: " />
-                                <TextBlock Name="Targa" Style="{StaticResource BodyTextStyle}" />
-
-                            </StackPanel>
-
-                            <StackPanel
-                                 Margin="{StaticResource SmallLeftTopMargin}">
-                                <TextBlock Style="{StaticResource SubtitleTextStyle}" Text="Propietario: " />
-                                <TextBlock Name="Proprietario" Style="{StaticResource BodyTextStyle}" />
-
-                            </StackPanel>
-
-                            <StackPanel
-                                 Margin="{StaticResource SmallLeftTopMargin}">
-                                <TextBlock Style="{StaticResource SubtitleTextStyle}" Text="Data di Entrata: " />
-                                <TextBlock Name="DataEntrata" Style="{StaticResource BodyTextStyle}"  />
-
-                            </StackPanel>
+                            <TextBlock Style="{StaticResource SubtitleTextStyle}" Text="Macchina Parcheggiata: " />
+                            <TextBlock Name="Targa" Style="{StaticResource BodyTextStyle}" />
 
                         </StackPanel>
 
-                    </Grid>
+                        <StackPanel
+                                 Margin="{StaticResource SmallLeftTopMargin}">
+                            <TextBlock Style="{StaticResource SubtitleTextStyle}" Text="Propietario: " />
+                            <TextBlock Name="Proprietario" Style="{StaticResource BodyTextStyle}" />
+
+                        </StackPanel>
+
+                        <StackPanel
+                                 Margin="{StaticResource SmallLeftTopMargin}">
+                            <TextBlock Style="{StaticResource SubtitleTextStyle}" Text="Data di Entrata: " />
+                            <TextBlock Name="DataEntrata" Style="{StaticResource BodyTextStyle}"  />
+
+                        </StackPanel>
+
+                        <StackPanel
+                                 Margin="{StaticResource SmallLeftTopMargin}">
+                            <TextBlock Style="{StaticResource SubtitleTextStyle}" Text="Tariffa: " />
+                            <TextBlock Name="Tariffa" Style="{StaticResource BodyTextStyle}" Text="2.00€ al ora" />
+
+                        </StackPanel>
+
+                    </StackPanel>
 
                 </Grid>
 
-                <TextBlock
-                    x:Name="textstorico"
-                    Margin="{StaticResource MediumTopMargin}"
-                    Style="{StaticResource SubtitleTextStyle}"
-                    Text="Storico Parcheggio" />
-                
-                <DataGrid
-                    Name="storicoGrid"
-                    AutoGenerateColumns="False"
-                    GridLinesVisibility="Horizontal"
-                    CanUserAddRows="False"
-                    ItemsSource="{Binding Source}"
-                    Margin="24"
-                    KeyboardNavigation.TabNavigation="Once" Height="372">
-                    <DataGrid.Columns>
-                        <!--
-                        TODO WTS:
-                        Remove this column definitions and define columns for your data.
-                        Consider adding header properties to Resources.resw
-                    -->
-                        <DataGridTextColumn Binding="{Binding OrderID}" Header="OrderID" />
-                        <DataGridTextColumn Binding="{Binding OrderDate}" Header="OrderDate" />
-                        <DataGridTextColumn Binding="{Binding Company}" Header="Company" />
-                        <DataGridTextColumn Binding="{Binding ShipTo}" Header="ShipTo" />
-                        <DataGridTextColumn Binding="{Binding OrderTotal}" Header="OrderTotal" />
-                        <DataGridTextColumn Binding="{Binding Status}" Header="Status" />
-                        <DataGridTemplateColumn Header="Symbol">
-                            <DataGridTemplateColumn.CellTemplate>
-                                <DataTemplate>
-                                    <TextBlock
-                                    Margin="{StaticResource SmallLeftRightMargin}"
-                                    HorizontalAlignment="Left"
-                                    Style="{StaticResource SmallIconStyle}"
-                                    Text="{Binding Symbol}" />
-                                </DataTemplate>
-                            </DataGridTemplateColumn.CellTemplate>
-                        </DataGridTemplateColumn>
-                    </DataGrid.Columns>
-                </DataGrid>
-            </StackPanel>
-        </ScrollViewer>
+            </Grid>
+
+
+        </StackPanel>
+
     </Grid>
 </Window>
 

@@ -60,8 +60,8 @@ namespace WPF_DEFINITIVO.Views
                 btnPosto.Background = (SolidColorBrush)new BrushConverter().ConvertFrom("#93C7EA");
             }
 
-            storicoGrid.Visibility = Visibility.Hidden;
-            textstorico.Visibility = Visibility.Hidden;
+            //storicoGrid.Visibility = Visibility.Hidden;
+            //textstorico.Visibility = Visibility.Hidden;
             detailPage.Height = 300;
             detailPage.MaxHeight = 301;
 
