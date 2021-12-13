@@ -41,6 +41,8 @@ namespace WPF_DEFINITIVO.Views
 
             username.Text = logout.Username;
             password.Text = logout.Password;
+
+            
         }
         public event PropertyChangedEventHandler PropertyChanged;
         static HttpClient client = new HttpClient();
@@ -89,7 +91,7 @@ namespace WPF_DEFINITIVO.Views
             
         }
 
-        private void UserPageLoaded(object sender, RoutedEventArgs e)
+        private async void UserPageLoaded(object sender, RoutedEventArgs e)
         {
             DoubleAnimation d = new DoubleAnimation();
             d.From = 0;
@@ -97,22 +99,24 @@ namespace WPF_DEFINITIVO.Views
             d.Duration = TimeSpan.FromSeconds(1);
             d.EasingFunction = new QuadraticEase();
             Out.BeginAnimation(WidthProperty, d);
-
-            modifica.IsEnabled = false;
+            await logout.GetLast();
+            lbLogin.Content = logout.lastLogin;
+            lbLogout.Content = logout.lastLogout;
+            //modifica.IsEnabled = false;
         }
 
         private void TextBox_GotFocus(object sender, RoutedEventArgs e)
         {
             username.Text = null;
            
-            modifica.IsEnabled = true;
+            //modifica.IsEnabled = true;
         }
 
         private void TextBox_GotFocus_1(object sender, RoutedEventArgs e)
         {
 
             password.Text = null;
-            modifica.IsEnabled = true ;
+            //modifica.IsEnabled = true ;
         }
 
         private void TextBox_LostFocus(object sender, RoutedEventArgs e)
@@ -122,7 +126,7 @@ namespace WPF_DEFINITIVO.Views
             {
                 username.Text = "Username";
             }
-            modifica.IsEnabled = false;
+            //modifica.IsEnabled = false;
         }
 
         private void TextBox_LostFocus_1(object sender, RoutedEventArgs e)
@@ -132,7 +136,7 @@ namespace WPF_DEFINITIVO.Views
             {
                 password.Text = "Password";
             }
-            modifica.IsEnabled= false ;
+            //modifica.IsEnabled= false ;
         }
 
         private async void modifica_Click(object sender, RoutedEventArgs e)

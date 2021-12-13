@@ -31,6 +31,7 @@ namespace WPF_DEFINITIVO.ViewModels
         public string nParking;
         public string nVehicle; 
         public ObservableCollection<Parking> ParkingObject;
+        public string InfoParkIdNome;
 
         public async Task GetParking()
         {
@@ -76,6 +77,17 @@ namespace WPF_DEFINITIVO.ViewModels
                 foreach (Parking item in allParkingsObject)
                 {
                     Allparkings.Add(item);
+                    //client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", NavigationLoginToLogout.Token);
+
+                    //string url = "http://localhost:13636/api/v1/ParkingRecordByID" + "/" + item.InfoParkId;
+                    //var response2 = await client.GetAsync(url);
+
+                    //var data2 = await response.Content.ReadAsStringAsync();
+
+                    //if(response2.IsSuccessStatusCode)
+                    //{
+                    //    InfoParkIdNome = JsonConvert.DeserializeObject<string>(data);
+                    //}
                 }
             }
         }

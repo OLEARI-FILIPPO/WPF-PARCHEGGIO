@@ -191,9 +191,9 @@ namespace WPF_DEFINITIVO.Views
                 int colonna = Int32.Parse(ColSlider.Value.ToString());
 
                 await parcheggioView.CreateParcheggio(InputName.Text, riga, colonna);
-                parcheggioView.Parking.Add(InputName.Text);
+                await parcheggioView.GetParkings();
 
-                
+
             }
 
         }

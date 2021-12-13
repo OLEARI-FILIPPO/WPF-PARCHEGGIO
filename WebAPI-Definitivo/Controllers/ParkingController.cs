@@ -420,6 +420,30 @@ namespace WebAPI_Definitivo.Controllers
             }
         }
 
+        [Authorize]
+        [HttpGet("/api/v1/ParkingRecordByID/{idParcheggio}")] //prende tutti i record tabella parking
+        public ActionResult GetParkingRecordByID(long idParcheggio)
+        {
+            try
+            {
+                //MODIFICA: SI PUO ANCHE SOLO PASSARE IL NOME DEL PARCHEGGIO INVECE CHE TUTTO L'OGGETTO
+                using (ParkingManagementContext model = new ParkingManagementContext())
+                {
+                    List<Parking> listOfParkings;
+                    string nome;
+
+                    nome = model.InfoParking.Where(w => w.InfoParkId == idParcheggio).Select(s => s.NamePark).FirstOrDefault();
+
+                    return Ok(nome);
+                }
+            }
+            catch (Exception)
+            {
+
+                return Problem();
+            }
+        }
+
 
         [Authorize]
         [HttpGet("NotParked")] //prende i parcheggi vuoti
@@ -478,6 +502,11 @@ namespace WebAPI_Definitivo.Controllers
                 {
                     int nRighe = Int32.Parse(righe);
                     int nColonne = Int32.Parse(colonne);
+
+                    InfoParking controlInfo = model.InfoParking.Where(w => w.NamePark == nomeParcheggio).FirstOrDefault();
+                    if(controlInfo != null)
+                        return Problem("Il nome di questo parcheggio è già presente");
+
                     if (nomeParcheggio != "" && nRighe >= 2 && nColonne >= 2 && nRighe <= 10 && nColonne <= 10)
                     {
                         InfoParking pInfo = new InfoParking(nomeParcheggio, nRighe, nColonne);

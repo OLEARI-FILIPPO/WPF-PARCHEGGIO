@@ -30,7 +30,7 @@ namespace WPF_DEFINITIVO.ViewModels
         }
 
         private ObservableCollection<string> parkings = new ObservableCollection<string>();
-
+        public ObservableCollection<InfoParking> parkingsTemp = new ObservableCollection<InfoParking>();
         public ObservableCollection<string> Parking
         {
             get { 
@@ -66,8 +66,9 @@ namespace WPF_DEFINITIVO.ViewModels
         }
 
         public ObservableCollection<InfoParking> ParkingObject;
-        public async void GetParkings()
+        public async Task GetParkings()
         {
+            parkingsTemp.Clear();
             if (NavigationLoginToLogout.isLoggedIn)
             {
                 using (var client = new HttpClient())
@@ -85,12 +86,19 @@ namespace WPF_DEFINITIVO.ViewModels
 
                     if (response.IsSuccessStatusCode)
                     {
-                        parkings.Add("Nuovo-Parcheggio");
-
-                        foreach (var item in ParkingObject)
+                        InfoParking i = new InfoParking("Nuovo-Parcheggio", riga, colonna);
+                        parkingsTemp.Add(i);
+                        foreach (var a in ParkingObject)
                         {
-                            parkings.Add(item.NamePark.ToString());
+                            parkingsTemp.Add(a);
                         }
+
+                        foreach (var a in parkingsTemp)
+                        {
+                            parkings.Add(a.NamePark.ToString());
+                        }
+
+
                     }
                     else
                     {

@@ -107,11 +107,11 @@ namespace WebAPI_Definitivo.Controllers
 
                 if(newUsername == username)
                     return Problem("L'username attuale è la stessa del nuovo");
-                if (newUsername == username)
+                if (newPassword == username)
                     return Problem("La password attuale è la stessa della nuova");
                 if (newUsername == "")
                     return Problem("Inserire correttamente l'username");
-                if (newUsername == "")
+                if (newPassword == "")
                     return Problem("Inserire correttamente la password");
 
                 if (candidate2 == null)
@@ -123,6 +123,24 @@ namespace WebAPI_Definitivo.Controllers
                 }
                 else
                     return Problem("Username già utilizzato");
+            }
+        }
+
+        [Authorize]
+        [HttpGet("GetLogin/{username}/{password}")]
+        public ActionResult GetLogin(string username, string password)
+        {
+            using (ParkingManagementContext model = new ParkingManagementContext())
+            {
+                Users candidate = model.Users.Where(w => w.Username == username && w.Password == password).FirstOrDefault();
+                
+
+                if (candidate != null)
+                {
+                    return Ok(candidate);
+                }
+                else
+                    return NotFound();
             }
         }
     }
