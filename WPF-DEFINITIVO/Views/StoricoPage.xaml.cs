@@ -54,20 +54,26 @@ namespace WPF_DEFINITIVO.Views
             //Salvo la data cosi la posso usare nel viewModel
 
             string[] dataDivisa = dataHistory.ToString().Split("/");
+            
+            if(dataDivisa[0] != "")
+            {
+                HistoryHelper.giorno = Convert.ToInt32(dataDivisa[0]);
+                HistoryHelper.mese = Convert.ToInt32(dataDivisa[1]);
+                HistoryHelper.anno = Convert.ToInt32(dataDivisa[2].Substring(0, 4));
 
+                //CHIAMA LA FUNZIONE DEL VIEW MODEL
+                var sorico = (StoricoViewModel)DataContext;
+                await storico.Refresh();
 
-            HistoryHelper.giorno = Convert.ToInt32(dataDivisa[0]);
-            HistoryHelper.mese = Convert.ToInt32(dataDivisa[1]);
-            HistoryHelper.anno = Convert.ToInt32(dataDivisa[2].Substring(0, 4));
-
-            //CHIAMA LA FUNZIONE DEL VIEW MODEL
-            var sorico = (StoricoViewModel)DataContext;
-            await storico.Refresh();
-
-            if (HistoryHelper.check == false)
-                StoricoCard2.Visibility = Visibility.Visible;
+                if (HistoryHelper.check == false)
+                    StoricoCard2.Visibility = Visibility.Visible;
+                else
+                    StoricoCard2.Visibility = Visibility.Hidden;
+            }
             else
-                StoricoCard2.Visibility = Visibility.Hidden;
+                System.Windows.MessageBox.Show("Inserire correttamente la data", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+
+
 
         }
     }
