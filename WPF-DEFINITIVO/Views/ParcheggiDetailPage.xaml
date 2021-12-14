@@ -101,7 +101,7 @@
                         <StackPanel
                                  Margin="{StaticResource SmallLeftTopMargin}">
                             <TextBlock FontFamily="Caviar Dreams" Style="{StaticResource SubtitleTextStyle}" Text="Tariffa: " />
-                            <TextBlock  FontFamily="Caviar Dreams" Name="Tariffa" Style="{StaticResource BodyTextStyle}" Text="2.00€ al ora" />
+                            <TextBlock  FontFamily="Caviar Dreams" Name="Tariffa" Style="{StaticResource BodyTextStyle}" Text="2.00€/h" />
 
                         </StackPanel>
 

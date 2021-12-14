@@ -210,13 +210,14 @@ namespace WPF_DEFINITIVO.Views
                         costo = 1;
 
                     decimal tariffa = 2;
+                    decimal totale = Math.Round(tariffa * costo);
                     //Oggetto da passare
                     History storico = new History
                         (
                             id: park.Id,            //id del parcheggio
                             parkingId: postoName,   //id temporaneo del parcheggio
                             stato: false,
-                            revenue: costo * tariffa,            
+                            revenue: totale,            
                             entryTimeDate: park.EntryTimeDate,
                             vehicleId: park.VehicleId,
                             exitTimeDate: DateTime.UtcNow.AddHours(1),         
@@ -240,7 +241,7 @@ namespace WPF_DEFINITIVO.Views
                         if (response3.IsSuccessStatusCode)
                         {
                             Close();
-                            string ris = "Veicolo uscito con successo.\n Tariffa totale: " + costo * tariffa + "€";
+                            string ris = "Veicolo uscito con successo.\n Tariffa totale: " + totale + "€";
                             System.Windows.MessageBox.Show(ris, "Information", MessageBoxButton.OK, MessageBoxImage.Information);
 
                         }
