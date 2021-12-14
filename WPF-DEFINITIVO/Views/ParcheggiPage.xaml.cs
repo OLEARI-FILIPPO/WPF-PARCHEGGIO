@@ -2,6 +2,7 @@
 using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.ComponentModel;
 using System.Net.Http;
 using System.Net.Http.Headers;
@@ -141,6 +142,21 @@ namespace WPF_DEFINITIVO.Views
                     if (combo.Text != "Nuovo-Parcheggio" && parcheggioView.ParkingObjectByName != null && parcheggioView.ParkingObjectByName[cont].Stato == true)
                     {
                         b.Background = (SolidColorBrush)new BrushConverter().ConvertFrom("#F77B7B");
+
+                        /*ObservableCollection<int> idveicolo = new ObservableCollection<int>();
+                        idveicolo.Add(Convert.ToInt32(parcheggioView.ParkingObjectByName[cont].VehicleId));
+
+                        using (var client = new HttpClient())
+                        {
+                            client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", NavigationLoginToLogout.Token);
+                            ObservableCollection<string> targhe = new ObservableCollection<string>();
+
+                            var response = await client.PostAsJsonAsync("http://localhost:13636/api/v1/getLicence", idveicolo);
+                            var data = await response.Content.ReadAsStringAsync();
+                            targhe = JsonConvert.DeserializeObject<ObservableCollection<string>>(data);
+
+                            tb2.Text += " - " + targhe[0];
+                        }*/
                     }
                     b.SetResourceReference(Grid.EffectProperty, "EffectShadow2");
                     // b.Margin = new Thickness(3);
@@ -150,14 +166,6 @@ namespace WPF_DEFINITIVO.Views
                     panel.Child = b;
 
                     DynamicGrid.Children.Add(panel);
-
-
-                    //DoubleAnimation fadeAnimation = new DoubleAnimation();
-                    //fadeAnimation.Duration = TimeSpan.FromSeconds(1.0d);
-                    //fadeAnimation.From = 0.0d;
-                    //fadeAnimation.To = 1.0d;
-                    //DynamicGrid.BeginAnimation(Grid.OpacityProperty, fadeAnimation);
-
                     cont++;
                     temp++;
                 }
